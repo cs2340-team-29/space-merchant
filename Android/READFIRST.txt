@@ -1,0 +1,24 @@
+How to Install Android SDK for Eclipse:
+1. Install Eclipse
+2. Launch Eclipse
+3. Select Help --> Eclipse Marketplace
+4. Search for Android
+5. Install Android ADT
+6. After it is instaled it will restart Eclipse
+7. Then it will ask to install Android SDK
+8. Install ONLY the latest vervsion of Android
+9. After that installs go to Window --> Android SDK Manager
+10. Select The main folder 2.3.3, install these (it's a ton of files, install them all to the best of your ability, some may fail, that's OK)
+11. MOTODEV, just hit cancel over and over again...
+12. Android is Installed!!! :D
+
+Importing an Android Project and working with Git:
+1. Use git clone and the web address of our git repository to clone all the files to your machine
+2. You should now have a folder called "space-mercant" somewhere, inside that is a folder called "Android", and in that is a folder called "HelloAndroid", this folder is the HelloAndroid eclipse project
+3. In Eclipse right click in the project pane (left side with all the folders) and select "Import..."
+4. Select import existing Android code into workspace
+5. Browse... --> Select the folder "HelloAndroid" --> Ok --> Finish
+6. Write beautiful code!
+
+Git:
+1. 
