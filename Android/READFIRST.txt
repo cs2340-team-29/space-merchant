@@ -21,4 +21,40 @@ Importing an Android Project and working with Git:
 6. Write beautiful code!
 
 Git:
-1. 
+1. Navigate to "space-merchant" directory
+2. Type "git --help" --> Read these =P
+3. Type "git pull" (retrieves all the files from the repository)
+4. Say you've updated some code and there are files to add to git..
+    1. Navigate to "space-merchant" directory
+    2. Type "git status"
+    3. Type "git add <FILES>" for the files you wish to add
+    4. Type "git status" to make sure they will be added
+    5. Type "git push" to push the changes
+    6. Type "git commit -m "YOUR MESSAGE HERE"" (notice the quotes inside for the message) to commit the changes/ additions
+    7. Type "git pull" to finally update in case there were changes made!
+
+Running Android Project Natively (on an android phone):
+1. Plug your phone into the computer
+2. Install all the necessary drivers (some require more than others) ((also motorola sucks))
+3. Make sure your device is an ADB Interface device by going through device manager and checking it out
+4. If it is not ADB Interface, google how to make it
+5. Open Eclipse
+6. Select the main project folder
+7. Hit run (as android application)
+8. Profit!
+
+Running Android Project Virtually (on an Android Virtual Device (AVD))
+1. Open Eclipse
+2. There is a button on the top panel that has a little android guy and a phone merged together (hovering over it says "Open Android Virtual Device Manager"
+3. Open it =P
+4. Select "New..."
+5. What type of device do you want to make?! (I suggest a nexus device, probably the Nexus 1)
+6. Google! "Android Virtual Device + Nexus 1"
+7. The first hit is correct and a nice tutorial where a guy blabs about stuff forever...read it =P
+7.5 Here's the web address if you're having trouble: http://mobile.tutsplus.com/tutorials/android/common-android-virtual-device-configurations/
+2.3.3. Where he says "Target Android Version/ Level" USE 2.3.3, NOT ANYTHING ELSE! 2.3.3 2.3.3 2.3.3!
+9. "Abstract LCD Density" is fine at 240
+10. Create AVD (it might take a while)
+11. Select the AVD and click "Start.." (this is take FOREVER to start and will be SUPER SLOW, try to only start an AVD like once =P ever.)
+12. To run HelloAdnroid, select the top folder HelloAndroid in eclipse and hit run (as android application)
+13. Select the AVD currently running and hit go!
