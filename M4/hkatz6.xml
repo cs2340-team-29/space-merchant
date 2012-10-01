@@ -14,21 +14,14 @@
 	</target>
 
 	<target name="compile" depends="prepare">
-		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="true">
-			<classpath>
-				<fileset dir="${lib.dir}" includes="resources.jar" />
-			</classpath>
-		</javac>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpath="${lib.dir}/resources.jar" includeantruntime="true" />
 	</target>
 
 	<target name="javadoc" depends="prepare">
-		<javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc.dir}">
+		<javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc.dir}" classpath="${lib.dir}/resources.jar" >
 			<fileset dir="${src.dir}">
 				<include name="**/*.java" />
 			</fileset>
-			<classpath>
-				<fileset dir="${lib.dir}" includes="resources.jar" />
-			</classpath>
             <bottom>
                 <![CDATA[<i>Copyright &#169; 2012 Team 29 CS2340. All Rights Reserved.</i>]]>
             </bottom>
@@ -36,7 +29,7 @@
 	</target>
 
 	<target name="jar" depends="compile">
-		<jar destfile="${build.dir}/AntLabRun.jar" basedir="${build.dir}" >
+		<jar destfile="${build.dir}/AntLabRun.jar" basedir="${build.dir}" excludes="AntLabRun.jar" >
 			<manifest>
 				<attribute name="Main-Class" value="${main-class}" />
 				<attribute name="Class-Path" value="../${lib.dir}/resources.jar" />
@@ -45,10 +38,7 @@
 	</target>
 
 	<target name="run" depends="jar">
-		<java jar="${build.dir}/AntLabRun.jar" fork="true">
-			<classpath>
-				<fileset dir="${lib.dir}" includes="resources.jar" />
-			</classpath>
+		<java jar="${build.dir}/AntLabRun.jar" classpath="${lib.dir}/resources.jar" fork="true">
 		</java>
 	</target>
 
