@@ -23,7 +23,7 @@
 		</javac>
 	</target>
 
-	<target name="javadoc" depends="compile">
+	<target name="javadoc" depends="prepare">
 		<javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc.dir}">
 			<fileset dir="${src.dir}">
 				<include name="**/*.java" />
@@ -57,6 +57,6 @@
 	</target>
 
 
-	<target name="all" depends="clean, run" />
+	<target name="all" depends="javadoc, run" />
 
 </project>
