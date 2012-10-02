@@ -1,62 +1,51 @@
 
 <project name="M4 Person4" default="all" basedir=".">
 
+	<!--initialize variables-->
 	<target name="init">
-		<property name="src.dir" value="src" />
 		<property name="build.dir" value="build" />
 		<property name="apidoc.dir" value="apidoc" />
-		<property name="lib.dir" value="lib" />
-		<property name="main-class" value="edu/gatech/oad/antlab/pkg1/AntLabMain" />
+		<property name="resource" value="lib/resources.jar" />
 	</target>
 
+	<!--creates directories-->
 	<target name="prepare" depends="init">
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${apidoc.dir}" />
 	</target>
 
-
+	<!--compile java files-->
 	<target name="compile" depends="prepare">
-		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="true" >
-			<classpath>
-				<fileset dir="${lib.dir}" includes="resources.jar" />
-			</classpath>
-		</javac>
+		<javac srcdir="src" destdir="${build.dir}" classpath="${resource}" includeantruntime="true" />
 	</target>
 
+	<!--javadoc java files-->
 	<target name="javadoc" depends="prepare">
-		<javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc.dir}">
-			<fileset dir="${src.dir}">
-				<include name="**/*.java" />
-			</fileset>
-			<classpath>
-				<fileset dir="${lib.dir}" includes="resources.jar" />
-			</classpath>
-		</javadoc>
+		<javadoc sourcepath="src" classpath="${resource}" access="public" destdir="${apidoc.dir}" />
 	</target>
 
+	<!--creates a jar from the compiled files-->
 	<target name="jar" depends="compile">
-		<jar destfile="${build.dir}/AntLabRun.jar" basedir="${build.dir}" excludes="AntLabRun.jar" >
+		<jar destfile="${build.dir}/AntLabRun.jar" basedir="${build.dir}" excludes="AntLabRun.jar">
 			<manifest>
-				<attribute name="Main-Class" value="${main-class}" />
-				<attribute name="Class-Path" value="../${lib.dir}/resources.jar" />
+				<attribute name="Main-Class" value="edu/gatech/oad/antlab/pkg1/AntLabMain" />
+				<attribute name="Class-Path" value="../${resource}" />
 			</manifest>
 		</jar>
 	</target>
 
+	<!--run the jar-->
 	<target name="run" depends="jar">
-		<java jar="${build.dir}/AntLabRun.jar" fork="true">
-			<classpath>
-				<fileset dir="${lib.dir}" includes="resources.jar" />
-			</classpath>
-		</java>
+		<java jar="${build.dir}/AntLabRun.jar" classpath="resource" fork="true" />
 	</target>
 
+	<!--delete the directory everything is in-->
 	<target name="clean" depends="init">
 		<delete dir="${build.dir}" />
 		<delete dir="${apidoc.dir}" />
 	</target>
 
-
+	<!--run all the tasks except clean-->
 	<target name="all" depends="javadoc, run" />
 
 </project>
