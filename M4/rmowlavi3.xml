@@ -1,8 +1,10 @@
 <project name="M4" basedir="." default="main">
     
-    <property name="src.dir"        value="src/"/>
+    <property name="src.dir"        value="src"/>
     <property name="build.dir"      value="build"/>
     <property name="classes.dir"    value="${build.dir}/classes"/>
+    <property name="jar.dir"        value="${build.dir}/jar"/>
+    <property name="apidoc.dir"     value="apidoc"/>
     <property name="main-class"     value="oata.HelloWorld"/>
 
     <target name="clean">
@@ -11,7 +13,7 @@
 
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpath="lib/resources.jar"/>
     </target>
 
     <target name="jar" depends="compile">
@@ -30,6 +32,17 @@
      <target name="clean-build" depends="clean,jar"/>
 
      <target name="main" depends="clean,run"/>
+       
+     <javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc.dir}"
+          packagenames="edu.gatech.oad.antdemo">
+         <excludepackage name="edu.gt.cs2340.lab2.test.*"/>
+         <fileset dir="${src.dir}">
+            <include name="**/*.java"></include>
+         </fileset>
+         <bottom>
+            <![CDATA[<i>Metagalactic Merchants: Fall 2012</i>]]>
+         </bottom>
+      </javadoc>
 </project>
 
 
