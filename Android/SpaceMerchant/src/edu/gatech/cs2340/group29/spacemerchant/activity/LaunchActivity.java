@@ -32,8 +32,10 @@ public class LaunchActivity extends Activity
         LaunchActivity.this.startActivity( selectGameIntent );
     }
     
-    public void gotoAbout(View v)
+    public void gotoAboutPage(View v)
     {
         //goto About Activity
+        Intent aboutIntent = new Intent( LaunchActivity.this, AboutPage.class );
+        LaunchActivity.this.startActivity( aboutIntent );
     }
 }

@@ -21,7 +21,7 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/gotoSelectGameButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,12 +31,13 @@
             android:onClick="gotoSelectGame" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/gotoAboutPageButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:text="@string/about" />
+            android:text="@string/about"
+            android:onClick="gotoAboutPage" />
     </LinearLayout>
 
 </LinearLayout>
