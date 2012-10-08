@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
-       
+
 		public DatabaseHelper(Context context)
 		{			
 			super(context, "spaceMerchant" , null, 1);
