@@ -27,6 +27,8 @@ public class Player
         body = android.R.drawable.ic_dialog_alert;
         legs = android.R.drawable.ic_dialog_alert;
         feet = android.R.drawable.ic_dialog_alert;
+        
+        
     }
     
     public Ship getShip()
