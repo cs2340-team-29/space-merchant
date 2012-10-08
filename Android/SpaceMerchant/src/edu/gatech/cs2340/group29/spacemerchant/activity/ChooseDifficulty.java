@@ -2,6 +2,7 @@ package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import java.util.ArrayList;
 import edu.gatech.cs2340.group29.spacemerchant.R;
+import edu.gatech.cs2340.group29.spacemerchant.adapter.ChooseDifficultyAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.model.Difficulty;
 import android.os.Bundle;
 import android.app.Activity;
