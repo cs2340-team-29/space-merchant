@@ -11,5 +11,8 @@
     <string name="select_game">Select a Game to Play!</string>
     <string name="title_activity_about_page">AboutPage</string>
     <string name="about_page_text">CS2340 Group 29: Metagalactic Merchants\nMembers: Harrison Katz, Kevin Shu, Robert Mowlavi, Connor Bryant, Kemble Hildreth</string>
+    <string name="title_activity_choose_difficulty">Choose A Difficulty</string>
+    <string name="difficulty">New Game</string>
+    <string name="difficultyDescription">Icon for the difficulties</string>
 
 </resources>
