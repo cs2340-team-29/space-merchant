@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import edu.gatech.cs2340.group29.spacemerchant.R;
@@ -24,6 +25,7 @@ public class ChooseDifficultyAdapter extends ArrayAdapter<Difficulty> {
 
 	static class ViewHolder {
 		protected ImageView img;
+		protected Button btn;
 	}
 
 	@Override
@@ -39,9 +41,11 @@ public class ChooseDifficultyAdapter extends ArrayAdapter<Difficulty> {
 		
 		viewHolder = new ViewHolder();
 		viewHolder.img = (ImageView) convertView.findViewById(R.id.difficulty);
+		viewHolder.btn = (Button) convertView.findViewById(R.id.difficultyButton);
 		convertView.setTag(viewHolder);
 
 		viewHolder.img.setImageResource(items.get(position).getIcon());
+		viewHolder.btn.setText(items.get(position).toString());
 		return (LinearLayout) convertView;
 	}
 }

@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
 public class PlayerConfig extends Activity
 {
+	public int statpts = 16;
+ //   private TextView stat1View = (TextView)findViewById(R.id.stat1TextView);
     
     @Override
     public void onCreate( Bundle savedInstanceState )
@@ -30,6 +34,8 @@ public class PlayerConfig extends Activity
         SeekBar stat4 = (SeekBar)findViewById(R.id.stat4);
         SeekBar stat5 = (SeekBar)findViewById(R.id.stat5);
         
+        stat1.setOnSeekBarChangeListener(new SeekBarListener());
+        
         // fill the stats array
         stats[0] = (int)stat1.getProgress();
         stats[1] = (int)stat2.getProgress();
@@ -48,5 +54,23 @@ public class PlayerConfig extends Activity
     {
         getMenuInflater().inflate( R.menu.activity_player_config, menu );
         return true;
+    }
+    
+    // Create a SeekBarListener
+    private class SeekBarListener implements OnSeekBarChangeListener{
+
+		public void onProgressChanged(SeekBar bar, int value, boolean arg2) {
+		//	stat1View.setText(value);
+			statpts = statpts - bar.getProgress();
+			if(statpts == 0)
+				bar.setEnabled(false);
+		}
+
+		public void onStartTrackingTouch(SeekBar bar) {
+		}
+
+		public void onStopTrackingTouch(SeekBar bar) {
+		}
+    	
     }
 }

@@ -5,7 +5,9 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Difficulty;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListView;
 
 public class ChooseDifficulty extends Activity {
@@ -34,5 +36,12 @@ public class ChooseDifficulty extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_choose_difficulty, menu);
         return true;
+    }
+    
+    public void gotoPlayerConfig(View v)
+    {
+        //goto About Activity
+        Intent playerConfigIntent = new Intent( ChooseDifficulty.this, PlayerConfig.class );
+        ChooseDifficulty.this.startActivity( playerConfigIntent );
     }
 }

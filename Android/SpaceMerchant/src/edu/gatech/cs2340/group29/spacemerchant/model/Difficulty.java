@@ -41,4 +41,23 @@ public class Difficulty {
 		this.icon = icon;
 	}
 	
+	@Override 
+	public String toString() {
+		String val = null;
+	    switch(this.getDifficulty()) {
+	    	case 0: val = "Beginner";
+	    			break;
+	    	case 1: val = "Easy";
+					break;
+	    	case 2: val = "Normal";
+					break;
+	    	case 3: val = "Hard";
+					break;
+	    	case 4: val = "Impossible";
+					break;
+	    }
+	    
+	    return val;
+	  }
+	
 }
