@@ -24,6 +24,11 @@
             android:inputType="text" />
     </LinearLayout>
 
+    <Spinner
+        android:id="@+id/chooseDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Gallery
         android:id="@+id/hat"
         android:layout_width="match_parent"
