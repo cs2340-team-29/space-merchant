@@ -38,4 +38,11 @@ public class LaunchActivity extends Activity
         Intent aboutIntent = new Intent( LaunchActivity.this, AboutPage.class );
         LaunchActivity.this.startActivity( aboutIntent );
     }
+    
+    public void gotoChooseDifficulty(View v)
+    {
+        //goto ChooseDifficulty Activity
+        Intent difficultyIntent = new Intent( LaunchActivity.this, ChooseDifficulty.class );
+        LaunchActivity.this.startActivity( difficultyIntent );
+    }
 }

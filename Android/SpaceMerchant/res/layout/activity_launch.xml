@@ -21,6 +21,16 @@
         android:orientation="vertical" >
 
         <Button
+            android:id="@+id/gotoChooseDifficultyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:text="@string/difficulty"
+            android:onClick="gotoChooseDifficulty" />
+        
+        <Button
             android:id="@+id/gotoSelectGameButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
