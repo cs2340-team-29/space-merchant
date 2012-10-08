@@ -18,14 +18,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		{
 			final String query = ""                     
 				+ "create table tb_game( "
-			    + "    game integer primary key autoincrement "
-				+ "    playerName string not null" 
-			    + "    pilotSkillPoints integer not null "
-			    + "    fighterSkillPoints integer not null"
-			    + "    traderSkillPoints integer not null" 
-			    + "    engineerSkillPoints integer not null "
-			    + "    planet integer not null"
-				+ "    difficulty integer not null";
+			    + "    game integer primary key autoincrement, "
+				+ "    playerName string not null," 
+			    + "    pilotSkillPoints integer not null, "
+			    + "    fighterSkillPoints integer not null,"
+			    + "    traderSkillPoints integer not null," 
+			    + "    engineerSkillPoints integer not null, "
+			    + "    planet integer not null,"
+				+ "    difficulty integer not null"
+			    + " )"
 			
 			db.execSQL(query);
 		}
