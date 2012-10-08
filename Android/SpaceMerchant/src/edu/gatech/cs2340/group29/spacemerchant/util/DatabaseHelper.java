@@ -17,19 +17,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	
 		public void onCreate(SQLiteDatabase db) 
 		{
-			final String query = ""                     
+			final String createGameTableQuery = ""                     
 				+ "create table tb_game( "
 			    + "    game integer primary key autoincrement, "
-				+ "    playerName string not null," 
+			    + "    difficultyLevel integer not null"
+			    + "    currentPlanet integer not null"
+			    + " )";
+			
+			db.execSQL(createGameTableQuery);
+			
+			final String createPlayerTableQuery = ""                     
+				+ "create table tb_player( "
+			    + "    player integer primary key autoincrement, "
+				+ "    name string not null," 
 			    + "    pilotSkillPoints integer not null, "
 			    + "    fighterSkillPoints integer not null,"
 			    + "    traderSkillPoints integer not null," 
 			    + "    engineerSkillPoints integer not null, "
-			    + "    planet integer not null,"
-				+ "    difficulty integer not null"
 			    + " )";
 			
-			db.execSQL(query);
+			db.execSQL(createPlayerTableQuery);
+			
 		}
 
 
