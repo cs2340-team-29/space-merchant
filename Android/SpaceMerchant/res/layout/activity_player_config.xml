@@ -18,7 +18,7 @@
 
         <EditText
             android:id="@+id/playerName"
-            android:layout_width="match_parent"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="text" />
@@ -70,13 +70,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:max="16" />
-
-        <TextView
-            android:id="@+id/stat1TextView"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="0" />
 
     </LinearLayout>
 

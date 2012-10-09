@@ -1,6 +1,8 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
+import android.graphics.drawable.Drawable;
+
 
 public class Player
 {
@@ -9,11 +11,11 @@ public class Player
     private int[] stats;
     private int   money;
     
-    private int   hat;  // Drawable
-    private int   head; // Drawable
-    private int   body; // Drawable
-    private int   legs; // Drawable
-    private int   feet; // Drawable
+    private Drawable   hat;
+    private Drawable   head;
+    private Drawable   body;
+    private Drawable   legs;
+    private Drawable   feet;
                          
     public Player()
     {
@@ -22,11 +24,11 @@ public class Player
         stats = new int[4];
         setMoney( 0 );
         
-        hat = android.R.drawable.ic_dialog_alert;
-        head = android.R.drawable.ic_dialog_alert;
-        body = android.R.drawable.ic_dialog_alert;
-        legs = android.R.drawable.ic_dialog_alert;
-        feet = android.R.drawable.ic_dialog_alert;
+        hat  = null;
+        head = null;
+        body = null;
+        legs = null;
+        feet = null;
     }
     
     public Ship getShip()
@@ -49,52 +51,52 @@ public class Player
         this.stats = stats;
     }
     
-    public int getHat()
+    public Drawable getHat()
     {
         return hat;
     }
     
-    public void setHat( int hat )
+    public void setHat( Drawable hat )
     {
         this.hat = hat;
     }
     
-    public int getHead()
+    public Drawable getHead()
     {
         return head;
     }
     
-    public void setHead( int head )
+    public void setHead( Drawable head )
     {
         this.head = head;
     }
     
-    public int getBody()
+    public Drawable getBody()
     {
         return body;
     }
     
-    public void setBody( int body )
+    public void setBody( Drawable body )
     {
         this.body = body;
     }
     
-    public int getLegs()
+    public Drawable getLegs()
     {
         return legs;
     }
     
-    public void setLegs( int legs )
+    public void setLegs( Drawable legs )
     {
         this.legs = legs;
     }
     
-    public int getFeet()
+    public Drawable getFeet()
     {
         return feet;
     }
     
-    public void setFeet( int feet )
+    public void setFeet( Drawable feet )
     {
         this.feet = feet;
     }
