@@ -24,7 +24,7 @@ public class SelectGame extends Activity
         p.add(new Player());
         p.add(new Player());
         SelectGameAdapter s = new SelectGameAdapter(this, R.layout.activity_select_game, p);
-      //  ((ListView) this.findViewById(R.id.gameList)).setAdapter(s);
+        ((ListView) this.findViewById(R.id.gameList)).setAdapter(s);
     }
     
     @Override
