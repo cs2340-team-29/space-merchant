@@ -7,16 +7,16 @@ import android.os.Parcelable;
 public class Player implements Parcelable
 {
     private String name;
-    private Ship  ship;
-    private int[] stats;
-    private int   money;
+    private Ship   ship;
+    private int[]  stats;
+    private int    money;
     
-    private int   hat;
-    private int   head;
-    private int   body;
-    private int   legs;
-    private int   feet;
-                         
+    private int    hat;
+    private int    head;
+    private int    body;
+    private int    legs;
+    private int    feet;
+    
     public Player()
     {
         setName( "Default" );
@@ -24,12 +24,59 @@ public class Player implements Parcelable
         stats = new int[4];
         setMoney( 0 );
         
-        hat  = android.R.drawable.ic_menu_camera;
+        hat = android.R.drawable.ic_menu_camera;
         head = android.R.drawable.ic_menu_camera;
         body = android.R.drawable.ic_menu_camera;
         legs = android.R.drawable.ic_menu_camera;
         feet = android.R.drawable.ic_menu_camera;
     }
+    
+    private Player( Parcel in )
+    {
+        name = in.readString();
+        stats = new int[4];
+        in.readIntArray( stats );
+        money = in.readInt();
+        
+        hat = in.readInt();
+        head = in.readInt();
+        body = in.readInt();
+        legs = in.readInt();
+        feet = in.readInt();
+        
+        ship = new Ship();
+    }
+    
+    public int describeContents()
+    {
+        return 0;
+    }
+    
+    public void writeToParcel( Parcel dest, int flags )
+    {
+        dest.writeString( name );
+        dest.writeIntArray( stats );
+        dest.writeInt( money );
+        
+        dest.writeInt( hat );
+        dest.writeInt( head );
+        dest.writeInt( body );
+        dest.writeInt( legs );
+        dest.writeInt( feet );
+    }
+    
+    public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>()
+            {
+                public Player createFromParcel( Parcel in )
+                {
+                    return new Player( in );
+                }
+
+                public Player[] newArray( int size )
+                {
+                    return new Player[size];
+                }
+            };
     
     public Ship getShip()
     {
@@ -110,25 +157,14 @@ public class Player implements Parcelable
     {
         this.money = money;
     }
-
+    
     public String getName()
     {
         return name;
     }
-
+    
     public void setName( String name )
     {
         this.name = name;
-    }
-
-    public int describeContents()
-    {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public void writeToParcel( Parcel dest, int flags )
-    {
-        
     }
 }
