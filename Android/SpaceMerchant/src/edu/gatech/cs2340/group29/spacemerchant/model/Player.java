@@ -122,7 +122,6 @@ public class Player implements Parcelable
     {
         this.name = name;
     }
-<<<<<<< HEAD
     
     public long getID()
     {
@@ -132,7 +131,7 @@ public class Player implements Parcelable
     public void setID( long playerID )
     {
         this.playerID = playerID;
-=======
+    }
 
     public int describeContents()
     {
@@ -143,6 +142,5 @@ public class Player implements Parcelable
     public void writeToParcel( Parcel dest, int flags )
     {
         
->>>>>>> d72aea3dd7b871ad18b8ee0caf75ebcb6127f3cb
     }
 }
