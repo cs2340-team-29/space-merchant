@@ -27,6 +27,7 @@ public final class R {
         public static final int galleryBody=0x7f07000a;
         public static final int galleryFeet=0x7f07000c;
         public static final int galleryHead=0x7f070009;
+        public static final int galleryImage=0x7f07002a;
         public static final int galleryLeftWing=0x7f07001c;
         public static final int galleryLegs=0x7f07000b;
         public static final int galleryNose=0x7f07001a;
@@ -57,7 +58,6 @@ public final class R {
         public static final int stat3Text=0x7f070011;
         public static final int stat4=0x7f070014;
         public static final int stat4Text=0x7f070013;
-        public static final int stat5=0x7f07002a;
         public static final int thruster=0x7f070021;
     }
     public static final class layout {
@@ -67,6 +67,7 @@ public final class R {
         public static final int activity_select_game=0x7f030003;
         public static final int activity_ship_config=0x7f030004;
         public static final int custom_select_game=0x7f030005;
+        public static final int gallery_row_view=0x7f030006;
     }
     public static final class menu {
         public static final int activity_about_page=0x7f060000;
