@@ -1,7 +1,6 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,11 +11,11 @@ public class Player implements Parcelable
     private int[] stats;
     private int   money;
     
-    private Drawable   hat;
-    private Drawable   head;
-    private Drawable   body;
-    private Drawable   legs;
-    private Drawable   feet;
+    private int   hat;
+    private int   head;
+    private int   body;
+    private int   legs;
+    private int   feet;
                          
     public Player()
     {
@@ -25,11 +24,11 @@ public class Player implements Parcelable
         stats = new int[4];
         setMoney( 0 );
         
-        hat  = null;
-        head = null;
-        body = null;
-        legs = null;
-        feet = null;
+        hat  = android.R.drawable.ic_menu_camera;
+        head = android.R.drawable.ic_menu_camera;
+        body = android.R.drawable.ic_menu_camera;
+        legs = android.R.drawable.ic_menu_camera;
+        feet = android.R.drawable.ic_menu_camera;
     }
     
     public Ship getShip()
@@ -52,52 +51,52 @@ public class Player implements Parcelable
         this.stats = stats;
     }
     
-    public Drawable getHat()
+    public int getHat()
     {
         return hat;
     }
     
-    public void setHat( Drawable hat )
+    public void setHat( int hat )
     {
         this.hat = hat;
     }
     
-    public Drawable getHead()
+    public int getHead()
     {
         return head;
     }
     
-    public void setHead( Drawable head )
+    public void setHead( int head )
     {
         this.head = head;
     }
     
-    public Drawable getBody()
+    public int getBody()
     {
         return body;
     }
     
-    public void setBody( Drawable body )
+    public void setBody( int body )
     {
         this.body = body;
     }
     
-    public Drawable getLegs()
+    public int getLegs()
     {
         return legs;
     }
     
-    public void setLegs( Drawable legs )
+    public void setLegs( int legs )
     {
         this.legs = legs;
     }
     
-    public Drawable getFeet()
+    public int getFeet()
     {
         return feet;
     }
     
-    public void setFeet( Drawable feet )
+    public void setFeet( int feet )
     {
         this.feet = feet;
     }
