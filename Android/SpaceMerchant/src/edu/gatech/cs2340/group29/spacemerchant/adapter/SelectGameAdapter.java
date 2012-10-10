@@ -54,13 +54,13 @@ public class SelectGameAdapter extends ArrayAdapter<Player>
         {
             LayoutInflater inf = ( ( Activity ) context ).getLayoutInflater();
             convertView = inf.inflate( R.layout.custom_select_game, parent, false );
+            viewHolder = new ViewHolder();
         }
         else
         {
             viewHolder = ( ViewHolder ) convertView.getTag();
         }
         
-        viewHolder = new ViewHolder();
         viewHolder.player_hat = ( ImageView ) convertView.findViewById( R.id.hat );
         viewHolder.player_head = ( ImageView ) convertView.findViewById( R.id.head );
         viewHolder.player_body = ( ImageView ) convertView.findViewById( R.id.body_player );
@@ -84,17 +84,17 @@ public class SelectGameAdapter extends ArrayAdapter<Player>
         viewHolder.player_body.setImageDrawable( players.get( position ).getBody() );
         viewHolder.player_legs.setImageDrawable( players.get( position ).getLegs() );
         viewHolder.player_feet.setImageDrawable( players.get( position ).getFeet() );
-        viewHolder.ship_nose.setImageResource( players.get( position ).getShip().getNose() );
-        viewHolder.ship_body.setImageResource( players.get( position ).getShip().getBody() );
-        viewHolder.ship_left_wing.setImageResource( players.get( position ).getShip().getLeft_wing() );
-        viewHolder.ship_right_wing.setImageResource( players.get( position ).getShip().getRight_wing() );
-        viewHolder.ship_thruster.setImageResource( players.get( position ).getShip().getThruster() );
+        viewHolder.ship_nose.setImageDrawable( players.get( position ).getShip().getNose() );
+        viewHolder.ship_body.setImageDrawable( players.get( position ).getShip().getBody() );
+        viewHolder.ship_left_wing.setImageDrawable( players.get( position ).getShip().getLeft_wing() );
+        viewHolder.ship_right_wing.setImageDrawable( players.get( position ).getShip().getRight_wing() );
+        viewHolder.ship_thruster.setImageDrawable( players.get( position ).getShip().getThruster() );
         viewHolder.player_name.setText( players.get( position ).getName() );
-        viewHolder.money.setText( String.valueOf( players.get( position ).getMoney() ) );
-        viewHolder.stat1.setText( players.get( position ).getStats()[0] );
-        viewHolder.stat2.setText( players.get( position ).getStats()[1] );
-        viewHolder.stat3.setText( players.get( position ).getStats()[2] );
-        viewHolder.stat4.setText( players.get( position ).getStats()[3] );
+        viewHolder.money.setText( Integer.toString( players.get( position ).getMoney() ) );
+        viewHolder.stat1.setText( Integer.toString( players.get( position ).getStats()[0] ) );
+        viewHolder.stat2.setText( Integer.toString( players.get( position ).getStats()[1] ) );
+        viewHolder.stat3.setText( Integer.toString( players.get( position ).getStats()[2] ) );
+        viewHolder.stat4.setText( Integer.toString( players.get( position ).getStats()[3] ) );
         return convertView;
     }
 }

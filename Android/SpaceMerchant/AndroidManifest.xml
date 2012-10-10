@@ -13,7 +13,8 @@
         android:theme="@android:style/Theme.Black.NoTitleBar" >
         <activity
             android:name=".activity.LaunchActivity"
-            android:label="@string/title_activity_launch" >
+            android:label="@string/title_activity_launch"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,39 +23,18 @@
         </activity>
         <activity
             android:name=".activity.PlayerConfig"
-            android:label="@string/title_activity_player_config" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_player_config"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".activity.SelectGame"
-            android:label="@string/title_activity_select_game" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_select_game"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".activity.AboutPage"
-            android:label="@string/title_activity_about_page" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.ChooseDifficulty"
-            android:label="@string/title_activity_choose_difficulty" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_about_page"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

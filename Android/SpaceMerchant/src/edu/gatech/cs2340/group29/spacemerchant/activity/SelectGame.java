@@ -4,6 +4,7 @@ package edu.gatech.cs2340.group29.spacemerchant.activity;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -24,10 +25,10 @@ public class SelectGame extends Activity
         setContentView( R.layout.activity_select_game );
         
         ArrayList<Player> p = new ArrayList<Player>();
-        p.add(new Player());
-        p.add(new Player());
-        SelectGameAdapter s = new SelectGameAdapter(this, R.layout.activity_select_game, p);
-        ((ListView) this.findViewById(R.id.gameList)).setAdapter(s);
+        p.add( new Player() );
+        p.add( new Player() );
+        SelectGameAdapter s = new SelectGameAdapter( this, R.layout.activity_select_game, p );
+        ( ( ListView ) this.findViewById( R.id.gameList ) ).setAdapter( s );
     }
     
     @Override
@@ -37,13 +38,20 @@ public class SelectGame extends Activity
         return true;
     }
     
-    class SelectGameListener implements OnItemClickListener{
-
-    	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
-			// TODO Auto-generated method stub
-			
-		}
-    	
+    public void gotoPlayerConfig( View v )
+    {
+        // launch SelectGame activity
+        Intent intent = new Intent( SelectGame.this, PlayerConfig.class );
+        SelectGame.this.startActivity( intent );
+    }
+    
+    class SelectGameListener implements OnItemClickListener
+    {
+        
+        public void onItemClick( AdapterView<?> arg0, View arg1, int arg2, long arg3 )
+        {
+            //to be implemented
+        }
+        
     }
 }

@@ -2,7 +2,6 @@
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -30,11 +28,11 @@ public class PlayerConfig extends Activity
     private SeekBar  stat2;
     private SeekBar  stat3;
     private SeekBar  stat4;
-    private Drawable   hat;
-    private Drawable   head;
-    private Drawable   body;
-    private Drawable   legs;
-    private Drawable   feet;
+    private Drawable hat;
+    private Drawable head;
+    private Drawable body;
+    private Drawable legs;
+    private Drawable feet;
     
     @Override
     public void onCreate( Bundle savedInstanceState )
@@ -54,14 +52,15 @@ public class PlayerConfig extends Activity
         stat3.setOnSeekBarChangeListener( new SeekBarListener() );
         stat4.setOnSeekBarChangeListener( new SeekBarListener() );
         
-        hat = ( ( ImageView ) findViewById( R.id.hat ) ).getDrawable();
-        
         // Set up choosing difficulty
-        ArrayList<String> difficulties = ( ArrayList<String> ) Arrays.asList( new String[]{
-                "Choose Difficulty", "Easy", "Medium", "Hard", "Impossible" } );
+        ArrayList<String> difficulties = new ArrayList<String>();
+        difficulties.add( "Choose Difficulty" );
+        difficulties.add( "Easy" );
+        difficulties.add( "Medium" );
+        difficulties.add( "Hard" );
+        difficulties.add( "Impossible" );
         
-        ChooseDifficultyAdapter cda = new ChooseDifficultyAdapter( getApplicationContext(),
-                R.id.chooseDifficulty, difficulties );
+        ChooseDifficultyAdapter cda = new ChooseDifficultyAdapter( this, R.id.difficulty, difficulties );
         ( ( Spinner ) findViewById( R.id.chooseDifficulty ) ).setAdapter( cda );
         
     }

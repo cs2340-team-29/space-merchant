@@ -16,5 +16,6 @@
     <string name="DifficultySetting">Beginner</string>
     <string name="difficultyDescription">Icon for the difficulties</string>
     <string name="difficultyText">Choose Difficulty</string>
+    <string name="new_game">New Game</string>
 
 </resources>
