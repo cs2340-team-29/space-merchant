@@ -48,4 +48,11 @@ public class PlayerDataSource
         return;
     }
     
+    public void deletePlayer(Player player)
+    {
+        long playerID = player.getID();
+        
+        database.delete("tb_player", "player=" + playerID, null);
+    }
+    
 }

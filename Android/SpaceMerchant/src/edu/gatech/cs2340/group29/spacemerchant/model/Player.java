@@ -2,10 +2,10 @@
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
 import android.graphics.drawable.Drawable;
-import edu.gatech.cs2340.group29.spacemerchant.util.*;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-
-public class Player
+public class Player implements Parcelable
 {
     private String name;
     private Ship   ship;
@@ -122,6 +122,7 @@ public class Player
     {
         this.name = name;
     }
+<<<<<<< HEAD
     
     public long getID()
     {
@@ -131,5 +132,17 @@ public class Player
     public void setID( long playerID )
     {
         this.playerID = playerID;
+=======
+
+    public int describeContents()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public void writeToParcel( Parcel dest, int flags )
+    {
+        
+>>>>>>> d72aea3dd7b871ad18b8ee0caf75ebcb6127f3cb
     }
 }
