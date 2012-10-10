@@ -79,11 +79,11 @@ public class SelectGameAdapter extends ArrayAdapter<Player>
         viewHolder.stat4 = ( TextView ) convertView.findViewById( R.id.stat4 );
         convertView.setTag( viewHolder );
         
-        viewHolder.player_hat.setImageDrawable( players.get( position ).getHat() );
-        viewHolder.player_head.setImageDrawable( players.get( position ).getHead() );
-        viewHolder.player_body.setImageDrawable( players.get( position ).getBody() );
-        viewHolder.player_legs.setImageDrawable( players.get( position ).getLegs() );
-        viewHolder.player_feet.setImageDrawable( players.get( position ).getFeet() );
+        viewHolder.player_hat.setImageResource( players.get( position ).getHat() );
+        viewHolder.player_head.setImageResource( players.get( position ).getHead() );
+        viewHolder.player_body.setImageResource( players.get( position ).getBody() );
+        viewHolder.player_legs.setImageResource( players.get( position ).getLegs() );
+        viewHolder.player_feet.setImageResource( players.get( position ).getFeet() );
         viewHolder.ship_nose.setImageDrawable( players.get( position ).getShip().getNose() );
         viewHolder.ship_body.setImageDrawable( players.get( position ).getShip().getBody() );
         viewHolder.ship_left_wing.setImageDrawable( players.get( position ).getShip().getLeft_wing() );

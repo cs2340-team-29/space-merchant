@@ -13,12 +13,13 @@ public class Player implements Parcelable
     private int    money;
     private long   playerID;
     
-    private Drawable   hat;
-    private Drawable   head;
-    private Drawable   body;
-    private Drawable   legs;
-    private Drawable   feet;
-                         
+    private int   hat;
+    private int   head;
+    private int   body;
+    private int   legs;
+    private int   feet;
+
+    
     public Player()
     {
         setName( "Default" );
@@ -26,12 +27,59 @@ public class Player implements Parcelable
         stats = new int[4];
         setMoney( 0 );
         
-        hat  = null;
-        head = null;
-        body = null;
-        legs = null;
-        feet = null;
+        hat = android.R.drawable.ic_menu_camera;
+        head = android.R.drawable.ic_menu_camera;
+        body = android.R.drawable.ic_menu_camera;
+        legs = android.R.drawable.ic_menu_camera;
+        feet = android.R.drawable.ic_menu_camera;
     }
+    
+    private Player( Parcel in )
+    {
+        name = in.readString();
+        stats = new int[4];
+        in.readIntArray( stats );
+        money = in.readInt();
+        
+        hat = in.readInt();
+        head = in.readInt();
+        body = in.readInt();
+        legs = in.readInt();
+        feet = in.readInt();
+        
+        ship = new Ship();
+    }
+    
+    public int describeContents()
+    {
+        return 0;
+    }
+    
+    public void writeToParcel( Parcel dest, int flags )
+    {
+        dest.writeString( name );
+        dest.writeIntArray( stats );
+        dest.writeInt( money );
+        
+        dest.writeInt( hat );
+        dest.writeInt( head );
+        dest.writeInt( body );
+        dest.writeInt( legs );
+        dest.writeInt( feet );
+    }
+    
+    public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>()
+            {
+                public Player createFromParcel( Parcel in )
+                {
+                    return new Player( in );
+                }
+
+                public Player[] newArray( int size )
+                {
+                    return new Player[size];
+                }
+            };
     
     public Ship getShip()
     {
@@ -53,52 +101,52 @@ public class Player implements Parcelable
         this.stats = stats;
     }
     
-    public Drawable getHat()
+    public int getHat()
     {
         return hat;
     }
     
-    public void setHat( Drawable hat )
+    public void setHat( int hat )
     {
         this.hat = hat;
     }
     
-    public Drawable getHead()
+    public int getHead()
     {
         return head;
     }
     
-    public void setHead( Drawable head )
+    public void setHead( int head )
     {
         this.head = head;
     }
     
-    public Drawable getBody()
+    public int getBody()
     {
         return body;
     }
     
-    public void setBody( Drawable body )
+    public void setBody( int body )
     {
         this.body = body;
     }
     
-    public Drawable getLegs()
+    public int getLegs()
     {
         return legs;
     }
     
-    public void setLegs( Drawable legs )
+    public void setLegs( int legs )
     {
         this.legs = legs;
     }
     
-    public Drawable getFeet()
+    public int getFeet()
     {
         return feet;
     }
     
-    public void setFeet( Drawable feet )
+    public void setFeet( int feet )
     {
         this.feet = feet;
     }
@@ -112,12 +160,12 @@ public class Player implements Parcelable
     {
         this.money = money;
     }
-
+    
     public String getName()
     {
         return name;
     }
-
+    
     public void setName( String name )
     {
         this.name = name;
@@ -133,14 +181,7 @@ public class Player implements Parcelable
         this.playerID = playerID;
     }
 
-    public int describeContents()
-    {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 
-    public void writeToParcel( Parcel dest, int flags )
-    {
-        
-    }
+
+
 }

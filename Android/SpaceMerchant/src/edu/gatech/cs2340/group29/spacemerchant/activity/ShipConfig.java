@@ -20,9 +20,7 @@ public class ShipConfig extends Activity
     {
         super.onCreate( savedInstanceState );
         
-        this.player = ( Player ) getIntent().getSerializableExtra( player_extra );
-        
-        Toast.makeText( this.getApplicationContext(), player.getName(), Toast.LENGTH_LONG ).show();
+        this.player = ( Player ) getIntent().getParcelableExtra( player_extra );
         
         setContentView( R.layout.activity_ship_config );
     }
