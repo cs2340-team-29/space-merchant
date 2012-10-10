@@ -36,6 +36,11 @@
             android:label="@string/title_activity_about_page"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".activity.ShipConfig"
+            android:label="@string/title_activity_about_page"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

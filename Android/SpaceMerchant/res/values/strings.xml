@@ -17,5 +17,11 @@
     <string name="difficultyDescription">Icon for the difficulties</string>
     <string name="difficultyText">Choose Difficulty</string>
     <string name="new_game">New Game</string>
+    <string name="player_name_text">Player Name:</string>
+    <string name="stat_pilot">Pilot:</string>
+    <string name="stat_fighter">Fighter:</string>
+    <string name="stat_trader">Trader:</string>
+    <string name="stat_engineer">Engineer:</string>
+    <string name="done">Done</string>
 
 </resources>

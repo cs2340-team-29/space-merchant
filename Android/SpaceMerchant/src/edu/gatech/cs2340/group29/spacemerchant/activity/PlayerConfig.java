@@ -9,18 +9,20 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
-import edu.gatech.cs2340.group29.spacemerchant.adapter.ChooseDifficultyAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
 public class PlayerConfig extends Activity
 {
-    public int       statpts = 16;
+    public int       statpts = 0;
     private Player   player;
     private int[]    stats;
     private EditText player_name;
@@ -60,8 +62,10 @@ public class PlayerConfig extends Activity
         difficulties.add( "Hard" );
         difficulties.add( "Impossible" );
         
-        ChooseDifficultyAdapter cda = new ChooseDifficultyAdapter( this, R.id.difficulty, difficulties );
-        ( ( Spinner ) findViewById( R.id.chooseDifficulty ) ).setAdapter( cda );
+        ArrayAdapter<String> adap = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_item,
+                difficulties );
+        adap.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        ( ( Spinner ) findViewById( R.id.chooseDifficulty ) ).setAdapter( adap );
         
     }
     
@@ -77,19 +81,20 @@ public class PlayerConfig extends Activity
         
         String problem = null;
         
-        if ( player_name.getText().equals( "" ) )
-        {
-            problem = "Please fill out your player name!";
-        }
-        
-        if ( statpts < 0 )
-        {
-            problem = "You have too many stat points somehow! Please fix that (max 16)";
-        }
-        
-        if ( statpts > 0 )
+        if ( statpts < 16 )
         {
             problem = "You haven't assigned all your stats! Don't make this game too hard!";
+        }
+        
+        if ( ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) ).getSelectedItem()
+                .toString().equals( "Choose Difficulty" ) )
+        {
+            problem = "Please select a difficulty!";
+        }
+        
+        if ( player_name.getText().toString().equals( "" ) )
+        {
+            problem = "Please fill out your player name!";
         }
         
         // if there is a problem creating the player present a message,
@@ -120,15 +125,16 @@ public class PlayerConfig extends Activity
         }
     }
     
-    // Create a SeekBarListener, Crude logic for limiting statpts
+    // Create a SeekBarListener, Beautiful logic for disabling more than 16 pts,
+    // ummm confirmed bug, one stat can only go to max of 15, not sure why...
     private class SeekBarListener implements OnSeekBarChangeListener
     {
         
         public void onProgressChanged( SeekBar bar, int value, boolean fromUser )
         {
-            statpts = statpts - bar.getProgress();
-            if ( statpts <= 0 )
-                bar.setEnabled( false );
+            statpts = stat1.getProgress() + stat4.getProgress() + stat3.getProgress() + stat2.getProgress();
+            if ( statpts > 16 )
+                bar.setProgress( bar.getProgress() - 1 );
         }
         
         public void onStartTrackingTouch( SeekBar bar )
