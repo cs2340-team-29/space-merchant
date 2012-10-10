@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 public class Player implements Parcelable
 {
     private String name;

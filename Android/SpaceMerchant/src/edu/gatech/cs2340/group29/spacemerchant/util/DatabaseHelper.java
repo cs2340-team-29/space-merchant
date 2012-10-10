@@ -30,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 				+ "create table tb_player( "
 			    + "    player integer primary key autoincrement, "
 				+ "    name string not null," 
+			    + "    money integer not null, "
 			    + "    pilotSkillPoints integer not null, "
 			    + "    fighterSkillPoints integer not null,"
 			    + "    traderSkillPoints integer not null," 
