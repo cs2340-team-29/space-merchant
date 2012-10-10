@@ -3,8 +3,8 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:isScrollContainer="true" >
+    android:isScrollContainer="true"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,27 +30,27 @@
         android:layout_height="wrap_content" />
 
     <Gallery
-        android:id="@+id/hat"
+        android:id="@+id/galeryHat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Gallery
-        android:id="@+id/head"
+        android:id="@+id/galleryHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Gallery
-        android:id="@+id/body"
+        android:id="@+id/galleryBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Gallery
-        android:id="@+id/legs"
+        android:id="@+id/galleryLegs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Gallery
-        android:id="@+id/feet"
+        android:id="@+id/galleryFeet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
