@@ -27,7 +27,7 @@ public class PlayerDataSource
         databaseHelper.close();
     }
     
-    public long createPlayer(Player player) 
+    public void createPlayer(Player player) 
     {
         ContentValues values = new ContentValues();
        
@@ -44,7 +44,8 @@ public class PlayerDataSource
         
         long playerID = database.insert("tb_player", null, values);
 
-        return playerID;
+        player.setID(playerID);
+        return;
     }
     
 }
