@@ -121,6 +121,7 @@ public class PlayerConfig extends Activity
             player.setMoney( 1000 );
             
             Intent intent = new Intent( PlayerConfig.this, ShipConfig.class );
+            intent.putExtra( ShipConfig.player_extra, player );
             PlayerConfig.this.startActivity( intent );
         }
     }

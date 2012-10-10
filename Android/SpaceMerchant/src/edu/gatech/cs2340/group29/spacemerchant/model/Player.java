@@ -2,9 +2,11 @@
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 
-public class Player
+public class Player implements Parcelable
 {
     private String name;
     private Ship  ship;
@@ -119,5 +121,16 @@ public class Player
     public void setName( String name )
     {
         this.name = name;
+    }
+
+    public int describeContents()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public void writeToParcel( Parcel dest, int flags )
+    {
+        
     }
 }
