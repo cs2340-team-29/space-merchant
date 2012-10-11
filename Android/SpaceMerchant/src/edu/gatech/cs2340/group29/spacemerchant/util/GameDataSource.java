@@ -20,6 +20,7 @@ public class GameDataSource
 
     public GameDataSource(Context context)
     {
+        this.context = context;
         databaseHelper = new DatabaseHelper(context);
     }
 
