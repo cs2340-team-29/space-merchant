@@ -3,6 +3,7 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
 
 public class Ship
 {
+    private long shipID;
     private int[] stats;
     
     private int   nose;
@@ -81,4 +82,14 @@ public class Ship
     {
         this.thruster = thruster;
     }
+    
+    public long getID()
+    {
+        return shipID;
+    }
+
+    public void setID( long shipID )
+    {
+        this.shipID = shipID;
+    } 
 }
