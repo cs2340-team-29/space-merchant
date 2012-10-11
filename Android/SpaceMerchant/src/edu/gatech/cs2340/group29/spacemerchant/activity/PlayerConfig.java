@@ -31,10 +31,6 @@ public class PlayerConfig extends Activity
     private SeekBar  stat2;
     private SeekBar  stat3;
     private SeekBar  stat4;
-    private int      head;
-    private int      body;
-    private int      legs;
-    private int      feet;
     
     @Override
     public void onCreate( Bundle savedInstanceState )
@@ -74,19 +70,19 @@ public class PlayerConfig extends Activity
         heads.add( R.drawable.ic_head_3 );
         
         ArrayList<Integer> bodys = new ArrayList<Integer>();
-        heads.add( R.drawable.ic_body_1 );
-        heads.add( R.drawable.ic_body_2 );
-        heads.add( R.drawable.ic_body_3 );
+        bodys.add( R.drawable.ic_body_1 );
+        bodys.add( R.drawable.ic_body_2 );
+        bodys.add( R.drawable.ic_body_3 );
         
         ArrayList<Integer> legs = new ArrayList<Integer>();
-        heads.add( R.drawable.ic_pants_1 );
-        heads.add( R.drawable.ic_pants_2 );
-        heads.add( R.drawable.ic_pants_3 );
+        legs.add( R.drawable.ic_pants_1 );
+        legs.add( R.drawable.ic_pants_2 );
+        legs.add( R.drawable.ic_pants_3 );
         
         ArrayList<Integer> feets = new ArrayList<Integer>();
-        heads.add( R.drawable.ic_feet_1 );
-        heads.add( R.drawable.ic_feet_2 );
-        heads.add( R.drawable.ic_feet_3 );
+        feets.add( R.drawable.ic_feet_1 );
+        feets.add( R.drawable.ic_feet_2 );
+        feets.add( R.drawable.ic_feet_3 );
         
         // Set up Galleries
         SelectGalleryAdapter sgaHead = new SelectGalleryAdapter( this, R.layout.gallery_row_view, heads );
@@ -152,13 +148,17 @@ public class PlayerConfig extends Activity
             player.setStats( stats );
             player.setMoney( 1000 );
             Gallery tempGallery = ( ( Gallery ) findViewById( R.id.galleryHead ) );
-            player.setHead( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
+            player.setHead( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+                    .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             tempGallery = ( ( Gallery ) findViewById( R.id.galleryBody ) );
-            player.setBody( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
+            player.setBody( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+                    .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             tempGallery = ( ( Gallery ) findViewById( R.id.galleryLegs ) );
-            player.setLegs( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
+            player.setLegs( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+                    .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             tempGallery = ( ( Gallery ) findViewById( R.id.galleryFeet ) );
-            player.setFeet( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
+            player.setFeet( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+                    .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             
             int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) )
                     .getSelectedItemPosition();
@@ -171,7 +171,6 @@ public class PlayerConfig extends Activity
     }
     
     // Create a SeekBarListener, Beautiful logic for disabling more than 16 pts,
-    // ummm confirmed bug, one stat can only go to max of 15, not sure why...
     private class SeekBarListener implements OnSeekBarChangeListener
     {
         

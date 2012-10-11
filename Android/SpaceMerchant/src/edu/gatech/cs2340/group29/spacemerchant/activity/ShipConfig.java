@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AbsSpinner;
 import android.widget.Gallery;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
@@ -42,7 +43,9 @@ public class ShipConfig extends Activity
             difficulty = 3;
         }
         
-     // Set up drawable lists
+        setContentView( R.layout.activity_ship_config );
+        
+        // Set up drawable lists
         ArrayList<Integer> fuselages = new ArrayList<Integer>();
         fuselages.add( R.drawable.ic_fuselage_1 );
         fuselages.add( R.drawable.ic_fuselage_2 );
@@ -57,10 +60,10 @@ public class ShipConfig extends Activity
         boosters.add( R.drawable.ic_boosters_1 );
         boosters.add( R.drawable.ic_boosters_2 );
         boosters.add( R.drawable.ic_boosters_3 );
-
         
         // Set up Galleries
-        SelectGalleryAdapter sgaFuselage = new SelectGalleryAdapter( this, R.layout.gallery_row_view, fuselages );
+        SelectGalleryAdapter sgaFuselage = new SelectGalleryAdapter( this, R.layout.gallery_row_view,
+                fuselages );
         SelectGalleryAdapter sgaCabin = new SelectGalleryAdapter( this, R.layout.gallery_row_view, cabins );
         SelectGalleryAdapter sgaBooster = new SelectGalleryAdapter( this, R.layout.gallery_row_view, boosters );
         
@@ -68,7 +71,6 @@ public class ShipConfig extends Activity
         ( ( Gallery ) findViewById( R.id.galleryCabin ) ).setAdapter( sgaCabin );
         ( ( Gallery ) findViewById( R.id.galleryBoosters ) ).setAdapter( sgaBooster );
         
-        setContentView( R.layout.activity_ship_config );
     }
     
     @Override
@@ -93,7 +95,7 @@ public class ShipConfig extends Activity
         gds.createGame( g );
         gds.close();
         
-        Intent intent = new Intent(ShipConfig.this, GameActivity.class);
+        Intent intent = new Intent( ShipConfig.this, GameActivity.class );
         this.startActivity( intent );
     }
 }

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
-import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
 public class SelectGalleryAdapter extends BaseAdapter
 {
@@ -67,5 +66,10 @@ public class SelectGalleryAdapter extends BaseAdapter
     public long getItemId( int arg0 )
     {
         return 0;
+    }
+    
+    public int getItemAtPosition(int position)
+    {
+        return drawables.get( position );
     }
 }
