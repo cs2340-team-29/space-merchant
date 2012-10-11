@@ -5,19 +5,20 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Gallery;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
+import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGalleryAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
 public class PlayerConfig extends Activity
@@ -30,10 +31,10 @@ public class PlayerConfig extends Activity
     private SeekBar  stat2;
     private SeekBar  stat3;
     private SeekBar  stat4;
-    private int head;
-    private int body;
-    private int legs;
-    private int feet;
+    private int      head;
+    private int      body;
+    private int      legs;
+    private int      feet;
     
     @Override
     public void onCreate( Bundle savedInstanceState )
@@ -66,6 +67,37 @@ public class PlayerConfig extends Activity
         adap.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         ( ( Spinner ) findViewById( R.id.chooseDifficulty ) ).setAdapter( adap );
         
+        // Set up drawable lists
+        ArrayList<Integer> heads = new ArrayList<Integer>();
+        heads.add( R.drawable.ic_head_1 );
+        heads.add( R.drawable.ic_head_2 );
+        heads.add( R.drawable.ic_head_3 );
+        
+        ArrayList<Integer> bodys = new ArrayList<Integer>();
+        heads.add( R.drawable.ic_body_1 );
+        heads.add( R.drawable.ic_body_2 );
+        heads.add( R.drawable.ic_body_3 );
+        
+        ArrayList<Integer> legs = new ArrayList<Integer>();
+        heads.add( R.drawable.ic_pants_1 );
+        heads.add( R.drawable.ic_pants_2 );
+        heads.add( R.drawable.ic_pants_3 );
+        
+        ArrayList<Integer> feets = new ArrayList<Integer>();
+        heads.add( R.drawable.ic_feet_1 );
+        heads.add( R.drawable.ic_feet_2 );
+        heads.add( R.drawable.ic_feet_3 );
+        
+        // Set up Galleries
+        SelectGalleryAdapter sgaHead = new SelectGalleryAdapter( this, R.layout.gallery_row_view, heads );
+        SelectGalleryAdapter sgaBody = new SelectGalleryAdapter( this, R.layout.gallery_row_view, bodys );
+        SelectGalleryAdapter sgaLegs = new SelectGalleryAdapter( this, R.layout.gallery_row_view, legs );
+        SelectGalleryAdapter sgaFeet = new SelectGalleryAdapter( this, R.layout.gallery_row_view, feets );
+        
+        ( ( Gallery ) findViewById( R.id.galleryHead ) ).setAdapter( sgaHead );
+        ( ( Gallery ) findViewById( R.id.galleryBody ) ).setAdapter( sgaBody );
+        ( ( Gallery ) findViewById( R.id.galleryLegs ) ).setAdapter( sgaLegs );
+        ( ( Gallery ) findViewById( R.id.galleryFeet ) ).setAdapter( sgaFeet );
     }
     
     @Override
@@ -119,8 +151,17 @@ public class PlayerConfig extends Activity
             player.setName( player_name.getText().toString() );
             player.setStats( stats );
             player.setMoney( 1000 );
+            Gallery tempGallery = ( ( Gallery ) findViewById( R.id.galleryHead ) );
+            player.setHead( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
+            tempGallery = ( ( Gallery ) findViewById( R.id.galleryBody ) );
+            player.setBody( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
+            tempGallery = ( ( Gallery ) findViewById( R.id.galleryLegs ) );
+            player.setLegs( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
+            tempGallery = ( ( Gallery ) findViewById( R.id.galleryFeet ) );
+            player.setFeet( ( Integer ) tempGallery.getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             
-            int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) ).getSelectedItemPosition();
+            int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) )
+                    .getSelectedItemPosition();
             
             Intent intent = new Intent( PlayerConfig.this, ShipConfig.class );
             intent.putExtra( ShipConfig.player_extra, player );
