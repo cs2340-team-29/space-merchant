@@ -45,7 +45,7 @@ public class GameDataSource
         values.put("player", playerID);
         values.put("difficulty", difficulty);
 
-        long gameID = database.insert("tb_player", null, values);
+        long gameID = database.insert("tb_game", null, values);
 
         game.setID(gameID);
         

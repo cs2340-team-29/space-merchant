@@ -21,8 +21,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		    + "   ship integer primary key autoincrement," 
 		    + "   nose integer not null,"
 		    + "   rightWing integer not null,"
-		    + "   leftWing integer not null"
-		    + "   body integer not null"
+		    + "   leftWing integer not null,"
+		    + "   body integer not null,"
 		    + "   thruster integer not null"
 		    + ")";
 		
