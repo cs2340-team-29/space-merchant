@@ -35,6 +35,7 @@ public class SelectGame extends Activity
         {
             p.add( game.getPlayer() );
         }
+        p.trimToSize();
         SelectGameAdapter s = new SelectGameAdapter( this, R.layout.activity_select_game, p );
         ( ( ListView ) this.findViewById( R.id.gameList ) ).setAdapter( s );
     }
