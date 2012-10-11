@@ -34,14 +34,18 @@ public class GameDataSource
         databaseHelper.close();
     }
 
-    public void createGame(Game game)
+    public long createGame(Game game)
     {
         ContentValues values = new ContentValues();
 
         int difficulty = game.getDifficulty();
         Player player  = game.getPlayer();
+       
+        PlayerDataSource playerDataSource = new PlayerDataSource(context);
         
-        long playerID = player.getID();
+        playerDataSource.open();
+        long playerID = playerDataSource.createPlayer(player);
+        playerDataSource.close();
 
         values.put("player", playerID);
         values.put("difficultyLevel", difficulty);
@@ -50,7 +54,7 @@ public class GameDataSource
 
         game.setID(gameID);
         
-        return;
+        return gameID;
     }
 
     public void deleteGame(Game game)
@@ -107,10 +111,11 @@ public class GameDataSource
         game.setDifficulty(cursor.getInt(1));
 
         PlayerDataSource dataSource = new PlayerDataSource(context);
-        
+       
         dataSource.open();
         Player player = dataSource.getPlayerByID(cursor.getInt(2));
         dataSource.close();
+        
         
         game.setPlayer(player);
 

@@ -34,7 +34,7 @@ public class PlayerDataSource
         databaseHelper.close();
     }
 
-    public void createPlayer(Player player)
+    public long createPlayer(Player player)
     {
         ContentValues values = new ContentValues();
 
@@ -44,10 +44,10 @@ public class PlayerDataSource
         int head = player.getHead();
         int body = player.getBody();
         int legs = player.getLegs();
-        int feet = player.getLegs();
-        
+        int feet = player.getFeet();
+
         Ship ship = player.getShip();
-        
+
         long shipID = ship.getID();
 
         values.put("name", name);
@@ -64,14 +64,11 @@ public class PlayerDataSource
 
         long playerID = database.insert("tb_player", null, values);
 
-        player.setID(playerID);
-        return;
+        return playerID;
     }
 
-    public void deletePlayer(Player player)
+    public void deletePlayer(long playerID)
     {
-        long playerID = player.getID();
-
         database.delete("tb_player", "player=" + playerID, null);
     }
 
@@ -83,17 +80,16 @@ public class PlayerDataSource
                 null, null, null);
 
         cursor.moveToFirst();
-        
-        while( !cursor.isAfterLast() )
+
+        while (!cursor.isAfterLast())
         {
             Player player = cursorToPlayer(cursor);
-            
+
             players.add(player);
-            
+
             cursor.moveToNext();
-            
         }
-       
+
         cursor.close();
         return players;
     }
@@ -102,12 +98,10 @@ public class PlayerDataSource
     {
 
         Player player = null;
-        Cursor cursor = database.query("tb_player", ALL_COLUMNS, 
-                "player=" + playerID, null, null, null, null);
+        Cursor cursor = database.query("tb_player", ALL_COLUMNS, "player="
+                + playerID, null, null, null, null);
 
-        cursor.moveToFirst();
-
-        if( !cursor.isAfterLast() )
+        if (cursor.moveToFirst())
         {
             player = cursorToPlayer(cursor);
         }
@@ -118,18 +112,16 @@ public class PlayerDataSource
 
     public Player cursorToPlayer(Cursor cursor)
     {
-
         Player player = new Player();
+        
+        player.setName(cursor.getString(0));
+        player.setMoney(cursor.getInt(1));
+        
+        int[] stats = { cursor.getInt(2), cursor.getInt(3), cursor.getInt(4),
+                cursor.getInt(5) };
 
-        int[] stats = { cursor.getInt(3), cursor.getInt(4), cursor.getInt(5),
-                cursor.getInt(6) };
-
-        player.setID(cursor.getLong(0));
-        player.setName(cursor.getString(1));
-        player.setMoney(cursor.getInt(2));
         player.setStats(stats);
-
-        //long shipID = cursor.getLong(7);
+        // long shipID = cursor.getLong(7);
 
         // change this to pull actual ship based on ID
         Ship ship = new Ship();

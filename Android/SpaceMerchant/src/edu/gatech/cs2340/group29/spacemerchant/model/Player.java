@@ -11,7 +11,6 @@ public class Player implements Parcelable
     private Ship   ship;
     private int[]  stats;
     private int    money;
-    private long   playerID;
     
     private int   head;
     private int   body;
@@ -156,16 +155,5 @@ public class Player implements Parcelable
     {
         this.name = name;
     }
-    
-    public long getID()
-    {
-        return playerID;
-    }
-
-    public void setID( long playerID )
-    {
-        this.playerID = playerID;
-    }
-
 
 }
