@@ -30,7 +30,6 @@ public class PlayerConfig extends Activity
     private SeekBar  stat2;
     private SeekBar  stat3;
     private SeekBar  stat4;
-    private int hat;
     private int head;
     private int body;
     private int legs;

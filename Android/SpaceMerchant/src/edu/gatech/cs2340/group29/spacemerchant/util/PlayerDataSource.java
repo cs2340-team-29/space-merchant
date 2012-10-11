@@ -41,7 +41,6 @@ public class PlayerDataSource
         String name = player.getName();
         int money = player.getMoney();
         int[] stats = player.getStats();
-        int hat = player.getHat();
         int head = player.getHead();
         int body = player.getBody();
         int legs = player.getLegs();
@@ -57,7 +56,6 @@ public class PlayerDataSource
         values.put("fighterSkillPoints", stats[1]);
         values.put("traderSkillPoints", stats[2]);
         values.put("engineerSkillPoints", stats[3]);
-        values.put("hat", hat);
         values.put("head", head);
         values.put("body", body);
         values.put("legs", legs);
