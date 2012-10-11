@@ -13,7 +13,6 @@ public class Player implements Parcelable
     private int    money;
     private long   playerID;
     
-    private int   hat;
     private int   head;
     private int   body;
     private int   legs;
@@ -27,7 +26,6 @@ public class Player implements Parcelable
         stats = new int[4];
         setMoney( 0 );
         
-        hat = android.R.drawable.ic_menu_camera;
         head = android.R.drawable.ic_menu_camera;
         body = android.R.drawable.ic_menu_camera;
         legs = android.R.drawable.ic_menu_camera;
@@ -41,7 +39,6 @@ public class Player implements Parcelable
         in.readIntArray( stats );
         money = in.readInt();
         
-        hat = in.readInt();
         head = in.readInt();
         body = in.readInt();
         legs = in.readInt();
@@ -61,7 +58,6 @@ public class Player implements Parcelable
         dest.writeIntArray( stats );
         dest.writeInt( money );
         
-        dest.writeInt( hat );
         dest.writeInt( head );
         dest.writeInt( body );
         dest.writeInt( legs );
@@ -100,17 +96,7 @@ public class Player implements Parcelable
     {
         this.stats = stats;
     }
-    
-    public int getHat()
-    {
-        return hat;
-    }
-    
-    public void setHat( int hat )
-    {
-        this.hat = hat;
-    }
-    
+        
     public int getHead()
     {
         return head;

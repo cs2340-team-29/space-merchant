@@ -8,28 +8,26 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
-public class SelectGalleryAdapter extends ArrayAdapter<Player>
+public class SelectGalleryAdapter extends BaseAdapter
 {
-    private ArrayList<Player> players;
-    private Context           context;
+    private ArrayList<Integer> drawables;
+    private Context            context;
     
-    public SelectGalleryAdapter( Context context, int layoutResourceId, ArrayList<Player> players )
+    public SelectGalleryAdapter( Context context, int layoutResourceId, ArrayList<Integer> drawables )
     {
-        super( context, layoutResourceId, players );
+        super();
         this.context = context;
-        this.players = players;
+        this.drawables = drawables;
     }
     
     static class ViewHolder
     {
-        protected ImageView player_component;
- 
+        protected ImageView iv;
     }
     
     public View getView( int position, View convertView, ViewGroup parent )
@@ -39,7 +37,7 @@ public class SelectGalleryAdapter extends ArrayAdapter<Player>
         if ( convertView == null )
         {
             LayoutInflater inf = ( ( Activity ) context ).getLayoutInflater();
-            convertView = inf.inflate( R.layout.custom_select_game, parent, false );
+            convertView = inf.inflate( R.layout.gallery_row_view, parent, false );
             viewHolder = new ViewHolder();
         }
         else
@@ -47,12 +45,27 @@ public class SelectGalleryAdapter extends ArrayAdapter<Player>
             viewHolder = ( ViewHolder ) convertView.getTag();
         }
         
-        viewHolder.player_component = ( ImageView ) convertView.findViewById( R.id.hat );
-
+        viewHolder.iv = ( ImageView ) convertView.findViewById( R.id.galleryImage );
+        
         convertView.setTag( viewHolder );
         
-        viewHolder.player_component.setImageResource( players.get( position ).getHat() );
-  
+        viewHolder.iv.setImageResource( drawables.get( position ) );
+        
         return convertView;
+    }
+    
+    public int getCount()
+    {
+        return drawables.size();
+    }
+    
+    public Object getItem( int arg0 )
+    {
+        return null;
+    }
+    
+    public long getItemId( int arg0 )
+    {
+        return 0;
     }
 }

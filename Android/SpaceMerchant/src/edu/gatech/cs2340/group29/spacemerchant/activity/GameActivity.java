@@ -1,5 +1,8 @@
-package edu.gatech.cs2340.group29.spacemerchant;
+package edu.gatech.cs2340.group29.spacemerchant.activity;
 
+import edu.gatech.cs2340.group29.spacemerchant.R;
+import edu.gatech.cs2340.group29.spacemerchant.R.layout;
+import edu.gatech.cs2340.group29.spacemerchant.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

@@ -19,11 +19,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		    + "create table tb_ship "
 		    + "( "
 		    + "   ship integer primary key autoincrement," 
-		    + "   nose integer not null,"
-		    + "   rightWing integer not null,"
-		    + "   leftWing integer not null,"
-		    + "   body integer not null,"
-		    + "   thruster integer not null"
+		    + "   fuselage integer not null,"
+		    + "   cabin integer not null,"
+		    + "   boosters integer not null"
 		    + ")";
 		
 		db.execSQL(createShipTableQuery);
@@ -37,7 +35,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		    + "    fighterSkillPoints integer not null,"
 		    + "    traderSkillPoints integer not null," 
 		    + "    engineerSkillPoints integer not null, "
-		    + "    hat integer not null,"
 		    + "    head integer not null,"
 		    + "    body integer not null,"
 		    + "    legs integer not null,"
