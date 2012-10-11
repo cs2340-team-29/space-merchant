@@ -84,11 +84,11 @@ public class SelectGameAdapter extends ArrayAdapter<Player>
         viewHolder.player_body.setImageResource( players.get( position ).getBody() );
         viewHolder.player_legs.setImageResource( players.get( position ).getLegs() );
         viewHolder.player_feet.setImageResource( players.get( position ).getFeet() );
-        viewHolder.ship_nose.setImageDrawable( players.get( position ).getShip().getNose() );
-        viewHolder.ship_body.setImageDrawable( players.get( position ).getShip().getBody() );
-        viewHolder.ship_left_wing.setImageDrawable( players.get( position ).getShip().getLeft_wing() );
-        viewHolder.ship_right_wing.setImageDrawable( players.get( position ).getShip().getRight_wing() );
-        viewHolder.ship_thruster.setImageDrawable( players.get( position ).getShip().getThruster() );
+        viewHolder.ship_nose.setImageResource( players.get( position ).getShip().getNose() );
+        viewHolder.ship_body.setImageResource( players.get( position ).getShip().getBody() );
+        viewHolder.ship_left_wing.setImageResource( players.get( position ).getShip().getLeft_wing() );
+        viewHolder.ship_right_wing.setImageResource( players.get( position ).getShip().getRight_wing() );
+        viewHolder.ship_thruster.setImageResource( players.get( position ).getShip().getThruster() );
         viewHolder.player_name.setText( players.get( position ).getName() );
         viewHolder.money.setText( Integer.toString( players.get( position ).getMoney() ) );
         viewHolder.stat1.setText( Integer.toString( players.get( position ).getStats()[0] ) );

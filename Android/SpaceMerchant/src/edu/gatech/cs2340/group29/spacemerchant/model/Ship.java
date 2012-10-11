@@ -1,27 +1,25 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
-import android.graphics.drawable.Drawable;
-
 public class Ship
 {
     private int[] stats;
     
-    private Drawable   nose;
-    private Drawable   right_wing;
-    private Drawable   left_wing;
-    private Drawable   body;
-    private Drawable   thruster;
-                              
+    private int   nose;
+    private int   right_wing;
+    private int   left_wing;
+    private int   body;
+    private int   thruster;
+    
     public Ship()
     {
         stats = new int[4];
         
-        nose = null;
-        right_wing = null;
-        left_wing = null;
-        body = null;
-        thruster = null;
+        nose = android.R.drawable.ic_menu_camera;
+        right_wing = android.R.drawable.ic_menu_camera;
+        left_wing = android.R.drawable.ic_menu_camera;
+        body = android.R.drawable.ic_menu_camera;
+        thruster = android.R.drawable.ic_menu_camera;
     }
     
     public int[] getStats()
@@ -34,52 +32,52 @@ public class Ship
         this.stats = stats;
     }
     
-    public Drawable getNose()
+    public int getNose()
     {
         return nose;
     }
     
-    public void setNose( Drawable nose )
+    public void setNose( int nose )
     {
         this.nose = nose;
     }
     
-    public Drawable getRight_wing()
+    public int getRight_wing()
     {
         return right_wing;
     }
     
-    public void setRight_wing( Drawable right_wing )
+    public void setRight_wing( int right_wing )
     {
         this.right_wing = right_wing;
     }
     
-    public Drawable getLeft_wing()
+    public int getLeft_wing()
     {
         return left_wing;
     }
     
-    public void setLeft_wing( Drawable left_wing )
+    public void setLeft_wing( int left_wing )
     {
         this.left_wing = left_wing;
     }
     
-    public Drawable getBody()
+    public int getBody()
     {
         return body;
     }
     
-    public void setBody( Drawable body )
+    public void setBody( int body )
     {
         this.body = body;
     }
     
-    public Drawable getThruster()
+    public int getThruster()
     {
         return thruster;
     }
     
-    public void setThruster( Drawable thruster )
+    public void setThruster( int thruster )
     {
         this.thruster = thruster;
     }
