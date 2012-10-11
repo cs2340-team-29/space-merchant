@@ -12,7 +12,7 @@ import edu.gatech.cs2340.group29.spacemerchant.model.*;
 
 public class GameDataSource
 {
-    private static String[] ALL_COLUMNS = { "game", "difficultyLevel", "currentPlanet", "player"};
+    private static String[] ALL_COLUMNS = { "game", "difficultyLevel", "player"};
 
     private SQLiteDatabase database;
     private DatabaseHelper databaseHelper;
@@ -43,7 +43,7 @@ public class GameDataSource
         long playerID = player.getID();
 
         values.put("player", playerID);
-        values.put("difficulty", difficulty);
+        values.put("difficultyLevel", difficulty);
 
         long gameID = database.insert("tb_game", null, values);
 

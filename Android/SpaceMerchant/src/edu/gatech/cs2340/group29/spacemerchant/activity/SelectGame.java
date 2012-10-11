@@ -13,7 +13,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGameAdapter;
+import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
+import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
 public class SelectGame extends Activity
 {
@@ -23,10 +25,16 @@ public class SelectGame extends Activity
     {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_select_game );
+        GameDataSource gds = new GameDataSource( getApplicationContext() );
+        gds.open();
+        ArrayList<Game> alg = ( ArrayList<Game> ) gds.getGameList();
+        gds.close();
         
         ArrayList<Player> p = new ArrayList<Player>();
-        p.add( new Player() );
-        p.add( new Player() );
+        for ( Game game : alg )
+        {
+            p.add( game.getPlayer() );
+        }
         SelectGameAdapter s = new SelectGameAdapter( this, R.layout.activity_select_game, p );
         ( ( ListView ) this.findViewById( R.id.gameList ) ).setAdapter( s );
     }

@@ -25,5 +25,6 @@
     <string name="done">Done</string>
     <string name="title_activity_ship_config">ShipConfig</string>
     <string name="ship_sonfig">Design Your Ship!</string>
+    <string name="title_activity_game">GameActivity</string>
 
 </resources>

@@ -2,10 +2,12 @@
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
+import edu.gatech.cs2340.group29.spacemerchant.GameActivity;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
@@ -61,5 +63,8 @@ public class ShipConfig extends Activity
         g.setPlayer( player );
         gds.createGame( g );
         gds.close();
+        
+        Intent intent = new Intent(ShipConfig.this, GameActivity.class);
+        this.startActivity( intent );
     }
 }
