@@ -57,12 +57,12 @@ public class PlayerDataSource
         values.put("fighterSkillPoints", stats[1]);
         values.put("traderSkillPoints", stats[2]);
         values.put("engineerSkillPoints", stats[3]);
-        values.put("ship", shipID);
         values.put("hat", hat);
         values.put("head", head);
         values.put("body", body);
         values.put("legs", legs);
         values.put("feet", feet);
+        values.put("ship", shipID);
 
         long playerID = database.insert("tb_player", null, values);
 

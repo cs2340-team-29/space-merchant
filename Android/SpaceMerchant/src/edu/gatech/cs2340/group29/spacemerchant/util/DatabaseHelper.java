@@ -49,7 +49,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
 			+ "create table tb_game( "
 		    + "    game integer primary key autoincrement, "
 		    + "    difficultyLevel integer not null,"
-		    + "    currentPlanet integer not null,"
 		    + "    player integer not null"
 		    + " )";
 		

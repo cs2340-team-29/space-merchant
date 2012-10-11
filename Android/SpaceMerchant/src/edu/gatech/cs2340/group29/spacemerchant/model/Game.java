@@ -3,7 +3,8 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
 
 public class Game
 {
-    
+   
+    long gameID;
     private Player player;
     private int    difficulty;
     
@@ -36,4 +37,13 @@ public class Game
         this.difficulty = difficulty;
     }
     
+    public long getID()
+    {
+        return gameID;
+    }
+
+    public void setID( long gameID )
+    {
+        this.gameID = gameID;
+    }
 }
