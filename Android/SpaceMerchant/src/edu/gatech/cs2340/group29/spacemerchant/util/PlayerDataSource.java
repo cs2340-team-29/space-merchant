@@ -95,7 +95,14 @@ public class PlayerDataSource
         player.setName(cursor.getString(1));
         player.setMoney(cursor.getInt(2));
         player.setStats(stats);
-       
+     
+        long shipID = cursor.getLong(7);
+      
+        //change this to pull actual ship based on ID
+        Ship ship = new Ship();
+        
+        player.setShip(ship);
+        
         return player;
     }
 }
