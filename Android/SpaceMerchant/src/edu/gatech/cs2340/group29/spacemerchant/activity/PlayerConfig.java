@@ -30,11 +30,11 @@ public class PlayerConfig extends Activity
     private SeekBar  stat2;
     private SeekBar  stat3;
     private SeekBar  stat4;
-    private Drawable hat;
-    private Drawable head;
-    private Drawable body;
-    private Drawable legs;
-    private Drawable feet;
+    private int hat;
+    private int head;
+    private int body;
+    private int legs;
+    private int feet;
     
     @Override
     public void onCreate( Bundle savedInstanceState )
@@ -76,6 +76,7 @@ public class PlayerConfig extends Activity
         return true;
     }
     
+    @SuppressWarnings ( "unchecked")
     public void doneButtonClicked( View v )
     {
         
@@ -120,8 +121,11 @@ public class PlayerConfig extends Activity
             player.setStats( stats );
             player.setMoney( 1000 );
             
+            int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) ).getSelectedItemPosition();
+            
             Intent intent = new Intent( PlayerConfig.this, ShipConfig.class );
             intent.putExtra( ShipConfig.player_extra, player );
+            intent.putExtra( ShipConfig.difficulty_extra, difficulty );
             PlayerConfig.this.startActivity( intent );
         }
     }
