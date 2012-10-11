@@ -101,12 +101,16 @@ public class PlayerDataSource
     public Player getPlayerByID(long playerID)
     {
 
+        Player player = null;
         Cursor cursor = database.query("tb_player", ALL_COLUMNS, 
                 "player=" + playerID, null, null, null, null);
 
         cursor.moveToFirst();
 
-        Player player = cursorToPlayer(cursor);
+        if( !cursor.isAfterLast() )
+        {
+            player = cursorToPlayer(cursor);
+        }
 
         cursor.close();
         return player;
