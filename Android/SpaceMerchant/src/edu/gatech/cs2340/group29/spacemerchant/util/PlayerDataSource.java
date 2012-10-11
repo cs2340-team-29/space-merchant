@@ -95,14 +95,14 @@ public class PlayerDataSource
             cursor.moveToNext();
             
         }
-        
+       
+        cursor.close();
         return players;
     }
 
     public Player getPlayerByID(long playerID)
     {
 
-        // filter on ID condition
         Cursor cursor = database.query("tb_player", ALL_COLUMNS, 
                 "player=" + playerID, null, null, null, null);
 
@@ -110,6 +110,7 @@ public class PlayerDataSource
 
         Player player = cursorToPlayer(cursor);
 
+        cursor.close();
         return player;
     }
 

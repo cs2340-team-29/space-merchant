@@ -77,7 +77,8 @@ public class GameDataSource
             cursor.moveToNext();
             
         }
-        
+    
+        cursor.close();
         return games;
     }
 
@@ -91,6 +92,8 @@ public class GameDataSource
 
         Game game = cursorToGame(cursor);
 
+        cursor.close();
+        
         return game;
     }
 

@@ -26,6 +26,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		    + "   thruster integer not null"
 		    + ")";
 		
+		db.execSQL(createShipTableQuery);
+		
 		final String createPlayerTableQuery = ""                     
 			+ "create table tb_player( "
 		    + "    player integer primary key autoincrement, "
