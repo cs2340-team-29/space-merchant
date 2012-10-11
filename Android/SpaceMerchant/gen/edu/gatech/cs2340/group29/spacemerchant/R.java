@@ -35,6 +35,7 @@ public final class R {
         public static final int ic_pants_2=0x7f020015;
         public static final int ic_pants_3=0x7f020016;
         public static final int ic_splash_screen=0x7f020017;
+        public static final int splash_screen=0x7f020018;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f070001;
