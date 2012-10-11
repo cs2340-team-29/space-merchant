@@ -1,13 +1,17 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Gallery;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
+import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGalleryAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.model.Ship;
@@ -37,6 +41,32 @@ public class ShipConfig extends Activity
                     Toast.LENGTH_LONG ).show();
             difficulty = 3;
         }
+        
+     // Set up drawable lists
+        ArrayList<Integer> fuselages = new ArrayList<Integer>();
+        fuselages.add( R.drawable.ic_fuselage_1 );
+        fuselages.add( R.drawable.ic_fuselage_2 );
+        fuselages.add( R.drawable.ic_fuselage_3 );
+        
+        ArrayList<Integer> cabins = new ArrayList<Integer>();
+        cabins.add( R.drawable.ic_cabin_1 );
+        cabins.add( R.drawable.ic_cabin_2 );
+        cabins.add( R.drawable.ic_cabin_3 );
+        
+        ArrayList<Integer> boosters = new ArrayList<Integer>();
+        boosters.add( R.drawable.ic_boosters_1 );
+        boosters.add( R.drawable.ic_boosters_2 );
+        boosters.add( R.drawable.ic_boosters_3 );
+
+        
+        // Set up Galleries
+        SelectGalleryAdapter sgaFuselage = new SelectGalleryAdapter( this, R.layout.gallery_row_view, fuselages );
+        SelectGalleryAdapter sgaCabin = new SelectGalleryAdapter( this, R.layout.gallery_row_view, cabins );
+        SelectGalleryAdapter sgaBooster = new SelectGalleryAdapter( this, R.layout.gallery_row_view, boosters );
+        
+        ( ( Gallery ) findViewById( R.id.galleryFuselage ) ).setAdapter( sgaFuselage );
+        ( ( Gallery ) findViewById( R.id.galleryCabin ) ).setAdapter( sgaCabin );
+        ( ( Gallery ) findViewById( R.id.galleryBoosters ) ).setAdapter( sgaBooster );
         
         setContentView( R.layout.activity_ship_config );
     }
