@@ -24,11 +24,4 @@ public class AboutPage extends Activity
         getMenuInflater().inflate( R.menu.activity_about_page, menu );
         return true;
     }
-    
-    public void gotoTitleScreen( View v )
-    {
-        // go back to title screen
-        Intent intent = new Intent( AboutPage.this, LaunchActivity.class );
-        AboutPage.this.startActivity( intent );
-    }
 }

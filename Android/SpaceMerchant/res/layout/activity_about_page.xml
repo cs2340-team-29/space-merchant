@@ -24,14 +24,4 @@
         android:text="@string/about_page_text2"
         android:textSize="14dp" />
 
-    <Button
-        android:id="@+id/aboutscreentotitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="98dp"
-        android:onClick="gotoTitleScreen"
-        android:text="@string/about_page_button" />
-
 </RelativeLayout>
