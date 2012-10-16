@@ -92,10 +92,11 @@ public class ShipConfig extends Activity
         player.setShip( s );
         g.setDifficulty( difficulty );
         g.setPlayer( player );
-        gds.createGame( g );
+        long gameID = gds.createGame( g );
         gds.close();
         
         Intent intent = new Intent( ShipConfig.this, GameActivity.class );
+        intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
         this.startActivity( intent );
     }
 }

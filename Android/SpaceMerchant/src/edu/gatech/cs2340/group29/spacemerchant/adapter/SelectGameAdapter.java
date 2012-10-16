@@ -12,18 +12,26 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
+import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
-public class SelectGameAdapter extends ArrayAdapter<Player>
+public class SelectGameAdapter extends ArrayAdapter<Game>
 {
     private ArrayList<Player> players;
     private Context           context;
     
-    public SelectGameAdapter( Context context, int layoutResourceId, ArrayList<Player> players )
+    public SelectGameAdapter( Context context, int layoutResourceId, ArrayList<Game> games )
     {
-        super( context, layoutResourceId, players );
+        super( context, layoutResourceId, games );
         this.context = context;
-        this.players = players;
+        
+        ArrayList<Player> p = new ArrayList<Player>();
+        for ( Game game : games )
+        {
+            p.add( game.getPlayer() );
+        }
+        
+        this.players = p;
     }
     
     static class ViewHolder
