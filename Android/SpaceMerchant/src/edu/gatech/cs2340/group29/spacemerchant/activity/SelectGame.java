@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -29,9 +28,9 @@ public class SelectGame extends Activity
     
     private ArrayList<Game> alg;
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -50,22 +49,11 @@ public class SelectGame extends Activity
         ( ( ListView ) this.findViewById( R.id.gameList ) ).setOnItemClickListener( new SelectGameListener() );
     }
     
-    /** 
-     *
-     * Override:
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
-    @Override
-    public boolean onCreateOptionsMenu( Menu menu )
-    {
-        getMenuInflater().inflate( R.menu.activity_select_game, menu );
-        return true;
-    }
-    
     /**
      * Goes to the player config.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoPlayerConfig( View v )
     {
@@ -75,23 +63,23 @@ public class SelectGame extends Activity
     }
     
     /**
-     * The listener interface for receiving selectGame events.
-     * The class that is interested in processing a selectGame
-     * event implements this interface, and the object created
-     * with that class is registered with a component using the
-     * component's <code>addSelectGameListener<code> method. When
+     * The listener interface for receiving selectGame events. The class that is
+     * interested in processing a selectGame event implements this interface,
+     * and the object created with that class is registered with a component
+     * using the component's <code>addSelectGameListener<code> method. When
      * the selectGame event occurs, that object's appropriate
      * method is invoked.
-     *
+     * 
      * @see SelectGameEvent
      */
     class SelectGameListener implements OnItemClickListener
     {
         
-        /** 
-         *
+        /**
          * Override:
-         * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+         * 
+         * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
+         *      android.view.View, int, long)
          */
         public void onItemClick( AdapterView<?> parent, View view, int position, long id )
         {

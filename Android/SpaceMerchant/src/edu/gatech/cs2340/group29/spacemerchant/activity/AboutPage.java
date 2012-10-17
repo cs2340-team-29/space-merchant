@@ -8,7 +8,6 @@ package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 
 /**
@@ -17,9 +16,9 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
 public class AboutPage extends Activity
 {
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -27,17 +26,5 @@ public class AboutPage extends Activity
     {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_about_page );
-    }
-    
-    /** 
-     *
-     * Override:
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
-    @Override
-    public boolean onCreateOptionsMenu( Menu menu )
-    {
-        getMenuInflater().inflate( R.menu.activity_about_page, menu );
-        return true;
     }
 }

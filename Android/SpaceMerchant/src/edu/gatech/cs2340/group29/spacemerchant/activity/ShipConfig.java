@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Gallery;
 import android.widget.Toast;
@@ -33,9 +32,9 @@ public class ShipConfig extends Activity
     private Player             player;
     private int                difficulty;
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -85,22 +84,11 @@ public class ShipConfig extends Activity
         
     }
     
-    /** 
-     *
-     * Override:
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
-    @Override
-    public boolean onCreateOptionsMenu( Menu menu )
-    {
-        getMenuInflater().inflate( R.menu.activity_ship_config, menu );
-        return true;
-    }
-    
     /**
      * Done button clicked.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void doneButtonClicked( View v )
     {

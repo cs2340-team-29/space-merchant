@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,9 +39,9 @@ public class PlayerConfig extends Activity
     private SeekBar  stat3;
     private SeekBar  stat4;
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -109,22 +108,11 @@ public class PlayerConfig extends Activity
         ( ( Gallery ) findViewById( R.id.galleryFeet ) ).setAdapter( sgaFeet );
     }
     
-    /** 
-     *
-     * Override:
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
-    @Override
-    public boolean onCreateOptionsMenu( Menu menu )
-    {
-        getMenuInflater().inflate( R.menu.activity_player_config, menu );
-        return true;
-    }
-    
     /**
      * Done button clicked.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     @SuppressWarnings ( "unchecked")
     public void doneButtonClicked( View v )

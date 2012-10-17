@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
@@ -31,9 +32,9 @@ public class GameActivity extends Activity
     Player                     p;
     Ship                       s;
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -67,9 +68,9 @@ public class GameActivity extends Activity
         }
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override
@@ -79,10 +80,27 @@ public class GameActivity extends Activity
         return true;
     }
     
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item )
+    {
+        switch ( item.getItemId() )
+        {
+            case R.id.menu_travel :
+                // to do gotoTravelActivity
+                return true;
+            case  R.id.menu_help:
+                // load the help overlay
+                return true;
+            default:
+                return super.onOptionsItemSelected( item );
+        }
+    }
+
     /**
      * Goes to the player info.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoPlayerInfo( View v )
     {

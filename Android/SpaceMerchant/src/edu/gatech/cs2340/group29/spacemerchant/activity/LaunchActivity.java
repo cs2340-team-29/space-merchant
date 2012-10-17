@@ -9,7 +9,6 @@ package edu.gatech.cs2340.group29.spacemerchant.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 
@@ -19,9 +18,9 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
 public class LaunchActivity extends Activity
 {
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -31,22 +30,11 @@ public class LaunchActivity extends Activity
         setContentView( R.layout.activity_launch );
     }
     
-    /** 
-     *
-     * Override:
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
-    @Override
-    public boolean onCreateOptionsMenu( Menu menu )
-    {
-        getMenuInflater().inflate( R.menu.launch_activity, menu );
-        return true;
-    }
-    
     /**
      * Goes to the select game.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoSelectGame( View v )
     {
@@ -57,8 +45,9 @@ public class LaunchActivity extends Activity
     
     /**
      * Goes to the about page.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoAboutPage( View v )
     {
