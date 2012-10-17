@@ -1,16 +1,27 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 
+/**
+ * The Class AboutPage.
+ */
 public class AboutPage extends Activity
 {
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
@@ -18,6 +29,11 @@ public class AboutPage extends Activity
         setContentView( R.layout.activity_about_page );
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu( Menu menu )
     {

@@ -1,3 +1,8 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
@@ -8,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AbsSpinner;
 import android.widget.Gallery;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
@@ -18,6 +22,9 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.model.Ship;
 import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
+/**
+ * The Class ShipConfig.
+ */
 public class ShipConfig extends Activity
 {
     public static final String player_extra     = "PLAYER_EXTRA";
@@ -26,6 +33,11 @@ public class ShipConfig extends Activity
     private Player             player;
     private int                difficulty;
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
@@ -73,6 +85,11 @@ public class ShipConfig extends Activity
         
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu( Menu menu )
     {
@@ -80,6 +97,11 @@ public class ShipConfig extends Activity
         return true;
     }
     
+    /**
+     * Done button clicked.
+     *
+     * @param v the View
+     */
     public void doneButtonClicked( View v )
     {
         // do stuff here, send to main screen, save game, etc...

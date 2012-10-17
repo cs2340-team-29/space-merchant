@@ -1,3 +1,8 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
@@ -21,6 +26,9 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGalleryAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
+/**
+ * The Class PlayerConfig.
+ */
 public class PlayerConfig extends Activity
 {
     public int       statpts = 0;
@@ -32,6 +40,11 @@ public class PlayerConfig extends Activity
     private SeekBar  stat3;
     private SeekBar  stat4;
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
@@ -96,6 +109,11 @@ public class PlayerConfig extends Activity
         ( ( Gallery ) findViewById( R.id.galleryFeet ) ).setAdapter( sgaFeet );
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu( Menu menu )
     {
@@ -103,6 +121,11 @@ public class PlayerConfig extends Activity
         return true;
     }
     
+    /**
+     * Done button clicked.
+     *
+     * @param v the View
+     */
     @SuppressWarnings ( "unchecked")
     public void doneButtonClicked( View v )
     {
@@ -138,26 +161,26 @@ public class PlayerConfig extends Activity
             stats = new int[4];
             
             // fill the stats array
-            stats[0] = ( int ) stat1.getProgress();
-            stats[1] = ( int ) stat2.getProgress();
-            stats[2] = ( int ) stat3.getProgress();
-            stats[3] = ( int ) stat4.getProgress();
+            stats[0] = stat1.getProgress();
+            stats[1] = stat2.getProgress();
+            stats[2] = stat3.getProgress();
+            stats[3] = stat4.getProgress();
             
             // set the player
             player.setName( player_name.getText().toString() );
             player.setStats( stats );
             player.setMoney( 1000 );
             Gallery tempGallery = ( ( Gallery ) findViewById( R.id.galleryHead ) );
-            player.setHead( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+            player.setHead( ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
                     .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             tempGallery = ( ( Gallery ) findViewById( R.id.galleryBody ) );
-            player.setBody( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+            player.setBody( ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
                     .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             tempGallery = ( ( Gallery ) findViewById( R.id.galleryLegs ) );
-            player.setLegs( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+            player.setLegs( ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
                     .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             tempGallery = ( ( Gallery ) findViewById( R.id.galleryFeet ) );
-            player.setFeet( ( Integer ) ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
+            player.setFeet( ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
                     .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
             
             int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) )
@@ -178,7 +201,9 @@ public class PlayerConfig extends Activity
         {
             statpts = stat1.getProgress() + stat4.getProgress() + stat3.getProgress() + stat2.getProgress();
             if ( statpts > 16 )
+            {
                 bar.setProgress( bar.getProgress() - 1 );
+            }
         }
         
         public void onStartTrackingTouch( SeekBar bar )

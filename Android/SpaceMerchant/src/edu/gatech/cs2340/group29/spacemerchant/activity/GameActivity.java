@@ -1,3 +1,8 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
@@ -13,16 +18,24 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.model.Ship;
 import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
+/**
+ * The Class GameActivity.
+ */
 public class GameActivity extends Activity
 {
     public static final String GAME_ID_EXTRA = "GAME_ID_EXTRA";
     
-    private boolean showHelpOverlay;
+    private boolean            showHelpOverlay;
     
     Game                       g;
     Player                     p;
     Ship                       s;
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
@@ -39,21 +52,26 @@ public class GameActivity extends Activity
         s = p.getShip();
         gds.close();
         
-        //Setting images for player and ship
-        ( ( ImageView ) findViewById( R.id.head ) ).setImageResource(p.getHead());
-        ( ( ImageView ) findViewById( R.id.body_player ) ).setImageResource(p.getBody());
-        ( ( ImageView ) findViewById( R.id.legs ) ).setImageResource(p.getLegs());
-        ( ( ImageView ) findViewById( R.id.feet ) ).setImageResource(p.getFeet());
-        ( ( ImageView ) findViewById( R.id.cabin ) ).setImageResource(s.getCabin());
-        ( ( ImageView ) findViewById( R.id.fuselage ) ).setImageResource(s.getFuselage());
-        ( ( ImageView ) findViewById( R.id.boosters ) ).setImageResource(s.getBoosters());
+        // Setting images for player and ship
+        ( ( ImageView ) findViewById( R.id.head ) ).setImageResource( p.getHead() );
+        ( ( ImageView ) findViewById( R.id.body_player ) ).setImageResource( p.getBody() );
+        ( ( ImageView ) findViewById( R.id.legs ) ).setImageResource( p.getLegs() );
+        ( ( ImageView ) findViewById( R.id.feet ) ).setImageResource( p.getFeet() );
+        ( ( ImageView ) findViewById( R.id.cabin ) ).setImageResource( s.getCabin() );
+        ( ( ImageView ) findViewById( R.id.fuselage ) ).setImageResource( s.getFuselage() );
+        ( ( ImageView ) findViewById( R.id.boosters ) ).setImageResource( s.getBoosters() );
         
-        if (showHelpOverlay)
+        if ( showHelpOverlay )
         {
-            //show overlay
+            // show overlay
         }
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu( Menu menu )
     {
@@ -61,6 +79,11 @@ public class GameActivity extends Activity
         return true;
     }
     
+    /**
+     * Goes to the player info.
+     *
+     * @param v the View
+     */
     public void gotoPlayerInfo( View v )
     {
         // do stuff later!

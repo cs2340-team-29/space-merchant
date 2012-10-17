@@ -1,3 +1,8 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
@@ -8,9 +13,17 @@ import android.view.Menu;
 import android.view.View;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 
+/**
+ * The Class LaunchActivity.
+ */
 public class LaunchActivity extends Activity
 {
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
@@ -18,6 +31,11 @@ public class LaunchActivity extends Activity
         setContentView( R.layout.activity_launch );
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu( Menu menu )
     {
@@ -25,18 +43,28 @@ public class LaunchActivity extends Activity
         return true;
     }
     
-    public void gotoSelectGame(View v)
+    /**
+     * Goes to the select game.
+     *
+     * @param v the View
+     */
+    public void gotoSelectGame( View v )
     {
-        //launch SelectGame activity
+        // launch SelectGame activity
         Intent selectGameIntent = new Intent( LaunchActivity.this, SelectGame.class );
         LaunchActivity.this.startActivity( selectGameIntent );
     }
     
-    public void gotoAboutPage(View v)
+    /**
+     * Goes to the about page.
+     *
+     * @param v the View
+     */
+    public void gotoAboutPage( View v )
     {
-        //goto About Activity
+        // goto About Activity
         Intent aboutIntent = new Intent( LaunchActivity.this, AboutPage.class );
         LaunchActivity.this.startActivity( aboutIntent );
     }
-
+    
 }

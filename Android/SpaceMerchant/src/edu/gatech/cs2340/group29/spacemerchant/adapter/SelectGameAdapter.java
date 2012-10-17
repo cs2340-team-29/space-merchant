@@ -1,3 +1,8 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.adapter;
 
@@ -15,11 +20,21 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
+/**
+ * The Class SelectGameAdapter.
+ */
 public class SelectGameAdapter extends ArrayAdapter<Game>
 {
     private ArrayList<Player> players;
     private Context           context;
     
+    /**
+     * Instantiates a new select game adapter.
+     *
+     * @param context the Context
+     * @param layoutResourceId the int
+     * @param games the ArrayList<Game>
+     */
     public SelectGameAdapter( Context context, int layoutResourceId, ArrayList<Game> games )
     {
         super( context, layoutResourceId, games );
@@ -34,6 +49,9 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
         this.players = p;
     }
     
+    /**
+     * The Class ViewHolder.
+     */
     static class ViewHolder
     {
         protected ImageView player_head;
@@ -51,6 +69,12 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
         protected TextView  stat4;
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
+    @Override
     public View getView( int position, View convertView, ViewGroup parent )
     {
         ViewHolder viewHolder;
