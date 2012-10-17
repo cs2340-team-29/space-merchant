@@ -167,8 +167,17 @@ public class PlayerDataSource
         player.setMoney( cursor.getInt( 1 ) );
         
         int[] stats = { cursor.getInt( 2 ), cursor.getInt( 3 ), cursor.getInt( 4 ), cursor.getInt( 5 ) };
-        
         player.setStats( stats );
+        
+        player.setHead(cursor.getInt(6));
+        player.setBody(cursor.getInt(7));
+        player.setLegs(cursor.getInt(8));
+        player.setFeet(cursor.getInt(9));
+        
+        
+        
+        player.setShip()
+        
         // long shipID = cursor.getLong(7);
         
         // change this to pull actual ship based on ID

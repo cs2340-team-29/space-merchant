@@ -42,12 +42,19 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL( createShipTableQuery );
         
         final String createPlayerTableQuery = "" + "create table tb_player( "
-                + "    player integer primary key autoincrement, " + "    name string not null,"
-                + "    money integer not null, " + "    pilotSkillPoints integer not null, "
-                + "    fighterSkillPoints integer not null," + "    traderSkillPoints integer not null,"
-                + "    engineerSkillPoints integer not null, " + "    head integer not null,"
-                + "    body integer not null," + "    legs integer not null," + "    feet integer not null,"
-                + "    ship integer not null" + " )";
+                + "    player integer primary key autoincrement, " 
+                + "    name string not null,"
+                + "    money integer not null, " 
+                + "    pilotSkillPoints integer not null, "
+                + "    fighterSkillPoints integer not null," 
+                + "    traderSkillPoints integer not null,"
+                + "    engineerSkillPoints integer not null, " 
+                + "    head integer not null,"
+                + "    body integer not null," 
+                + "    legs integer not null," 
+                + "    feet integer not null,"
+                + "    ship integer not null" 
+                + " )";
         
         db.execSQL( createPlayerTableQuery );
         
