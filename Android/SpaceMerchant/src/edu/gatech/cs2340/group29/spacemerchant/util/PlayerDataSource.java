@@ -184,8 +184,8 @@ public class PlayerDataSource
         player.setFeet(cursor.getInt(10));
        
         ship.setFuselage(cursor.getInt(11));
-        ship.setCabin(cursor.getInt(11));
-        ship.setBoosters(cursor.getInt(12));
+        ship.setCabin(cursor.getInt(12));
+        ship.setBoosters(cursor.getInt(13));
         
         player.setShip(ship);
         
