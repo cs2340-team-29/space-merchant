@@ -11,12 +11,15 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
  */
 public class Game
 {
+    //Universe is a matrix of size
+    public static final Planet[][] UNIVERSE = new Planet[60][60];
     
     long           gameID;
+    
     private Player player;
     private int    difficulty;
-    
-    // private Planet planet;
+    private Planet planet;
+    private Universe universe;
     
     /**
      * Instantiates a new game.
@@ -25,12 +28,12 @@ public class Game
     {
         this.player = null;
         this.difficulty = 3;
-        // this.planet = null;
+        this.planet = null;
     }
     
     /**
      * Gets the player.
-     *
+     * 
      * @return the player
      */
     public Player getPlayer()
@@ -40,8 +43,9 @@ public class Game
     
     /**
      * Sets the player.
-     *
-     * @param player the new player
+     * 
+     * @param player
+     *            the new player
      */
     public void setPlayer( Player player )
     {
@@ -50,7 +54,7 @@ public class Game
     
     /**
      * Gets the difficulty.
-     *
+     * 
      * @return the difficulty
      */
     public int getDifficulty()
@@ -60,8 +64,9 @@ public class Game
     
     /**
      * Sets the difficulty.
-     *
-     * @param difficulty the new difficulty
+     * 
+     * @param difficulty
+     *            the new difficulty
      */
     public void setDifficulty( int difficulty )
     {
@@ -70,7 +75,7 @@ public class Game
     
     /**
      * Gets the id.
-     *
+     * 
      * @return the id
      */
     public long getID()
@@ -80,11 +85,22 @@ public class Game
     
     /**
      * Sets the id.
-     *
-     * @param gameID the new id
+     * 
+     * @param gameID
+     *            the new id
      */
     public void setID( long gameID )
     {
         this.gameID = gameID;
+    }
+    
+    public Planet getPlanet()
+    {
+        return planet;
+    }
+    
+    public void setPlanet( Planet planet )
+    {
+        this.planet = planet;
     }
 }
