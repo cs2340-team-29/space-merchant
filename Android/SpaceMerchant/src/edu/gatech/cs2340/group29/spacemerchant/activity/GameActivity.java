@@ -80,6 +80,11 @@ public class GameActivity extends Activity
         return true;
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+     */
     @Override
     public boolean onOptionsItemSelected( MenuItem item )
     {
