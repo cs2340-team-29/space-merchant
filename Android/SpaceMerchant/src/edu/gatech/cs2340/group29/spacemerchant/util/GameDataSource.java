@@ -15,6 +15,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
+import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
 /**
@@ -23,6 +24,11 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 public class GameDataSource
 {
     private static String[] ALL_COLUMNS = { "game", "difficultyLevel", "player" };
+
+    private static String[] ALL_PLANET_COLUMNS = { "planet", "game", "techLevel",
+                                                   "resourceType", "name", "x_coord" ,
+                                                   "y_coord"
+                                                 };
     
     private SQLiteDatabase  database;
     private DatabaseHelper  databaseHelper;
@@ -81,11 +87,6 @@ public class GameDataSource
         
         long gameID = database.insert( "tb_game", null, values );
     
-    /*
-    private int             techLevel;
-    private int             resourceType;
-    private String          name;
-    */
         game.setID( gameID );
         
         return gameID;
@@ -149,6 +150,36 @@ public class GameDataSource
         
         return game;
     }
+
+    /**
+     * Gets the planets by game id.
+     *
+     * @param gameID long
+     * @return list of planets
+     */
+    public List<Planet> getPlanetsByGameID( long gameID )
+    {
+        
+        List<Planet> planets = new ArrayList<Planet>();
+        
+        Cursor cursor = database.query( "tb_planet", ALL_PLANET_COLUMNS, "game=" + gameID, 
+                                        null, null, null, null );
+        
+        cursor.moveToFirst();
+        
+        while ( !cursor.isAfterLast() )
+        {
+            Planet planet = cursorToPlanet( cursor );
+            
+            planets.add( planet );
+            
+            cursor.moveToNext();
+            
+        }
+        
+        cursor.close();
+        return planets;
+    }
     
     /**
      * Cursor to game.
@@ -173,5 +204,22 @@ public class GameDataSource
         game.setPlayer( player );
         
         return game;
+    }
+
+    /**
+     * Cursor to planet.
+     *
+     * @param cursor the Cursor
+     * @return the planet
+     */
+    public Planet cursorToPlanet( Cursor cursor )
+    {
+        
+        Planet planet = new Planet(cursor.getString(4), cursor.getInt(5), cursor.getInt(6) );
+      
+        planet.setTechLevel( cursor.getInt(2) );
+        planet.setResourceType( cursor.getInt(3) );
+        
+        return planet;
     }
 }
