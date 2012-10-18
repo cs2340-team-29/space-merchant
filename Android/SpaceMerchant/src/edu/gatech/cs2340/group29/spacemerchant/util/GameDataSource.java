@@ -74,22 +74,42 @@ public class GameDataSource
     {
         ContentValues values = new ContentValues();
         
+        Planet planet = game.getPlanet();
+        int techLevel = planet.getTechLevel();
+        int resourceType = planet.getResourceType();
+        String name = planet.getName();
+        int x_coord = planet.getX();
+        int y_coord = planet.getY();
+       
+        values.put("techLevel", techLevel);
+        values.put("resourceType", resourceType);
+        values.put("name", name);
+        values.put("x_coord", x_coord);
+        values.put("y_coord", y_coord);
+        
+        long currentPlanetID = database.insert( "tb_planet", null, values ); 
+        
         int difficulty = game.getDifficulty();
         Player player = game.getPlayer();
-        Planet planet = game.getPlanet();
+        Universe universe = game.getUniverse();
         
         PlayerDataSource playerDataSource = new PlayerDataSource( context );
         
         playerDataSource.open();
         long playerID = playerDataSource.createPlayer( player );
         playerDataSource.close();
-        
+      
         values.put( "player", playerID );
         values.put( "difficulty", difficulty );
+        values.put( "planet", currentPlanetID );
         
         long gameID = database.insert( "tb_game", null, values );
     
         game.setID( gameID );
+        /*
+        ArrayList<Planet> universePlanets = universe.getUniverse();
+        long planetID = database.insert( "tb_planet", null, values ); 
+        */
         
         return gameID;
     }

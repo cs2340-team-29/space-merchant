@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         final String createPlanetTableQuery = ""
                 + "create table tb_planet( "
                 + "     planet integer primary key autoincrement, "
-                + "     game integer not null, "
+                + "     game integer null, "
                 + "     techLevel integer not null, "
                 + "     resourceType integer not null, "
                 + "     name string not null, "
