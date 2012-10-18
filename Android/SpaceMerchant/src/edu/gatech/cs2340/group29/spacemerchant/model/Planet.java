@@ -1,8 +1,16 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
 import java.util.Random;
 
+/**
+ * The Class Planet.
+ */
 public class Planet
 {
     // Tech Levels
@@ -31,6 +39,11 @@ public class Planet
     private int             resourceType;
     private String          name;
     
+    /**
+     * Instantiates a new planet.
+     *
+     * @param name the String
+     */
     public Planet( String name )
     {
         Random r = new Random();
@@ -39,33 +52,74 @@ public class Planet
         this.name = name;
     }
     
+    /**
+     * Gets the tech level.
+     *
+     * @return the tech level
+     */
     public int getTechLevel()
     {
         return techLevel;
     }
     
+    /**
+     * Sets the tech level.
+     *
+     * @param techLevel the new tech level
+     */
     public void setTechLevel( int techLevel )
     {
         this.techLevel = techLevel;
     }
     
+    /**
+     * Gets the resource type.
+     *
+     * @return the resource type
+     */
     public int getResourceType()
     {
         return resourceType;
     }
     
+    /**
+     * Sets the resource type.
+     *
+     * @param resourceType the new resource type
+     */
     public void setResourceType( int resourceType )
     {
         this.resourceType = resourceType;
     }
     
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
     public String getName()
     {
         return name;
     }
     
+    /**
+     * Sets the name.
+     *
+     * @param name the new name
+     */
     public void setName( String name )
     {
         this.name = name;
+    }
+
+    /** 
+     *
+     * Override:
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        return name + techLevel + resourceType;
     }
 }

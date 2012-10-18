@@ -66,6 +66,8 @@ public class GameActivity extends Activity
         {
             // show overlay
         }
+        
+        System.out.println(g.getUniverse().toString());
     }
     
     /**

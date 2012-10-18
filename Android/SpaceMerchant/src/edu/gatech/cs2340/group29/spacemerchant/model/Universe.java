@@ -1,3 +1,8 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
@@ -10,6 +15,9 @@ import android.content.Context;
 import android.content.res.Resources;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 
+/**
+ * The Class Universe.
+ */
 public class Universe
 {
     private ArrayList<Integer> planet_x;
@@ -20,6 +28,12 @@ public class Universe
     private int                width;
     private int                height;
     
+    /**
+     * Instantiates a new universe.
+     *
+     * @param difficulty the int
+     * @param context the Context
+     */
     @SuppressWarnings ( { "rawtypes", "unchecked" })
     public Universe( int difficulty, Context context )
     {
@@ -58,11 +72,23 @@ public class Universe
         
     }
     
+    /**
+     * Gets the first planet.
+     *
+     * @return the first planet
+     */
     public Planet getFirstPlanet()
     {
         return universe[planet_x.get( 0 )][planet_y.get( 0 )];
     }
     
+    /**
+     * Planet exists at location [x][y].
+     *
+     * @param x the int
+     * @param y the int
+     * @return true, if successful
+     */
     public boolean planetExistsAt( int x, int y )
     {
         if ( universe[planet_x.get( x )][planet_y.get( y )] != null )
@@ -71,9 +97,36 @@ public class Universe
         return false;
     }
     
+    /**
+     * Gets the planet.
+     *
+     * @param x the int
+     * @param y the int
+     * @return the planet
+     */
     public Planet getPlanet( int x, int y )
     {
         return universe[planet_x.get( x )][planet_y.get( y )];
+    }
+    
+    /** 
+     *
+     * Override:
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        String stringverse = "";
+        for ( int i = 0; i < planet_name.size(); i++ )
+        {
+            for ( int j = 0; j < planet_name.size(); j++ )
+            {
+                stringverse += universe[i][j];
+            }
+        }
+        
+        return stringverse;
     }
     
 }
