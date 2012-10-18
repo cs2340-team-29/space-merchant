@@ -6,29 +6,52 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
+import android.content.Context;
+
 /**
  * The Class Game.
  */
 public class Game
 {
-    //Universe is a matrix of size
+    // Universe is a matrix of size
     public static final Planet[][] UNIVERSE = new Planet[60][60];
     
-    long           gameID;
+    long                           gameID;
     
-    private Player player;
-    private int    difficulty;
-    private Planet planet;
-    private Universe universe;
+    private Player                 player;
+    private int                    difficulty;
+    private Planet                 planet;
+    private Universe               universe;
     
     /**
      * Instantiates a new game.
      */
-    public Game()
+    public Game( Context context )
     {
         this.player = null;
         this.difficulty = 3;
-        this.planet = null;
+        this.universe = new Universe( difficulty, context );
+        this.planet = universe.getFirstPlanet();
+    }
+    
+    public long getGameID()
+    {
+        return gameID;
+    }
+    
+    public void setGameID( long gameID )
+    {
+        this.gameID = gameID;
+    }
+    
+    public Universe getUniverse()
+    {
+        return universe;
+    }
+    
+    public void setUniverse( Universe universe )
+    {
+        this.universe = universe;
     }
     
     /**

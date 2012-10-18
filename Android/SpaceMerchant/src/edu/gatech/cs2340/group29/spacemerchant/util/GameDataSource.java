@@ -154,7 +154,7 @@ public class GameDataSource
     public Game cursorToGame( Cursor cursor )
     {
         
-        Game game = new Game();
+        Game game = new Game( context );
         
         game.setID( cursor.getLong( 0 ) );
         game.setDifficulty( cursor.getInt( 1 ) );

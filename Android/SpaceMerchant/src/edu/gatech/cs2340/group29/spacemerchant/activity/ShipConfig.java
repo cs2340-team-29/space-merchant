@@ -97,7 +97,7 @@ public class ShipConfig extends Activity
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
         
-        Game g = new Game();
+        Game g = new Game( getApplicationContext() );
         Ship s = new Ship();
         player.setShip( s );
         g.setDifficulty( difficulty );
