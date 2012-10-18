@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
+import android.content.Context;
+import android.content.res.Resources;
+import edu.gatech.cs2340.group29.spacemerchant.R;
+
 public class Universe
 {
     private ArrayList<Integer> planet_x;
@@ -17,14 +21,14 @@ public class Universe
     private int                height;
     
     @SuppressWarnings ( { "rawtypes", "unchecked" })
-    public Planet Universe( int difficulty )
+    public Universe( int difficulty, Context context )
     {
         // 12^2 < 120 (# of planets) with some room to breathe,
         // a.k.a. the smallest universe size
         width = 12 * difficulty;
         height = 12 * difficulty;
-        
-        planet_name = new ArrayList<String>( Arrays.asList( array ) );
+        Resources res = context.getResources();
+        planet_name = new ArrayList<String>( Arrays.asList( res.getStringArray( R.array.planets ) ) );
         
         Random r = new Random();
         while ( planet_x.size() < 120 )
@@ -52,18 +56,24 @@ public class Universe
             universe[planet_x.get( i )][planet_y.get( i )] = new Planet( planet_name.get( i ) );
         }
         
-        return universe[planet_x.get(0)][planet_y.get(0)];
     }
     
-    public boolean planetExistsAt(int x, int y) {
-    	if(universe[planet_x.get(x)][planet_y.get(y)] != null)
-    		return true;
-    	
-    	return false;
+    public Planet getFirstPlanet()
+    {
+        return universe[planet_x.get( 0 )][planet_y.get( 0 )];
     }
     
-    public Planet getPlanet(int x, int y) {
-    	return universe[planet_x.get(x)][planet_y.get(y)];
+    public boolean planetExistsAt( int x, int y )
+    {
+        if ( universe[planet_x.get( x )][planet_y.get( y )] != null )
+            return true;
+        
+        return false;
+    }
+    
+    public Planet getPlanet( int x, int y )
+    {
+        return universe[planet_x.get( x )][planet_y.get( y )];
     }
     
 }
