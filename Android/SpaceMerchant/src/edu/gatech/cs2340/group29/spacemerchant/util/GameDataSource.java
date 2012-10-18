@@ -17,6 +17,7 @@ import android.database.sqlite.SQLiteException;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
+import edu.gatech.cs2340.group29.spacemerchant.model.Universe;
 
 /**
  * The Class GameDataSource.
@@ -157,10 +158,10 @@ public class GameDataSource
      * @param gameID long
      * @return list of planets
      */
-    public List<Planet> getPlanetsByGameID( long gameID )
+    public ArrayList<Planet> getPlanetsByGameID( long gameID )
     {
         
-        List<Planet> planets = new ArrayList<Planet>();
+        ArrayList<Planet> planets = new ArrayList<Planet>();
         
         Cursor cursor = database.query( "tb_planet", ALL_PLANET_COLUMNS, "game=" + gameID, 
                                         null, null, null, null );
@@ -191,9 +192,18 @@ public class GameDataSource
     {
         
         Game game = new Game( context );
-        
-        game.setID( cursor.getLong( 0 ) );
-        game.setDifficulty( cursor.getInt( 1 ) );
+       
+        int gameID     = cursor.getInt(0);
+        int difficulty = cursor.getInt(1);
+
+        game.setID( gameID );
+        game.setDifficulty( difficulty );
+       
+        Universe universe = new Universe(difficulty, context);
+    
+        ArrayList<Planet> planets = getPlanetsByGameID( gameID );
+
+        universe.setUniverse(planets);
         
         PlayerDataSource dataSource = new PlayerDataSource( context );
         
@@ -202,6 +212,7 @@ public class GameDataSource
         dataSource.close();
         
         game.setPlayer( player );
+        game.setUniverse( universe );
         
         return game;
     }
