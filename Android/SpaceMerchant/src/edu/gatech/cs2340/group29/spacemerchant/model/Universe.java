@@ -13,6 +13,7 @@ import java.util.Random;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Point;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 
 /**
@@ -20,13 +21,15 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
  */
 public class Universe
 {
-    private ArrayList<Integer> planet_x;
-    private ArrayList<Integer> planet_y;
-    private ArrayList<String>  planet_name;
-    private ArrayList<Planet>  universe;
+    private ArrayList<Point>  planet_xy;
+    private ArrayList<String> planet_name;
+    private ArrayList<Planet> universe;
     
-    private int                width;
-    private int                height;
+    private int               width;
+    private int               height;
+    
+    private int               difficulty;
+    private Context           context;
     
     /**
      * Instantiates a new universe.
@@ -34,8 +37,18 @@ public class Universe
      * @param difficulty the int
      * @param context the Context
      */
-    @SuppressWarnings ( { "rawtypes", "unchecked" })
     public Universe( int difficulty, Context context )
+    {
+        this.difficulty = difficulty;
+        this.context = context;
+    }
+    
+    /**
+     * Generate planets.
+     *
+     * @return the array list
+     */
+    public ArrayList<Planet> generatePlanets()
     {
         // 12^2 < 120 (# of planets) with some room to breathe,
         // a.k.a. the smallest universe size
@@ -45,31 +58,27 @@ public class Universe
         planet_name = new ArrayList<String>( Arrays.asList( res.getStringArray( R.array.planets ) ) );
         
         Random r = new Random();
-        while ( planet_x.size() < 120 )
+        while ( planet_xy.size() < 120 )
         {
-            planet_x.add( r.nextInt( width ) );
+            int x = r.nextInt( width + 1 );
+            int y = r.nextInt( height + 1 );
+            
+            Point p = new Point( x, y );
+            planet_xy.add( p );
             // remove duplicates
-            HashSet hs = new HashSet();
-            hs.addAll( planet_x );
-            planet_x.clear();
-            planet_x.addAll( hs );
-        }
-        
-        while ( planet_y.size() < 120 )
-        {
-            planet_y.add( r.nextInt( height ) );
-            // remove duplicates
-            HashSet hs = new HashSet();
-            hs.addAll( planet_y );
-            planet_y.clear();
-            planet_y.addAll( hs );
+            HashSet<Point> hs = new HashSet<Point>();
+            hs.addAll( planet_xy );
+            planet_xy.clear();
+            planet_xy.addAll( hs );
         }
         
         for ( int i = 0; i < planet_name.size(); i++ )
         {
-            universe.add( new Planet( planet_name.get( i ), planet_x.get( i ), planet_y.get( i ) ) );
+            universe.add( new Planet( planet_name.get( i ), ( ( Point ) planet_xy.get( i ) ).x,
+                    ( ( Point ) planet_xy.get( i ) ).y ) );
         }
         
+        return universe;
     }
     
     /**
@@ -84,43 +93,23 @@ public class Universe
     }
     
     /**
-     * Gets the planet_x.
+     * Gets the planet_xy.
      *
-     * @return the planet_x
+     * @return the planet_xy
      */
-    public ArrayList<Integer> getPlanet_x()
+    public ArrayList<Point> getPlanet_xy()
     {
-        return planet_x;
+        return planet_xy;
     }
     
     /**
-     * Sets the planet_x.
+     * Sets the planet_xy.
      *
-     * @param planet_x the new planet_x
+     * @param planet_xy the new planet_xy
      */
-    public void setPlanet_x( ArrayList<Integer> planet_x )
+    public void setPlanet_xy( ArrayList<Point> planet_xy )
     {
-        this.planet_x = planet_x;
-    }
-    
-    /**
-     * Gets the planet_y.
-     *
-     * @return the planet_y
-     */
-    public ArrayList<Integer> getPlanet_y()
-    {
-        return planet_y;
-    }
-    
-    /**
-     * Sets the planet_y.
-     *
-     * @param planet_y the new planet_y
-     */
-    public void setPlanet_y( ArrayList<Integer> planet_y )
-    {
-        this.planet_y = planet_y;
+        this.planet_xy = planet_xy;
     }
     
     /**
