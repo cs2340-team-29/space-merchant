@@ -141,8 +141,16 @@ public class PlayerDataSource
     {
         
         Player player = null;
-        Cursor cursor = database.query( "tb_player", ALL_COLUMNS, "player=" + playerID, null, null, null,
-                null );
+       
+        String query = "select player, name, money, pilotSkillPoints "
+                     + "       fighterSkillPoints, traderSkillPoints, engineerSkillPoints, "
+                     + "       head, body, legs, feet "
+                     + "       fuselage, cabin, boosters"
+                     + "  from tb_player, tb_ship "
+                     + " where tb_player.ship = tb_ship.ship ";
+                
+        Cursor cursor = database.rawQuery(query, null);
+        
         
         if ( cursor.moveToFirst() )
         {
@@ -162,26 +170,24 @@ public class PlayerDataSource
     public Player cursorToPlayer( Cursor cursor )
     {
         Player player = new Player();
+        Ship ship = new Ship();
         
-        player.setName( cursor.getString( 0 ) );
-        player.setMoney( cursor.getInt( 1 ) );
+        player.setName( cursor.getString( 1 ) );
+        player.setMoney( cursor.getInt( 2 ) );
         
-        int[] stats = { cursor.getInt( 2 ), cursor.getInt( 3 ), cursor.getInt( 4 ), cursor.getInt( 5 ) };
+        int[] stats = { cursor.getInt( 3 ), cursor.getInt( 4 ), cursor.getInt( 5 ), cursor.getInt( 6 ) };
         player.setStats( stats );
         
-        player.setHead(cursor.getInt(6));
-        player.setBody(cursor.getInt(7));
-        player.setLegs(cursor.getInt(8));
-        player.setFeet(cursor.getInt(9));
+        player.setHead(cursor.getInt(7));
+        player.setBody(cursor.getInt(8));
+        player.setLegs(cursor.getInt(9));
+        player.setFeet(cursor.getInt(10));
+       
+        ship.setFuselage(cursor.getInt(11));
+        ship.setCabin(cursor.getInt(12));
+        ship.setBoosters(cursor.getInt(13));
         
-        
-        
-        player.setShip()
-        
-        // long shipID = cursor.getLong(7);
-        
-        // change this to pull actual ship based on ID
-        Ship ship = new Ship();
+        player.setShip(ship);
         
         player.setShip( ship );
         
