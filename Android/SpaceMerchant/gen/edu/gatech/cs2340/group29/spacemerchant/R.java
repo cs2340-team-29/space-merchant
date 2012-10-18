@@ -27,18 +27,19 @@ public final class R {
         public static final int ic_feet_1=0x7f02000a;
         public static final int ic_feet_2=0x7f02000b;
         public static final int ic_feet_3=0x7f02000c;
-        public static final int ic_fuselage_1=0x7f02000d;
-        public static final int ic_fuselage_2=0x7f02000e;
-        public static final int ic_fuselage_3=0x7f02000f;
-        public static final int ic_head_1=0x7f020010;
-        public static final int ic_head_2=0x7f020011;
-        public static final int ic_head_3=0x7f020012;
-        public static final int ic_launcher=0x7f020013;
-        public static final int ic_pants_1=0x7f020014;
-        public static final int ic_pants_2=0x7f020015;
-        public static final int ic_pants_3=0x7f020016;
-        public static final int ic_splash_screen=0x7f020017;
-        public static final int splash_screen=0x7f020018;
+        public static final int ic_fusekage_2=0x7f02000d;
+        public static final int ic_fuselage_1=0x7f02000e;
+        public static final int ic_fuselage_2=0x7f02000f;
+        public static final int ic_fuselage_3=0x7f020010;
+        public static final int ic_head_1=0x7f020011;
+        public static final int ic_head_2=0x7f020012;
+        public static final int ic_head_3=0x7f020013;
+        public static final int ic_launcher=0x7f020014;
+        public static final int ic_pants_1=0x7f020015;
+        public static final int ic_pants_2=0x7f020016;
+        public static final int ic_pants_3=0x7f020017;
+        public static final int ic_splash_screen=0x7f020018;
+        public static final int splash_screen=0x7f020019;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f08000c;

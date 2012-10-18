@@ -24,7 +24,7 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Universe;
  */
 public class GameDataSource
 {
-    private static String[] ALL_COLUMNS = { "game", "difficultyLevel", "player" };
+    private static String[] ALL_COLUMNS = { "game", "difficulty", "player" };
 
     private static String[] ALL_PLANET_COLUMNS = { "planet", "game", "techLevel",
                                                    "resourceType", "name", "x_coord" ,
@@ -76,6 +76,7 @@ public class GameDataSource
         
         int difficulty = game.getDifficulty();
         Player player = game.getPlayer();
+        Planet planet = game.getPlanet();
         
         PlayerDataSource playerDataSource = new PlayerDataSource( context );
         
@@ -84,7 +85,7 @@ public class GameDataSource
         playerDataSource.close();
         
         values.put( "player", playerID );
-        values.put( "difficultyLevel", difficulty );
+        values.put( "difficulty", difficulty );
         
         long gameID = database.insert( "tb_game", null, values );
     

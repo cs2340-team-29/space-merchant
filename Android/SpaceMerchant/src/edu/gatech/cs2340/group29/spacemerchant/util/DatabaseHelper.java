@@ -84,7 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 + "     name string not null, "
                 + "     x_coord int not null, "
                 + "     y_coord int not null "
-                + " ) ";
+                + " )";
 
         db.execSQL( createPlanetTableQuery );
     }
