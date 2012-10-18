@@ -35,13 +35,19 @@ public class DatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate( SQLiteDatabase db )
     {
-        final String createShipTableQuery = "" + "create table tb_ship " + "( "
-                + "   ship integer primary key autoincrement," + "   fuselage integer not null,"
-                + "   cabin integer not null," + "   boosters integer not null" + ")";
+        final String createShipTableQuery = "" 
+                + "create table tb_ship " 
+                + "( "
+                + "   ship integer primary key autoincrement," 
+                + "   fuselage integer not null,"
+                + "   cabin integer not null," 
+                + "   boosters integer not null" 
+                + ")";
         
         db.execSQL( createShipTableQuery );
         
-        final String createPlayerTableQuery = "" + "create table tb_player( "
+        final String createPlayerTableQuery = "" 
+                + "create table tb_player( "
                 + "    player integer primary key autoincrement, " 
                 + "    name string not null,"
                 + "    money integer not null, " 
@@ -58,12 +64,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
         
         db.execSQL( createPlayerTableQuery );
         
-        final String createGameTableQuery = "" + "create table tb_game( "
-                + "    game integer primary key autoincrement, " + "    difficultyLevel integer not null,"
-                + "    player integer not null" + " )";
+        final String createGameTableQuery = "" 
+                + "create table tb_game( "
+                + "    game integer primary key autoincrement, " 
+                + "    difficulty integer not null,"
+                + "    player integer not null, "
+                + "    planet integer not null, "
+                + "    universe integer not null "
+                + " )";
         
         db.execSQL( createGameTableQuery );
-        
+    
+        final String createPlanetTableQuery = ""
+                + "create table tb_planet( "
+                + "     planet integer primary key autoincrement, "
+                + "     techLevel integer not null, "
+                + "     resourceType integer not null, "
+                + "     name string not null, "
+                + "     x_coord int not null, "
+                + "     y_coord int not null ";
+
+        db.execSQL( createPlanetTableQuery );
     }
     
     /** 

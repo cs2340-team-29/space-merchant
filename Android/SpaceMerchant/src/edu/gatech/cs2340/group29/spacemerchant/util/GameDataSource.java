@@ -80,7 +80,12 @@ public class GameDataSource
         values.put( "difficultyLevel", difficulty );
         
         long gameID = database.insert( "tb_game", null, values );
-        
+    
+    /*
+    private int             techLevel;
+    private int             resourceType;
+    private String          name;
+    */
         game.setID( gameID );
         
         return gameID;
