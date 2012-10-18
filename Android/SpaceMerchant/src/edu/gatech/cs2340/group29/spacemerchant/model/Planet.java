@@ -38,18 +38,64 @@ public class Planet
     private int             techLevel;
     private int             resourceType;
     private String          name;
+    private int             x;
+    private int             y;
     
     /**
      * Instantiates a new planet.
      *
      * @param name the String
+     * @param x the int
+     * @param y the int
      */
-    public Planet( String name )
+    public Planet( String name, int x, int y )
     {
         Random r = new Random();
         techLevel = r.nextInt( 8 );
         resourceType = r.nextInt( 10 );
         this.name = name;
+        this.x = x;
+        this.y = y;
+    }
+    
+    /**
+     * Gets the x.
+     *
+     * @return the x
+     */
+    public int getX()
+    {
+        return x;
+    }
+    
+    /**
+     * Sets the x.
+     *
+     * @param x the new x
+     */
+    public void setX( int x )
+    {
+        this.x = x;
+    }
+    
+    /**
+     * Gets the y.
+     *
+     * @return the y
+     */
+    public int getY()
+    {
+        return y;
+    }
+    
+    /**
+     * Sets the y.
+     *
+     * @param y the new y
+     */
+    public void setY( int y )
+    {
+        this.y = y;
     }
     
     /**
@@ -111,10 +157,10 @@ public class Planet
     {
         this.name = name;
     }
-
-    /** 
-     *
+    
+    /**
      * Override:
+     * 
      * @see java.lang.Object#toString()
      */
     @Override
