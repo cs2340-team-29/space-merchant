@@ -125,7 +125,7 @@ public class GameDataSource
         {
             values = new ContentValues();
             
-            values.put("game", gameID);
+            values.put("game", (int)gameID);
             values.put("techLevel", universePlanet.getTechLevel());
             values.put("resourceType", universePlanet.getResourceType());
             values.put("name", universePlanet.getName());
