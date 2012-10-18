@@ -23,18 +23,16 @@ public class Universe
     private ArrayList<Integer> planet_x;
     private ArrayList<Integer> planet_y;
     private ArrayList<String>  planet_name;
-    private Planet[][]         universe;
+    private ArrayList<Planet>  universe;
     
     private int                width;
     private int                height;
     
     /**
      * Instantiates a new universe.
-     * 
-     * @param difficulty
-     *            the int
-     * @param context
-     *            the Context
+     *
+     * @param difficulty the int
+     * @param context the Context
      */
     @SuppressWarnings ( { "rawtypes", "unchecked" })
     public Universe( int difficulty, Context context )
@@ -69,50 +67,9 @@ public class Universe
         
         for ( int i = 0; i < planet_name.size(); i++ )
         {
-            universe[planet_x.get( i )][planet_y.get( i )] = new Planet( planet_name.get( i ) );
+            universe.add( new Planet( planet_name.get( i ), planet_x.get( i ), planet_y.get( i ) ) );
         }
         
-    }
-    
-    /**
-     * Gets the first planet.
-     * 
-     * @return the first planet
-     */
-    public Planet getFirstPlanet()
-    {
-        return universe[planet_x.get( 0 )][planet_y.get( 0 )];
-    }
-    
-    /**
-     * Planet exists at.
-     * 
-     * @param x
-     *            the int
-     * @param y
-     *            the int
-     * @return true, if successful
-     */
-    public boolean planetExistsAt( int x, int y )
-    {
-        if ( universe[planet_x.get( x )][planet_y.get( y )] != null )
-            return true;
-        
-        return false;
-    }
-    
-    /**
-     * Gets the planet.
-     * 
-     * @param x
-     *            the int
-     * @param y
-     *            the int
-     * @return the planet
-     */
-    public Planet getPlanet( int x, int y )
-    {
-        return universe[planet_x.get( x )][planet_y.get( y )];
     }
     
     /**
@@ -123,21 +80,12 @@ public class Universe
     @Override
     public String toString()
     {
-        String stringverse = "";
-        for ( int i = 0; i < planet_name.size(); i++ )
-        {
-            for ( int j = 0; j < planet_name.size(); j++ )
-            {
-                stringverse += universe[i][j];
-            }
-        }
-        
-        return stringverse;
+        return universe.toString();
     }
     
     /**
      * Gets the planet_x.
-     * 
+     *
      * @return the planet_x
      */
     public ArrayList<Integer> getPlanet_x()
@@ -147,9 +95,8 @@ public class Universe
     
     /**
      * Sets the planet_x.
-     * 
-     * @param planet_x
-     *            the new planet_x
+     *
+     * @param planet_x the new planet_x
      */
     public void setPlanet_x( ArrayList<Integer> planet_x )
     {
@@ -158,7 +105,7 @@ public class Universe
     
     /**
      * Gets the planet_y.
-     * 
+     *
      * @return the planet_y
      */
     public ArrayList<Integer> getPlanet_y()
@@ -168,9 +115,8 @@ public class Universe
     
     /**
      * Sets the planet_y.
-     * 
-     * @param planet_y
-     *            the new planet_y
+     *
+     * @param planet_y the new planet_y
      */
     public void setPlanet_y( ArrayList<Integer> planet_y )
     {
@@ -179,7 +125,7 @@ public class Universe
     
     /**
      * Gets the planet_name.
-     * 
+     *
      * @return the planet_name
      */
     public ArrayList<String> getPlanet_name()
@@ -189,9 +135,8 @@ public class Universe
     
     /**
      * Sets the planet_name.
-     * 
-     * @param planet_name
-     *            the new planet_name
+     *
+     * @param planet_name the new planet_name
      */
     public void setPlanet_name( ArrayList<String> planet_name )
     {
@@ -200,28 +145,27 @@ public class Universe
     
     /**
      * Gets the universe.
-     * 
+     *
      * @return the universe
      */
-    public Planet[][] getUniverse()
+    public ArrayList<Planet> getUniverse()
     {
         return universe;
     }
     
     /**
      * Sets the universe.
-     * 
-     * @param universe
-     *            the new universe
+     *
+     * @param universe the new universe
      */
-    public void setUniverse( Planet[][] universe )
+    public void setUniverse( ArrayList<Planet> universe )
     {
         this.universe = universe;
     }
     
     /**
      * Gets the width.
-     * 
+     *
      * @return the width
      */
     public int getWidth()
@@ -231,9 +175,8 @@ public class Universe
     
     /**
      * Sets the width.
-     * 
-     * @param width
-     *            the new width
+     *
+     * @param width the new width
      */
     public void setWidth( int width )
     {
@@ -242,7 +185,7 @@ public class Universe
     
     /**
      * Gets the height.
-     * 
+     *
      * @return the height
      */
     public int getHeight()
@@ -252,9 +195,8 @@ public class Universe
     
     /**
      * Sets the height.
-     * 
-     * @param height
-     *            the new height
+     *
+     * @param height the new height
      */
     public void setHeight( int height )
     {

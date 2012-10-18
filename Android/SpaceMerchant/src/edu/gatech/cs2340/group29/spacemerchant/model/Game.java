@@ -31,7 +31,7 @@ public class Game
         this.player = null;
         this.difficulty = 3;
         this.universe = new Universe( difficulty, context );
-        this.planet = universe.getFirstPlanet();
+        this.planet = universe.getUniverse().get(0);
     }
     
     public long getGameID()
