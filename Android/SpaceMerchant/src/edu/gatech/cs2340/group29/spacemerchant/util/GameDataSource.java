@@ -174,6 +174,25 @@ public class GameDataSource
     }
 
     /**
+     * Gets the planet by id.
+     *
+     * @param planetID the long
+     * @return the planet by id
+     */
+    public Planet getPlanetByID( long planetID )
+    {
+        
+        Cursor cursor = database.query( "tb_planet", ALL_PLANET_COLUMNS, "planet=" + planetID, null, null, null, null );
+        
+        cursor.moveToFirst();
+        
+        Planet planet = cursorToPlanet( cursor );
+        
+        cursor.close();
+        
+        return planet;
+    }
+    /**
      * Gets the planets by game id.
      *
      * @param gameID long
@@ -214,9 +233,12 @@ public class GameDataSource
         
         Game game = new Game( context );
        
-        int gameID     = cursor.getInt(0);
-        int difficulty = cursor.getInt(1);
-
+        int gameID             = cursor.getInt(0);
+        int difficulty         = cursor.getInt(1);
+        long currentPlanetID   = cursor.getInt(3);
+            
+        Planet currentPlanet = getPlanetByID(currentPlanetID);
+        
         game.setID( gameID );
         game.setDifficulty( difficulty );
        
@@ -233,6 +255,7 @@ public class GameDataSource
         dataSource.close();
         
         game.setPlayer( player );
+        game.setPlanet( currentPlanet );
         game.setUniverse( universe );
         
         return game;
