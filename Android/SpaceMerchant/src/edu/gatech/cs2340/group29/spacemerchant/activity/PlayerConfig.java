@@ -110,9 +110,8 @@ public class PlayerConfig extends Activity
     
     /**
      * Done button clicked.
-     * 
-     * @param v
-     *            the View
+     *
+     * @param v the View
      */
     @SuppressWarnings ( "unchecked")
     public void doneButtonClicked( View v )

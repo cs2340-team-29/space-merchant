@@ -91,7 +91,7 @@ public class Universe
     @Override
     public String toString()
     {
-        return universe.toString();
+        return " Width: " + width + " Height: " + height + " Difficulty: "+ difficulty + "Universe: " + universe.toString();
     }
     
     /**

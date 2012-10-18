@@ -19,7 +19,6 @@ import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGalleryAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.model.Ship;
-import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
 /**
  * The Class ShipConfig.
@@ -86,27 +85,27 @@ public class ShipConfig extends Activity
     
     /**
      * Done button clicked.
-     * 
-     * @param v
-     *            the View
+     *
+     * @param v the View
      */
     public void doneButtonClicked( View v )
     {
         // do stuff here, send to main screen, save game, etc...
         
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
+       // GameDataSource gds = new GameDataSource( getApplicationContext() );
+       // gds.open();
         
         Game g = new Game( getApplicationContext() );
         Ship s = new Ship();
         player.setShip( s );
         g.setDifficulty( difficulty );
         g.setPlayer( player );
-        long gameID = gds.createGame( g );
-        gds.close();
-        
+        g.getUniverse().generatePlanets();
+       // long gameID = gds.createGame( g );
+       // gds.close();
+        System.out.println( g.getUniverse());
         Intent intent = new Intent( ShipConfig.this, GameActivity.class );
-        intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
+        //intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
         this.startActivity( intent );
     }
 }

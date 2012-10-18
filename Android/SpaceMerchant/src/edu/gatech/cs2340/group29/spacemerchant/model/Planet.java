@@ -166,6 +166,6 @@ public class Planet
     @Override
     public String toString()
     {
-        return name + techLevel + resourceType;
+        return " Name: " + name + " TechLevel: "+ techLevel + " ResourceType: " + resourceType;
     }
 }

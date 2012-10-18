@@ -39,7 +39,7 @@ public class PlayerDataSource
     }
     
     /**
-     * Opens the database for writing.
+     * Open.
      *
      * @throws SQLiteException the sQ lite exception
      */
@@ -49,7 +49,7 @@ public class PlayerDataSource
     }
     
     /**
-     * Closes the database.
+     * Close.
      */
     public void close()
     {
