@@ -56,6 +56,8 @@ public class Universe
         height = 12 * difficulty;
         Resources res = context.getResources();
         planet_name = new ArrayList<String>( Arrays.asList( res.getStringArray( R.array.planets ) ) );
+        planet_xy = new ArrayList<Point>();
+        universe = new ArrayList<Planet>();
         
         Random r = new Random();
         while ( planet_xy.size() < 120 )
