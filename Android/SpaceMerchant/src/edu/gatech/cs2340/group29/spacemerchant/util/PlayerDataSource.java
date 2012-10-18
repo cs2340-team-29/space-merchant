@@ -73,10 +73,20 @@ public class PlayerDataSource
         int body = player.getBody();
         int legs = player.getLegs();
         int feet = player.getFeet();
-        
+    
         Ship ship = player.getShip();
         
-        long shipID = ship.getID();
+        int fuselage = ship.getFuselage();
+        int cabin = ship.getCabin();
+        int boosters = ship.getBoosters();
+        
+        values.put("fuselage", fuselage);
+        values.put("cabin", cabin);
+        values.put("boosters", boosters);
+        
+        long shipID = database.insert( "tb_ship", null, values );
+        
+        values = new ContentValues();
         
         values.put( "name", name );
         values.put( "money", money );
@@ -91,7 +101,7 @@ public class PlayerDataSource
         values.put( "ship", shipID );
         
         long playerID = database.insert( "tb_player", null, values );
-        
+
         return playerID;
     }
     
