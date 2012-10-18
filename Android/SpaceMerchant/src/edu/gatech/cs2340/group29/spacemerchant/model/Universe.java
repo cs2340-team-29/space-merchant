@@ -30,9 +30,11 @@ public class Universe
     
     /**
      * Instantiates a new universe.
-     *
-     * @param difficulty the int
-     * @param context the Context
+     * 
+     * @param difficulty
+     *            the int
+     * @param context
+     *            the Context
      */
     @SuppressWarnings ( { "rawtypes", "unchecked" })
     public Universe( int difficulty, Context context )
@@ -74,7 +76,7 @@ public class Universe
     
     /**
      * Gets the first planet.
-     *
+     * 
      * @return the first planet
      */
     public Planet getFirstPlanet()
@@ -83,10 +85,12 @@ public class Universe
     }
     
     /**
-     * Planet exists at location [x][y].
-     *
-     * @param x the int
-     * @param y the int
+     * Planet exists at.
+     * 
+     * @param x
+     *            the int
+     * @param y
+     *            the int
      * @return true, if successful
      */
     public boolean planetExistsAt( int x, int y )
@@ -99,9 +103,11 @@ public class Universe
     
     /**
      * Gets the planet.
-     *
-     * @param x the int
-     * @param y the int
+     * 
+     * @param x
+     *            the int
+     * @param y
+     *            the int
      * @return the planet
      */
     public Planet getPlanet( int x, int y )
@@ -109,9 +115,9 @@ public class Universe
         return universe[planet_x.get( x )][planet_y.get( y )];
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see java.lang.Object#toString()
      */
     @Override
@@ -129,4 +135,129 @@ public class Universe
         return stringverse;
     }
     
+    /**
+     * Gets the planet_x.
+     * 
+     * @return the planet_x
+     */
+    public ArrayList<Integer> getPlanet_x()
+    {
+        return planet_x;
+    }
+    
+    /**
+     * Sets the planet_x.
+     * 
+     * @param planet_x
+     *            the new planet_x
+     */
+    public void setPlanet_x( ArrayList<Integer> planet_x )
+    {
+        this.planet_x = planet_x;
+    }
+    
+    /**
+     * Gets the planet_y.
+     * 
+     * @return the planet_y
+     */
+    public ArrayList<Integer> getPlanet_y()
+    {
+        return planet_y;
+    }
+    
+    /**
+     * Sets the planet_y.
+     * 
+     * @param planet_y
+     *            the new planet_y
+     */
+    public void setPlanet_y( ArrayList<Integer> planet_y )
+    {
+        this.planet_y = planet_y;
+    }
+    
+    /**
+     * Gets the planet_name.
+     * 
+     * @return the planet_name
+     */
+    public ArrayList<String> getPlanet_name()
+    {
+        return planet_name;
+    }
+    
+    /**
+     * Sets the planet_name.
+     * 
+     * @param planet_name
+     *            the new planet_name
+     */
+    public void setPlanet_name( ArrayList<String> planet_name )
+    {
+        this.planet_name = planet_name;
+    }
+    
+    /**
+     * Gets the universe.
+     * 
+     * @return the universe
+     */
+    public Planet[][] getUniverse()
+    {
+        return universe;
+    }
+    
+    /**
+     * Sets the universe.
+     * 
+     * @param universe
+     *            the new universe
+     */
+    public void setUniverse( Planet[][] universe )
+    {
+        this.universe = universe;
+    }
+    
+    /**
+     * Gets the width.
+     * 
+     * @return the width
+     */
+    public int getWidth()
+    {
+        return width;
+    }
+    
+    /**
+     * Sets the width.
+     * 
+     * @param width
+     *            the new width
+     */
+    public void setWidth( int width )
+    {
+        this.width = width;
+    }
+    
+    /**
+     * Gets the height.
+     * 
+     * @return the height
+     */
+    public int getHeight()
+    {
+        return height;
+    }
+    
+    /**
+     * Sets the height.
+     * 
+     * @param height
+     *            the new height
+     */
+    public void setHeight( int height )
+    {
+        this.height = height;
+    }
 }
