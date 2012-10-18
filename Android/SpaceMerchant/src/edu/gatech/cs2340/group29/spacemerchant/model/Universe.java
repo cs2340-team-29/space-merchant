@@ -51,6 +51,19 @@ public class Universe
         {
             universe[planet_x.get( i )][planet_y.get( i )] = new Planet( planet_name.get( i ) );
         }
+        
+        return universe[planet_x.get(0)][planet_y.get(0)];
+    }
+    
+    public boolean planetExistsAt(int x, int y) {
+    	if(universe[planet_x.get(x)][planet_y.get(y)] != null)
+    		return true;
+    	
+    	return false;
+    }
+    
+    public Planet getPlanet(int x, int y) {
+    	return universe[planet_x.get(x)][planet_y.get(y)];
     }
     
 }
