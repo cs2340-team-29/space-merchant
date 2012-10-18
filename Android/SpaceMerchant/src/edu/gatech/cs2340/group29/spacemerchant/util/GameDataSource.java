@@ -47,7 +47,7 @@ public class GameDataSource
     }
     
     /**
-     * Opens the database for writing.
+     * Open.
      *
      * @throws SQLiteException the sQ lite exception
      */
@@ -57,7 +57,7 @@ public class GameDataSource
     }
     
     /**
-     * Closes the database.
+     * Close.
      */
     public void close()
     {
@@ -76,7 +76,6 @@ public class GameDataSource
         
         int difficulty = game.getDifficulty();
         Player player = game.getPlayer();
-        Planet planet = game.getPlanet();
         
         PlayerDataSource playerDataSource = new PlayerDataSource( context );
         
@@ -156,8 +155,8 @@ public class GameDataSource
     /**
      * Gets the planets by game id.
      *
-     * @param gameID long
-     * @return list of planets
+     * @param gameID the long
+     * @return the planets by game id
      */
     public ArrayList<Planet> getPlanetsByGameID( long gameID )
     {
