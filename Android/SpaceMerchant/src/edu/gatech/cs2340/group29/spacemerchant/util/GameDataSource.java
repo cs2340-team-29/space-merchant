@@ -72,14 +72,21 @@ public class GameDataSource
      */
     public long createGame( Game game )
     {
+        
+        Planet currentPlanet = game.getPlanet();
+        Universe universe    = game.getUniverse();
+        int difficulty       = game.getDifficulty();
+        Player player        = game.getPlayer();
+        
+        // insert planet into database
+        
         ContentValues values = new ContentValues();
         
-        Planet planet = game.getPlanet();
-        int techLevel = planet.getTechLevel();
-        int resourceType = planet.getResourceType();
-        String name = planet.getName();
-        int x_coord = planet.getX();
-        int y_coord = planet.getY();
+        int techLevel        = currentPlanet.getTechLevel();
+        int resourceType     = currentPlanet.getResourceType();
+        String name          = currentPlanet.getName();
+        int x_coord          = currentPlanet.getX();
+        int y_coord          = currentPlanet.getY();
        
         values.put("techLevel", techLevel);
         values.put("resourceType", resourceType);
@@ -89,27 +96,44 @@ public class GameDataSource
         
         long currentPlanetID = database.insert( "tb_planet", null, values ); 
         
-        int difficulty = game.getDifficulty();
-        Player player = game.getPlayer();
-        Universe universe = game.getUniverse();
+       
+        //insert player into database
         
         PlayerDataSource playerDataSource = new PlayerDataSource( context );
         
         playerDataSource.open();
         long playerID = playerDataSource.createPlayer( player );
         playerDataSource.close();
-      
+       
+        //insert game into database
+        
+        values = new ContentValues();
+        
         values.put( "player", playerID );
         values.put( "difficulty", difficulty );
         values.put( "planet", currentPlanetID );
         
         long gameID = database.insert( "tb_game", null, values );
-    
+   
         game.setID( gameID );
-        /*
+        
+        //insert universe into database
+        
         ArrayList<Planet> universePlanets = universe.getUniverse();
-        long planetID = database.insert( "tb_planet", null, values ); 
-        */
+        
+        for( Planet universePlanet: universePlanets )
+        {
+            values = new ContentValues();
+            
+            values.put("game", gameID);
+            values.put("techLevel", universePlanet.getTechLevel());
+            values.put("resourceType", universePlanet.getResourceType());
+            values.put("name", universePlanet.getName());
+            values.put("x_coord", universePlanet.getX());
+            values.put("y_coord", universePlanet.getY());
+            
+            database.insert( "tb_planet", null, values ); 
+        }
         
         return gameID;
     }
@@ -231,17 +255,13 @@ public class GameDataSource
     public Game cursorToGame( Cursor cursor )
     {
         
-        Game game = new Game( context );
-       
         int gameID             = cursor.getInt(0);
         int difficulty         = cursor.getInt(1);
+        long playerID          = cursor.getInt(2); 
         long currentPlanetID   = cursor.getInt(3);
             
         Planet currentPlanet = getPlanetByID(currentPlanetID);
         
-        game.setID( gameID );
-        game.setDifficulty( difficulty );
-       
         Universe universe = new Universe(difficulty, context);
     
         ArrayList<Planet> planets = getPlanetsByGameID( gameID );
@@ -251,9 +271,13 @@ public class GameDataSource
         PlayerDataSource dataSource = new PlayerDataSource( context );
         
         dataSource.open();
-        Player player = dataSource.getPlayerByID( cursor.getInt( 2 ) );
+        Player player = dataSource.getPlayerByID( playerID );
         dataSource.close();
         
+        Game game = new Game( context );
+        
+        game.setID( gameID );
+        game.setDifficulty( difficulty );
         game.setPlayer( player );
         game.setPlanet( currentPlanet );
         game.setUniverse( universe );
