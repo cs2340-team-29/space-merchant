@@ -24,7 +24,7 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Universe;
  */
 public class GameDataSource
 {
-    private static String[] ALL_COLUMNS = { "game", "difficulty", "player" };
+    private static String[] ALL_COLUMNS = { "game", "difficulty", "player", "planet" };
 
     private static String[] ALL_PLANET_COLUMNS = { "planet", "game", "techLevel",
                                                    "resourceType", "name", "x_coord" ,
