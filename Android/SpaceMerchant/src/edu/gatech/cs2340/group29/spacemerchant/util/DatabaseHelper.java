@@ -69,8 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 + "    game integer primary key autoincrement, " 
                 + "    difficulty integer not null,"
                 + "    player integer not null, "
-                + "    planet integer not null, "
-                + "    universe integer not null "
+                + "    planet integer not null "
                 + " )";
         
         db.execSQL( createGameTableQuery );
