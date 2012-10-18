@@ -142,7 +142,7 @@ public class PlayerDataSource
         
         Player player = null;
        
-        String query = "select player, money, pilotSkillPoints "
+        String query = "select player, name, money, pilotSkillPoints "
                      + "       fighterSkillPoints, traderSkillPoints, engineerSkillPoints, "
                      + "       head, body, legs, feet "
                      + "       fuselage, cabin, boosters"
