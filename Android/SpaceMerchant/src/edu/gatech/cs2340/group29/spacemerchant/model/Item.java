@@ -3,10 +3,12 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
 public class Item implements Comparable<Item>{
 	private int type;
 	private int basePrice;
+	private String name;
 	
-	public Item(int type, int basePrice) {
+	public Item(int type, int basePrice, String name) {
 		this.type = type;
 		this.basePrice = basePrice;
+		this.name = name;
 	}
 
 	public int getType() {
@@ -17,8 +19,12 @@ public class Item implements Comparable<Item>{
 		return basePrice;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public int compareTo(Item itm) {
-		if(itm == this)
+		if(itm.equals(this))
 			return 0;
 		return -1;
 	}
