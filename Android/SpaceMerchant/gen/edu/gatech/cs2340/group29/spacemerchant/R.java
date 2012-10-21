@@ -43,14 +43,23 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f08000c;
+        public static final int RelativeLayout1=0x7f080033;
         public static final int aboutText=0x7f080000;
         public static final int aboutText2=0x7f080001;
         public static final int body_player=0x7f080004;
         public static final int boosters=0x7f080009;
         public static final int cabin=0x7f080008;
+        public static final int cancel=0x7f08002b;
         public static final int chooseDifficulty=0x7f080012;
+        public static final int confirm=0x7f080030;
         public static final int done=0x7f08001f;
         public static final int doneButton=0x7f080027;
+        public static final int entity1Items=0x7f08002a;
+        public static final int entity1Money=0x7f080029;
+        public static final int entity1Name=0x7f080028;
+        public static final int entity2Items=0x7f08002f;
+        public static final int entity2Money=0x7f08002e;
+        public static final int entity2Name=0x7f08002d;
         public static final int feet=0x7f080006;
         public static final int frameLayout=0x7f080002;
         public static final int fuselage=0x7f080007;
@@ -60,7 +69,7 @@ public final class R {
         public static final int galleryFeet=0x7f080016;
         public static final int galleryFuselage=0x7f080025;
         public static final int galleryHead=0x7f080013;
-        public static final int galleryImage=0x7f080029;
+        public static final int galleryImage=0x7f080032;
         public static final int galleryLegs=0x7f080015;
         public static final int gameList=0x7f080021;
         public static final int gotoAboutPageButton=0x7f08000f;
@@ -68,10 +77,14 @@ public final class R {
         public static final int head=0x7f080003;
         public static final int horiozontalDivider=0x7f08000a;
         public static final int imageView1=0x7f08000d;
+        public static final int itemCost=0x7f080036;
+        public static final int itemImage=0x7f080034;
+        public static final int itemName=0x7f080035;
         public static final int legs=0x7f080005;
-        public static final int menu_help=0x7f08002b;
-        public static final int menu_travel=0x7f08002a;
-        public static final int money=0x7f080028;
+        public static final int menu_help=0x7f080038;
+        public static final int menu_settings=0x7f080039;
+        public static final int menu_travel=0x7f080037;
+        public static final int money=0x7f080031;
         public static final int newGame=0x7f080022;
         public static final int planetImage=0x7f08000b;
         public static final int playerName=0x7f080011;
@@ -86,6 +99,7 @@ public final class R {
         public static final int stat3Text=0x7f08001b;
         public static final int stat4=0x7f08001e;
         public static final int stat4Text=0x7f08001d;
+        public static final int view1=0x7f08002c;
     }
     public static final class layout {
         public static final int activity_about_page=0x7f030000;
@@ -94,11 +108,14 @@ public final class R {
         public static final int activity_player_config=0x7f030003;
         public static final int activity_select_game=0x7f030004;
         public static final int activity_ship_config=0x7f030005;
-        public static final int custom_select_game=0x7f030006;
-        public static final int gallery_row_view=0x7f030007;
+        public static final int activity_trade=0x7f030006;
+        public static final int custom_select_game=0x7f030007;
+        public static final int gallery_row_view=0x7f030008;
+        public static final int trading_item_row=0x7f030009;
     }
     public static final class menu {
         public static final int activity_game=0x7f070000;
+        public static final int activity_trade=0x7f070001;
     }
     public static final class string {
         public static final int DifficultySetting=0x7f050010;
@@ -107,12 +124,15 @@ public final class R {
         public static final int about_page_text1=0x7f05000b;
         public static final int about_page_text2=0x7f05000c;
         public static final int app_name=0x7f050000;
+        public static final int cancel=0x7f050098;
+        public static final int confirm=0x7f050097;
         public static final int difficulty=0x7f05000f;
         public static final int difficultyDescription=0x7f050011;
         public static final int difficultyText=0x7f050012;
         public static final int done=0x7f050019;
         public static final int hello_world=0x7f050001;
         public static final int menu_help_string=0x7f050003;
+        public static final int menu_settings=0x7f050095;
         public static final int menu_travel_string=0x7f050002;
         public static final int new_game=0x7f050013;
         /**  Planet Names 
@@ -252,6 +272,7 @@ public final class R {
         public static final int title_activity_player_config=0x7f050005;
         public static final int title_activity_select_game=0x7f050008;
         public static final int title_activity_ship_config=0x7f05001a;
+        public static final int title_activity_trade=0x7f050096;
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;

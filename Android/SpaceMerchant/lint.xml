@@ -2,8 +2,10 @@
 <lint>
     <issue id="ContentDescription">
         <ignore path="res/layout/activity_game.xml" />
+        <ignore path="res/layout/trading_item_row.xml" />
     </issue>
     <issue id="NestedWeights">
         <ignore path="res/layout/activity_game.xml" />
+        <ignore path="res/layout/activity_trade.xml" />
     </issue>
 </lint>

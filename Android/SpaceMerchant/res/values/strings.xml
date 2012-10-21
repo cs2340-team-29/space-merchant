@@ -151,5 +151,9 @@
     <string name="planet_118">Yojimbo</string>
     <string name="planet_119">Zalkon</string>
     <string name="planet_120">Zuul</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_trade">TradeActivity</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
