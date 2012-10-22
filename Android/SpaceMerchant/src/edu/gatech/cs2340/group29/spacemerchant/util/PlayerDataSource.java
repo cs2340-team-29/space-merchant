@@ -152,9 +152,9 @@ public class PlayerDataSource
         
         Player player = null;
        
-        String query = "select player, name, money, pilotSkillPoints "
+        String query = "select player, name, money, pilotSkillPoints, "
                      + "       fighterSkillPoints, traderSkillPoints, engineerSkillPoints, "
-                     + "       head, body, legs, feet "
+                     + "       head, body, legs, feet, "
                      + "       fuselage, cabin, boosters"
                      + "  from tb_player, tb_ship "
                      + " where tb_player.ship = tb_ship.ship ";
@@ -165,6 +165,7 @@ public class PlayerDataSource
         if ( cursor.moveToFirst() )
         {
             player = cursorToPlayer( cursor );
+            
         }
         
         cursor.close();
