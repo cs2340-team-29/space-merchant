@@ -77,13 +77,13 @@ public final class R {
         public static final int head=0x7f080003;
         public static final int horiozontalDivider=0x7f08000a;
         public static final int imageView1=0x7f08000d;
-        public static final int itemCost=0x7f080036;
-        public static final int itemImage=0x7f080034;
-        public static final int itemName=0x7f080035;
+        public static final int itemCost=0x7f080037;
+        public static final int itemImage=0x7f080035;
+        public static final int itemName=0x7f080036;
         public static final int legs=0x7f080005;
-        public static final int menu_help=0x7f080038;
-        public static final int menu_settings=0x7f080039;
-        public static final int menu_travel=0x7f080037;
+        public static final int menu_help=0x7f080039;
+        public static final int menu_settings=0x7f08003a;
+        public static final int menu_travel=0x7f080038;
         public static final int money=0x7f080031;
         public static final int newGame=0x7f080022;
         public static final int planetImage=0x7f08000b;
@@ -99,6 +99,7 @@ public final class R {
         public static final int stat3Text=0x7f08001b;
         public static final int stat4=0x7f08001e;
         public static final int stat4Text=0x7f08001d;
+        public static final int textView1=0x7f080034;
         public static final int view1=0x7f08002c;
     }
     public static final class layout {
@@ -111,7 +112,8 @@ public final class R {
         public static final int activity_trade=0x7f030006;
         public static final int custom_select_game=0x7f030007;
         public static final int gallery_row_view=0x7f030008;
-        public static final int trading_item_row=0x7f030009;
+        public static final int loading_view=0x7f030009;
+        public static final int trading_item_row=0x7f03000a;
     }
     public static final class menu {
         public static final int activity_game=0x7f070000;

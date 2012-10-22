@@ -9,7 +9,9 @@ package edu.gatech.cs2340.group29.spacemerchant.activity;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Gallery;
@@ -31,6 +33,8 @@ public class ShipConfig extends Activity
     
     private Player             player;
     private int                difficulty;
+    
+    protected Dialog working;
     
     /**
      * Override:
@@ -93,21 +97,45 @@ public class ShipConfig extends Activity
     public void doneButtonClicked( View v )
     {
         // do stuff here, send to main screen, save game, etc...
+        working = new Dialog( this );
+        working.setContentView( R.layout.loading_view );
+        working.setTitle( "Working" );
+        working.show();
         
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
+        CreateUniverseTask cut = new CreateUniverseTask();
+        cut.execute( (Void) null );
         
-        Game g = new Game( getApplicationContext() );
-        Ship s = new Ship();
-        player.setShip( s );
-        g.setDifficulty( difficulty );
-        g.setPlayer( player );
-        g.getUniverse().generatePlanets();
-        long gameID = gds.createGame( g );
-        gds.close();
-        System.out.println( g.getUniverse() );
-        Intent intent = new Intent( ShipConfig.this, GameActivity.class );
-        intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
-        this.startActivity( intent );
+    }
+    
+    public class CreateUniverseTask extends AsyncTask<Void, Void, Long>
+    {
+
+        @Override
+        protected Long doInBackground( Void ... params )
+        {
+            GameDataSource gds = new GameDataSource( getApplicationContext() );
+            gds.open();
+            
+            Game g = new Game( getApplicationContext() );
+            Ship s = new Ship();
+            player.setShip( s );
+            g.setDifficulty( difficulty );
+            g.setPlayer( player );
+            g.getUniverse().generatePlanets();
+            long gameID = gds.createGame( g );
+            gds.close();
+            System.out.println( g.getUniverse() );
+            return gameID;
+        }
+
+        @Override
+        protected void onPostExecute( Long gameID )
+        {
+            working.dismiss();
+            
+            Intent intent = new Intent( ShipConfig.this, GameActivity.class );
+            intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
+            startActivity( intent );
+        }
     }
 }
