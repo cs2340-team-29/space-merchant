@@ -3,6 +3,13 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
 
 public class Item implements Comparable<Item>
 {
+	private final int type_generic = 0;
+	private final int type_material = 1;
+	private final int type_liquid = 2;
+	private final int type_plant = 3;
+	private final int type_animal = 4;
+	private final int type_art = 5;
+	private final int type_weapon = 6;
     private int    type;
     private int    basePrice;
     private String name;
@@ -80,8 +87,35 @@ public class Item implements Comparable<Item>
 		return drawable;
 	}
 
-    
-    // compares the item to another item
+    public int getType_generic() {
+		return type_generic;
+	}
+
+	public int getType_material() {
+		return type_material;
+	}
+
+	public int getType_liquid() {
+		return type_liquid;
+	}
+
+	public int getType_plant() {
+		return type_plant;
+	}
+
+	public int getType_animal() {
+		return type_animal;
+	}
+
+	public int getType_art() {
+		return type_art;
+	}
+
+	public int getType_weapon() {
+		return type_weapon;
+	}
+
+	// compares the item to another item
 	public int compareTo( Item itm )
     {
         if ( itm.equals( this ) )

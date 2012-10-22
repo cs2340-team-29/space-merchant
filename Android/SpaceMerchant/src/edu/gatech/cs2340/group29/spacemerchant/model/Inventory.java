@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Inventory
 {
-    private final int          numOfItemTypes = 5;
+    private final int          numOfItemTypes = 7;
     
     private LinkedList<Item>[] Inventory;
     private int                size;
