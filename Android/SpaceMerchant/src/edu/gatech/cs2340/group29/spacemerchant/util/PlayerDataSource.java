@@ -105,11 +105,35 @@ public class PlayerDataSource
         
         long playerID = database.insert( "tb_player", null, values );
 
-        values = new ContentValues();
-        
         Inventory inventory = player.getInventory();
-        
+       
         LinkedList<Item>[] inventoryItems = inventory.getContents();
+       
+        int itemType = 0;
+        
+        for( LinkedList<Item> inventoryItemsByType : inventoryItems )
+        {
+            
+            for( Item item : inventoryItemsByType)
+            {
+                
+               values = new ContentValues();
+               
+               int basePrice    = item.getBasePrice();
+               String itemName  = item.getName();
+               int drawable     = item.getDrawable();
+               
+               values.put( "player", playerID );
+               values.put( "type", itemType );
+               values.put( "base_price", basePrice );
+               values.put( "item_name", itemName );
+               values.put( "drawable", drawable );
+                   
+               database.insert( "tb_player_inventory", null, values);
+            }
+            
+            itemType++;
+        }
         
         return playerID;
     }

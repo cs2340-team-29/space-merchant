@@ -36,8 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public void onCreate( SQLiteDatabase db )
     {
         final String createShipTableQuery = "" 
-            + "create table tb_ship " 
-            + "( "
+            + "create table tb_ship( " 
             + "   ship integer primary key autoincrement," 
             + "   fuselage integer not null,"
             + "   cabin integer not null," 
@@ -90,11 +89,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
         final String createPlayerInventoryTableQuery = ""
             + "create table tb_player_inventory( "
             + "     item integer primary key autoincrement, "
+            + "     player integer not null, "
             + "     type integer not null, " 
             + "     base_price integer not null, "
             + "     name string not null, " 
-            + "     drawable integer not null, "
-            + "     integer quantity not null "
+            + "     drawable integer not null "
             + " )";
         
         db.execSQL( createPlayerInventoryTableQuery );
