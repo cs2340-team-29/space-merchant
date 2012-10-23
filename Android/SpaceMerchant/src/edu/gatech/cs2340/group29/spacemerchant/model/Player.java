@@ -18,6 +18,7 @@ public class Player implements Parcelable
     private Ship   ship;
     private int[]  stats;
     private int    money;
+    private Inventory Inventory;
     
     private int    head;
     private int    body;
@@ -253,5 +254,15 @@ public class Player implements Parcelable
     {
         this.name = name;
     }
+    
+    public Inventory getInventory() {
+		return Inventory;
+	}
+	
+	public void fillInventory(Item [] itm) {
+		for(int i=0; i<itm.length; i++) {
+			Inventory.add(itm[i]);
+		}
+	}
     
 }

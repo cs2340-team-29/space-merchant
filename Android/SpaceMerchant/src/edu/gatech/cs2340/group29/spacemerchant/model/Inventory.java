@@ -5,11 +5,16 @@ import java.util.LinkedList;
 
 public class Inventory
 {
-    private final int          numOfItemTypes = 5;
+    private final int          numOfItemTypes = 7;
     
     private LinkedList<Item>[] Inventory;
     private int                size;
     
+    /**
+     * 
+     * constructor creates the inventory
+     * 
+     */
     @SuppressWarnings ( "unchecked")
     public Inventory()
     {
@@ -17,18 +22,37 @@ public class Inventory
         size = 0;
     }
     
+    /**
+     * 
+     * adds an item to an inventory
+     * 
+     * @param itm
+     */
     public void add( Item itm )
     {
         Inventory[itm.getType()].add( itm );
         size++;
     }
     
+    /**
+     * 
+     * adds all the items from an array to an inventory
+     * 
+     * @param itm
+     */
     public void addAll( Item[] itm )
     {
         for ( int i = 0; i < itm.length; i++ )
             add( itm[i] );
     }
     
+    /**
+     * 
+     * checks to see if an item is in the inventory
+     * 
+     * @param itm
+     * @return true if the inventory contains item; false otherwise
+     */
     public boolean hasItem( Item itm )
     {
         if ( Inventory[itm.getType()].size() > 0 )
@@ -39,6 +63,13 @@ public class Inventory
         return false;
     }
     
+    /**
+     * 
+     * gets an item from the inventory
+     * 
+     * @param itm
+     * @return the item if it exists, null otherwise
+     */
     public Item getItem( Item itm )
     {
         if ( Inventory[itm.getType()].size() > 0 )
@@ -49,6 +80,13 @@ public class Inventory
         return null;
     }
     
+    /**
+     * 
+     * removes an item from the inventory and return it
+     * 
+     * @param itm
+     * @return returns the item removed, null otherwise
+     */
     public Item remove( Item itm )
     {
         if ( Inventory[itm.getType()].size() > 0 )
@@ -64,6 +102,11 @@ public class Inventory
         return null;
     }
     
+    /**
+     * 
+     * clear the inventory
+     * 
+     */
     @SuppressWarnings ( "unchecked")
     public void clear()
     {
@@ -71,9 +114,18 @@ public class Inventory
         size = 0;
     }
     
+    /**
+     * 
+     * gets the size of the inventory
+     * 
+     * @return the size of the inventory
+     */
     public int size()
     {
         return size;
     }
     
+    public LinkedList<Item>[] getContents() {
+    	return Inventory;
+    }
 }

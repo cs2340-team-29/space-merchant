@@ -40,6 +40,7 @@ public class Planet
     private String          name;
     private int             x;
     private int             y;
+    private Inventory Inventory;
     
     /**
      * Instantiates a new planet.
@@ -48,7 +49,7 @@ public class Planet
      * @param x the int
      * @param y the int
      */
-    public Planet( String name, int x, int y )
+    public Planet( String name, int x, int y)
     {
         Random r = new Random();
         techLevel = r.nextInt( 8 );
@@ -56,6 +57,7 @@ public class Planet
         this.name = name;
         this.x = x;
         this.y = y;
+        this.Inventory = new Inventory();
     }
     
     /**
@@ -168,4 +170,15 @@ public class Planet
     {
         return " Name: " + name + " TechLevel: "+ techLevel + " ResourceType: " + resourceType;
     }
+
+	public Inventory getInventory() {
+		return Inventory;
+	}
+	
+	public void fillInventory(Item [] itm) {
+		for(int i=0; i<itm.length; i++) {
+			Inventory.add(itm[i]);
+		}
+	}
+	
 }

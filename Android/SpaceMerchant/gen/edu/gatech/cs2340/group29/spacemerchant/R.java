@@ -15,31 +15,54 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
-        public static final int ic_body_1=0x7f020001;
-        public static final int ic_body_2=0x7f020002;
-        public static final int ic_body_3=0x7f020003;
-        public static final int ic_boosters_1=0x7f020004;
-        public static final int ic_boosters_2=0x7f020005;
-        public static final int ic_boosters_3=0x7f020006;
-        public static final int ic_cabin_1=0x7f020007;
-        public static final int ic_cabin_2=0x7f020008;
-        public static final int ic_cabin_3=0x7f020009;
-        public static final int ic_feet_1=0x7f02000a;
-        public static final int ic_feet_2=0x7f02000b;
-        public static final int ic_feet_3=0x7f02000c;
-        public static final int ic_fusekage_2=0x7f02000d;
-        public static final int ic_fuselage_1=0x7f02000e;
-        public static final int ic_fuselage_2=0x7f02000f;
-        public static final int ic_fuselage_3=0x7f020010;
-        public static final int ic_head_1=0x7f020011;
-        public static final int ic_head_2=0x7f020012;
-        public static final int ic_head_3=0x7f020013;
-        public static final int ic_launcher=0x7f020014;
-        public static final int ic_pants_1=0x7f020015;
-        public static final int ic_pants_2=0x7f020016;
-        public static final int ic_pants_3=0x7f020017;
-        public static final int ic_splash_screen=0x7f020018;
-        public static final int splash_screen=0x7f020019;
+        public static final int ic_animal=0x7f020001;
+        public static final int ic_art=0x7f020002;
+        public static final int ic_body_1=0x7f020003;
+        public static final int ic_body_2=0x7f020004;
+        public static final int ic_body_3=0x7f020005;
+        public static final int ic_boosters_1=0x7f020006;
+        public static final int ic_boosters_2=0x7f020007;
+        public static final int ic_boosters_3=0x7f020008;
+        public static final int ic_cabin_1=0x7f020009;
+        public static final int ic_cabin_2=0x7f02000a;
+        public static final int ic_cabin_3=0x7f02000b;
+        public static final int ic_clouds_a=0x7f02000c;
+        public static final int ic_clouds_b=0x7f02000d;
+        public static final int ic_clouds_c=0x7f02000e;
+        public static final int ic_clouds_d=0x7f02000f;
+        public static final int ic_clouds_e=0x7f020010;
+        public static final int ic_feet_1=0x7f020011;
+        public static final int ic_feet_2=0x7f020012;
+        public static final int ic_feet_3=0x7f020013;
+        public static final int ic_fusekage_2=0x7f020014;
+        public static final int ic_fuselage_1=0x7f020015;
+        public static final int ic_fuselage_2=0x7f020016;
+        public static final int ic_fuselage_3=0x7f020017;
+        public static final int ic_game_activity_overlay=0x7f020018;
+        public static final int ic_generic_object=0x7f020019;
+        public static final int ic_gun=0x7f02001a;
+        public static final int ic_head_1=0x7f02001b;
+        public static final int ic_head_2=0x7f02001c;
+        public static final int ic_head_3=0x7f02001d;
+        public static final int ic_land_a=0x7f02001e;
+        public static final int ic_land_b=0x7f02001f;
+        public static final int ic_land_c=0x7f020020;
+        public static final int ic_land_d=0x7f020021;
+        public static final int ic_land_e=0x7f020022;
+        public static final int ic_launcher=0x7f020023;
+        public static final int ic_liquid=0x7f020024;
+        public static final int ic_mineral=0x7f020025;
+        public static final int ic_pants_1=0x7f020026;
+        public static final int ic_pants_2=0x7f020027;
+        public static final int ic_pants_3=0x7f020028;
+        public static final int ic_planet_base_a=0x7f020029;
+        public static final int ic_planet_base_b=0x7f02002a;
+        public static final int ic_planet_base_c=0x7f02002b;
+        public static final int ic_planet_base_d=0x7f02002c;
+        public static final int ic_planet_base_e=0x7f02002d;
+        public static final int ic_plant=0x7f02002e;
+        public static final int ic_splash_screen=0x7f02002f;
+        public static final int splash_screen=0x7f020030;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f08000c;
@@ -77,13 +100,13 @@ public final class R {
         public static final int head=0x7f080003;
         public static final int horiozontalDivider=0x7f08000a;
         public static final int imageView1=0x7f08000d;
-        public static final int itemCost=0x7f080036;
-        public static final int itemImage=0x7f080034;
-        public static final int itemName=0x7f080035;
+        public static final int itemCost=0x7f080037;
+        public static final int itemImage=0x7f080035;
+        public static final int itemName=0x7f080036;
         public static final int legs=0x7f080005;
-        public static final int menu_help=0x7f080038;
-        public static final int menu_settings=0x7f080039;
-        public static final int menu_travel=0x7f080037;
+        public static final int menu_help=0x7f080039;
+        public static final int menu_settings=0x7f08003a;
+        public static final int menu_travel=0x7f080038;
         public static final int money=0x7f080031;
         public static final int newGame=0x7f080022;
         public static final int planetImage=0x7f08000b;
@@ -99,6 +122,7 @@ public final class R {
         public static final int stat3Text=0x7f08001b;
         public static final int stat4=0x7f08001e;
         public static final int stat4Text=0x7f08001d;
+        public static final int textView1=0x7f080034;
         public static final int view1=0x7f08002c;
     }
     public static final class layout {
@@ -111,7 +135,8 @@ public final class R {
         public static final int activity_trade=0x7f030006;
         public static final int custom_select_game=0x7f030007;
         public static final int gallery_row_view=0x7f030008;
-        public static final int trading_item_row=0x7f030009;
+        public static final int loading_view=0x7f030009;
+        public static final int trading_item_row=0x7f03000a;
     }
     public static final class menu {
         public static final int activity_game=0x7f070000;
