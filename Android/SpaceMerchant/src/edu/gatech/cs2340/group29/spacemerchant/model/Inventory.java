@@ -125,4 +125,7 @@ public class Inventory
         return size;
     }
     
+    public LinkedList<Item>[] getContents() {
+    	return Inventory;
+    }
 }
