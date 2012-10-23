@@ -126,7 +126,7 @@ public class PlayerDataSource
                values.put( "player", playerID );
                values.put( "type", itemType );
                values.put( "base_price", basePrice );
-               values.put( "item_name", itemName );
+               values.put( "name", itemName );
                values.put( "drawable", drawable );
                    
                database.insert( "tb_player_inventory", null, values);
@@ -215,6 +215,7 @@ public class PlayerDataSource
     {
         Player player = new Player();
         Ship ship = new Ship();
+        Inventory inventory = new Inventory();
         
         player.setName( cursor.getString( 1 ) );
         player.setMoney( cursor.getInt( 2 ) );
@@ -232,9 +233,7 @@ public class PlayerDataSource
         ship.setBoosters(cursor.getInt(13));
         
         player.setShip(ship);
-        
-        player.setShip( ship );
-        
+        player.setInventory(inventory);
         return player;
     }
 }

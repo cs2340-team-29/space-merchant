@@ -14,11 +14,11 @@ import android.os.Parcelable;
  */
 public class Player implements Parcelable
 {
-    private String name;
-    private Ship   ship;
-    private int[]  stats;
-    private int    money;
-    private Inventory Inventory;
+    private String    name;
+    private Ship      ship;
+    private int[]     stats;
+    private int       money;
+    private Inventory inventory;
     
     private int    head;
     private int    body;
@@ -256,12 +256,16 @@ public class Player implements Parcelable
     }
     
     public Inventory getInventory() {
-		return Inventory;
+		return inventory;
 	}
-	
+
+    public void setInventory(Inventory inventory) {
+        
+        this.inventory = inventory;
+    }
 	public void fillInventory(Item [] itm) {
 		for(int i=0; i<itm.length; i++) {
-			Inventory.add(itm[i]);
+			inventory.add(itm[i]);
 		}
 	}
     
