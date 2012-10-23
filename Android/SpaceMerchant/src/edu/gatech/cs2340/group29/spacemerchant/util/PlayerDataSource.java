@@ -175,6 +175,34 @@ public class PlayerDataSource
     }
     
     /**
+     * Gets the player inventory by player ID
+     *
+     * @param player ID long
+     * @return the inventory by id
+     */
+    public LinkedList<Item> getPlayerInventoryItemsByPlayerID( long playerID )
+    {
+        
+        LinkedList<Item> playerInventoryItems = null;
+       
+        String query = "select name, type, base_price, drawable from tb_player_inventory_item";
+                
+        Cursor cursor = database.rawQuery(query, null);
+        
+        cursor.moveToFirst();
+        
+        while( cursor.isLast() )
+        {
+            
+            cursor.moveToNext();
+        }
+        
+        cursor.close();
+        
+        return playerInventoryItems;
+    }
+    
+    /**
      * Gets the player by id.
      *
      * @param playerID the long
@@ -213,27 +241,67 @@ public class PlayerDataSource
      */
     public Player cursorToPlayer( Cursor cursor )
     {
-        Player player = new Player();
-        Ship ship = new Ship();
+        Player player       = new Player();
+        Ship ship           = new Ship();
         Inventory inventory = new Inventory();
+      
+        long playerID           = cursor.getLong(0);
+        String name             = cursor.getString(1);
+        int money               = cursor.getInt(2);
+        int pilotSkillPoints    = cursor.getInt(3);
+        int fighterSkillPoints  = cursor.getInt(4);
+        int traderSkillPoints   = cursor.getInt(5);
+        int engineerSkillPoints = cursor.getInt(6);
+        
+        int head                = cursor.getInt(7);
+        int body                = cursor.getInt(8); 
+        int legs                = cursor.getInt(9);
+        int feet                = cursor.getInt(10);
+        int fuselage            = cursor.getInt(11);
+        int cabin               = cursor.getInt(12);
+        int boosters            = cursor.getInt(13);
+       
+        LinkedList<Item> inventoryItems = getPlayerInventoryItemsByPlayerID(playerID);
+       
+        for( Item item : inventoryItems )
+        {
+            
+        
+        }
         
         player.setName( cursor.getString( 1 ) );
         player.setMoney( cursor.getInt( 2 ) );
-        
-        int[] stats = { cursor.getInt( 3 ), cursor.getInt( 4 ), cursor.getInt( 5 ), cursor.getInt( 6 ) };
+
+        int[] stats = {pilotSkillPoints, fighterSkillPoints, traderSkillPoints, engineerSkillPoints};
         player.setStats( stats );
         
-        player.setHead(cursor.getInt(7));
-        player.setBody(cursor.getInt(8));
-        player.setLegs(cursor.getInt(9));
-        player.setFeet(cursor.getInt(10));
+        player.setHead(head);
+        player.setBody(body);
+        player.setLegs(legs);
+        player.setFeet(feet);
        
-        ship.setFuselage(cursor.getInt(11));
-        ship.setCabin(cursor.getInt(12));
-        ship.setBoosters(cursor.getInt(13));
-        
+        ship.setFuselage(fuselage);
+        ship.setCabin(cabin);
+        ship.setBoosters(boosters);
+       
         player.setShip(ship);
         player.setInventory(inventory);
         return player;
     }
+   
+    private Item cursorToItem(Cursor cursor)
+    {
+       
+        
+        String name   = cursor.getString(0);
+        int type      = cursor.getInt(1);
+        int basePrice = cursor.getInt(2);
+        int drawable  = cursor.getInt(3);
+       
+        Item item = new Item(type, basePrice, name, drawable);
+        
+        return item;
+        
+    }
+    
 }

@@ -86,8 +86,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.execSQL( createPlanetTableQuery );
        
-        final String createPlayerInventoryTableQuery = ""
-            + "create table tb_player_inventory( "
+        final String createPlayerInventoryItemTableQuery = ""
+            + "create table tb_player_inventory_item( "
             + "     item integer primary key autoincrement, "
             + "     player integer not null, "
             + "     type integer not null, " 
@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + "     drawable integer not null "
             + " )";
         
-        db.execSQL( createPlayerInventoryTableQuery );
+        db.execSQL( createPlayerInventoryItemTableQuery );
         
     }
     
