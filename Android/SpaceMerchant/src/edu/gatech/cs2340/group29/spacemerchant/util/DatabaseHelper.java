@@ -86,6 +86,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 + " )";
 
         db.execSQL( createPlanetTableQuery );
+        
+            
     }
     
     /** 
