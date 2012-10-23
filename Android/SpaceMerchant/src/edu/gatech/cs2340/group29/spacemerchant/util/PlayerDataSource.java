@@ -7,6 +7,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.util;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -16,6 +17,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.model.Ship;
+import edu.gatech.cs2340.group29.spacemerchant.model.Inventory;
+import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 
 /**
  * The Class PlayerDataSource.
@@ -79,7 +82,7 @@ public class PlayerDataSource
         int fuselage = ship.getFuselage();
         int cabin = ship.getCabin();
         int boosters = ship.getBoosters();
-        
+       
         values.put("fuselage", fuselage);
         values.put("cabin", cabin);
         values.put("boosters", boosters);
@@ -102,6 +105,12 @@ public class PlayerDataSource
         
         long playerID = database.insert( "tb_player", null, values );
 
+        values = new ContentValues();
+        
+        Inventory inventory = player.getInventory();
+        
+        LinkedList<Item>[] inventoryItems = inventory.getContents();
+        
         return playerID;
     }
     
