@@ -30,6 +30,7 @@ public class Game
      */
     public Game( Context context )
     {
+    	this.gameID = -1;
         this.player = null;
         this.difficulty = 3;
         this.universe = new Universe( difficulty, context );

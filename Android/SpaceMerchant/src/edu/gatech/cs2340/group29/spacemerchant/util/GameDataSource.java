@@ -36,7 +36,7 @@ public class GameDataSource
     private static String[] ALL_PLANET_COLUMNS = { "planet", "game", "techLevel",
         "resourceType", "name", "xCoord" ,"yCoord" };
     
-    private static String[] ALL_ITEM_COLUMNS = { "item", "player", "type", "base_price", 
+    private static String[] ALL_ITEM_COLUMNS = { "item", "player", "type", 
         "name", "drawable" };
     
     private SQLiteDatabase  database;
@@ -69,6 +69,7 @@ public class GameDataSource
      */
     public void close()
     {
+    	database.close();
         databaseHelper.close();
     }
  
@@ -125,14 +126,12 @@ public class GameDataSource
     {
         ContentValues values = new ContentValues();
         
-        int basePrice    = item.getBasePrice();
         String itemName  = item.getName();
         int drawable     = item.getDrawable();
         int itemType     = item.getType();
         
         values.put( "game", gameID );
         values.put( "type", itemType );
-        values.put( "basePrice", basePrice );
         values.put( "name", itemName );
         values.put( "drawable", drawable );
             
@@ -141,7 +140,99 @@ public class GameDataSource
         return itemID;
    
     }
-     
+   
+    /**
+     *  Updates game in SQLite database
+     */
+    public long updateGame( Game game )
+    {
+  
+    	long gameID = game.getGameID();
+    
+        Game oldGame = getGameByID(gameID);
+
+        //remove currentPlanet from database
+        String query = "" 
+        		+ "delete from tb_planet where planet in "
+        	   	+ "		(select planet from tb_game where game = ? ) ";
+       
+        database.rawQuery( query, new String[] { Long.toString(gameID) } );
+        
+        //remove all saved inventory from database
+        database.delete( "tb_item",   "game=" + gameID, null );
+        	   	
+        Planet currentPlanet = game.getPlanet();
+        Universe universe    = game.getUniverse();
+        Player player        = game.getPlayer();
+        Ship ship            = player.getShip();
+        Inventory inventory  = player.getInventory();
+        
+        // insert planet into database
+      
+        ContentValues values = new ContentValues();
+        long currentPlanetID = createPlanet( currentPlanet );
+
+        //insert game, player, ship into database
+        
+        String name      = player.getName();
+        int money        = player.getMoney();
+        int[] stats      = player.getStats();
+        int head         = player.getHead();
+        int body         = player.getBody();
+        int legs         = player.getLegs();
+        int feet         = player.getFeet();
+        int fuselage     = ship.getFuselage();
+        int cabin        = ship.getCabin();
+        int boosters     = ship.getBoosters();
+        
+        values = new ContentValues();
+        
+        values.put("difficulty",difficulty);
+        values.put("planet",currentPlanetID);
+        values.put("name",name);
+        values.put("money",money);
+        values.put("pilotSkillPoints",stats[0]);
+        values.put("fighterSkillPoints",stats[1]);
+        values.put("traderSkillPoints",stats[2]);
+        values.put("engineerSkillPoints",stats[3]);
+        values.put("head",head);
+        values.put("body",body);
+        values.put("legs",legs);
+        values.put("feet",feet);
+        values.put("fuselage",fuselage);
+        values.put("cabin",cabin);
+        values.put("boosters",boosters);
+ 
+        long gameID = database.insert( "tb_game", null, values );
+   
+        game.setID( gameID );
+        
+        //insert inventory into database
+        
+        LinkedList<Item>[] inventoryItems = inventory.getContents();
+        
+        for( LinkedList<Item> inventoryItemsByType : inventoryItems )
+        {
+            
+            for( Item item : inventoryItemsByType)
+            {
+                createItem(item, gameID);
+            }
+        } 
+        
+        //insert universe into database
+        
+        ArrayList<Planet> universePlanets = universe.getUniverse();
+        
+        for( Planet universePlanet: universePlanets )
+        {
+            createPlanet(universePlanet, gameID);
+        }
+        
+        
+        return gameID;
+    }
+    
     /**
      * Inserts game and associated planet, player, inventory 
      * and item objects into SQLite database
@@ -151,7 +242,7 @@ public class GameDataSource
      */
     public long createGame( Game game )
     {
-        
+    	
         Planet currentPlanet = game.getPlanet();
         Universe universe    = game.getUniverse();
         Player player        = game.getPlayer();
@@ -224,19 +315,32 @@ public class GameDataSource
         
         return gameID;
     }
+  
+    /**
+     * Delete game and its universe
+     * @param game
+     */
+    public void deleteGame( Game game )
+    {
+    	deleteGame( game, true );
+    }
     
     /**
      * Delete game.
      *
      * @param game the Game
      */
-    public void deleteGame( Game game )
+    private void deleteGame( Game game, boolean deleteUniverse )
     {
         long gameID = game.getID();
         
         database.delete( "tb_game",   "game=" + gameID, null );
-        database.delete( "tb_planet", "game=" + gameID, null );
         database.delete( "tb_item",   "game=" + gameID, null );
+        
+        if( deleteUniverse )
+        {
+	        database.delete( "tb_planet", "game=" + gameID, null );
+        }
     }
     
     /**
@@ -437,10 +541,9 @@ public class GameDataSource
     {
         String name   = cursor.getString(0);
         int type      = cursor.getInt(1);
-        int basePrice = cursor.getInt(2);
         int drawable  = cursor.getInt(3);
        
-        Item item = new Item(type, basePrice, name, drawable);
+        Item item = new Item(type, name, drawable);
         
         return item;
         
