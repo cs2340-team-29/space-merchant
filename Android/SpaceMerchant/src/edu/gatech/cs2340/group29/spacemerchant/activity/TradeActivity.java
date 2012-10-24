@@ -74,10 +74,10 @@ public class TradeActivity extends Activity {
     {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-	        ( ( TextView ) this.findViewById( R.id.entity1Name ) ).setText( items1.get(0).getName() );
-	        ( ( TextView ) this.findViewById( R.id.entity2Name ) ).setText( items2.get(0).getName() );
-	        ( ( TextView ) this.findViewById( R.id.entity1Money ) ).setText( items1.get(0).getBasePrice() );
-	        ( ( TextView ) this.findViewById( R.id.entity2Money ) ).setText( items2.get(0).getBasePrice() );
+	  //      ( ( TextView ) this.findViewById( R.id.entity1Name ) ).setText( items1.get(0).getName() );
+	   //     ( ( TextView ) this.findViewById( R.id.entity2Name ) ).setText( items2.get(0).getName() );
+	  //      ( ( TextView ) this.findViewById( R.id.entity1Money ) ).setText( items1.get(0).getBasePrice() );
+	  //      ( ( TextView ) this.findViewById( R.id.entity2Money ) ).setText( items2.get(0).getBasePrice() );
 		}
         
     }
