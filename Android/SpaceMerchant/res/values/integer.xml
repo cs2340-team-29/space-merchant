@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="Rocks">00</integer>
+    <integer name="Stone_Tools">01</integer>
+    <integer name="Bronze_Tools">02</integer>
+    <integer name="Iron_Tools">03</integer>
+    <integer name="Steel_Tools">04</integer>
+    <integer name="Carbon_Tools">05</integer>
+    <integer name="Machines">06</integer>
+    <integer name="Robots">07</integer>
+    <integer name="Wood">10</integer>
+    <integer name="Dirt">11</integer>
+    <integer name="Coal">12</integer>
+    <integer name="Bronze">13</integer>
+    <integer name="Iron">14</integer>
+    <integer name="Brass">15</integer>
+    <integer name="Diamond">16</integer>
+    <integer name="Graphene">17</integer>
+    <integer name="Dirty_Water">20</integer>
+    <integer name="Clean_Water">21</integer>
+    <integer name="Grape_Juice">22</integer>
+    <integer name="Wine">23</integer>
+    <integer name="Sangria">24</integer>
+    <integer name="Rum">25</integer>
+    <integer name="Whiskey">26</integer>
+    <integer name="Pure_Alcohol">27</integer>
+    <integer name="Deer">30</integer>
+    <integer name="Cows">31</integer>
+    <integer name="Horses">32</integer>
+    <integer name="Rhinos">33</integer>
+    <integer name="Fish">34</integer>
+    <integer name="Sharks">35</integer>
+    <integer name="Land_Sharks">36</integer>
+    <integer name="Bacteria">37</integer>
+    <integer name="Pretty_Stone">40</integer>
+    <integer name="Sand_Castle">41</integer>
+    <integer name="Cave_Painting">42</integer>
+    <integer name="Oil_Painting">43</integer>
+    <integer name="Crude_Photo">44</integer>
+    <integer name="Fancy_Photo">45</integer>
+    <integer name="Sculpture">46</integer>
+    <integer name="Engraved_Mountain">47</integer>
+    <integer name="Sticks">50</integer>
+    <integer name="Boomerang">51</integer>
+    <integer name="Bow_and_Arrow">52</integer>
+    <integer name="Spear">53</integer>
+    <integer name="Sword">54</integer>
+    <integer name="Musket">55</integer>
+    <integer name="Tank">56</integer>
+    <integer name="Warship">57</integer>
+
+</resources>

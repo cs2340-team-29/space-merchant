@@ -124,4 +124,55 @@
         <item>@string/planet_120</item>
     </string-array>
 
+    <integer-array name="Items">
+        <item>@integer/Rocks</item>
+        <item>@integer/Stone_Tools</item>
+        <item>@integer/Bronze_Tools</item>
+        <item>@integer/Iron_Tools</item>
+        <item>@integer/Steel_Tools</item>
+        <item>@integer/Carbon_Tools</item>
+        <item>@integer/Machines</item>
+        <item>@integer/Robots</item>
+        <item>@integer/Wood</item>
+        <item>@integer/Dirt</item>
+        <item>@integer/Coal</item>
+        <item>@integer/Bronze</item>
+        <item>@integer/Iron</item>
+        <item>@integer/Brass</item>
+        <item>@integer/Diamond</item>
+        <item>@integer/Graphene</item>
+        <item>@integer/Dirty_Water</item>
+        <item>@integer/Clean_Water</item>
+        <item>@integer/Grape_Juice</item>
+        <item>@integer/Wine</item>
+        <item>@integer/Sangria</item>
+        <item>@integer/Rum</item>
+        <item>@integer/Whiskey</item>
+        <item>@integer/Pure_Alcohol</item>
+        <item>@integer/Deer</item>
+        <item>@integer/Cows</item>
+        <item>@integer/Horses</item>
+        <item>@integer/Rhinos</item>
+        <item>@integer/Fish</item>
+        <item>@integer/Sharks</item>
+        <item>@integer/Land_Sharks</item>
+        <item>@integer/Bacteria</item>
+        <item>@integer/Pretty_Stone</item>
+        <item>@integer/Sand_Castle</item>
+        <item>@integer/Cave_Painting</item>
+        <item>@integer/Oil_Painting</item>
+        <item>@integer/Crude_Photo</item>
+        <item>@integer/Fancy_Photo</item>
+        <item>@integer/Sculpture</item>
+        <item>@integer/Engraved_Mountain</item>
+        <item>@integer/Sticks</item>
+        <item>@integer/Boomerang</item>
+        <item>@integer/Bow_and_Arrow</item>
+        <item>@integer/Spear</item>
+        <item>@integer/Sword</item>
+        <item>@integer/Musket</item>
+        <item>@integer/Tank</item>
+        <item>@integer/Warship</item>
+    </integer-array>
+
 </resources>

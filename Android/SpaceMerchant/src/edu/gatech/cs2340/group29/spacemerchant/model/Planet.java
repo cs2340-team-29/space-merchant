@@ -26,15 +26,16 @@ public class Planet implements Marketable {
 
 	// Resource Types
 	public static final int NOTHING_SPECIAL = 0;
-	public static final int MINERAL_RICH = 1;
-	public static final int MINERAL_POOR = 2;
-	public static final int DESERT = 3;
-	public static final int WATERY = 4;
-	public static final int SOIL_RICH = 5;
-	public static final int SOIL_POOR = 6;
-	public static final int ANIMALS = 7;
-	public static final int ARTISTIC = 8;
-	public static final int WARFARE = 9;
+	public static final int MINERAL_RICH = -1;
+	public static final int MINERAL_POOR = 1;
+	public static final int WATERY = -2;
+	public static final int DESERT = 2;
+	public static final int ARTISTIC = -3;
+	public static final int PHILISTINIC = 3;
+	public static final int ANIMALS = -4;
+	public static final int NO_ANIMALS = 4;
+	public static final int PEACEFUL = -5;
+	public static final int WARFARE = 5;
 
 	private int techLevel;
 	private int resourceType;
