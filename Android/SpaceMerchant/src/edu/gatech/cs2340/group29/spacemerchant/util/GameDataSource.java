@@ -159,6 +159,7 @@ public class GameDataSource
         database.rawQuery( query, new String[] { Long.toString(gameID) } );
         
         //remove all saved inventory from database
+        
         database.delete( "tb_item",   "game=" + gameID, null );
         	   	
         Planet currentPlanet = game.getPlanet();
@@ -174,7 +175,6 @@ public class GameDataSource
 
         //insert game, player, ship into database
         
-        String name      = player.getName();
         int money        = player.getMoney();
         int[] stats      = player.getStats();
         int head         = player.getHead();
@@ -185,11 +185,7 @@ public class GameDataSource
         int cabin        = ship.getCabin();
         int boosters     = ship.getBoosters();
         
-        values = new ContentValues();
-        
-        values.put("difficulty",difficulty);
         values.put("planet",currentPlanetID);
-        values.put("name",name);
         values.put("money",money);
         values.put("pilotSkillPoints",stats[0]);
         values.put("fighterSkillPoints",stats[1]);
@@ -203,7 +199,6 @@ public class GameDataSource
         values.put("cabin",cabin);
         values.put("boosters",boosters);
  
-        long gameID = database.insert( "tb_game", null, values );
    
         game.setID( gameID );
         
@@ -219,16 +214,6 @@ public class GameDataSource
                 createItem(item, gameID);
             }
         } 
-        
-        //insert universe into database
-        
-        ArrayList<Planet> universePlanets = universe.getUniverse();
-        
-        for( Planet universePlanet: universePlanets )
-        {
-            createPlanet(universePlanet, gameID);
-        }
-        
         
         return gameID;
     }
