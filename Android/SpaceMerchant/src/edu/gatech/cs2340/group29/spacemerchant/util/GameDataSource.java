@@ -449,15 +449,13 @@ public class GameDataSource
     private ArrayList<Item> getItemsByGameID( long gameID )
     {
         
-        ArrayList<Item> items = null;
+        ArrayList<Item> items = new ArrayList<Item>();
        
-        String query = "select name, type, base_price, drawable from tb_item";
+        String query = "select name, type, basePrice, drawable from tb_item";
                 
         Cursor cursor = database.rawQuery(query, null);
         
         cursor.moveToFirst();
-       
-        int i = 0;
         
         while( cursor.isLast() )
         {
