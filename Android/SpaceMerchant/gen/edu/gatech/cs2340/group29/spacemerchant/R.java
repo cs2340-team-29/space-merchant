@@ -9,6 +9,8 @@ package edu.gatech.cs2340.group29.spacemerchant;
 
 public final class R {
     public static final class array {
+        public static final int ItemDrawables=0x7f040003;
+        public static final int ItemNames=0x7f040002;
         public static final int Items=0x7f040001;
         public static final int planets=0x7f040000;
     }
@@ -194,7 +196,57 @@ public final class R {
         public static final int activity_trade=0x7f080001;
     }
     public static final class string {
+        public static final int Bacteria=0x7f0600b8;
+        public static final int Boomerang=0x7f0600c2;
+        public static final int Bow_and_Arrow=0x7f0600c3;
+        public static final int Brass=0x7f0600a6;
+        public static final int Bronze=0x7f0600a4;
+        public static final int Bronze_Tools=0x7f06009b;
+        public static final int Carbon_Tools=0x7f06009e;
+        public static final int Cave_Painting=0x7f0600bb;
+        public static final int Clean_Water=0x7f0600aa;
+        public static final int Coal=0x7f0600a3;
+        public static final int Cows=0x7f0600b2;
+        public static final int Crude_Photo=0x7f0600bd;
+        public static final int Deer=0x7f0600b1;
+        public static final int Diamond=0x7f0600a7;
         public static final int DifficultySetting=0x7f060010;
+        public static final int Dirt=0x7f0600a2;
+        public static final int Dirty_Water=0x7f0600a9;
+        public static final int Engraved_Mountain=0x7f0600c0;
+        public static final int Fancy_Photo=0x7f0600be;
+        public static final int Fish=0x7f0600b5;
+        public static final int Grape_Juice=0x7f0600ab;
+        public static final int Graphene=0x7f0600a8;
+        public static final int Horses=0x7f0600b3;
+        public static final int Iron=0x7f0600a5;
+        public static final int Iron_Tools=0x7f06009c;
+        public static final int Land_Sharks=0x7f0600b7;
+        public static final int Machines=0x7f06009f;
+        public static final int Musket=0x7f0600c6;
+        public static final int Oil_Painting=0x7f0600bc;
+        public static final int Pretty_Stone=0x7f0600b9;
+        public static final int Pure_Alcohol=0x7f0600b0;
+        public static final int Rhinos=0x7f0600b4;
+        public static final int Robots=0x7f0600a0;
+        /**  items names 
+         */
+        public static final int Rocks=0x7f060099;
+        public static final int Rum=0x7f0600ae;
+        public static final int Sand_Castle=0x7f0600ba;
+        public static final int Sangria=0x7f0600ad;
+        public static final int Sculpture=0x7f0600bf;
+        public static final int Sharks=0x7f0600b6;
+        public static final int Spear=0x7f0600c4;
+        public static final int Steel_Tools=0x7f06009d;
+        public static final int Sticks=0x7f0600c1;
+        public static final int Stone_Tools=0x7f06009a;
+        public static final int Sword=0x7f0600c5;
+        public static final int Tank=0x7f0600c7;
+        public static final int Warship=0x7f0600c8;
+        public static final int Whiskey=0x7f0600af;
+        public static final int Wine=0x7f0600ac;
+        public static final int Wood=0x7f0600a1;
         public static final int about=0x7f060007;
         public static final int about_page_button=0x7f06000d;
         public static final int about_page_text1=0x7f06000b;

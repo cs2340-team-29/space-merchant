@@ -529,7 +529,7 @@ public class GameDataSource
     public Planet cursorToPlanet( Cursor cursor )
     {
         
-        Planet planet = new Planet(cursor.getString(4), cursor.getInt(5), cursor.getInt(6) );
+        Planet planet = new Planet(cursor.getString(4), cursor.getInt(5), cursor.getInt(6), context );
       
         planet.setTechLevel( cursor.getInt(2) );
         planet.setResourceType( cursor.getInt(3) );
@@ -537,6 +537,7 @@ public class GameDataSource
         return planet;
     }    
     
+    //TODO ROBERT TALK TO ME!!! --Harrison 
     private Item cursorToItem(Cursor cursor)
     {
         String name   = cursor.getString(0);

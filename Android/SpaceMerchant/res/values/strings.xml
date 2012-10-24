@@ -156,4 +156,54 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
 
+    <!-- items names -->
+    <string name="Rocks">Rocks</string>
+    <string name="Stone_Tools">Stone Tools</string>
+    <string name="Bronze_Tools">Bronze Tools</string>
+    <string name="Iron_Tools">Iron Tools</string>
+    <string name="Steel_Tools">Steel Tools</string>
+    <string name="Carbon_Tools">Carbon Tools</string>
+    <string name="Machines">Machines</string>
+    <string name="Robots">Robots</string>
+    <string name="Wood">Wood</string>
+    <string name="Dirt">Dirt</string>
+    <string name="Coal">Coal</string>
+    <string name="Bronze">Bronze</string>
+    <string name="Iron">Iron</string>
+    <string name="Brass">Brass</string>
+    <string name="Diamond">Diamond</string>
+    <string name="Graphene">Graphene</string>
+    <string name="Dirty_Water">Dirty Water</string>
+    <string name="Clean_Water">Clean Water</string>
+    <string name="Grape_Juice">Grape Juice</string>
+    <string name="Wine">Wine</string>
+    <string name="Sangria">Sangria</string>
+    <string name="Rum">Rum</string>
+    <string name="Whiskey">Whiskey</string>
+    <string name="Pure_Alcohol">Pure Alcohol</string>
+    <string name="Deer">Deer</string>
+    <string name="Cows">Cows</string>
+    <string name="Horses">Horses</string>
+    <string name="Rhinos">Rhinos</string>
+    <string name="Fish">Fish</string>
+    <string name="Sharks">Sharks</string>
+    <string name="Land_Sharks">Land Sharks</string>
+    <string name="Bacteria">Bacteria</string>
+    <string name="Pretty_Stone">Pretty Stone</string>
+    <string name="Sand_Castle">Sand Castle</string>
+    <string name="Cave_Painting">Cave Painting</string>
+    <string name="Oil_Painting">Oil Painting</string>
+    <string name="Crude_Photo">Crude Photo</string>
+    <string name="Fancy_Photo">Fancy Photo</string>
+    <string name="Sculpture">Sculpture</string>
+    <string name="Engraved_Mountain">Engraved Mountain</string>
+    <string name="Sticks">Sticks</string>
+    <string name="Boomerang">Boomerang</string>
+    <string name="Bow_and_Arrow">Bow and Arrow</string>
+    <string name="Spear">Spear</string>
+    <string name="Sword">Sword</string>
+    <string name="Musket">Musket</string>
+    <string name="Tank">Tank</string>
+    <string name="Warship">Warship</string>
+
 </resources>
