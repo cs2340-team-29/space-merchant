@@ -36,8 +36,8 @@ public class GameDataSource
     private static String[] ALL_PLANET_COLUMNS = { "planet", "game", "techLevel",
         "resourceType", "name", "xCoord" ,"yCoord" };
     
-    private static String[] ALL_ITEM_COLUMNS = { "item", "player", "type", 
-        "name", "drawable" };
+//  private static String[] ALL_ITEM_COLUMNS = { "item", "player", "type", 
+//  	"name", "drawable" };
     
     private SQLiteDatabase  database;
     private DatabaseHelper  databaseHelper;
@@ -148,8 +148,6 @@ public class GameDataSource
     {
   
     	long gameID = game.getGameID();
-    
-        Game oldGame = getGameByID(gameID);
 
         //remove currentPlanet from database
         String query = "" 
@@ -160,15 +158,14 @@ public class GameDataSource
         
         //remove all saved inventory from database
         
-        database.delete( "tb_item",   "game=" + gameID, null );
+        database.delete( "tb_item",   "game = ?" , new String[] { Long.toString(gameID) });
         	   	
         Planet currentPlanet = game.getPlanet();
-        Universe universe    = game.getUniverse();
         Player player        = game.getPlayer();
         Ship ship            = player.getShip();
         Inventory inventory  = player.getInventory();
         
-        // insert planet into database
+        // insert currentPlanet into database
       
         ContentValues values = new ContentValues();
         long currentPlanetID = createPlanet( currentPlanet );
@@ -198,9 +195,8 @@ public class GameDataSource
         values.put("fuselage",fuselage);
         values.put("cabin",cabin);
         values.put("boosters",boosters);
- 
-   
-        game.setID( gameID );
+        
+        database.update( "tb_game", values, "game = ?" , new String[] { Long.toString(gameID) });
         
         //insert inventory into database
         
@@ -300,32 +296,26 @@ public class GameDataSource
         
         return gameID;
     }
-  
-    /**
-     * Delete game and its universe
-     * @param game
-     */
-    public void deleteGame( Game game )
-    {
-    	deleteGame( game, true );
-    }
     
     /**
      * Delete game.
      *
      * @param game the Game
      */
-    private void deleteGame( Game game, boolean deleteUniverse )
+    public void deleteGame( Game game ) 
     {
         long gameID = game.getID();
         
-        database.delete( "tb_game",   "game=" + gameID, null );
-        database.delete( "tb_item",   "game=" + gameID, null );
+        //remove currentPlanet from database
+        String query = "" 
+        		+ "delete from tb_planet where planet in "
+        	   	+ "		(select planet from tb_game where game = ? ) ";
         
-        if( deleteUniverse )
-        {
-	        database.delete( "tb_planet", "game=" + gameID, null );
-        }
+        database.rawQuery( query, new String[] { Long.toString(gameID) } );
+        
+        database.delete( "tb_game", "game=" + gameID, null );
+        database.delete( "tb_item", "game=" + gameID, null );
+        database.delete( "tb_planet", "game=" + gameID, null );
     }
     
     /**
@@ -521,26 +511,35 @@ public class GameDataSource
         
         return planet;
     }    
-    
-    //TODO ROBERT TALK TO ME!!! --Harrison 
+   
+    /** 
+     * Converts database cursor into item
+     * @param cursor
+     * @return Item object
+     */
     private Item cursorToItem(Cursor cursor)
     {
         String name   = cursor.getString(0);
         int type      = cursor.getInt(1);
-        int drawable  = cursor.getInt(3);
+        int drawable  = cursor.getInt(2);
        
         Item item = new Item(type, name, drawable);
         
         return item;
         
     }
-    
+   
+    /**
+     * Gets all of the inventory items associated with a specified game
+     * @param gameID
+     * @return ArrayList of games
+     */
     private ArrayList<Item> getItemsByGameID( long gameID )
     {
         
         ArrayList<Item> items = new ArrayList<Item>();
        
-        String query = "select name, type, basePrice, drawable from tb_item";
+        String query = "select name, type, drawable from tb_item";
                 
         Cursor cursor = database.rawQuery(query, null);
         
