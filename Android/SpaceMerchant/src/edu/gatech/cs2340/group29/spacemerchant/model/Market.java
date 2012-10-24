@@ -6,31 +6,43 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
+import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
+
 public class Market {
 
-	// The two inventories to trade between
-	private Inventory a, b;
+	// The two marketables to trade between
+	private Marketable a, b;
 
-	public Market(Inventory a, Inventory b) {
-		setInventoryA(a);
-		setInventoryB(b);
+	public Market(Marketable a, Marketable b) {
+		setMarketableA(a);
+		setMarketableB(b);
 	}
+	
+	
 
-	public Inventory getInventoryA() {
+	public Marketable getMarketableA() {
 		return a;
 	}
 
-	public void setInventoryA(Inventory a) {
+
+
+	public void setMarketableA(Marketable a) {
 		this.a = a;
 	}
 
-	public Inventory getInventoryB() {
+
+
+	public Marketable getMarketableB() {
 		return b;
 	}
 
-	public void setInventoryB(Inventory b) {
+
+
+	public void setMarketableB(Marketable b) {
 		this.b = b;
 	}
+
+
 
 	/**
 	 * Attempts to give an item from inventory A to inventory B.
@@ -39,12 +51,12 @@ public class Market {
 	 * @return whether or not the trade was successful
 	 */
 	public boolean giveToB(Item item) {
-		if (!a.hasItem(item)) {
+		if (!a.getInventory().hasItem(item)) {
 			return false;
 		}
-		Item aItem = a.getItem(item);
-		a.remove(aItem);
-		b.add(aItem);
+		Item aItem = a.getInventory().getItem(item);
+		a.getInventory().remove(aItem);
+		b.getInventory().add(aItem);
 		return true;
 	}
 
@@ -55,12 +67,12 @@ public class Market {
 	 * @return whether or not the trade was successful
 	 */
 	public boolean giveToA(Item item) {
-		if (!b.hasItem(item)) {
+		if (!b.getInventory().hasItem(item)) {
 			return false;
 		}
-		Item bItem = b.getItem(item);
-		b.remove(bItem);
-		a.add(bItem);
+		Item bItem = b.getInventory().getItem(item);
+		b.getInventory().remove(bItem);
+		a.getInventory().add(bItem);
 		return true;
 	}
 

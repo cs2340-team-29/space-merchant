@@ -6,13 +6,14 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
+import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * The Class Player.
  */
-public class Player implements Parcelable
+public class Player implements Parcelable, Marketable
 {
     private String    name;
     private Ship      ship;
@@ -254,19 +255,25 @@ public class Player implements Parcelable
     {
         this.name = name;
     }
+
     
     public Inventory getInventory() {
 		return inventory;
 	}
 
     public void setInventory(Inventory inventory) {
-        
         this.inventory = inventory;
     }
+    
 	public void fillInventory(Item [] itm) {
 		for(int i=0; i<itm.length; i++) {
 			inventory.add(itm[i]);
 		}
+	}
+
+	//TODO Implement this!
+	public int getBasePrice(Item item) {
+		return 0;
 	}
     
 }
