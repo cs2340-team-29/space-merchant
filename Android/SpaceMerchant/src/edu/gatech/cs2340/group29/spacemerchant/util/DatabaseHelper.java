@@ -76,7 +76,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + "     item integer primary key autoincrement, "
             + "     game integer not null, "
             + "     type integer not null, " 
-            + "     basePrice integer not null, "
             + "     name string not null, " 
             + "     drawable integer not null "
             + " )";
