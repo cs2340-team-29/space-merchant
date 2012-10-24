@@ -86,11 +86,6 @@ public class PlayerDataSource
         values.put("fuselage", fuselage);
         values.put("cabin", cabin);
         values.put("boosters", boosters);
-        
-        long shipID = database.insert( "tb_ship", null, values );
-        
-        values = new ContentValues();
-        
         values.put( "name", name );
         values.put( "money", money );
         values.put( "pilotSkillPoints", stats[0] );
@@ -180,20 +175,23 @@ public class PlayerDataSource
      * @param player ID long
      * @return the inventory by id
      */
-    public LinkedList<Item> getPlayerInventoryItemsByPlayerID( long playerID )
+    public Item[] getPlayerInventoryItemsByPlayerID( long playerID )
     {
         
-        LinkedList<Item> playerInventoryItems = null;
+        Item[] playerInventoryItems = null;
        
         String query = "select name, type, base_price, drawable from tb_player_inventory_item";
                 
         Cursor cursor = database.rawQuery(query, null);
         
         cursor.moveToFirst();
+       
+        int i = 0;
         
         while( cursor.isLast() )
         {
-            
+            int itemType = cursor.getInt(4);
+            playerInventoryItems.add(cursorToItem(cursor));
             cursor.moveToNext();
         }
         
@@ -241,9 +239,9 @@ public class PlayerDataSource
      */
     public Player cursorToPlayer( Cursor cursor )
     {
-        Player player       = new Player();
-        Ship ship           = new Ship();
-        Inventory inventory = new Inventory();
+        Player player           = new Player();
+        Ship ship               = new Ship();
+        Inventory inventory     = new Inventory();
       
         long playerID           = cursor.getLong(0);
         String name             = cursor.getString(1);
@@ -261,13 +259,10 @@ public class PlayerDataSource
         int cabin               = cursor.getInt(12);
         int boosters            = cursor.getInt(13);
        
-        LinkedList<Item> inventoryItems = getPlayerInventoryItemsByPlayerID(playerID);
-       
-        for( Item item : inventoryItems )
-        {
-            
+        LinkedList<Item> playerInventoryItems = getPlayerInventoryItemsByPlayerID(playerID);
         
-        }
+        inventory.addAll(playerInventoryItems);
+      
         
         player.setName( cursor.getString( 1 ) );
         player.setMoney( cursor.getInt( 2 ) );

@@ -7,6 +7,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.util;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -15,8 +16,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
+import edu.gatech.cs2340.group29.spacemerchant.model.Inventory;
+import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
+import edu.gatech.cs2340.group29.spacemerchant.model.Ship;
 import edu.gatech.cs2340.group29.spacemerchant.model.Universe;
 
 /**
@@ -24,12 +28,16 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Universe;
  */
 public class GameDataSource
 {
-    private static String[] ALL_COLUMNS = { "game", "difficulty", "player", "planet" };
+    private static String[] ALL_GAME_COLUMNS = { "game", "planet", "difficulty", "name", 
+        "money", "pilotSkillPoints", "fighterSkillPoints", "traderSkillPoints", 
+        "engineerSkillPoints", "head", "body", "legs", "feet", "fuselage", "cabin",
+        "boosters"};
 
     private static String[] ALL_PLANET_COLUMNS = { "planet", "game", "techLevel",
-                                                   "resourceType", "name", "x_coord" ,
-                                                   "y_coord"
-                                                 };
+        "resourceType", "name", "xCoord" ,"yCoord" };
+    
+    private static String[] ALL_ITEM_COLUMNS = { "item", "player", "type", "base_price", 
+        "name", "drawable" };
     
     private SQLiteDatabase  database;
     private DatabaseHelper  databaseHelper;
@@ -63,59 +71,146 @@ public class GameDataSource
     {
         databaseHelper.close();
     }
-    
+ 
     /**
-     * Creates the game.
+     * Inserts a planet into database without associated gameID.
+     * Used to store currentPlanet planet object
+     * @param planet
+     * @return long planetID
+     */
+    private long createPlanet( Planet planet )
+    {
+        return createPlanet(planet, -1);
+    }
+   
+    /**
+     * Inserts planet into database. 
+     * @param planet
+     * @param gameID
+     * @return long planetID
+     */
+    private long createPlanet( Planet planet, long gameID )
+    {
+        int techLevel     = planet.getTechLevel();
+        int resourceType  = planet.getResourceType();
+        String planetName = planet.getName();
+        int xCoord        = planet.getX();
+        int yCoord        = planet.getY();
+        
+        ContentValues values = new ContentValues();
+        
+        if( gameID > 0 )
+        {
+            values.put("game", gameID);
+        }
+        
+        values.put("techLevel", techLevel);
+        values.put("resourceType", resourceType);
+        values.put("name", planetName);
+        values.put("xCoord", xCoord);
+        values.put("yCoord", yCoord);
+        
+        long planetID = database.insert( "tb_planet", null, values ); 
+        
+        return planetID;
+    }
+
+    /**
+     * Inserts inventory item into SQLite database
+     * @param item
+     * @param gameID
+     * @return long itemID
+     */
+    private long createItem( Item item, long gameID)
+    {
+        ContentValues values = new ContentValues();
+        
+        int basePrice    = item.getBasePrice();
+        String itemName  = item.getName();
+        int drawable     = item.getDrawable();
+        int itemType     = item.getType();
+        
+        values.put( "game", gameID );
+        values.put( "type", itemType );
+        values.put( "basePrice", basePrice );
+        values.put( "name", itemName );
+        values.put( "drawable", drawable );
+            
+        long itemID = database.insert( "tb_player_inventory", null, values); 
+        
+        return itemID;
+   
+    }
+     
+    /**
+     * Inserts game and associated planet, player, inventory 
+     * and item objects into SQLite database
      *
-     * @param game the Game
-     * @return the long
+     * @param Game game to be stored
+     * @return long gameID
      */
     public long createGame( Game game )
     {
         
         Planet currentPlanet = game.getPlanet();
         Universe universe    = game.getUniverse();
-        int difficulty       = game.getDifficulty();
         Player player        = game.getPlayer();
+        Ship ship            = player.getShip();
+        Inventory inventory  = player.getInventory();
         
         // insert planet into database
-        
+      
         ContentValues values = new ContentValues();
+        long currentPlanetID = createPlanet( currentPlanet );
+
+        //insert game, player, ship into database
         
-        int techLevel        = currentPlanet.getTechLevel();
-        int resourceType     = currentPlanet.getResourceType();
-        String name          = currentPlanet.getName();
-        int x_coord          = currentPlanet.getX();
-        int y_coord          = currentPlanet.getY();
-       
-        values.put("techLevel", techLevel);
-        values.put("resourceType", resourceType);
-        values.put("name", name);
-        values.put("x_coord", x_coord);
-        values.put("y_coord", y_coord);
-        
-        long currentPlanetID = database.insert( "tb_planet", null, values ); 
-        
-       
-        //insert player into database
-        
-        PlayerDataSource playerDataSource = new PlayerDataSource( context );
-        
-        playerDataSource.open();
-        long playerID = playerDataSource.createPlayer( player );
-        playerDataSource.close();
-       
-        //insert game into database
+        int difficulty   = game.getDifficulty();
+        String name      = player.getName();
+        int money        = player.getMoney();
+        int[] stats      = player.getStats();
+        int head         = player.getHead();
+        int body         = player.getBody();
+        int legs         = player.getLegs();
+        int feet         = player.getFeet();
+        int fuselage     = ship.getFuselage();
+        int cabin        = ship.getCabin();
+        int boosters     = ship.getBoosters();
         
         values = new ContentValues();
         
-        values.put( "player", playerID );
-        values.put( "difficulty", difficulty );
-        values.put( "planet", currentPlanetID );
-        
+        values.put("difficulty",difficulty);
+        values.put("planet",currentPlanetID);
+        values.put("name",name);
+        values.put("money",money);
+        values.put("pilotSkillPoints",stats[0]);
+        values.put("fighterSkillPoints",stats[1]);
+        values.put("traderSkillPoints",stats[2]);
+        values.put("engineerSkillPoints",stats[3]);
+        values.put("head",head);
+        values.put("body",body);
+        values.put("legs",legs);
+        values.put("feet",feet);
+        values.put("fuselage",fuselage);
+        values.put("cabin",cabin);
+        values.put("boosters",boosters);
+ 
         long gameID = database.insert( "tb_game", null, values );
    
         game.setID( gameID );
+        
+        //insert inventory into database
+        
+        LinkedList<Item>[] inventoryItems = inventory.getContents();
+        
+        for( LinkedList<Item> inventoryItemsByType : inventoryItems )
+        {
+            
+            for( Item item : inventoryItemsByType)
+            {
+                createItem(item, gameID);
+            }
+        } 
         
         //insert universe into database
         
@@ -123,17 +218,9 @@ public class GameDataSource
         
         for( Planet universePlanet: universePlanets )
         {
-            values = new ContentValues();
-            
-            values.put("game", (int)gameID);
-            values.put("techLevel", universePlanet.getTechLevel());
-            values.put("resourceType", universePlanet.getResourceType());
-            values.put("name", universePlanet.getName());
-            values.put("x_coord", universePlanet.getX());
-            values.put("y_coord", universePlanet.getY());
-            
-            database.insert( "tb_planet", null, values ); 
+            createPlanet(universePlanet, gameID);
         }
+        
         
         return gameID;
     }
@@ -147,7 +234,9 @@ public class GameDataSource
     {
         long gameID = game.getID();
         
-        database.delete( "tb_game", "game=" + gameID, null );
+        database.delete( "tb_game",   "game=" + gameID, null );
+        database.delete( "tb_planet", "game=" + gameID, null );
+        database.delete( "tb_item",   "game=" + gameID, null );
     }
     
     /**
@@ -159,7 +248,7 @@ public class GameDataSource
     {
         List<Game> games = new ArrayList<Game>();
         
-        Cursor cursor = database.query( "tb_game", ALL_COLUMNS, null, null, null, null, null );
+        Cursor cursor = database.query( "tb_game", ALL_GAME_COLUMNS, null, null, null, null, null );
         
         cursor.moveToFirst();
         
@@ -186,7 +275,7 @@ public class GameDataSource
     public Game getGameByID( long gameID )
     {
         
-        Cursor cursor = database.query( "tb_game", ALL_COLUMNS, "game=" + gameID, null, null, null, null );
+        Cursor cursor = database.query( "tb_game", ALL_GAME_COLUMNS, "game=" + gameID, null, null, null, null );
         
         cursor.moveToFirst();
         
@@ -255,26 +344,68 @@ public class GameDataSource
     public Game cursorToGame( Cursor cursor )
     {
         
-        int gameID             = cursor.getInt(0);
-        int difficulty         = cursor.getInt(1);
-        long playerID          = cursor.getInt(2); 
-        long currentPlanetID   = cursor.getInt(3);
-            
-        Planet currentPlanet = getPlanetByID(currentPlanetID);
+        int gameID              = cursor.getInt(0);
+        long currentPlanetID    = cursor.getInt(1);
+        int difficulty          = cursor.getInt(2);
+        String name             = cursor.getString(3);
+        int money               = cursor.getInt(4);
+        int pilotSkillPoints    = cursor.getInt(5);
+        int fighterSkillPoints  = cursor.getInt(6);
+        int traderSkillPoints   = cursor.getInt(7);
+        int engineerSkillPoints = cursor.getInt(8);
+        int head                = cursor.getInt(9);
+        int body                = cursor.getInt(10); 
+        int legs                = cursor.getInt(11);
+        int feet                = cursor.getInt(12);
+        int fuselage            = cursor.getInt(13);
+        int cabin               = cursor.getInt(14);
+        int boosters            = cursor.getInt(15);
+      
+        //instantiate all the objects that are nested in the game object
         
-        Universe universe = new Universe(difficulty, context);
-    
+        Ship ship            = new Ship();
+        Inventory inventory  = new Inventory();
+        Player player        = new Player();
+        Universe universe    = new Universe(difficulty, context);
+        Planet currentPlanet = getPlanetByID(currentPlanetID);
+        Game game            = new Game( context );
+ 
+        //set up ship object
+        
+        ship.setFuselage(fuselage);
+        ship.setCabin(cabin);
+        ship.setBoosters(boosters);
+        
+        //set up inventory object
+        
+        ArrayList<Item> items = getItemsByGameID(gameID);
+        Item[] playerInventoryItems = items.toArray(new Item[items.size()]);
+        
+        inventory.addAll(playerInventoryItems);
+      
+        //set up player object
+        
+        player.setName( name );
+        player.setMoney( money );
+
+        int[] stats = {pilotSkillPoints, fighterSkillPoints, traderSkillPoints, engineerSkillPoints};
+        player.setStats( stats );
+        
+        player.setHead(head);
+        player.setBody(body);
+        player.setLegs(legs);
+        player.setFeet(feet);
+        
+        player.setShip(ship);
+        player.setInventory(inventory);
+       
+        //set up universe object
+        
         ArrayList<Planet> planets = getPlanetsByGameID( gameID );
 
         universe.setUniverse(planets);
         
-        PlayerDataSource dataSource = new PlayerDataSource( context );
-        
-        dataSource.open();
-        Player player = dataSource.getPlayerByID( playerID );
-        dataSource.close();
-        
-        Game game = new Game( context );
+        //set up game object 
         
         game.setID( gameID );
         game.setDifficulty( difficulty );
@@ -300,5 +431,42 @@ public class GameDataSource
         planet.setResourceType( cursor.getInt(3) );
         
         return planet;
+    }    
+    
+    private Item cursorToItem(Cursor cursor)
+    {
+        String name   = cursor.getString(0);
+        int type      = cursor.getInt(1);
+        int basePrice = cursor.getInt(2);
+        int drawable  = cursor.getInt(3);
+       
+        Item item = new Item(type, basePrice, name, drawable);
+        
+        return item;
+        
     }
+    
+    private ArrayList<Item> getItemsByGameID( long gameID )
+    {
+        
+        ArrayList<Item> items = null;
+       
+        String query = "select name, type, base_price, drawable from tb_item";
+                
+        Cursor cursor = database.rawQuery(query, null);
+        
+        cursor.moveToFirst();
+       
+        int i = 0;
+        
+        while( cursor.isLast() )
+        {
+            items.add((cursorToItem(cursor)));
+            cursor.moveToNext();
+        }
+        
+        cursor.close();
+   
+        return items;
+    } 
 }

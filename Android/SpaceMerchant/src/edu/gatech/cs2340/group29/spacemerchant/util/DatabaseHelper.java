@@ -35,19 +35,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate( SQLiteDatabase db )
     {
-        final String createShipTableQuery = "" 
-            + "create table tb_ship( " 
-            + "   ship integer primary key autoincrement," 
-            + "   fuselage integer not null,"
-            + "   cabin integer not null," 
-            + "   boosters integer not null" 
-            + ")";
         
-        db.execSQL( createShipTableQuery );
-        
-        final String createPlayerTableQuery = "" 
-            + "create table tb_player( "
-            + "    player integer primary key autoincrement, " 
+        final String createGameTableQuery = "" 
+            + "create table tb_game( "
+            + "    game integer primary key autoincrement, " 
+            + "    difficulty integer not null,"
+            + "    planet integer not null, "
             + "    name string not null,"
             + "    money integer not null, " 
             + "    pilotSkillPoints integer not null, "
@@ -58,17 +51,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + "    body integer not null," 
             + "    legs integer not null," 
             + "    feet integer not null,"
-            + "    ship integer not null" 
-            + " )";
-    
-        db.execSQL( createPlayerTableQuery );
-        
-        final String createGameTableQuery = "" 
-            + "create table tb_game( "
-            + "    game integer primary key autoincrement, " 
-            + "    difficulty integer not null,"
-            + "    player integer not null, "
-            + "    planet integer not null "
+            + "    fuselage integer not null,"
+            + "    cabin integer not null," 
+            + "    boosters integer not null" 
             + " )";
         
         db.execSQL( createGameTableQuery );
@@ -80,23 +65,23 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + "     techLevel integer not null, "
             + "     resourceType integer not null, "
             + "     name string not null, "
-            + "     x_coord int not null, "
-            + "     y_coord int not null "
+            + "     xCoord int not null, "
+            + "     yCoord int not null "
             + " )";
 
         db.execSQL( createPlanetTableQuery );
        
-        final String createPlayerInventoryItemTableQuery = ""
-            + "create table tb_player_inventory_item( "
+        final String createItemTableQuery = ""
+            + "create table tb_item( "
             + "     item integer primary key autoincrement, "
-            + "     player integer not null, "
+            + "     game integer not null, "
             + "     type integer not null, " 
-            + "     base_price integer not null, "
+            + "     basePrice integer not null, "
             + "     name string not null, " 
             + "     drawable integer not null "
             + " )";
         
-        db.execSQL( createPlayerInventoryItemTableQuery );
+        db.execSQL( createItemTableQuery );
         
     }
     
