@@ -77,7 +77,7 @@ public class Universe
         for ( int i = 0; i < planet_name.size(); i++ )
         {
             universe.add( new Planet( planet_name.get( i ), ( ( Point ) planet_xy.get( i ) ).x,
-                    ( ( Point ) planet_xy.get( i ) ).y ) );
+                    ( ( Point ) planet_xy.get( i ) ).y, context ) );
         }
         
         return universe;
