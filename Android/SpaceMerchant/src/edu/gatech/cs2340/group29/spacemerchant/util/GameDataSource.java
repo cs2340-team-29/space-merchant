@@ -271,19 +271,7 @@ public class GameDataSource
    
         game.setID( gameID );
         
-        //insert inventory into database
-        
-        LinkedList<Item>[] inventoryItems = inventory.getContents();
-        
-        for( LinkedList<Item> inventoryItemsByType : inventoryItems )
-        {
-            
-            for( Item item : inventoryItemsByType)
-            {
-                createItem(item, gameID);
-            }
-        } 
-        
+       
         //insert universe into database
         
         ArrayList<Planet> universePlanets = universe.getUniverse();
