@@ -110,8 +110,9 @@ public class PlayerConfig extends Activity
     
     /**
      * Done button clicked.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     @SuppressWarnings ( "unchecked")
     public void doneButtonClicked( View v )
@@ -153,10 +154,13 @@ public class PlayerConfig extends Activity
             stats[2] = stat3.getProgress();
             stats[3] = stat4.getProgress();
             
+            int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) )
+                    .getSelectedItemPosition();
+            
             // set the player
             player.setName( player_name.getText().toString() );
             player.setStats( stats );
-            player.setMoney( 1000 );
+            player.setMoney( 4000 / difficulty );
             Gallery tempGallery = ( ( Gallery ) findViewById( R.id.galleryHead ) );
             player.setHead( ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
                     .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
@@ -169,9 +173,6 @@ public class PlayerConfig extends Activity
             tempGallery = ( ( Gallery ) findViewById( R.id.galleryFeet ) );
             player.setFeet( ( ( SelectGalleryAdapter ) tempGallery.getAdapter() )
                     .getItemAtPosition( tempGallery.getSelectedItemPosition() ) );
-            
-            int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) )
-                    .getSelectedItemPosition();
             
             Intent intent = new Intent( PlayerConfig.this, ShipConfig.class );
             intent.putExtra( ShipConfig.player_extra, player );

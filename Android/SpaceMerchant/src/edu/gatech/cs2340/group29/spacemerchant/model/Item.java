@@ -10,7 +10,6 @@ public class Item implements Comparable<Item>
     private final int type_art      = 4;
     private final int type_weapon   = 5;
     private int       type;
-    private int       basePrice;
     private String    name;
     private int       drawable;
     
@@ -46,7 +45,7 @@ public class Item implements Comparable<Item>
      */
     public int getBasePrice()
     {
-        return 10 + 10 * type;
+        return 10 + 100 * type * Game.difficulty;
     }
     
     /**

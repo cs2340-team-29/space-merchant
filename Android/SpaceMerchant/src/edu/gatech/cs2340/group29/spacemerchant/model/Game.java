@@ -19,14 +19,15 @@ public class Game
     long                           gameID;
     
     private Player                 player;
-    private int                    difficulty;
+    static public int              difficulty;
     private Planet                 planet;
     private Universe               universe;
     
     /**
      * Instantiates a new game.
-     *
-     * @param context the Context
+     * 
+     * @param context
+     *            the Context
      */
     public Game( Context context )
     {
@@ -34,12 +35,12 @@ public class Game
         this.difficulty = 3;
         this.universe = new Universe( difficulty, context );
         this.universe.generatePlanets();
-        this.planet = universe.getUniverse().get(0);
+        this.planet = universe.getUniverse().get( 0 );
     }
     
     /**
      * Gets the game id.
-     *
+     * 
      * @return the game id
      */
     public long getGameID()
@@ -49,8 +50,9 @@ public class Game
     
     /**
      * Sets the game id.
-     *
-     * @param gameID the new game id
+     * 
+     * @param gameID
+     *            the new game id
      */
     public void setGameID( long gameID )
     {
@@ -59,7 +61,7 @@ public class Game
     
     /**
      * Gets the universe.
-     *
+     * 
      * @return the universe
      */
     public Universe getUniverse()
@@ -69,8 +71,9 @@ public class Game
     
     /**
      * Sets the universe.
-     *
-     * @param universe the new universe
+     * 
+     * @param universe
+     *            the new universe
      */
     public void setUniverse( Universe universe )
     {
@@ -79,7 +82,7 @@ public class Game
     
     /**
      * Gets the player.
-     *
+     * 
      * @return the player
      */
     public Player getPlayer()
@@ -89,8 +92,9 @@ public class Game
     
     /**
      * Sets the player.
-     *
-     * @param player the new player
+     * 
+     * @param player
+     *            the new player
      */
     public void setPlayer( Player player )
     {
@@ -99,7 +103,7 @@ public class Game
     
     /**
      * Gets the difficulty.
-     *
+     * 
      * @return the difficulty
      */
     public int getDifficulty()
@@ -109,8 +113,9 @@ public class Game
     
     /**
      * Sets the difficulty.
-     *
-     * @param difficulty the new difficulty
+     * 
+     * @param difficulty
+     *            the new difficulty
      */
     public void setDifficulty( int difficulty )
     {
@@ -119,7 +124,7 @@ public class Game
     
     /**
      * Gets the id.
-     *
+     * 
      * @return the id
      */
     public long getID()
@@ -129,8 +134,9 @@ public class Game
     
     /**
      * Sets the id.
-     *
-     * @param gameID the new id
+     * 
+     * @param gameID
+     *            the new id
      */
     public void setID( long gameID )
     {
@@ -139,7 +145,7 @@ public class Game
     
     /**
      * Gets the planet.
-     *
+     * 
      * @return the planet
      */
     public Planet getPlanet()
@@ -149,8 +155,9 @@ public class Game
     
     /**
      * Sets the planet.
-     *
-     * @param planet the new planet
+     * 
+     * @param planet
+     *            the new planet
      */
     public void setPlanet( Planet planet )
     {

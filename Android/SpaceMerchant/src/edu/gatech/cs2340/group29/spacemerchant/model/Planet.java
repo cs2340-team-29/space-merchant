@@ -48,6 +48,7 @@ public class Planet implements Marketable
     private int             y;
     private Inventory       inventory;
     private Context         context;
+    private int             money;
     
     /**
      * Instantiates a new planet.
@@ -68,6 +69,7 @@ public class Planet implements Marketable
         this.x = x;
         this.y = y;
         this.context = context;
+        money = 1000 * ( 1 + techLevel );
     }
     
     /**
@@ -212,10 +214,23 @@ public class Planet implements Marketable
         }
     }
     
-    // TODO Implement this!
     public int getBasePrice( Item item )
     {
-        return ( int ) ( item.getBasePrice() * ( 1 - ( techLevel / 10.0 ) ) );
+        Random rand = new Random();
+        double basePrice = ( double ) item.getBasePrice();
+        
+        if ( item.getType() == resourceType )
+        {
+            basePrice *= ( 1.0 / ( ( 1 + rand.nextInt( 4 ) ) * 2 ) );
+        }
+        if ( item.getType() == -resourceType )
+        {
+            basePrice /= ( 1.0 / ( ( 1 + rand.nextInt( 4 ) ) * 2 ) );
+        }
+        
+        basePrice -= ( techLevel * techLevel * 15 );
+        
+        return ( int ) basePrice;
     }
     
     public void setInventory( Inventory newInventory )
@@ -223,4 +238,13 @@ public class Planet implements Marketable
         this.inventory = newInventory;
     }
     
+    public int getMoney()
+    {
+        return money;
+    }
+    
+    public void setMoney( int money )
+    {
+        this.money = money;
+    }
 }

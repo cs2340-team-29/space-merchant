@@ -7,6 +7,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.adapter;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
+import edu.gatech.cs2340.group29.spacemerchant.model.Inventory;
 import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 
 /**
@@ -37,11 +39,22 @@ public class TradingItemsAdapter extends BaseAdapter
      * @param drawables
      *            the ArrayList<Integer>
      */
-    public TradingItemsAdapter( Context context, int layoutResourceId, ArrayList<Item> items )
+    public TradingItemsAdapter( Context context, int layoutResourceId, Inventory items )
     {
         super();
         this.context = context;
-        this.items = items;
+        
+        this.items = new ArrayList<Item>();
+        LinkedList<Item>[] inventoryItems = items.getContents();
+        
+        for ( LinkedList<Item> inventoryItemsByType : inventoryItems )
+        {
+            
+            for ( Item item : inventoryItemsByType )
+            {
+                this.items.add( item );
+            }
+        }
     }
     
     /**

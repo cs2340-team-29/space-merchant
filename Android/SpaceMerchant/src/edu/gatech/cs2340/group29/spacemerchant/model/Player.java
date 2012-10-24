@@ -21,10 +21,10 @@ public class Player implements Parcelable, Marketable
     private int       money;
     private Inventory inventory;
     
-    private int    head;
-    private int    body;
-    private int    legs;
-    private int    feet;
+    private int       head;
+    private int       body;
+    private int       legs;
+    private int       feet;
     
     /**
      * Instantiates a new player.
@@ -57,9 +57,9 @@ public class Player implements Parcelable, Marketable
         ship = new Ship();
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.os.Parcelable#describeContents()
      */
     public int describeContents()
@@ -67,9 +67,9 @@ public class Player implements Parcelable, Marketable
         return 0;
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
      */
     public void writeToParcel( Parcel dest, int flags )
@@ -98,7 +98,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the ship.
-     *
+     * 
      * @return the ship
      */
     public Ship getShip()
@@ -108,8 +108,9 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the ship.
-     *
-     * @param ship the new ship
+     * 
+     * @param ship
+     *            the new ship
      */
     public void setShip( Ship ship )
     {
@@ -118,7 +119,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the stats.
-     *
+     * 
      * @return the stats
      */
     public int[] getStats()
@@ -128,8 +129,9 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the stats.
-     *
-     * @param stats the new stats
+     * 
+     * @param stats
+     *            the new stats
      */
     public void setStats( int[] stats )
     {
@@ -138,7 +140,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the head.
-     *
+     * 
      * @return the head
      */
     public int getHead()
@@ -148,8 +150,9 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the head.
-     *
-     * @param head the new head
+     * 
+     * @param head
+     *            the new head
      */
     public void setHead( int head )
     {
@@ -158,7 +161,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the body.
-     *
+     * 
      * @return the body
      */
     public int getBody()
@@ -168,8 +171,9 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the body.
-     *
-     * @param body the new body
+     * 
+     * @param body
+     *            the new body
      */
     public void setBody( int body )
     {
@@ -178,7 +182,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the legs.
-     *
+     * 
      * @return the legs
      */
     public int getLegs()
@@ -188,8 +192,9 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the legs.
-     *
-     * @param legs the new legs
+     * 
+     * @param legs
+     *            the new legs
      */
     public void setLegs( int legs )
     {
@@ -198,7 +203,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the feet.
-     *
+     * 
      * @return the feet
      */
     public int getFeet()
@@ -208,8 +213,9 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the feet.
-     *
-     * @param feet the new feet
+     * 
+     * @param feet
+     *            the new feet
      */
     public void setFeet( int feet )
     {
@@ -218,7 +224,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the money.
-     *
+     * 
      * @return the money
      */
     public int getMoney()
@@ -228,8 +234,9 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the money.
-     *
-     * @param money the new money
+     * 
+     * @param money
+     *            the new money
      */
     public void setMoney( int money )
     {
@@ -238,7 +245,7 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Gets the name.
-     *
+     * 
      * @return the name
      */
     public String getName()
@@ -248,32 +255,36 @@ public class Player implements Parcelable, Marketable
     
     /**
      * Sets the name.
-     *
-     * @param name the new name
+     * 
+     * @param name
+     *            the new name
      */
     public void setName( String name )
     {
         this.name = name;
     }
-
     
-    public Inventory getInventory() {
-		return inventory;
-	}
-
-    public void setInventory(Inventory inventory) {
+    public Inventory getInventory()
+    {
+        return inventory;
+    }
+    
+    public void setInventory( Inventory inventory )
+    {
         this.inventory = inventory;
     }
     
-	public void fillInventory(Item [] itm) {
-		for(int i=0; i<itm.length; i++) {
-			inventory.add(itm[i]);
-		}
-	}
-
-	//TODO Implement this!
-	public int getBasePrice(Item item) {
-		return 0;
-	}
+    public void fillInventory( Item[] itm )
+    {
+        for ( int i = 0; i < itm.length; i++ )
+        {
+            inventory.add( itm[i] );
+        }
+    }
+    
+    public int getBasePrice( Item item )
+    {
+        return ( int ) ( item.getBasePrice() + item.getBasePrice() * ( stats[2] / 100.0 ) );
+    }
     
 }
