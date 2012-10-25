@@ -45,7 +45,7 @@ public class Item implements Comparable<Item>
      */
     public int getBasePrice()
     {
-        return 10 + 100 * type * Game.difficulty;
+        return 100 + type + type * Game.difficulty;
     }
     
     /**

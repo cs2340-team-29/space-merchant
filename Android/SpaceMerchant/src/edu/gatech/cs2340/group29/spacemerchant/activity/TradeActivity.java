@@ -17,6 +17,8 @@ import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 import edu.gatech.cs2340.group29.spacemerchant.model.Market;
+import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
+import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
 public class TradeActivity extends Activity
@@ -74,9 +76,10 @@ public class TradeActivity extends Activity
     @Override
     protected void onStop()
     {
-        System.out.println( "stopping" );
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
+        g.setPlanet( ( Planet ) a );
+        g.setPlayer( ( Player ) b );
         gds.updateGame( g );
         gds.close();
         super.onStop();
@@ -136,6 +139,7 @@ public class TradeActivity extends Activity
     
     public void done( View v )
     {
+        updateLists( null );
         Intent intent = new Intent( TradeActivity.this, GameActivity.class );
         intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
         TradeActivity.this.startActivity( intent );

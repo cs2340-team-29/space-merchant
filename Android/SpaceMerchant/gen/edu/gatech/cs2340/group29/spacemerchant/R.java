@@ -9,11 +9,10 @@ package edu.gatech.cs2340.group29.spacemerchant;
 
 public final class R {
     public static final class array {
-        public static final int ItemDrawables=0x7f040003;
         public static final int ItemNames=0x7f040002;
         public static final int Items=0x7f040001;
-        public static final int ResourceTypes=0x7f040005;
-        public static final int TechLevels=0x7f040004;
+        public static final int ResourceTypes=0x7f040004;
+        public static final int TechLevels=0x7f040003;
         public static final int planets=0x7f040000;
     }
     public static final class attr {
@@ -76,7 +75,7 @@ public final class R {
         public static final int aboutText2=0x7f090001;
         public static final int body_player=0x7f090004;
         public static final int boosters=0x7f090009;
-        public static final int cabin=0x7f090008;
+        public static final int cabin=0x7f090007;
         public static final int chooseDifficulty=0x7f090013;
         public static final int confirm=0x7f090030;
         public static final int done=0x7f090020;
@@ -89,7 +88,7 @@ public final class R {
         public static final int entity2Name=0x7f09002d;
         public static final int feet=0x7f090006;
         public static final int frameLayout=0x7f090002;
-        public static final int fuselage=0x7f090007;
+        public static final int fuselage=0x7f090008;
         public static final int galleryBody=0x7f090015;
         public static final int galleryBoosters=0x7f090027;
         public static final int galleryCabin=0x7f090025;

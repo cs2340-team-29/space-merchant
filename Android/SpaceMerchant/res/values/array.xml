@@ -225,16 +225,6 @@
         <item>@string/Tank</item>
         <item>@string/Warship</item>
     </string-array>
-
-    <integer-array name="ItemDrawables">
-        <item>@drawable/ic_generic_object</item>
-        <item>@drawable/ic_mineral</item>
-        <item>@drawable/ic_liquid</item>
-        <item>@drawable/ic_art</item>
-        <item>@drawable/ic_animal</item>
-        <item>@drawable/ic_boosters_2</item>
-    </integer-array>
-
     <string-array name="TechLevels">
         <item>Pre Agricultural</item>
         <item>Agricultural</item>

@@ -1,36 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-    <ImageView
-        android:id="@+id/itemImage"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="100dp"
-        android:src="@android:drawable/ic_menu_camera" />
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/itemName"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:src="@android:drawable/ic_menu_camera" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="itemName"
-        tools:ignore="HardcodedText" />
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/itemCost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/itemName"
-        android:layout_below="@+id/itemName"
-        android:text="itemCost"
-        tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="itemName"
+            tools:ignore="HardcodedText" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/itemCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="itemCost"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</LinearLayout>

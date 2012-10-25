@@ -72,8 +72,8 @@ public class GameActivity extends Activity
         String[] resourceTypes = res.getStringArray( R.array.ResourceTypes );
         
         // set up planet image and info
-        ( ( TextView ) findViewById( R.id.planetInfo ) ).setText( "Name: " + pl.getName() + " Tech Level: "
-                + techLevels[pl.getTechLevel()] + " Resources: " + resourceTypes[pl.getResourceType() + 5] );
+        ( ( TextView ) findViewById( R.id.planetInfo ) ).setText( "Name: " + pl.getName() + "\nTech Level: "
+                + techLevels[pl.getTechLevel()] + "\nResources: " + resourceTypes[pl.getResourceType() + 5] );
         
         if ( showHelpOverlay )
         {
