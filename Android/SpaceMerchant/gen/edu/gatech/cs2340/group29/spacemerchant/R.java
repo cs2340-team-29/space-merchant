@@ -69,23 +69,22 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09000c;
-        public static final int RelativeLayout1=0x7f090033;
+        public static final int RelativeLayout1=0x7f090032;
         public static final int aboutText=0x7f090000;
         public static final int aboutText2=0x7f090001;
         public static final int body_player=0x7f090004;
         public static final int boosters=0x7f090009;
         public static final int cabin=0x7f090008;
-        public static final int cancel=0x7f09002b;
         public static final int chooseDifficulty=0x7f090012;
-        public static final int confirm=0x7f090030;
+        public static final int confirm=0x7f09002f;
         public static final int done=0x7f09001f;
         public static final int doneButton=0x7f090027;
         public static final int entity1Items=0x7f09002a;
         public static final int entity1Money=0x7f090029;
         public static final int entity1Name=0x7f090028;
-        public static final int entity2Items=0x7f09002f;
-        public static final int entity2Money=0x7f09002e;
-        public static final int entity2Name=0x7f09002d;
+        public static final int entity2Items=0x7f09002e;
+        public static final int entity2Money=0x7f09002d;
+        public static final int entity2Name=0x7f09002c;
         public static final int feet=0x7f090006;
         public static final int frameLayout=0x7f090002;
         public static final int fuselage=0x7f090007;
@@ -95,7 +94,7 @@ public final class R {
         public static final int galleryFeet=0x7f090016;
         public static final int galleryFuselage=0x7f090025;
         public static final int galleryHead=0x7f090013;
-        public static final int galleryImage=0x7f090032;
+        public static final int galleryImage=0x7f090031;
         public static final int galleryLegs=0x7f090015;
         public static final int gameList=0x7f090021;
         public static final int gotoAboutPageButton=0x7f09000f;
@@ -103,14 +102,14 @@ public final class R {
         public static final int head=0x7f090003;
         public static final int horiozontalDivider=0x7f09000a;
         public static final int imageView1=0x7f09000d;
-        public static final int itemCost=0x7f090037;
-        public static final int itemImage=0x7f090035;
-        public static final int itemName=0x7f090036;
+        public static final int itemCost=0x7f090036;
+        public static final int itemImage=0x7f090034;
+        public static final int itemName=0x7f090035;
         public static final int legs=0x7f090005;
-        public static final int menu_help=0x7f090039;
-        public static final int menu_settings=0x7f09003a;
-        public static final int menu_travel=0x7f090038;
-        public static final int money=0x7f090031;
+        public static final int menu_help=0x7f090038;
+        public static final int menu_settings=0x7f090039;
+        public static final int menu_travel=0x7f090037;
+        public static final int money=0x7f090030;
         public static final int newGame=0x7f090022;
         public static final int planetImage=0x7f09000b;
         public static final int playerName=0x7f090011;
@@ -125,8 +124,8 @@ public final class R {
         public static final int stat3Text=0x7f09001b;
         public static final int stat4=0x7f09001e;
         public static final int stat4Text=0x7f09001d;
-        public static final int textView1=0x7f090034;
-        public static final int view1=0x7f09002c;
+        public static final int textView1=0x7f090033;
+        public static final int view1=0x7f09002b;
     }
     public static final class integer {
         public static final int Bacteria=0x7f05001f;

@@ -2,6 +2,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -13,26 +14,37 @@ import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.adapter.TradingItemsAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
+import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 import edu.gatech.cs2340.group29.spacemerchant.model.Market;
+import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
 public class TradeActivity extends Activity
 {
     
-    private Marketable a;
-    private Marketable b;
-    private Market     market;
+    private Marketable         a;
+    private Marketable         b;
+    private Market             market;
+    private Game               g;
     
-    protected ListView aItems;
-    protected ListView bItems;
+    protected ListView         aItems;
+    protected ListView         bItems;
     
-    public static final String MARKETABLE_A = "MARKETABLE_A_EXTRA";
-    public static final String MARKETABLE_B = "MARKETABLE_B_EXTRA";
+    public static final String GAME_ID = "GAME_ID_EXTRA";
     
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
+        
+        Intent i = getIntent();
+        long gameID = i.getLongExtra( GAME_ID, -1 );
+        GameDataSource gds = new GameDataSource( getApplicationContext() );
+        gds.open();
+        g = gds.getGameByID( gameID );
+        a = g.getPlanet();
+        b = g.getPlayer();
+        gds.close();
         
         market = new Market( a, b );
         
@@ -55,6 +67,15 @@ public class TradeActivity extends Activity
         
     }
     
+    @Override
+    protected void onStop()
+    {
+        GameDataSource gds = new GameDataSource( getApplicationContext() );
+        gds.open();
+        gds.close();
+        super.onStop();
+    }
+    
     class ASelectItemListener implements OnItemClickListener
     {
         
@@ -68,7 +89,8 @@ public class TradeActivity extends Activity
             }
             else
             {
-                Toast.makeText( getApplicationContext(), "Couldn't Trade! Insufficient Funds", Toast.LENGTH_LONG ).show();
+                Toast.makeText( getApplicationContext(), "Couldn't Trade! Insufficient Funds",
+                        Toast.LENGTH_LONG ).show();
             }
         }
     }
@@ -86,7 +108,8 @@ public class TradeActivity extends Activity
             }
             else
             {
-                Toast.makeText( getApplicationContext(), "Couldn't Trade! Insufficient Funds", Toast.LENGTH_LONG ).show();
+                Toast.makeText( getApplicationContext(), "Couldn't Trade! Insufficient Funds",
+                        Toast.LENGTH_LONG ).show();
             }
         }
         
@@ -97,5 +120,12 @@ public class TradeActivity extends Activity
     {
         getMenuInflater().inflate( R.menu.activity_trade, menu );
         return true;
+    }
+    
+    public void done(View v)
+    {
+        Intent intent = new Intent( TradeActivity.this, GameActivity.class );
+        intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
+        TradeActivity.this.startActivity( intent );
     }
 }
