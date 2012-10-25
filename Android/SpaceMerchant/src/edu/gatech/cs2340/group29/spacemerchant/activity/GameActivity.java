@@ -141,4 +141,23 @@ public class GameActivity extends Activity
         intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
         GameActivity.this.startActivity( intent );
     }
+    
+    @Override
+    public void onBackPressed()
+    {
+        gotoSelectGame( null );
+    }
+    
+    /**
+     * Goes to the select game.
+     * 
+     * @param v
+     *            the View
+     */
+    public void gotoSelectGame( View v )
+    {
+        // launch SelectGame activity
+        Intent selectGameIntent = new Intent( GameActivity.this, SelectGame.class );
+        GameActivity.this.startActivity( selectGameIntent );
+    }
 }
