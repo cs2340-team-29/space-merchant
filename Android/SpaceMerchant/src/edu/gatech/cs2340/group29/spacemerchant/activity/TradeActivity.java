@@ -130,13 +130,6 @@ public class TradeActivity extends Activity
         
     }
     
-    @Override
-    public boolean onCreateOptionsMenu( Menu menu )
-    {
-        getMenuInflater().inflate( R.menu.activity_trade, menu );
-        return true;
-    }
-    
     public void done( View v )
     {
         updateLists( null );

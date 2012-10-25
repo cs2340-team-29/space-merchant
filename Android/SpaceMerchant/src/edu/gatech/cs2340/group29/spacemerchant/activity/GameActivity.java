@@ -133,12 +133,37 @@ public class GameActivity extends Activity
     
     public void gotoTrading( View v )
     {
+        Intent intent = new Intent( GameActivity.this, TradeActivity.class );
+        intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
+        GameActivity.this.startActivity( intent );
+    }
+    
+    @Override
+    protected void onStop()
+    {
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
         gds.updateGame( g );
         gds.close();
-        Intent intent = new Intent( GameActivity.this, TradeActivity.class );
-        intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
-        GameActivity.this.startActivity( intent );
+        super.onStop();
+    }
+    
+    @Override
+    public void onBackPressed()
+    {
+        gotoSelectGame( null );
+    }
+    
+    /**
+     * Goes to the select game.
+     * 
+     * @param v
+     *            the View
+     */
+    public void gotoSelectGame( View v )
+    {
+        // launch SelectGame activity
+        Intent selectGameIntent = new Intent( GameActivity.this, SelectGame.class );
+        GameActivity.this.startActivity( selectGameIntent );
     }
 }

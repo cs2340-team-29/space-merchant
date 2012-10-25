@@ -108,7 +108,6 @@ public final class R {
         public static final int itemName=0x7f090038;
         public static final int legs=0x7f090005;
         public static final int menu_help=0x7f09003b;
-        public static final int menu_settings=0x7f09003c;
         public static final int menu_travel=0x7f09003a;
         public static final int money=0x7f090033;
         public static final int newGame=0x7f090025;
@@ -196,7 +195,6 @@ public final class R {
     }
     public static final class menu {
         public static final int activity_game=0x7f080000;
-        public static final int activity_trade=0x7f080001;
     }
     public static final class string {
         public static final int Bacteria=0x7f0600b8;
