@@ -14,7 +14,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Gallery;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGalleryAdapter;
@@ -28,13 +30,22 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
  */
 public class ShipConfig extends Activity
 {
-    public static final String player_extra     = "PLAYER_EXTRA";
-    public static final String difficulty_extra = "DIFFICULTY_EXTRA";
+    public static final String     player_extra     = "PLAYER_EXTRA";
+    public static final String     difficulty_extra = "DIFFICULTY_EXTRA";
     
-    private Player             player;
-    private int                difficulty;
+    private Player                 player;
+    private int                    difficulty;
     
-    protected Dialog working;
+    protected Dialog               working;
+    protected Ship                 s;
+    
+    protected Gallery              cabins;
+    protected Gallery              fuselages;
+    protected Gallery              boosters;
+    
+    protected SelectGalleryAdapter sgaFuselage;
+    protected SelectGalleryAdapter sgaCabin;
+    protected SelectGalleryAdapter sgaBooster;
     
     /**
      * Override:
@@ -77,14 +88,16 @@ public class ShipConfig extends Activity
         boosters.add( R.drawable.ic_boosters_3 );
         
         // Set up Galleries
-        SelectGalleryAdapter sgaFuselage = new SelectGalleryAdapter( this, R.layout.gallery_row_view,
-                fuselages );
-        SelectGalleryAdapter sgaCabin = new SelectGalleryAdapter( this, R.layout.gallery_row_view, cabins );
-        SelectGalleryAdapter sgaBooster = new SelectGalleryAdapter( this, R.layout.gallery_row_view, boosters );
+        sgaFuselage = new SelectGalleryAdapter( this, R.layout.gallery_row_view, fuselages );
+        sgaCabin = new SelectGalleryAdapter( this, R.layout.gallery_row_view, cabins );
+        sgaBooster = new SelectGalleryAdapter( this, R.layout.gallery_row_view, boosters );
         
-        ( ( Gallery ) findViewById( R.id.galleryFuselage ) ).setAdapter( sgaFuselage );
-        ( ( Gallery ) findViewById( R.id.galleryCabin ) ).setAdapter( sgaCabin );
-        ( ( Gallery ) findViewById( R.id.galleryBoosters ) ).setAdapter( sgaBooster );
+        this.fuselages = ( ( Gallery ) findViewById( R.id.galleryFuselage ) );
+        this.fuselages.setAdapter( sgaFuselage );
+        this.cabins = ( ( Gallery ) findViewById( R.id.galleryCabin ) );
+        this.cabins.setAdapter( sgaCabin );
+        this.boosters = ( ( Gallery ) findViewById( R.id.galleryBoosters ) );
+        this.boosters.setAdapter( sgaBooster );
         
     }
     
@@ -103,13 +116,24 @@ public class ShipConfig extends Activity
         working.show();
         
         CreateUniverseTask cut = new CreateUniverseTask();
-        cut.execute( (Void) null );
+        cut.execute( ( Void ) null );
         
     }
     
     public class CreateUniverseTask extends AsyncTask<Void, Void, Long>
     {
-
+        
+        @Override
+        protected void onPreExecute()
+        {
+            s = new Ship();
+            s.setCabin( sgaCabin.getItemAtPosition( cabins.getSelectedItemPosition() ) );
+            s.setFuselage( sgaFuselage.getItemAtPosition( fuselages.getSelectedItemPosition() ) );
+            s.setBoosters( sgaBooster.getItemAtPosition( boosters.getSelectedItemPosition() ) );
+            
+            super.onPreExecute();
+        }
+        
         @Override
         protected Long doInBackground( Void ... params )
         {
@@ -117,17 +141,15 @@ public class ShipConfig extends Activity
             gds.open();
             
             Game g = new Game( getApplicationContext() );
-            Ship s = new Ship();
             player.setShip( s );
             g.setDifficulty( difficulty );
             g.setPlayer( player );
             g.getUniverse().generatePlanets();
             long gameID = gds.createGame( g );
             gds.close();
-            System.out.println( g.getUniverse() );
             return gameID;
         }
-
+        
         @Override
         protected void onPostExecute( Long gameID )
         {

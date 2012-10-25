@@ -10,8 +10,6 @@ import java.util.Random;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Parcel;
-import android.os.Parcelable;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 
@@ -31,16 +29,16 @@ public class Planet implements Marketable
     public static final int HI_TECH          = 7;
     
     // Resource Types
-    public static final int NOTHING_SPECIAL  = 0;
-    public static final int MINERAL_RICH     = -1;
-    public static final int MINERAL_POOR     = 1;
-    public static final int WATERY           = -2;
-    public static final int DESERT           = 2;
-    public static final int ARTISTIC         = -3;
-    public static final int PHILISTINIC      = 3;
-    public static final int ANIMALS          = -4;
-    public static final int NO_ANIMALS       = 4;
     public static final int PEACEFUL         = -5;
+    public static final int ANIMALS          = -4;
+    public static final int ARTISTIC         = -3;
+    public static final int WATERY           = -2;
+    public static final int MINERAL_RICH     = -1;
+    public static final int NOTHING_SPECIAL  = 0;
+    public static final int MINERAL_POOR     = 1;
+    public static final int DESERT           = 2;
+    public static final int PHILISTINIC      = 3;
+    public static final int LIFELESS         = 4;
     public static final int WARFARE          = 5;
     
     private int             techLevel;
@@ -66,7 +64,7 @@ public class Planet implements Marketable
     {
         Random r = new Random();
         techLevel = r.nextInt( 8 );
-        resourceType = r.nextInt( 10 );
+        resourceType = r.nextInt( 11 );
         this.name = name;
         this.x = x;
         this.y = y;
@@ -207,8 +205,8 @@ public class Planet implements Marketable
         
         for ( int i = 0; i < items.length; i++ )
         {
-            int tempItemType = items[i] % 10;
-            int tempTechLevel = items[i] / 10 % 10;
+            int tempTechLevel = items[i] % 10;
+            int tempItemType = items[i] / 10 % 10;
             if ( tempTechLevel <= this.techLevel )
             {
                 inventory.add( new Item( tempItemType, names[i], drawables[tempItemType] ) );
@@ -231,6 +229,11 @@ public class Planet implements Marketable
         }
         
         basePrice -= ( techLevel * techLevel * 15 );
+        
+        if ( basePrice <= 0 )
+        {
+            basePrice = item.getBasePrice();
+        }
         
         return ( int ) basePrice;
     }

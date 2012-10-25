@@ -24,7 +24,7 @@ public class TradeActivity extends Activity
     
     private Marketable         a;
     private Marketable         b;
-    private Market             market;
+    public static Market       market;
     private Game               g;
     
     protected ListView         aItems;
@@ -50,6 +50,11 @@ public class TradeActivity extends Activity
         
         setContentView( R.layout.activity_trade );
         
+        updateLists( null );
+    }
+    
+    public void updateLists( View v )
+    {
         ( ( TextView ) this.findViewById( R.id.entity1Name ) ).setText( a.getName() );
         ( ( TextView ) this.findViewById( R.id.entity2Name ) ).setText( b.getName() );
         ( ( TextView ) this.findViewById( R.id.entity1Money ) ).setText( "$" + a.getMoney() );
@@ -64,14 +69,15 @@ public class TradeActivity extends Activity
         ( ( ListView ) this.findViewById( R.id.entity2Items ) ).setAdapter( t2 );
         bItems = ( ( ListView ) this.findViewById( R.id.entity2Items ) );
         bItems.setOnItemClickListener( new BSelectItemListener() );
-        
     }
     
     @Override
     protected void onStop()
     {
+        System.out.println( "stopping" );
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
+        gds.updateGame( g );
         gds.close();
         super.onStop();
     }
@@ -84,6 +90,9 @@ public class TradeActivity extends Activity
             if ( market.giveToB( ( Item ) ( ( ( TradingItemsAdapter ) parent.getAdapter() )
                     .getItem( position ) ) ) )
             {
+                a = market.getMarketableA();
+                b = market.getMarketableB();
+                updateLists( null );
                 aItems.invalidate();
                 bItems.invalidate();
             }
@@ -103,6 +112,9 @@ public class TradeActivity extends Activity
             if ( market.giveToA( ( Item ) ( ( ( TradingItemsAdapter ) parent.getAdapter() )
                     .getItem( position ) ) ) )
             {
+                a = market.getMarketableA();
+                b = market.getMarketableB();
+                updateLists( null );
                 aItems.invalidate();
                 bItems.invalidate();
             }
@@ -122,7 +134,7 @@ public class TradeActivity extends Activity
         return true;
     }
     
-    public void done(View v)
+    public void done( View v )
     {
         Intent intent = new Intent( TradeActivity.this, GameActivity.class );
         intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );

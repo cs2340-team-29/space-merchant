@@ -8,11 +8,13 @@ package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
@@ -64,6 +66,14 @@ public class GameActivity extends Activity
         ( ( ImageView ) findViewById( R.id.cabin ) ).setImageResource( s.getCabin() );
         ( ( ImageView ) findViewById( R.id.fuselage ) ).setImageResource( s.getFuselage() );
         ( ( ImageView ) findViewById( R.id.boosters ) ).setImageResource( s.getBoosters() );
+        
+        Resources res = getResources();
+        String[] techLevels = res.getStringArray( R.array.TechLevels );
+        String[] resourceTypes = res.getStringArray( R.array.ResourceTypes );
+        
+        // set up planet image and info
+        ( ( TextView ) findViewById( R.id.planetInfo ) ).setText( "Name: " + pl.getName() + " Tech Level: "
+                + techLevels[pl.getTechLevel()] + " Resources: " + resourceTypes[pl.getResourceType() + 5] );
         
         if ( showHelpOverlay )
         {

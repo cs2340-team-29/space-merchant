@@ -18,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
+import edu.gatech.cs2340.group29.spacemerchant.activity.TradeActivity;
 import edu.gatech.cs2340.group29.spacemerchant.model.Inventory;
 import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 
@@ -94,9 +95,9 @@ public class TradingItemsAdapter extends BaseAdapter
         
         convertView.setTag( viewHolder );
         
-        viewHolder.iv.setImageResource( items.get( position ).getType() );
+        viewHolder.iv.setImageResource( items.get( position ).getDrawable() );
         viewHolder.name.setText( items.get( position ).getName() );
-        viewHolder.price.setText( items.get( position ).getBasePrice() );
+        viewHolder.price.setText( "$" + TradeActivity.market.getCost( items.get( position ) ) );
         
         return convertView;
     }
@@ -116,9 +117,9 @@ public class TradingItemsAdapter extends BaseAdapter
      * 
      * @see android.widget.Adapter#getItem(int)
      */
-    public Object getItem( int arg0 )
+    public Item getItem( int position )
     {
-        return null;
+        return items.get( position );
     }
     
     /**

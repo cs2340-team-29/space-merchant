@@ -235,4 +235,28 @@
         <item>@drawable/ic_boosters_2</item>
     </integer-array>
 
+    <string-array name="TechLevels">
+        <item>Pre Agricultural</item>
+        <item>Agricultural</item>
+        <item>Medieval</item>
+        <item>Renaissance</item>
+        <item>Early Industrial</item>
+        <item>Industrial</item>
+        <item>Post Industrial</item>
+        <item>Hi-Tech</item>
+    </string-array>
+    <string-array name="ResourceTypes">
+        <item>Peaceful</item>
+        <item>Animals</item>
+        <item>Artistic</item>
+        <item>Watery</item>
+        <item>Mineral Rich</item>
+        <item>General</item>
+        <item>Mineral Poor</item>
+        <item>Desert</item>
+        <item>Philistinic</item>
+        <item>Lifeless</item>
+        <item>Warfare</item>
+    </string-array>
+
 </resources>
