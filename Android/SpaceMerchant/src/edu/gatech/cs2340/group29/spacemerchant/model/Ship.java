@@ -32,7 +32,7 @@ public class Ship
     
     /**
      * Gets the stats.
-     *
+     * 
      * @return the stats
      */
     public int[] getStats()
@@ -42,8 +42,9 @@ public class Ship
     
     /**
      * Sets the stats.
-     *
-     * @param stats the new stats
+     * 
+     * @param stats
+     *            the new stats
      */
     public void setStats( int[] stats )
     {
@@ -52,7 +53,7 @@ public class Ship
     
     /**
      * Gets the id.
-     *
+     * 
      * @return the id
      */
     public long getID()
@@ -62,8 +63,9 @@ public class Ship
     
     /**
      * Sets the id.
-     *
-     * @param shipID the new id
+     * 
+     * @param shipID
+     *            the new id
      */
     public void setID( long shipID )
     {
@@ -72,7 +74,7 @@ public class Ship
     
     /**
      * Gets the ship id.
-     *
+     * 
      * @return the ship id
      */
     public long getShipID()
@@ -82,8 +84,9 @@ public class Ship
     
     /**
      * Sets the ship id.
-     *
-     * @param shipID the new ship id
+     * 
+     * @param shipID
+     *            the new ship id
      */
     public void setShipID( long shipID )
     {
@@ -92,7 +95,7 @@ public class Ship
     
     /**
      * Gets the fuselage.
-     *
+     * 
      * @return the fuselage
      */
     public int getFuselage()
@@ -102,8 +105,9 @@ public class Ship
     
     /**
      * Sets the fuselage.
-     *
-     * @param fuselage the new fuselage
+     * 
+     * @param fuselage
+     *            the new fuselage
      */
     public void setFuselage( int fuselage )
     {
@@ -112,7 +116,7 @@ public class Ship
     
     /**
      * Gets the cabin.
-     *
+     * 
      * @return the cabin
      */
     public int getCabin()
@@ -122,8 +126,9 @@ public class Ship
     
     /**
      * Sets the cabin.
-     *
-     * @param cabin the new cabin
+     * 
+     * @param cabin
+     *            the new cabin
      */
     public void setCabin( int cabin )
     {
@@ -132,7 +137,7 @@ public class Ship
     
     /**
      * Gets the boosters.
-     *
+     * 
      * @return the boosters
      */
     public int getBoosters()
@@ -142,8 +147,9 @@ public class Ship
     
     /**
      * Sets the boosters.
-     *
-     * @param boosters the new boosters
+     * 
+     * @param boosters
+     *            the new boosters
      */
     public void setBoosters( int boosters )
     {

@@ -14,9 +14,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Gallery;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGalleryAdapter;
@@ -120,6 +118,9 @@ public class ShipConfig extends Activity
         
     }
     
+    /**
+     * The Class CreateUniverseTask.
+     */
     public class CreateUniverseTask extends AsyncTask<Void, Void, Long>
     {
         

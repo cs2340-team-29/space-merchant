@@ -27,10 +27,13 @@ public class SelectGalleryAdapter extends BaseAdapter
     
     /**
      * Instantiates a new select gallery adapter.
-     *
-     * @param context the Context
-     * @param layoutResourceId the int
-     * @param drawables the ArrayList<Integer>
+     * 
+     * @param context
+     *            the Context
+     * @param layoutResourceId
+     *            the int
+     * @param drawables
+     *            the ArrayList<Integer>
      */
     public SelectGalleryAdapter( Context context, int layoutResourceId, ArrayList<Integer> drawables )
     {
@@ -47,10 +50,11 @@ public class SelectGalleryAdapter extends BaseAdapter
         protected ImageView iv;
     }
     
-    /** 
-     *
+    /**
      * Override:
-     * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+     * 
+     * @see android.widget.Adapter#getView(int, android.view.View,
+     *      android.view.ViewGroup)
      */
     public View getView( int position, View convertView, ViewGroup parent )
     {
@@ -76,9 +80,9 @@ public class SelectGalleryAdapter extends BaseAdapter
         return convertView;
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.widget.Adapter#getCount()
      */
     public int getCount()
@@ -86,9 +90,9 @@ public class SelectGalleryAdapter extends BaseAdapter
         return drawables.size();
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.widget.Adapter#getItem(int)
      */
     public Object getItem( int arg0 )
@@ -96,9 +100,9 @@ public class SelectGalleryAdapter extends BaseAdapter
         return null;
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.widget.Adapter#getItemId(int)
      */
     public long getItemId( int arg0 )
@@ -108,8 +112,9 @@ public class SelectGalleryAdapter extends BaseAdapter
     
     /**
      * Gets the item at position.
-     *
-     * @param position the int
+     * 
+     * @param position
+     *            the int
      * @return the item at position
      */
     public int getItemAtPosition( int position )

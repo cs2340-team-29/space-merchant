@@ -131,6 +131,12 @@ public class GameActivity extends Activity
         // do stuff later!
     }
     
+    /**
+     * Goes to the trading.
+     * 
+     * @param v
+     *            the View
+     */
     public void gotoTrading( View v )
     {
         Intent intent = new Intent( GameActivity.this, TradeActivity.class );
@@ -148,6 +154,11 @@ public class GameActivity extends Activity
         super.onStop();
     }
     
+    /**
+     * Override:
+     * 
+     * @see android.app.Activity#onBackPressed()
+     */
     @Override
     public void onBackPressed()
     {

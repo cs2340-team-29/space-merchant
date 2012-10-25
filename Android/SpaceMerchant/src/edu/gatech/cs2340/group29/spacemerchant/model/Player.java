@@ -6,9 +6,9 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
-import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 
 /**
  * The Class Player.
@@ -223,9 +223,9 @@ public class Player implements Parcelable, Marketable
     }
     
     /**
-     * Gets the money.
+     * Override:
      * 
-     * @return the money
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getMoney()
      */
     public int getMoney()
     {
@@ -233,10 +233,9 @@ public class Player implements Parcelable, Marketable
     }
     
     /**
-     * Sets the money.
+     * Override:
      * 
-     * @param money
-     *            the new money
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#setMoney(int)
      */
     public void setMoney( int money )
     {
@@ -244,9 +243,9 @@ public class Player implements Parcelable, Marketable
     }
     
     /**
-     * Gets the name.
+     * Override:
      * 
-     * @return the name
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getName()
      */
     public String getName()
     {
@@ -264,27 +263,48 @@ public class Player implements Parcelable, Marketable
         this.name = name;
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getInventory()
+     */
     public Inventory getInventory()
     {
         return inventory;
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#setInventory(edu.gatech.cs2340.group29.spacemerchant.model.Inventory)
+     */
     public void setInventory( Inventory inventory )
     {
         this.inventory = inventory;
     }
     
+    /**
+     * Fill inventory.
+     * 
+     * @param itm
+     *            the Item[]
+     */
     public void fillInventory( Item[] itm )
     {
-        for ( int i = 0; i < itm.length; i++ )
+        for ( Item element : itm )
         {
-            inventory.add( itm[i] );
+            inventory.add( element );
         }
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getBasePrice(edu.gatech.cs2340.group29.spacemerchant.model.Item)
+     */
     public int getBasePrice( Item item )
     {
-        return ( int ) ( item.getBasePrice() + item.getBasePrice() * ( stats[2] / 100.0 ) );
+        return ( int ) ( item.getBasePrice() + ( item.getBasePrice() * ( stats[2] / 100.0 ) ) );
     }
     
 }

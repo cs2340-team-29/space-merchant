@@ -73,6 +73,8 @@ public class Planet implements Marketable
      *            the int
      * @param y
      *            the int
+     * @param context
+     *            the Context
      */
     public Planet( String name, int x, int y, Context context )
     {
@@ -174,9 +176,9 @@ public class Planet implements Marketable
     }
     
     /**
-     * Gets the name.
+     * Override:
      * 
-     * @return the name
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getName()
      */
     public String getName()
     {
@@ -205,10 +207,17 @@ public class Planet implements Marketable
         return " Name: " + name + " TechLevel: " + techLevel + " ResourceType: " + resourceType;
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getInventory()
+     */
     public Inventory getInventory()
     {
         if ( inventory == null )
+        {
             generateInventory();
+        }
         return inventory;
     }
     
@@ -228,16 +237,22 @@ public class Planet implements Marketable
             {
                 for ( int j = 0; j < r.nextInt( this.techLevel + 1 ); j++ )
                 {
-                    inventory.add( new Item( tempItemType, names[i], itemDrawables[tempItemType], tempTechLevel ) );
+                    inventory.add( new Item( tempItemType, names[i], itemDrawables[tempItemType],
+                            tempTechLevel ) );
                 }
             }
         }
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getBasePrice(edu.gatech.cs2340.group29.spacemerchant.model.Item)
+     */
     public int getBasePrice( Item item )
     {
         Random rand = new Random();
-        double basePrice = ( double ) item.getBasePrice();
+        double basePrice = item.getBasePrice();
         
         if ( item.getType() == resourceType )
         {
@@ -258,46 +273,94 @@ public class Planet implements Marketable
         return ( int ) basePrice;
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#setInventory(edu.gatech.cs2340.group29.spacemerchant.model.Inventory)
+     */
     public void setInventory( Inventory newInventory )
     {
         this.inventory = newInventory;
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getMoney()
+     */
     public int getMoney()
     {
         return money;
     }
     
+    /**
+     * Override:
+     * 
+     * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#setMoney(int)
+     */
     public void setMoney( int money )
     {
         this.money = money;
     }
     
+    /**
+     * Gets the base.
+     * 
+     * @return the base
+     */
     public int getBase()
     {
         return base;
     }
     
+    /**
+     * Sets the base.
+     * 
+     * @param base
+     *            the new base
+     */
     public void setBase( int base )
     {
         this.base = base;
     }
     
+    /**
+     * Gets the land.
+     * 
+     * @return the land
+     */
     public int getLand()
     {
         return land;
     }
     
+    /**
+     * Sets the land.
+     * 
+     * @param land
+     *            the new land
+     */
     public void setLand( int land )
     {
         this.land = land;
     }
     
+    /**
+     * Gets the cloud.
+     * 
+     * @return the cloud
+     */
     public int getCloud()
     {
         return cloud;
     }
     
+    /**
+     * Sets the cloud.
+     * 
+     * @param cloud
+     *            the new cloud
+     */
     public void setCloud( int cloud )
     {
         this.cloud = cloud;

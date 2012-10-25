@@ -1,8 +1,16 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
 import java.util.LinkedList;
 
+/**
+ * The Class Inventory.
+ */
 public class Inventory
 {
     public static final int    numOfItemTypes = 7;
@@ -12,7 +20,7 @@ public class Inventory
     private int                capacity;
     
     /**
-     * constructor creates the inventory
+     * Instantiates a new inventory.
      */
     @SuppressWarnings ( "unchecked")
     public Inventory()
@@ -27,7 +35,10 @@ public class Inventory
     }
     
     /**
-     * constructor creates the inventory
+     * Instantiates a new inventory.
+     * 
+     * @param capacityMultiplyer
+     *            the int
      */
     @SuppressWarnings ( "unchecked")
     public Inventory( int capacityMultiplyer )
@@ -38,13 +49,14 @@ public class Inventory
             Inventory[i] = new LinkedList<Item>();
         }
         size = 0;
-        this.capacity = 10 + capacityMultiplyer * 2;
+        this.capacity = 10 + ( capacityMultiplyer * 2 );
     }
     
     /**
-     * adds an item to an inventory
+     * Adds the.
      * 
      * @param itm
+     *            the Item
      */
     public void add( Item itm )
     {
@@ -53,58 +65,78 @@ public class Inventory
     }
     
     /**
-     * adds all the items from an array to an inventory
+     * Adds the all.
      * 
      * @param itm
+     *            the Item[]
      */
     public void addAll( Item[] itm )
     {
-        for ( int i = 0; i < itm.length; i++ )
-            add( itm[i] );
+        for ( Item element : itm )
+        {
+            add( element );
+        }
     }
     
     /**
-     * checks to see if an item is in the inventory
+     * Checks for item.
      * 
      * @param itm
-     * @return true if the inventory contains item; false otherwise
+     *            the Item
+     * @return true, if successful
      */
     public boolean hasItem( Item itm )
     {
         if ( Inventory[itm.getType()].size() > 0 )
+        {
             for ( int i = 0; i < Inventory[itm.getType()].size(); i++ )
+            {
                 if ( Inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
+                {
                     return true;
+                }
+            }
+        }
         
         return false;
     }
     
     /**
-     * gets an item from the inventory
+     * Gets the item.
      * 
      * @param itm
-     * @return the item if it exists, null otherwise
+     *            the Item
+     * @return the item
      */
     public Item getItem( Item itm )
     {
         if ( Inventory[itm.getType()].size() > 0 )
+        {
             for ( int i = 0; i < Inventory[itm.getType()].size(); i++ )
+            {
                 if ( Inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
+                {
                     return Inventory[itm.getType()].get( i );
+                }
+            }
+        }
         
         return null;
     }
     
     /**
-     * removes an item from the inventory and return it
+     * Removes the.
      * 
      * @param itm
-     * @return returns the item removed, null otherwise
+     *            the Item
+     * @return the item
      */
     public Item remove( Item itm )
     {
         if ( Inventory[itm.getType()].size() > 0 )
+        {
             for ( int i = 0; i < Inventory[itm.getType()].size(); i++ )
+            {
                 if ( Inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
                 {
                     Item temp = Inventory[itm.getType()].get( i );
@@ -112,12 +144,14 @@ public class Inventory
                     size--;
                     return temp;
                 }
+            }
+        }
         
         return null;
     }
     
     /**
-     * clear the inventory
+     * Clear.
      */
     @SuppressWarnings ( "unchecked")
     public void clear()
@@ -127,20 +161,30 @@ public class Inventory
     }
     
     /**
-     * gets the size of the inventory
+     * Size.
      * 
-     * @return the size of the inventory
+     * @return the int
      */
     public int size()
     {
         return size;
     }
     
+    /**
+     * Capacity.
+     * 
+     * @return the int
+     */
     public int capacity()
     {
         return capacity;
     }
     
+    /**
+     * Gets the contents.
+     * 
+     * @return the contents
+     */
     public LinkedList<Item>[] getContents()
     {
         return Inventory;

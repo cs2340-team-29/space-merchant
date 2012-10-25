@@ -32,8 +32,9 @@ public class LaunchActivity extends Activity
     
     /**
      * Goes to the select game.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoSelectGame( View v )
     {
@@ -44,8 +45,9 @@ public class LaunchActivity extends Activity
     
     /**
      * Goes to the about page.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoAboutPage( View v )
     {

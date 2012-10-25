@@ -23,7 +23,7 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Inventory;
 import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 
 /**
- * The Class SelectGalleryAdapter.
+ * The Class TradingItemsAdapter.
  */
 public class TradingItemsAdapter extends BaseAdapter
 {
@@ -31,14 +31,14 @@ public class TradingItemsAdapter extends BaseAdapter
     private Context         context;
     
     /**
-     * Instantiates a new select gallery adapter.
+     * Instantiates a new trading items adapter.
      * 
      * @param context
      *            the Context
      * @param layoutResourceId
      *            the int
-     * @param drawables
-     *            the ArrayList<Integer>
+     * @param items
+     *            the Inventory
      */
     public TradingItemsAdapter( Context context, int layoutResourceId, Inventory items )
     {

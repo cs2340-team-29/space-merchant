@@ -8,48 +8,89 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
 
 import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 
+/**
+ * The Class Market.
+ */
 public class Market
 {
     
     // The two marketables to trade between
     private Marketable a, b;
     
+    /**
+     * Instantiates a new market.
+     * 
+     * @param a
+     *            the Marketable
+     * @param b
+     *            the Marketable
+     */
     public Market( Marketable a, Marketable b )
     {
         setMarketableA( a );
         setMarketableB( b );
     }
     
+    /**
+     * Gets the marketable a.
+     * 
+     * @return the marketable a
+     */
     public Marketable getMarketableA()
     {
         return a;
     }
     
+    /**
+     * Sets the marketable a.
+     * 
+     * @param a
+     *            the new marketable a
+     */
     public void setMarketableA( Marketable a )
     {
         this.a = a;
     }
     
+    /**
+     * Gets the marketable b.
+     * 
+     * @return the marketable b
+     */
     public Marketable getMarketableB()
     {
         return b;
     }
     
+    /**
+     * Sets the marketable b.
+     * 
+     * @param b
+     *            the new marketable b
+     */
     public void setMarketableB( Marketable b )
     {
         this.b = b;
     }
     
-    public int getCost(Item item)
+    /**
+     * Gets the cost.
+     * 
+     * @param item
+     *            the Item
+     * @return the cost
+     */
+    public int getCost( Item item )
     {
         return ( int ) ( ( item.getBasePrice() + a.getBasePrice( item ) + b.getBasePrice( item ) ) / 3.0 );
     }
     
     /**
-     * Attempts to give an item from inventory A to inventory B.
+     * Give to b.
      * 
      * @param item
-     * @return whether or not the trade was successful
+     *            the Item
+     * @return true, if successful
      */
     public boolean giveToB( Item item )
     {
@@ -76,10 +117,11 @@ public class Market
     }
     
     /**
-     * Attempts to give an item from inventory B to inventory A.
+     * Give to a.
      * 
      * @param item
-     * @return whether or not the trade was successful
+     *            the Item
+     * @return true, if successful
      */
     public boolean giveToA( Item item )
     {

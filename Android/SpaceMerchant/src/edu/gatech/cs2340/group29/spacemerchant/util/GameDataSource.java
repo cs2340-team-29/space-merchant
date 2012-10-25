@@ -152,7 +152,10 @@ public class GameDataSource
     }
    
     /**
-     *  Updates game in SQLite database
+     * Update game.
+     *
+     * @param game the Game
+     * @return the long
      */
     public long updateGame( Game game )
     {
@@ -225,11 +228,10 @@ public class GameDataSource
     }
     
     /**
-     * Inserts game and associated planet, player, inventory 
-     * and item objects into SQLite database
+     * Creates the game.
      *
-     * @param Game game to be stored
-     * @return long gameID
+     * @param game the Game
+     * @return the long
      */
     public long createGame( Game game )
     {
@@ -381,6 +383,7 @@ public class GameDataSource
         
         return planet;
     }
+    
     /**
      * Gets the planets by game id.
      *

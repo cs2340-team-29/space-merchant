@@ -1,10 +1,14 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -15,12 +19,14 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.adapter.TradingItemsAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
-import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 import edu.gatech.cs2340.group29.spacemerchant.model.Market;
 import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
+/**
+ * The Class TradeActivity.
+ */
 public class TradeActivity extends Activity
 {
     
@@ -34,6 +40,11 @@ public class TradeActivity extends Activity
     
     public static final String GAME_ID = "GAME_ID_EXTRA";
     
+    /**
+     * Override:
+     * 
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
@@ -55,6 +66,12 @@ public class TradeActivity extends Activity
         updateLists( null );
     }
     
+    /**
+     * Update lists.
+     * 
+     * @param v
+     *            the View
+     */
     public void updateLists( View v )
     {
         ( ( TextView ) this.findViewById( R.id.entity1Name ) ).setText( a.getName() );
@@ -85,13 +102,29 @@ public class TradeActivity extends Activity
         super.onStop();
     }
     
+    /**
+     * The listener interface for receiving ASelectItem events. The class that
+     * is interested in processing a ASelectItem event implements this
+     * interface, and the object created with that class is registered with a
+     * component using the component's
+     * <code>addASelectItemListener<code> method. When
+     * the ASelectItem event occurs, that object's appropriate
+     * method is invoked.
+     * 
+     * @see ASelectItemEvent
+     */
     class ASelectItemListener implements OnItemClickListener
     {
         
+        /**
+         * Override:
+         * 
+         * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
+         *      android.view.View, int, long)
+         */
         public void onItemClick( AdapterView<?> parent, View view, int position, long arg3 )
         {
-            if ( market.giveToB( ( Item ) ( ( ( TradingItemsAdapter ) parent.getAdapter() )
-                    .getItem( position ) ) ) )
+            if ( market.giveToB( ( ( ( TradingItemsAdapter ) parent.getAdapter() ).getItem( position ) ) ) )
             {
                 a = market.getMarketableA();
                 b = market.getMarketableB();
@@ -107,13 +140,29 @@ public class TradeActivity extends Activity
         }
     }
     
+    /**
+     * The listener interface for receiving BSelectItem events. The class that
+     * is interested in processing a BSelectItem event implements this
+     * interface, and the object created with that class is registered with a
+     * component using the component's
+     * <code>addBSelectItemListener<code> method. When
+     * the BSelectItem event occurs, that object's appropriate
+     * method is invoked.
+     * 
+     * @see BSelectItemEvent
+     */
     class BSelectItemListener implements OnItemClickListener
     {
         
+        /**
+         * Override:
+         * 
+         * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
+         *      android.view.View, int, long)
+         */
         public void onItemClick( AdapterView<?> parent, View view, int position, long arg3 )
         {
-            if ( market.giveToA( ( Item ) ( ( ( TradingItemsAdapter ) parent.getAdapter() )
-                    .getItem( position ) ) ) )
+            if ( market.giveToA( ( ( ( TradingItemsAdapter ) parent.getAdapter() ).getItem( position ) ) ) )
             {
                 a = market.getMarketableA();
                 b = market.getMarketableB();
@@ -130,6 +179,12 @@ public class TradeActivity extends Activity
         
     }
     
+    /**
+     * Done.
+     * 
+     * @param v
+     *            the View
+     */
     public void done( View v )
     {
         updateLists( null );
