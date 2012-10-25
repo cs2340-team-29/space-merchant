@@ -52,8 +52,8 @@ public class TradeActivity extends Activity
         
         ( ( TextView ) this.findViewById( R.id.entity1Name ) ).setText( a.getName() );
         ( ( TextView ) this.findViewById( R.id.entity2Name ) ).setText( b.getName() );
-        ( ( TextView ) this.findViewById( R.id.entity1Money ) ).setText( a.getMoney() );
-        ( ( TextView ) this.findViewById( R.id.entity2Money ) ).setText( b.getMoney() );
+        ( ( TextView ) this.findViewById( R.id.entity1Money ) ).setText( "$" + a.getMoney() );
+        ( ( TextView ) this.findViewById( R.id.entity2Money ) ).setText( "$" + b.getMoney() );
         
         TradingItemsAdapter t1 = new TradingItemsAdapter( this, R.layout.trading_item_row, a.getInventory() );
         TradingItemsAdapter t2 = new TradingItemsAdapter( this, R.layout.trading_item_row, b.getInventory() );

@@ -23,6 +23,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.adapter.SelectGalleryAdapter;
+import edu.gatech.cs2340.group29.spacemerchant.model.Inventory;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 
 /**
@@ -153,6 +154,9 @@ public class PlayerConfig extends Activity
             stats[1] = stat2.getProgress();
             stats[2] = stat3.getProgress();
             stats[3] = stat4.getProgress();
+            
+            Inventory inv = new Inventory();
+            player.setInventory( inv );
             
             int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) )
                     .getSelectedItemPosition();

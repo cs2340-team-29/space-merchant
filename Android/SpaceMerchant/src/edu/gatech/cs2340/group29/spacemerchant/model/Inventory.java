@@ -5,52 +5,54 @@ import java.util.LinkedList;
 
 public class Inventory
 {
-    private final int          numOfItemTypes = 7;
+    public static final int    numOfItemTypes = 7;
     
     private LinkedList<Item>[] Inventory;
     private int                size;
-    private int capacity;
+    private int                capacity;
     
     /**
-     * 
      * constructor creates the inventory
-     * 
      */
     @SuppressWarnings ( "unchecked")
     public Inventory()
     {
         Inventory = new LinkedList[numOfItemTypes];
+        for ( int i = 0; i < Inventory.length; i++ )
+        {
+            Inventory[i] = new LinkedList<Item>();
+        }
         size = 0;
         capacity = 100;
     }
     
     /**
-     * 
      * constructor creates the inventory
-     * 
      */
     @SuppressWarnings ( "unchecked")
-    public Inventory(int capacity)
+    public Inventory( int capacity )
     {
         Inventory = new LinkedList[numOfItemTypes];
+        for ( int i = 0; i < Inventory.length; i++ )
+        {
+            Inventory[i] = new LinkedList<Item>();
+        }
         size = 0;
         this.capacity = capacity;
     }
     
     /**
-     * 
      * adds an item to an inventory
      * 
      * @param itm
      */
     public void add( Item itm )
     {
-        Inventory[itm.getType()].add(itm);
+        Inventory[itm.getType()].add( itm );
         size++;
     }
     
     /**
-     * 
      * adds all the items from an array to an inventory
      * 
      * @param itm
@@ -62,7 +64,6 @@ public class Inventory
     }
     
     /**
-     * 
      * checks to see if an item is in the inventory
      * 
      * @param itm
@@ -79,7 +80,6 @@ public class Inventory
     }
     
     /**
-     * 
      * gets an item from the inventory
      * 
      * @param itm
@@ -96,7 +96,6 @@ public class Inventory
     }
     
     /**
-     * 
      * removes an item from the inventory and return it
      * 
      * @param itm
@@ -118,9 +117,7 @@ public class Inventory
     }
     
     /**
-     * 
      * clear the inventory
-     * 
      */
     @SuppressWarnings ( "unchecked")
     public void clear()
@@ -130,7 +127,6 @@ public class Inventory
     }
     
     /**
-     * 
      * gets the size of the inventory
      * 
      * @return the size of the inventory
@@ -140,11 +136,13 @@ public class Inventory
         return size;
     }
     
-    public int capacity() {
-    	return capacity;
+    public int capacity()
+    {
+        return capacity;
     }
     
-    public LinkedList<Item>[] getContents() {
-    	return Inventory;
+    public LinkedList<Item>[] getContents()
+    {
+        return Inventory;
     }
 }

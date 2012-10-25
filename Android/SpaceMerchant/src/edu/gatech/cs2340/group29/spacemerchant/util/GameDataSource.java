@@ -202,6 +202,7 @@ public class GameDataSource
         
         LinkedList<Item>[] inventoryItems = inventory.getContents();
         
+        
         for( LinkedList<Item> inventoryItemsByType : inventoryItems )
         {
             
