@@ -66,7 +66,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + "     resourceType integer not null, "
             + "     name string not null, "
             + "     xCoord int not null, "
-            + "     yCoord int not null "
+            + "     yCoord int not null, "
+            + "     money int not null, "
+            + "     base int not null, "
+            + "     land int not null, "
+            + " 	cloud int not null "
             + " )";
 
         db.execSQL( createPlanetTableQuery );

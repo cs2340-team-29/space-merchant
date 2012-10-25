@@ -34,10 +34,10 @@ public class GameDataSource
         "boosters"};
 
     private static String[] ALL_PLANET_COLUMNS = { "planet", "game", "techLevel",
-        "resourceType", "name", "xCoord" ,"yCoord" };
+        "resourceType", "name", "xCoord" ,"yCoord", "money", "base", "land", "cloud" };
     
-//  private static String[] ALL_ITEM_COLUMNS = { "item", "player", "type", 
-//  	"name", "drawable" };
+	private static String[] ALL_ITEM_COLUMNS = { "item", "game", "type", 
+		"name", "drawable" };
     
     private SQLiteDatabase  database;
     private DatabaseHelper  databaseHelper;
@@ -97,6 +97,10 @@ public class GameDataSource
         String planetName = planet.getName();
         int xCoord        = planet.getX();
         int yCoord        = planet.getY();
+        int money  		  = planet.getMoney();
+        int base		  = planet.getBase();
+        int land 		  = planet.getLand();
+        int cloud 		  = planet.getCloud();
         
         ContentValues values = new ContentValues();
         
@@ -110,6 +114,10 @@ public class GameDataSource
         values.put("name", planetName);
         values.put("xCoord", xCoord);
         values.put("yCoord", yCoord);
+        values.put("money", money);
+        values.put("base", base);
+        values.put("land", land);
+        values.put("cloud", cloud);
         
         long planetID = database.insert( "tb_planet", null, values ); 
         
@@ -135,7 +143,7 @@ public class GameDataSource
         values.put( "name", itemName );
         values.put( "drawable", drawable );
             
-        long itemID = database.insert( "tb_player_inventory", null, values); 
+        long itemID = database.insert( "tb_item", null, values); 
         
         return itemID;
    
@@ -146,7 +154,6 @@ public class GameDataSource
      */
     public long updateGame( Game game )
     {
-  
     	long gameID = game.getGameID();
 
         //remove currentPlanet from database
@@ -167,7 +174,6 @@ public class GameDataSource
         
         // insert currentPlanet into database
       
-        ContentValues values = new ContentValues();
         long currentPlanetID = createPlanet( currentPlanet );
 
         //insert game, player, ship into database
@@ -181,6 +187,8 @@ public class GameDataSource
         int fuselage     = ship.getFuselage();
         int cabin        = ship.getCabin();
         int boosters     = ship.getBoosters();
+        
+        ContentValues values = new ContentValues();
         
         values.put("planet",currentPlanetID);
         values.put("money",money);
@@ -201,7 +209,6 @@ public class GameDataSource
         //insert inventory into database
         
         LinkedList<Item>[] inventoryItems = inventory.getContents();
-        
         
         for( LinkedList<Item> inventoryItemsByType : inventoryItems )
         {
@@ -229,7 +236,6 @@ public class GameDataSource
         Universe universe    = game.getUniverse();
         Player player        = game.getPlayer();
         Ship ship            = player.getShip();
-        Inventory inventory  = player.getInventory();
         
         // insert planet into database
       
@@ -324,7 +330,7 @@ public class GameDataSource
         {
             Game game = cursorToGame( cursor );
             
-            games.add( game );
+            games.add(game);
             
             cursor.moveToNext();
             
@@ -386,7 +392,7 @@ public class GameDataSource
         
         Cursor cursor = database.query( "tb_planet", ALL_PLANET_COLUMNS, "game=" + gameID, 
                                         null, null, null, null );
-        
+       
         cursor.moveToFirst();
         
         while ( !cursor.isAfterLast() )
@@ -472,7 +478,7 @@ public class GameDataSource
         ArrayList<Planet> planets = getPlanetsByGameID( gameID );
 
         universe.setUniverse(planets);
-        
+
         //set up game object 
         
         game.setID( gameID );
@@ -480,7 +486,7 @@ public class GameDataSource
         game.setPlayer( player );
         game.setPlanet( currentPlanet );
         game.setUniverse( universe );
-        
+       
         return game;
     }
 
@@ -495,8 +501,12 @@ public class GameDataSource
         
         Planet planet = new Planet(cursor.getString(4), cursor.getInt(5), cursor.getInt(6), context );
       
-        planet.setTechLevel( cursor.getInt(2) );
-        planet.setResourceType( cursor.getInt(3) );
+        planet.setTechLevel(cursor.getInt(2));
+        planet.setResourceType(cursor.getInt(3));
+        planet.setMoney(cursor.getInt(7));
+        planet.setBase(cursor.getInt(8));
+        planet.setLand(cursor.getInt(9));
+        planet.setCloud(cursor.getInt(10));
         
         return planet;
     }    
@@ -508,9 +518,9 @@ public class GameDataSource
      */
     private Item cursorToItem(Cursor cursor)
     {
-        String name   = cursor.getString(0);
-        int type      = cursor.getInt(1);
-        int drawable  = cursor.getInt(2);
+        int type      = cursor.getInt(2);
+        String name   = cursor.getString(3);
+        int drawable  = cursor.getInt(4);
        
         Item item = new Item(type, name, drawable);
         
@@ -528,13 +538,12 @@ public class GameDataSource
         
         ArrayList<Item> items = new ArrayList<Item>();
        
-        String query = "select name, type, drawable from tb_item";
-                
-        Cursor cursor = database.rawQuery(query, null);
+        Cursor cursor = database.query( "tb_item", ALL_ITEM_COLUMNS, "game=" + gameID, 
+                                        null, null, null, null );
         
         cursor.moveToFirst();
         
-        while( cursor.isLast() )
+        while( !cursor.isAfterLast() )
         {
             items.add((cursorToItem(cursor)));
             cursor.moveToNext();
