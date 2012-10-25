@@ -438,7 +438,7 @@ public class GameDataSource
         //instantiate all the objects that are nested in the game object
         
         Ship ship            = new Ship();
-        Inventory inventory  = new Inventory();
+        Inventory inventory  = new Inventory( engineerSkillPoints );
         Player player        = new Player();
         Universe universe    = new Universe(difficulty, context);
         Planet currentPlanet = getPlanetByID(currentPlanetID);
