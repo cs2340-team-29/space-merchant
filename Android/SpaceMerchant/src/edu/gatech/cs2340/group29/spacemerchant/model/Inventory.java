@@ -30,7 +30,7 @@ public class Inventory
      * constructor creates the inventory
      */
     @SuppressWarnings ( "unchecked")
-    public Inventory( int capacity )
+    public Inventory( int capacityMultiplyer )
     {
         Inventory = new LinkedList[numOfItemTypes];
         for ( int i = 0; i < Inventory.length; i++ )
@@ -38,7 +38,7 @@ public class Inventory
             Inventory[i] = new LinkedList<Item>();
         }
         size = 0;
-        this.capacity = capacity;
+        this.capacity = 10 + capacityMultiplyer * 2;
     }
     
     /**
