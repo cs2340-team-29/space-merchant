@@ -58,6 +58,8 @@ public class GameActivity extends Activity
         pl = g.getPlanet();
         gds.close();
         
+        System.out.println( p.getInventory().capacity() );
+        
         // Setting images for player and ship
         ( ( ImageView ) findViewById( R.id.head ) ).setImageResource( p.getHead() );
         ( ( ImageView ) findViewById( R.id.body_player ) ).setImageResource( p.getBody() );
@@ -66,6 +68,9 @@ public class GameActivity extends Activity
         ( ( ImageView ) findViewById( R.id.cabin ) ).setImageResource( s.getCabin() );
         ( ( ImageView ) findViewById( R.id.fuselage ) ).setImageResource( s.getFuselage() );
         ( ( ImageView ) findViewById( R.id.boosters ) ).setImageResource( s.getBoosters() );
+        ( ( ImageView ) findViewById( R.id.planetBase ) ).setImageResource( pl.getBase() );
+        ( ( ImageView ) findViewById( R.id.planetLand ) ).setImageResource( pl.getLand() );
+        ( ( ImageView ) findViewById( R.id.planetCloud ) ).setImageResource( pl.getCloud() );
         
         Resources res = getResources();
         String[] techLevels = res.getStringArray( R.array.TechLevels );

@@ -49,8 +49,8 @@ public class Planet implements Marketable
     public static final int[] clouds           = new int[]{ R.drawable.ic_clouds_a, R.drawable.ic_clouds_b,
             R.drawable.ic_clouds_c, R.drawable.ic_clouds_d, R.drawable.ic_clouds_e };
     public static final int[] itemDrawables    = new int[]{ R.drawable.ic_generic_object,
-            R.drawable.ic_mineral, R.drawable.ic_liquid, R.drawable.ic_art, R.drawable.ic_animal,
-            R.drawable.ic_boosters_2          };
+            R.drawable.ic_mineral, R.drawable.ic_liquid, R.drawable.ic_animal, R.drawable.ic_art,
+            R.drawable.ic_gun                 };
     
     private int               techLevel;
     private int               resourceType;
@@ -215,6 +215,7 @@ public class Planet implements Marketable
     private void generateInventory()
     {
         inventory = new Inventory();
+        Random r = new Random();
         Resources res = context.getResources();
         int[] items = res.getIntArray( R.array.Items );
         String[] names = res.getStringArray( R.array.ItemNames );
@@ -222,10 +223,13 @@ public class Planet implements Marketable
         for ( int i = 0; i < items.length; i++ )
         {
             int tempTechLevel = items[i] % 10;
-            int tempItemType = items[i] / 10 % 10;
+            int tempItemType = ( items[i] / 10 ) % 10;
             if ( tempTechLevel <= this.techLevel )
             {
-                inventory.add( new Item( tempItemType, names[i], itemDrawables[tempItemType] ) );
+                for ( int j = 0; j < r.nextInt( this.techLevel + 1 ); j++ )
+                {
+                    inventory.add( new Item( tempItemType, names[i], itemDrawables[tempItemType] ) );
+                }
             }
         }
     }

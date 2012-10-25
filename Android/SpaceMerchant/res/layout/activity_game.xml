@@ -94,13 +94,30 @@
             android:text="@string/hello_world"
             android:textAppearance="@android:style/TextAppearance.Medium" />
 
-        <ImageView
-            android:id="@+id/planetImage"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:onClick="gotoTrading"
-            android:src="@android:drawable/ic_menu_camera" />
+            android:onClick="gotoTrading" >
+
+            <ImageView
+                android:id="@+id/planetBase"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_camera" />
+
+            <ImageView
+                android:id="@+id/planetLand"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_camera" />
+
+            <ImageView
+                android:id="@+id/planetCloud"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_camera" />
+        </FrameLayout>
     </LinearLayout>
 
 </FrameLayout>

@@ -155,7 +155,7 @@ public class PlayerConfig extends Activity
             stats[2] = stat3.getProgress();
             stats[3] = stat4.getProgress();
             
-            Inventory inv = new Inventory(10 + stats[3] * 2);
+            Inventory inv = new Inventory( 10 + stats[3] * 2 );
             player.setInventory( inv );
             
             int difficulty = ( ( AdapterView<SpinnerAdapter> ) findViewById( R.id.chooseDifficulty ) )
