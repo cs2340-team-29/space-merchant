@@ -64,7 +64,7 @@ public class Planet implements Marketable
     {
         Random r = new Random();
         techLevel = r.nextInt( 8 );
-        resourceType = r.nextInt( 11 );
+        resourceType = r.nextInt( 11 ) - 5;
         this.name = name;
         this.x = x;
         this.y = y;

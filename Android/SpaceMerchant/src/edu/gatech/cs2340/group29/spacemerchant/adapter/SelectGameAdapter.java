@@ -30,10 +30,13 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
     
     /**
      * Instantiates a new select game adapter.
-     *
-     * @param context the Context
-     * @param layoutResourceId the int
-     * @param games the ArrayList<Game>
+     * 
+     * @param context
+     *            the Context
+     * @param layoutResourceId
+     *            the int
+     * @param games
+     *            the ArrayList<Game>
      */
     public SelectGameAdapter( Context context, int layoutResourceId, ArrayList<Game> games )
     {
@@ -69,10 +72,11 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
         protected TextView  stat4;
     }
     
-    /** 
-     *
+    /**
      * Override:
-     * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+     * 
+     * @see android.widget.ArrayAdapter#getView(int, android.view.View,
+     *      android.view.ViewGroup)
      */
     @Override
     public View getView( int position, View convertView, ViewGroup parent )
@@ -113,11 +117,11 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
         viewHolder.ship_cabin.setImageResource( players.get( position ).getShip().getCabin() );
         viewHolder.ship_boosters.setImageResource( players.get( position ).getShip().getBoosters() );
         viewHolder.player_name.setText( players.get( position ).getName() );
-        viewHolder.money.setText( Integer.toString( players.get( position ).getMoney() ) );
-        viewHolder.stat1.setText( Integer.toString( players.get( position ).getStats()[0] ) );
-        viewHolder.stat2.setText( Integer.toString( players.get( position ).getStats()[1] ) );
-        viewHolder.stat3.setText( Integer.toString( players.get( position ).getStats()[2] ) );
-        viewHolder.stat4.setText( Integer.toString( players.get( position ).getStats()[3] ) );
+        viewHolder.money.setText( "$ " + players.get( position ).getMoney() );
+        viewHolder.stat1.setText( "Pilot: " + players.get( position ).getStats()[0] );
+        viewHolder.stat2.setText( "Fighter: " + players.get( position ).getStats()[1] );
+        viewHolder.stat3.setText( "Trader: " + players.get( position ).getStats()[2] );
+        viewHolder.stat4.setText( "Engineer: " + players.get( position ).getStats()[3] );
         return convertView;
     }
 }
