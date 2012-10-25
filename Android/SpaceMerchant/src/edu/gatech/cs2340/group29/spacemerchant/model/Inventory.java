@@ -9,6 +9,7 @@ public class Inventory
     
     private LinkedList<Item>[] Inventory;
     private int                size;
+    private int capacity;
     
     /**
      * 
@@ -20,6 +21,20 @@ public class Inventory
     {
         Inventory = new LinkedList[numOfItemTypes];
         size = 0;
+        capacity = 100;
+    }
+    
+    /**
+     * 
+     * constructor creates the inventory
+     * 
+     */
+    @SuppressWarnings ( "unchecked")
+    public Inventory(int capacity)
+    {
+        Inventory = new LinkedList[numOfItemTypes];
+        size = 0;
+        this.capacity = capacity;
     }
     
     /**
@@ -30,7 +45,7 @@ public class Inventory
      */
     public void add( Item itm )
     {
-        Inventory[itm.getType()].add( itm );
+        Inventory[itm.getType()].add(itm);
         size++;
     }
     
@@ -123,6 +138,10 @@ public class Inventory
     public int size()
     {
         return size;
+    }
+    
+    public int capacity() {
+    	return capacity;
     }
     
     public LinkedList<Item>[] getContents() {
