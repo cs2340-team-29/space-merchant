@@ -37,7 +37,7 @@ public class GameDataSource
         "resourceType", "name", "xCoord" ,"yCoord", "money", "base", "land", "cloud" };
     
 	private static String[] ALL_ITEM_COLUMNS = { "item", "game", "type", 
-		"name", "drawable" };
+		"name", "drawable", "techLevel" };
     
     private SQLiteDatabase  database;
     private DatabaseHelper  databaseHelper;
@@ -137,11 +137,13 @@ public class GameDataSource
         String itemName  = item.getName();
         int drawable     = item.getDrawable();
         int itemType     = item.getType();
+        int techLevel    = item.getTechLevel();
         
         values.put( "game", gameID );
         values.put( "type", itemType );
         values.put( "name", itemName );
         values.put( "drawable", drawable );
+        values.put( "techLevel", techLevel );
             
         long itemID = database.insert( "tb_item", null, values); 
         
@@ -521,8 +523,9 @@ public class GameDataSource
         int type      = cursor.getInt(2);
         String name   = cursor.getString(3);
         int drawable  = cursor.getInt(4);
+        int techLevel  = cursor.getInt(5);
        
-        Item item = new Item(type, name, drawable);
+        Item item = new Item(type, name, drawable, techLevel );
         
         return item;
         

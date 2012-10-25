@@ -12,6 +12,7 @@ public class Item implements Comparable<Item>
     private int       type;
     private String    name;
     private int       drawable;
+    private int		  techLevel;
     
     /**
      * creates an item
@@ -21,11 +22,12 @@ public class Item implements Comparable<Item>
      * @param name
      * @param drawable
      */
-    public Item( int type, String name, int drawable )
+    public Item( int type, String name, int drawable, int techLevel )
     {
         this.type = type;
         this.name = name;
         this.drawable = drawable;
+        this.setTechLevel(techLevel);
     }
     
     /**
@@ -105,4 +107,12 @@ public class Item implements Comparable<Item>
             return 0;
         return -1;
     }
+
+	public int getTechLevel() {
+		return techLevel;
+	}
+
+	public void setTechLevel(int techLevel) {
+		this.techLevel = techLevel;
+	}
 }

@@ -228,7 +228,7 @@ public class Planet implements Marketable
             {
                 for ( int j = 0; j < r.nextInt( this.techLevel + 1 ); j++ )
                 {
-                    inventory.add( new Item( tempItemType, names[i], itemDrawables[tempItemType] ) );
+                    inventory.add( new Item( tempItemType, names[i], itemDrawables[tempItemType], tempTechLevel ) );
                 }
             }
         }

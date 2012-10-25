@@ -81,7 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + "     game integer not null, "
             + "     type integer not null, " 
             + "     name string not null, " 
-            + "     drawable integer not null "
+            + "     drawable integer not null, "
+            + "     techLevel integer not null "
             + " )";
         
         db.execSQL( createItemTableQuery );
