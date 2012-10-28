@@ -52,10 +52,10 @@ public class Universe
      */
     public ArrayList<Planet> generatePlanets()
     {
-        // 12^2 < 120 (# of planets) with some room to breathe,
+        // 12^2 > 120 (# of planets) with some room to breathe,
         // a.k.a. the smallest universe size
-        width = 12 * difficulty;
-        height = 12 * difficulty;
+        width = 10 + 2 * difficulty;
+        height = 10 + 2 * difficulty;
         Resources res = context.getResources();
         planet_name = new ArrayList<String>( Arrays.asList( res.getStringArray( R.array.planets ) ) );
         planet_xy = new ArrayList<Point>();

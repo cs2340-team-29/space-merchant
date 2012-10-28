@@ -62,6 +62,27 @@ public class SelectGame extends Activity
         SelectGame.this.startActivity( intent );
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onBackPressed()
+     */
+    @Override
+    public void onBackPressed()
+    {
+        gotoLaunchActivity( null );
+    }
+    
+    /**
+     * @param v
+     */
+    public void gotoLaunchActivity( View v )
+    {
+        // launch SelectGame activity
+        Intent selectGameIntent = new Intent( SelectGame.this, LaunchActivity.class );
+        SelectGame.this.startActivity( selectGameIntent );
+    }
+    
     /**
      * The listener interface for receiving selectGame events. The class that is
      * interested in processing a selectGame event implements this interface,

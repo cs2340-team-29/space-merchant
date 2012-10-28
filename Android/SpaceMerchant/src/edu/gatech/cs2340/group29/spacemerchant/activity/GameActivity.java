@@ -110,8 +110,7 @@ public class GameActivity extends Activity
         switch ( item.getItemId() )
         {
             case R.id.menu_travel :
-                // to do gotoTravelActivity
-                return true;
+                gotoTravelActivity( null );
             case R.id.menu_help :
                 // load the help overlay
                 return true;
@@ -141,6 +140,13 @@ public class GameActivity extends Activity
     {
         Intent intent = new Intent( GameActivity.this, TradeActivity.class );
         intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
+        GameActivity.this.startActivity( intent );
+    }
+    
+    public void gotoTravelActivity( View v )
+    {
+        Intent intent = new Intent( GameActivity.this, TravelActivity.class );
+        intent.putExtra( TravelActivity.GAME_ID, g.getGameID() );
         GameActivity.this.startActivity( intent );
     }
     

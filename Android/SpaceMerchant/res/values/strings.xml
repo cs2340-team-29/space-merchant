@@ -205,5 +205,6 @@
     <string name="Musket">Musket</string>
     <string name="Tank">Tank</string>
     <string name="Warship">Warship</string>
+    <string name="title_activity_travel">TravelActivity</string>
 
 </resources>

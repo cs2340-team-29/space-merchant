@@ -51,6 +51,11 @@
             android:label="@string/title_activity_trade"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".activity.TravelActivity"
+            android:label="@string/title_activity_travel"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
