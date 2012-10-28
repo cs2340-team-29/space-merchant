@@ -31,10 +31,10 @@ public class GameActivity extends Activity
     
     private boolean            showHelpOverlay;
     
-    Game                       g;
-    Player                     p;
-    Ship                       s;
-    Planet                     pl;
+    Game                       game;
+    Player                     player;
+    Ship                       ship;
+    Planet                     planet;
     
     /**
      * Override:
@@ -52,33 +52,33 @@ public class GameActivity extends Activity
         
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
-        g = gds.getGameByID( gameID );
-        p = g.getPlayer();
-        s = p.getShip();
-        pl = g.getPlanet();
+        game = gds.getGameByID( gameID );
+        player = game.getPlayer();
+        ship = player.getShip();
+        planet = game.getPlanet();
         gds.close();
         
-        System.out.println( p.getInventory().capacity() );
+        System.out.println( player.getInventory().capacity() );
         
         // Setting images for player and ship
-        ( ( ImageView ) findViewById( R.id.head ) ).setImageResource( p.getHead() );
-        ( ( ImageView ) findViewById( R.id.body_player ) ).setImageResource( p.getBody() );
-        ( ( ImageView ) findViewById( R.id.legs ) ).setImageResource( p.getLegs() );
-        ( ( ImageView ) findViewById( R.id.feet ) ).setImageResource( p.getFeet() );
-        ( ( ImageView ) findViewById( R.id.cabin ) ).setImageResource( s.getCabin() );
-        ( ( ImageView ) findViewById( R.id.fuselage ) ).setImageResource( s.getFuselage() );
-        ( ( ImageView ) findViewById( R.id.boosters ) ).setImageResource( s.getBoosters() );
-        ( ( ImageView ) findViewById( R.id.planetBase ) ).setImageResource( pl.getBase() );
-        ( ( ImageView ) findViewById( R.id.planetLand ) ).setImageResource( pl.getLand() );
-        ( ( ImageView ) findViewById( R.id.planetCloud ) ).setImageResource( pl.getCloud() );
+        ( ( ImageView ) findViewById( R.id.head ) ).setImageResource( player.getHead() );
+        ( ( ImageView ) findViewById( R.id.body_player ) ).setImageResource( player.getBody() );
+        ( ( ImageView ) findViewById( R.id.legs ) ).setImageResource( player.getLegs() );
+        ( ( ImageView ) findViewById( R.id.feet ) ).setImageResource( player.getFeet() );
+        ( ( ImageView ) findViewById( R.id.cabin ) ).setImageResource( ship.getCabin() );
+        ( ( ImageView ) findViewById( R.id.fuselage ) ).setImageResource( ship.getFuselage() );
+        ( ( ImageView ) findViewById( R.id.boosters ) ).setImageResource( ship.getBoosters() );
+        ( ( ImageView ) findViewById( R.id.planetBase ) ).setImageResource( planet.getBase() );
+        ( ( ImageView ) findViewById( R.id.planetLand ) ).setImageResource( planet.getLand() );
+        ( ( ImageView ) findViewById( R.id.planetCloud ) ).setImageResource( planet.getCloud() );
         
         Resources res = getResources();
         String[] techLevels = res.getStringArray( R.array.TechLevels );
         String[] resourceTypes = res.getStringArray( R.array.ResourceTypes );
         
         // set up planet image and info
-        ( ( TextView ) findViewById( R.id.planetInfo ) ).setText( "Name: " + pl.getName() + "\nTech Level: "
-                + techLevels[pl.getTechLevel()] + "\nResources: " + resourceTypes[pl.getResourceType() + 5] );
+        ( ( TextView ) findViewById( R.id.planetInfo ) ).setText( "Name: " + planet.getName() + "\nTech Level: "
+                + techLevels[planet.getTechLevel()] + "\nResources: " + resourceTypes[planet.getResourceType() + 5] );
         
         if ( showHelpOverlay )
         {
@@ -140,7 +140,7 @@ public class GameActivity extends Activity
     public void gotoTrading( View v )
     {
         Intent intent = new Intent( GameActivity.this, TradeActivity.class );
-        intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
+        intent.putExtra( TradeActivity.GAME_ID, game.getGameID() );
         GameActivity.this.startActivity( intent );
     }
     
@@ -149,7 +149,7 @@ public class GameActivity extends Activity
     {
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
-        gds.updateGame( g );
+        gds.updateGame( game );
         gds.close();
         super.onStop();
     }
@@ -168,10 +168,10 @@ public class GameActivity extends Activity
     /**
      * Goes to the select game.
      * 
-     * @param v
+     * @param view
      *            the View
      */
-    public void gotoSelectGame( View v )
+    public void gotoSelectGame( View view )
     {
         // launch SelectGame activity
         Intent selectGameIntent = new Intent( GameActivity.this, SelectGame.class );
