@@ -3,6 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tradeBG"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -23,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="e2Name"
+                android:textColor="@android:color/primary_text_light"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -31,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="e2Money"
+                android:textColor="@android:color/primary_text_light"
                 tools:ignore="HardcodedText" />
 
             <ListView
@@ -59,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="e2Name"
+                android:textColor="@android:color/primary_text_light"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -67,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="e2Money"
+                android:textColor="@android:color/primary_text_light"
                 tools:ignore="HardcodedText" />
 
             <ListView

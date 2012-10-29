@@ -66,7 +66,8 @@ public final class R {
         public static final int ic_planet_base_e=0x7f02002d;
         public static final int ic_plant=0x7f02002e;
         public static final int ic_splash_screen=0x7f02002f;
-        public static final int splash_screen=0x7f020030;
+        public static final int overlay=0x7f020030;
+        public static final int splash_screen=0x7f020031;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09000f;
@@ -91,7 +92,6 @@ public final class R {
         public static final int entity2Money=0x7f090030;
         public static final int entity2Name=0x7f09002f;
         public static final int feet=0x7f090006;
-        public static final int frameLayout=0x7f090002;
         public static final int fuselage=0x7f090008;
         public static final int galleryBody=0x7f090017;
         public static final int galleryBoosters=0x7f090029;
@@ -101,6 +101,7 @@ public final class R {
         public static final int galleryHead=0x7f090016;
         public static final int galleryImage=0x7f09003e;
         public static final int galleryLegs=0x7f090018;
+        public static final int gameFrame=0x7f090002;
         public static final int gameList=0x7f090024;
         public static final int gotoAboutPageButton=0x7f090012;
         public static final int gotoSelectGameButton=0x7f090011;
