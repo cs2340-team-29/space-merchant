@@ -13,6 +13,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
@@ -25,12 +28,14 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 /**
  * The Class GameActivity.
  */
-public class GameActivity extends Activity
+public class GameActivity extends Activity implements OnClickListener
 {
     public static final String GAME_ID_EXTRA = "GAME_ID_EXTRA";
     public static final String HELP_OVERLAY_EXTRA = "HELP_OVERLAY_EXTRA";
     
     private boolean            showHelpOverlay;
+    private FrameLayout        fl;
+    private final int          OVERLAY_ID    = 0xBEEF;
     
     Game                       game;
     Player                     player;
@@ -83,9 +88,17 @@ public class GameActivity extends Activity
                 + "\nTech Level: " + techLevels[planet.getTechLevel()] + "\nResources: "
                 + resourceTypes[planet.getResourceType() + 5] );
         
+        fl = ( FrameLayout ) findViewById( R.id.gameFrame );
         if ( showHelpOverlay )
         {
             // show overlay
+            View v = new View( getApplicationContext() );
+            v.setLayoutParams( new LayoutParams( LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT ) );
+            v.setBackgroundDrawable( res.getDrawable( R.drawable.overlay ) );
+            v.setClickable( true );
+            v.setOnClickListener( this );
+            v.setId( OVERLAY_ID );
+            fl.addView( v );
         }
         
     }
@@ -185,5 +198,16 @@ public class GameActivity extends Activity
         // launch SelectGame activity
         Intent selectGameIntent = new Intent( GameActivity.this, SelectGame.class );
         GameActivity.this.startActivity( selectGameIntent );
+    }
+    
+    public void onClick( View v )
+    {
+        removeOverlay();
+    }
+    
+    public void removeOverlay()
+    {
+        fl.removeViewInLayout( findViewById( OVERLAY_ID ) );
+        showHelpOverlay = false;
     }
 }
