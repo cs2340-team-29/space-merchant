@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/travelBG" />
+        android:background="@drawable/travel" />
 
     <Button
         android:id="@+id/travelButton"

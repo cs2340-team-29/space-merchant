@@ -30,12 +30,12 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
  */
 public class GameActivity extends Activity implements OnClickListener
 {
-    public static final String GAME_ID_EXTRA = "GAME_ID_EXTRA";
+    public static final String GAME_ID_EXTRA      = "GAME_ID_EXTRA";
     public static final String HELP_OVERLAY_EXTRA = "HELP_OVERLAY_EXTRA";
     
     private boolean            showHelpOverlay;
     private FrameLayout        fl;
-    private final int          OVERLAY_ID    = 0xBEEF;
+    private final int          OVERLAY_ID         = 0xBEEF;
     
     Game                       game;
     Player                     player;
@@ -55,7 +55,7 @@ public class GameActivity extends Activity implements OnClickListener
         
         Intent i = getIntent();
         long gameID = i.getLongExtra( GAME_ID_EXTRA, -1 );
-        showHelpOverlay = i.getBooleanExtra(HELP_OVERLAY_EXTRA, false);
+        showHelpOverlay = i.getBooleanExtra( HELP_OVERLAY_EXTRA, false );
         
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
@@ -89,18 +89,7 @@ public class GameActivity extends Activity implements OnClickListener
                 + resourceTypes[planet.getResourceType() + 5] );
         
         fl = ( FrameLayout ) findViewById( R.id.gameFrame );
-        if ( showHelpOverlay )
-        {
-            // show overlay
-            View v = new View( getApplicationContext() );
-            v.setLayoutParams( new LayoutParams( LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT ) );
-            v.setBackgroundDrawable( res.getDrawable( R.drawable.overlay ) );
-            v.setClickable( true );
-            v.setOnClickListener( this );
-            v.setId( OVERLAY_ID );
-            fl.addView( v );
-        }
-        
+        showHelpOverlay();
     }
     
     /**
@@ -128,10 +117,25 @@ public class GameActivity extends Activity implements OnClickListener
             case R.id.menu_travel :
                 gotoTravelActivity( null );
             case R.id.menu_help :
-                // load the help overlay
-                return true;
+                showHelpOverlay = true;
+                showHelpOverlay();
             default :
                 return super.onOptionsItemSelected( item );
+        }
+    }
+    
+    private void showHelpOverlay()
+    {
+        if ( showHelpOverlay )
+        {
+            Resources res = getResources();
+            View v = new View( getApplicationContext() );
+            v.setLayoutParams( new LayoutParams( LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT ) );
+            v.setBackgroundDrawable( res.getDrawable( R.drawable.overlay ) );
+            v.setClickable( true );
+            v.setOnClickListener( this );
+            v.setId( OVERLAY_ID );
+            fl.addView( v );
         }
     }
     
