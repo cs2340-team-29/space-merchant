@@ -43,7 +43,7 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
     
     private Planet[][]         workingUniverse;
     
-    private int                canvasWidth;
+    private int                canvasWidth, paddingY;
     
     private String[]           techLevels;
     private String[]           resourceTypes;
@@ -177,7 +177,7 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         Rect dst = new Rect();
         
         int planetSize = canvas.getWidth() / workingUniverse.length;
-        int paddingY = ( canvas.getHeight() - canvas.getWidth() ) / workingUniverse[0].length;
+        paddingY = ( canvas.getHeight() - canvas.getWidth() ) / workingUniverse[0].length;
         
         this.canvasWidth = canvas.getWidth();
         
@@ -228,8 +228,8 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         {
             for ( int j = 0; j < workingUniverse[0].length; j++ )
             {
-                dst.set( planetSize * i, planetSize * j, planetSize * ( i + 1 ), planetSize * ( j + 1 ) );
-                if ( workingUniverse[i][j] != null )
+            	  dst.set( planetSize * i, (planetSize * j) + (paddingY * j), planetSize * ( i + 1 ), (planetSize * ( j + 1 )) + ((j) * paddingY) );
+                    if ( workingUniverse[i][j] != null )
                 {
                     if ( dst.contains( x, y ) )
                     {
