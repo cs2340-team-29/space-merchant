@@ -146,7 +146,7 @@ public class GameActivity extends Activity
     public void gotoTravelActivity( View v )
     {
         Intent intent = new Intent( GameActivity.this, TravelActivity.class );
-        intent.putExtra( TravelActivity.GAME_ID, g.getGameID() );
+        intent.putExtra( TravelActivity.GAME_ID, game.getGameID() );
         GameActivity.this.startActivity( intent );
     }
     
