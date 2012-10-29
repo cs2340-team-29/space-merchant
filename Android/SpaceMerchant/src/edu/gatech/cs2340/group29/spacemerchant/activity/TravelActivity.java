@@ -1,3 +1,8 @@
+/**
+ * @author MetaGalactic Merchants
+ * @version 1.0
+ * 
+ */
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
@@ -24,6 +29,9 @@ import edu.gatech.cs2340.group29.spacemerchant.model.StatGroup.Stat;
 import edu.gatech.cs2340.group29.spacemerchant.model.Universe;
 import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
+/**
+ * The Class TravelActivity.
+ */
 public class TravelActivity extends Activity implements SurfaceHolder.Callback, OnTouchListener
 {
     public static final String GAME_ID = "GAME_ID_EXTRA";
@@ -48,6 +56,11 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
     private String[]           techLevels;
     private String[]           resourceTypes;
     
+    /** 
+     *
+     * Override:
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
@@ -89,7 +102,7 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         
         SurfaceView sv = ( SurfaceView ) findViewById( R.id.surfaceView );
         sv.getHolder().addCallback( this );
-        sv.setOnTouchListener( ( OnTouchListener ) this );
+        sv.setOnTouchListener( this );
     }
     
     private void updateSelected( View v )
@@ -102,56 +115,60 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         }
     }
     
+    /**
+     * Generate working universe.
+     *
+     * @param u the Universe
+     * @param p the Planet
+     */
     public void generateWorkingUniverse( Universe u, Planet p )
     {
         int x = p.getX();
         int y = p.getY();
         
-        System.out.println( x );
-        System.out.println( y );
-        
-        for ( int i = -workingUniverse.length / 2; i < workingUniverse.length / 2; i++ )
+        for ( int i = -workingUniverse.length / 2; i < ( workingUniverse.length / 2 ); i++ )
         {
-            for ( int j = -workingUniverse[0].length / 2; j < workingUniverse[0].length / 2; j++ )
+            for ( int j = -workingUniverse[0].length / 2; j < ( workingUniverse[0].length / 2 ); j++ )
             {
-                System.out.println( ( x + i ) + ", " + ( y + j ) );
                 for ( Planet planet : universe.getUniverse() )
                 {
                     int tempX = planet.getX();
                     int tempY = planet.getY();
-                    if ( planet.getName().equalsIgnoreCase( "Acamar" ) )
+                    if ( ( tempX == ( x + i ) ) && ( tempY == ( y + j ) ) )
                     {
-                        System.out.println( planet.getName() + ", " + tempX + ", " + tempY );
-                    }
-                    if ( tempX == ( x + i ) && tempY == ( y + j ) )
-                    {
-                        workingUniverse[i + workingUniverse.length / 2][j + workingUniverse[0].length / 2] = planet;
+                        workingUniverse[i + ( workingUniverse.length / 2 )][j
+                                + ( workingUniverse[0].length / 2 )] = planet;
                     }
                 }
             }
         }
-        
-        for ( int i = 0; i < workingUniverse.length; i++ )
-        {
-            for ( int j = 0; j < workingUniverse[0].length; j++ )
-            {
-                if ( workingUniverse[i][j] != null )
-                    System.out.println( i + ", " + j + ", " + workingUniverse[i][j].getX() + ", "
-                            + workingUniverse[i][j].getY() + ", " + workingUniverse[i][j].getName() );
-            }
-        }
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.view.SurfaceHolder.Callback#surfaceChanged(android.view.SurfaceHolder, int, int, int)
+     */
     public void surfaceChanged( SurfaceHolder holder, int format, int width, int height )
     {
         tryToDraw( holder );
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.view.SurfaceHolder.Callback#surfaceCreated(android.view.SurfaceHolder)
+     */
     public void surfaceCreated( SurfaceHolder holder )
     {
         tryToDraw( holder );
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.view.SurfaceHolder.Callback#surfaceDestroyed(android.view.SurfaceHolder)
+     */
     public void surfaceDestroyed( SurfaceHolder holder )
     {
     }
@@ -201,6 +218,11 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         }
     }
     
+    /**
+     * Travel.
+     *
+     * @param v the View
+     */
     public void travel( View v )
     {
         if ( selected != null )
@@ -216,6 +238,11 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         }
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
+     */
     public boolean onTouch( View view, MotionEvent event )
     {
         int x = ( int ) event.getX();
@@ -228,8 +255,9 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         {
             for ( int j = 0; j < workingUniverse[0].length; j++ )
             {
-            	  dst.set( planetSize * i, (planetSize * j) + (paddingY * j), planetSize * ( i + 1 ), (planetSize * ( j + 1 )) + ((j) * paddingY) );
-                    if ( workingUniverse[i][j] != null )
+                dst.set( planetSize * i, ( planetSize * j ) + ( paddingY * j ), planetSize * ( i + 1 ),
+                        ( planetSize * ( j + 1 ) ) + ( ( j ) * paddingY ) );
+                if ( workingUniverse[i][j] != null )
                 {
                     if ( dst.contains( x, y ) )
                     {

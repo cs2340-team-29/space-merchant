@@ -27,13 +27,10 @@ public class SelectGalleryAdapter extends BaseAdapter
     
     /**
      * Instantiates a new select gallery adapter.
-     * 
-     * @param context
-     *            the Context
-     * @param layoutResourceId
-     *            the int
-     * @param drawables
-     *            the ArrayList<Integer>
+     *
+     * @param context the Context
+     * @param layoutResourceId the int
+     * @param drawables the ArrayList<Integer>
      */
     public SelectGalleryAdapter( Context context, int layoutResourceId, ArrayList<Integer> drawables )
     {
@@ -112,9 +109,8 @@ public class SelectGalleryAdapter extends BaseAdapter
     
     /**
      * Gets the item at position.
-     * 
-     * @param position
-     *            the int
+     *
+     * @param position the int
      * @return the item at position
      */
     public int getItemAtPosition( int position )

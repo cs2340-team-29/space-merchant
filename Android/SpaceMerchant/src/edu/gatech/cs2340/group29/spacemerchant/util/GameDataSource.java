@@ -47,9 +47,8 @@ public class GameDataSource {
 
 	/**
 	 * Instantiates a new game data source.
-	 * 
-	 * @param context
-	 *            the Context
+	 *
+	 * @param context the Context
 	 */
 	public GameDataSource(Context context) {
 		this.context = context;
@@ -58,9 +57,8 @@ public class GameDataSource {
 
 	/**
 	 * Open.
-	 * 
-	 * @throws SQLiteException
-	 *             the sQ lite exception
+	 *
+	 * @throws SQLiteException the sQ lite exception
 	 */
 	public void open() throws SQLiteException {
 		database = databaseHelper.getWritableDatabase();
@@ -153,9 +151,8 @@ public class GameDataSource {
 
 	/**
 	 * Update game.
-	 * 
-	 * @param game
-	 *            the Game
+	 *
+	 * @param game the Game
 	 * @return the long
 	 */
 	public long updateGame(Game game) {
@@ -228,9 +225,8 @@ public class GameDataSource {
 
 	/**
 	 * Creates the game.
-	 * 
-	 * @param game
-	 *            the Game
+	 *
+	 * @param game the Game
 	 * @return the long
 	 */
 	public long createGame(Game game) {
@@ -294,9 +290,8 @@ public class GameDataSource {
 
 	/**
 	 * Delete game.
-	 * 
-	 * @param game
-	 *            the Game
+	 *
+	 * @param game the Game
 	 */
 	public void deleteGame(Game game) {
 		long gameID = game.getID();
@@ -314,7 +309,7 @@ public class GameDataSource {
 
 	/**
 	 * Gets the game list.
-	 * 
+	 *
 	 * @return the game list
 	 */
 	public List<Game> getGameList() {
@@ -340,9 +335,8 @@ public class GameDataSource {
 
 	/**
 	 * Gets the game by id.
-	 * 
-	 * @param gameID
-	 *            the long
+	 *
+	 * @param gameID the long
 	 * @return the game by id
 	 */
 	public Game getGameByID(long gameID) {
@@ -361,9 +355,8 @@ public class GameDataSource {
 
 	/**
 	 * Gets the planet by id.
-	 * 
-	 * @param planetID
-	 *            the long
+	 *
+	 * @param planetID the long
 	 * @return the planet by id
 	 */
 	public Planet getPlanetByID(long planetID) {
@@ -382,9 +375,8 @@ public class GameDataSource {
 
 	/**
 	 * Gets the planets by game id.
-	 * 
-	 * @param gameID
-	 *            the long
+	 *
+	 * @param gameID the long
 	 * @return the planets by game id
 	 */
 	public ArrayList<Planet> getPlanetsByGameID(long gameID) {
@@ -411,9 +403,8 @@ public class GameDataSource {
 
 	/**
 	 * Cursor to game.
-	 * 
-	 * @param cursor
-	 *            the Cursor
+	 *
+	 * @param cursor the Cursor
 	 * @return the game
 	 */
 	public Game cursorToGame(Cursor cursor) {
@@ -493,9 +484,8 @@ public class GameDataSource {
 
 	/**
 	 * Cursor to planet.
-	 * 
-	 * @param cursor
-	 *            the Cursor
+	 *
+	 * @param cursor the Cursor
 	 * @return the planet
 	 */
 	public Planet cursorToPlanet(Cursor cursor) {

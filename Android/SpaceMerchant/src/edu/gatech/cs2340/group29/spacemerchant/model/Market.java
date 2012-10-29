@@ -19,11 +19,9 @@ public class Market
     
     /**
      * Instantiates a new market.
-     * 
-     * @param a
-     *            the Marketable
-     * @param b
-     *            the Marketable
+     *
+     * @param a the Marketable
+     * @param b the Marketable
      */
     public Market( Marketable a, Marketable b )
     {
@@ -33,7 +31,7 @@ public class Market
     
     /**
      * Gets the marketable a.
-     * 
+     *
      * @return the marketable a
      */
     public Marketable getMarketableA()
@@ -43,9 +41,8 @@ public class Market
     
     /**
      * Sets the marketable a.
-     * 
-     * @param a
-     *            the new marketable a
+     *
+     * @param a the new marketable a
      */
     public void setMarketableA( Marketable a )
     {
@@ -54,7 +51,7 @@ public class Market
     
     /**
      * Gets the marketable b.
-     * 
+     *
      * @return the marketable b
      */
     public Marketable getMarketableB()
@@ -64,9 +61,8 @@ public class Market
     
     /**
      * Sets the marketable b.
-     * 
-     * @param b
-     *            the new marketable b
+     *
+     * @param b the new marketable b
      */
     public void setMarketableB( Marketable b )
     {
@@ -75,9 +71,8 @@ public class Market
     
     /**
      * Gets the cost.
-     * 
-     * @param item
-     *            the Item
+     *
+     * @param item the Item
      * @return the cost
      */
     public int getCost( Item item )
@@ -87,9 +82,8 @@ public class Market
     
     /**
      * Give to b.
-     * 
-     * @param item
-     *            the Item
+     *
+     * @param item the Item
      * @return true, if successful
      */
     public boolean giveToB( Item item )
@@ -118,9 +112,8 @@ public class Market
     
     /**
      * Give to a.
-     * 
-     * @param item
-     *            the Item
+     *
+     * @param item the Item
      * @return true, if successful
      */
     public boolean giveToA( Item item )

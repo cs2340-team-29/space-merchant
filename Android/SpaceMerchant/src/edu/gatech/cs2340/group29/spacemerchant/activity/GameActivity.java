@@ -14,8 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
@@ -134,9 +132,8 @@ public class GameActivity extends Activity implements OnClickListener
     
     /**
      * Goes to the player info.
-     * 
-     * @param v
-     *            the View
+     *
+     * @param v the View
      */
     public void gotoPlayerInfo( View v )
     {
@@ -145,9 +142,8 @@ public class GameActivity extends Activity implements OnClickListener
     
     /**
      * Goes to the trading.
-     * 
-     * @param v
-     *            the View
+     *
+     * @param v the View
      */
     public void gotoTrading( View v )
     {
@@ -156,6 +152,11 @@ public class GameActivity extends Activity implements OnClickListener
         GameActivity.this.startActivity( intent );
     }
     
+    /**
+     * Goes to the travel activity.
+     *
+     * @param v the View
+     */
     public void gotoTravelActivity( View v )
     {
         Intent intent = new Intent( GameActivity.this, TravelActivity.class );
@@ -186,9 +187,8 @@ public class GameActivity extends Activity implements OnClickListener
     
     /**
      * Goes to the select game.
-     * 
-     * @param view
-     *            the View
+     *
+     * @param view the View
      */
     public void gotoSelectGame( View view )
     {
@@ -197,11 +197,21 @@ public class GameActivity extends Activity implements OnClickListener
         GameActivity.this.startActivity( selectGameIntent );
     }
     
+    /** 
+     *
+     * Override:
+     * @see android.view.View.OnClickListener#onClick(android.view.View)
+     */
     public void onClick( View v )
     {
         removeHelpOverlay( null );
     }
     
+    /**
+     * Removes the help overlay.
+     *
+     * @param v the View
+     */
     public void removeHelpOverlay( View v )
     {
         v.setVisibility( View.GONE );

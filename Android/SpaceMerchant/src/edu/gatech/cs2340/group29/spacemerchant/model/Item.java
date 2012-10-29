@@ -24,15 +24,11 @@ public class Item implements Comparable<Item>
     
     /**
      * Instantiates a new item.
-     * 
-     * @param type
-     *            the int
-     * @param name
-     *            the String
-     * @param drawable
-     *            the int
-     * @param techLevel
-     *            the int
+     *
+     * @param type the int
+     * @param name the String
+     * @param drawable the int
+     * @param techLevel the int
      */
     public Item( int type, String name, int drawable, int techLevel )
     {
@@ -44,7 +40,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the type.
-     * 
+     *
      * @return the type
      */
     public int getType()
@@ -54,7 +50,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the base price.
-     * 
+     *
      * @return the base price
      */
     public int getBasePrice()
@@ -64,7 +60,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the name.
-     * 
+     *
      * @return the name
      */
     public String getName()
@@ -74,7 +70,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the drawable.
-     * 
+     *
      * @return the drawable
      */
     public int getDrawable()
@@ -84,7 +80,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the type_generic.
-     * 
+     *
      * @return the type_generic
      */
     public int getType_generic()
@@ -94,7 +90,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the type_material.
-     * 
+     *
      * @return the type_material
      */
     public int getType_material()
@@ -104,7 +100,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the type_liquid.
-     * 
+     *
      * @return the type_liquid
      */
     public int getType_liquid()
@@ -114,7 +110,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the type_animal.
-     * 
+     *
      * @return the type_animal
      */
     public int getType_animal()
@@ -124,7 +120,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the type_art.
-     * 
+     *
      * @return the type_art
      */
     public int getType_art()
@@ -134,7 +130,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the type_weapon.
-     * 
+     *
      * @return the type_weapon
      */
     public int getType_weapon()
@@ -143,9 +139,9 @@ public class Item implements Comparable<Item>
     }
     
     // compares the item to another item
-    /**
+    /** 
+     *
      * Override:
-     * 
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     public int compareTo( Item itm )
@@ -159,7 +155,7 @@ public class Item implements Comparable<Item>
     
     /**
      * Gets the tech level.
-     * 
+     *
      * @return the tech level
      */
     public int getTechLevel()
@@ -169,9 +165,8 @@ public class Item implements Comparable<Item>
     
     /**
      * Sets the tech level.
-     * 
-     * @param techLevel
-     *            the new tech level
+     *
+     * @param techLevel the new tech level
      */
     public void setTechLevel( int techLevel )
     {

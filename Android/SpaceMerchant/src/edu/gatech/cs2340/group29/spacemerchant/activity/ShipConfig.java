@@ -101,9 +101,8 @@ public class ShipConfig extends Activity
     
     /**
      * Done button clicked.
-     * 
-     * @param v
-     *            the View
+     *
+     * @param v the View
      */
     public void doneButtonClicked( View v )
     {

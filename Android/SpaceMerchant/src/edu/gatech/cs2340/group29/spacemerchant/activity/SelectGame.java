@@ -51,9 +51,8 @@ public class SelectGame extends Activity
     
     /**
      * Goes to the player config.
-     * 
-     * @param v
-     *            the View
+     *
+     * @param v the View
      */
     public void gotoPlayerConfig( View v )
     {
@@ -62,9 +61,9 @@ public class SelectGame extends Activity
         SelectGame.this.startActivity( intent );
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onBackPressed()
      */
     @Override
@@ -74,7 +73,9 @@ public class SelectGame extends Activity
     }
     
     /**
-     * @param v
+     * Goes to the launch activity.
+     *
+     * @param v the View
      */
     public void gotoLaunchActivity( View v )
     {
@@ -84,13 +85,14 @@ public class SelectGame extends Activity
     }
     
     /**
-     * The listener interface for receiving selectGame events. The class that is
-     * interested in processing a selectGame event implements this interface,
-     * and the object created with that class is registered with a component
-     * using the component's <code>addSelectGameListener<code> method. When
+     * The listener interface for receiving selectGame events.
+     * The class that is interested in processing a selectGame
+     * event implements this interface, and the object created
+     * with that class is registered with a component using the
+     * component's <code>addSelectGameListener<code> method. When
      * the selectGame event occurs, that object's appropriate
      * method is invoked.
-     * 
+     *
      * @see SelectGameEvent
      */
     class SelectGameListener implements OnItemClickListener

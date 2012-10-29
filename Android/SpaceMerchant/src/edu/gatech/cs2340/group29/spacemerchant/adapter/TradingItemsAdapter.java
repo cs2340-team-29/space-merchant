@@ -32,13 +32,10 @@ public class TradingItemsAdapter extends BaseAdapter
     
     /**
      * Instantiates a new trading items adapter.
-     * 
-     * @param context
-     *            the Context
-     * @param layoutResourceId
-     *            the int
-     * @param items
-     *            the Inventory
+     *
+     * @param context the Context
+     * @param layoutResourceId the int
+     * @param items the Inventory
      */
     public TradingItemsAdapter( Context context, int layoutResourceId, Inventory items )
     {
@@ -134,9 +131,8 @@ public class TradingItemsAdapter extends BaseAdapter
     
     /**
      * Gets the item at position.
-     * 
-     * @param position
-     *            the int
+     *
+     * @param position the int
      * @return the item at position
      */
     public Item getItemAtPosition( int position )

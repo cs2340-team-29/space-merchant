@@ -66,15 +66,11 @@ public class Planet implements Marketable
                                                                                       
     /**
      * Instantiates a new planet.
-     * 
-     * @param name
-     *            the String
-     * @param x
-     *            the int
-     * @param y
-     *            the int
-     * @param context
-     *            the Context
+     *
+     * @param name the String
+     * @param x the int
+     * @param y the int
+     * @param context the Context
      */
     public Planet( String name, int x, int y, Context context )
     {
@@ -93,7 +89,7 @@ public class Planet implements Marketable
     
     /**
      * Gets the x.
-     * 
+     *
      * @return the x
      */
     public int getX()
@@ -103,9 +99,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the x.
-     * 
-     * @param x
-     *            the new x
+     *
+     * @param x the new x
      */
     public void setX( int x )
     {
@@ -114,7 +109,7 @@ public class Planet implements Marketable
     
     /**
      * Gets the y.
-     * 
+     *
      * @return the y
      */
     public int getY()
@@ -124,9 +119,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the y.
-     * 
-     * @param y
-     *            the new y
+     *
+     * @param y the new y
      */
     public void setY( int y )
     {
@@ -135,7 +129,7 @@ public class Planet implements Marketable
     
     /**
      * Gets the tech level.
-     * 
+     *
      * @return the tech level
      */
     public int getTechLevel()
@@ -145,9 +139,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the tech level.
-     * 
-     * @param techLevel
-     *            the new tech level
+     *
+     * @param techLevel the new tech level
      */
     public void setTechLevel( int techLevel )
     {
@@ -156,7 +149,7 @@ public class Planet implements Marketable
     
     /**
      * Gets the resource type.
-     * 
+     *
      * @return the resource type
      */
     public int getResourceType()
@@ -166,9 +159,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the resource type.
-     * 
-     * @param resourceType
-     *            the new resource type
+     *
+     * @param resourceType the new resource type
      */
     public void setResourceType( int resourceType )
     {
@@ -187,9 +179,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the name.
-     * 
-     * @param name
-     *            the new name
+     *
+     * @param name the new name
      */
     public void setName( String name )
     {
@@ -305,7 +296,7 @@ public class Planet implements Marketable
     
     /**
      * Gets the base.
-     * 
+     *
      * @return the base
      */
     public int getBase()
@@ -315,9 +306,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the base.
-     * 
-     * @param base
-     *            the new base
+     *
+     * @param base the new base
      */
     public void setBase( int base )
     {
@@ -326,7 +316,7 @@ public class Planet implements Marketable
     
     /**
      * Gets the land.
-     * 
+     *
      * @return the land
      */
     public int getLand()
@@ -336,9 +326,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the land.
-     * 
-     * @param land
-     *            the new land
+     *
+     * @param land the new land
      */
     public void setLand( int land )
     {
@@ -347,7 +336,7 @@ public class Planet implements Marketable
     
     /**
      * Gets the cloud.
-     * 
+     *
      * @return the cloud
      */
     public int getCloud()
@@ -357,9 +346,8 @@ public class Planet implements Marketable
     
     /**
      * Sets the cloud.
-     * 
-     * @param cloud
-     *            the new cloud
+     *
+     * @param cloud the new cloud
      */
     public void setCloud( int cloud )
     {
