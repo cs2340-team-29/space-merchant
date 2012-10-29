@@ -54,6 +54,7 @@ public class GameActivity extends Activity
         gds.open();
         game = gds.getGameByID( gameID );
         player = game.getPlayer();
+        showHelpOverlay = player.isJustCreated();
         ship = player.getShip();
         planet = game.getPlanet();
         gds.close();
