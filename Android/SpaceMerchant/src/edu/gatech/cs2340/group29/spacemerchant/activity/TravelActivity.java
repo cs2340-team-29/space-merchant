@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -19,12 +20,13 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
+import edu.gatech.cs2340.group29.spacemerchant.model.StatGroup.Stat;
 import edu.gatech.cs2340.group29.spacemerchant.model.Universe;
 import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
 public class TravelActivity extends Activity implements SurfaceHolder.Callback, OnTouchListener
 {
-    public static final String GAME_ID         = "GAME_ID_EXTRA";
+    public static final String GAME_ID = "GAME_ID_EXTRA";
     
     private Game               game;
     private Universe           universe;
@@ -39,9 +41,12 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
     private TextView           spTechLevel;
     private TextView           spResource;
     
-    private Planet[][]         workingUniverse = new Planet[6][6];
+    private Planet[][]         workingUniverse;
     
     private int                canvasWidth;
+    
+    private String[]           techLevels;
+    private String[]           resourceTypes;
     
     @Override
     public void onCreate( Bundle savedInstanceState )
@@ -61,6 +66,10 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         selected = null;
         gds.close();
         
+        Resources res = getResources();
+        techLevels = res.getStringArray( R.array.TechLevels );
+        resourceTypes = res.getStringArray( R.array.ResourceTypes );
+        
         cpName = ( TextView ) findViewById( R.id.cpName );
         cpTechLevel = ( TextView ) findViewById( R.id.cpTechLevel );
         cpResource = ( TextView ) findViewById( R.id.cpResource );
@@ -69,11 +78,13 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         spResource = ( TextView ) findViewById( R.id.spResource );
         
         cpName.setText( "Name: " + current.getName() );
-        cpTechLevel.setText( "Tech Level: " + current.getTechLevel() );
-        cpResource.setText( "Resources: " + current.getResourceType() );
+        cpTechLevel.setText( "Tech Level: " + techLevels[current.getTechLevel()] );
+        cpResource.setText( "Resources: " + resourceTypes[current.getResourceType() + 5] );
         
         updateSelected( null );
         
+        int travelDistance = 3 + ( player.getStats().get( Stat.PILOT ) / 3 );
+        workingUniverse = new Planet[travelDistance][travelDistance];
         generateWorkingUniverse( universe, current );
         
         SurfaceView sv = ( SurfaceView ) findViewById( R.id.surfaceView );
@@ -96,8 +107,8 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         if ( selected != null )
         {
             spName.setText( "Name: " + selected.getName() );
-            spTechLevel.setText( "Tech Level: " + selected.getTechLevel() );
-            spResource.setText( "Resources: " + selected.getResourceType() );
+            spTechLevel.setText( "Tech Level: " + techLevels[selected.getTechLevel()] );
+            spResource.setText( "Resources: " + resourceTypes[selected.getResourceType() + 5] );
         }
     }
     
@@ -188,7 +199,11 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
                 dst.set( planetSize * i, planetSize * j, planetSize * ( i + 1 ), planetSize * ( j + 1 ) );
                 if ( workingUniverse[i][j] != null )
                 {
-                    Drawable drab = res.getDrawable( workingUniverse[i][j].getBase() );
+                    Drawable base = res.getDrawable( workingUniverse[i][j].getBase() );
+                    Drawable land = res.getDrawable( workingUniverse[i][j].getLand() );
+                    Drawable cloud = res.getDrawable( workingUniverse[i][j].getCloud() );
+                    Drawable[] layers = { base, land, cloud };
+                    LayerDrawable drab = new LayerDrawable( layers );
                     drab.setBounds( dst );
                     drab.draw( canvas );
                 }
@@ -198,6 +213,13 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
     
     public void travel( View v )
     {
+        if ( selected != null )
+        {
+            game.setPlanet( selected );
+            Intent intent = new Intent( TravelActivity.this, GameActivity.class );
+            intent.putExtra( GameActivity.GAME_ID_EXTRA, game.getGameID() );
+            TravelActivity.this.startActivity( intent );
+        }
     }
     
     public boolean onTouch( View view, MotionEvent event )
