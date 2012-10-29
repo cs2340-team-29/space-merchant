@@ -157,6 +157,7 @@ public class ShipConfig extends Activity
             
             Intent intent = new Intent( ShipConfig.this, GameActivity.class );
             intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
+            intent.putExtra( GameActivity.HELP_OVERLAY_EXTRA, true );
             startActivity( intent );
         }
     }

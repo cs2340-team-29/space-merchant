@@ -28,6 +28,7 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 public class GameActivity extends Activity
 {
     public static final String GAME_ID_EXTRA = "GAME_ID_EXTRA";
+    public static final String HELP_OVERLAY_EXTRA = "HELP_OVERLAY_EXTRA";
     
     private boolean            showHelpOverlay;
     
@@ -49,12 +50,12 @@ public class GameActivity extends Activity
         
         Intent i = getIntent();
         long gameID = i.getLongExtra( GAME_ID_EXTRA, -1 );
+        showHelpOverlay = i.getBooleanExtra(HELP_OVERLAY_EXTRA, false);
         
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
         game = gds.getGameByID( gameID );
         player = game.getPlayer();
-        showHelpOverlay = player.isJustCreated();
         ship = player.getShip();
         planet = game.getPlanet();
         gds.close();
