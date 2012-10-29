@@ -145,7 +145,6 @@ public class ShipConfig extends Activity
             player.setShip( s );
             g.setDifficulty( difficulty );
             g.setPlayer( player );
-            g.getUniverse().generatePlanets();
             long gameID = gds.createGame( g );
             gds.close();
             return gameID;
