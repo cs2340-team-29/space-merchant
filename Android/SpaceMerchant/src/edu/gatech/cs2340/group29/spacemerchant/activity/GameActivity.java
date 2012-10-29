@@ -59,6 +59,7 @@ public class GameActivity extends Activity implements OnClickListener
         gds.open();
         game = gds.getGameByID( gameID );
         player = game.getPlayer();
+        showHelpOverlay = player.isJustCreated();
         ship = player.getShip();
         planet = game.getPlanet();
         gds.close();

@@ -20,6 +20,7 @@ public class Player implements Parcelable, Marketable {
 	private StatGroup stats;
 	private int money;
 	private Inventory inventory;
+	private boolean justCreated;
 
 	private int head;
 	private int body;
@@ -34,6 +35,7 @@ public class Player implements Parcelable, Marketable {
 		ship = new Ship();
 		stats = new StatGroup();
 		setMoney(0);
+		justCreated = true;
 
 		head = android.R.drawable.ic_menu_camera;
 		body = android.R.drawable.ic_menu_camera;
@@ -280,6 +282,14 @@ public class Player implements Parcelable, Marketable {
 	public int getBasePrice(Item item) {
 		return (int) (item.getBasePrice() + (item.getBasePrice() * (stats
 				.get(Stat.TRADER) / 100.0)));
+	}
+	
+	public boolean isJustCreated() {
+		return this.justCreated;
+	}
+	
+	public void setJustCreated(boolean state) {
+		this.justCreated = state;
 	}
 
 }
