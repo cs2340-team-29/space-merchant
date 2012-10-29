@@ -92,16 +92,6 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         sv.setOnTouchListener( ( OnTouchListener ) this );
     }
     
-    @Override
-    protected void onStop()
-    {
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        gds.updateGame( game );
-        gds.close();
-        super.onStop();
-    }
-    
     private void updateSelected( View v )
     {
         if ( selected != null )
@@ -195,7 +185,8 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         {
             for ( int j = 0; j < workingUniverse[0].length; j++ )
             {
-                dst.set( planetSize * i, (planetSize * j) + (paddingY * j), planetSize * ( i + 1 ), (planetSize * ( j + 1 )) + ((j) * paddingY) );
+                dst.set( planetSize * i, ( planetSize * j ) + ( paddingY * j ), planetSize * ( i + 1 ),
+                        ( planetSize * ( j + 1 ) ) + ( ( j ) * paddingY ) );
                 if ( workingUniverse[i][j] != null )
                 {
                     Drawable base = res.getDrawable( workingUniverse[i][j].getBase() );
@@ -215,6 +206,10 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         if ( selected != null )
         {
             game.setPlanet( selected );
+            GameDataSource gds = new GameDataSource( getApplicationContext() );
+            gds.open();
+            gds.updateGame( game );
+            gds.close();
             Intent intent = new Intent( TravelActivity.this, GameActivity.class );
             intent.putExtra( GameActivity.GAME_ID_EXTRA, game.getGameID() );
             TravelActivity.this.startActivity( intent );

@@ -120,4 +120,12 @@
         </FrameLayout>
     </LinearLayout>
 
+    <View
+        android:id="@+id/helpOverlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/overlay"
+        android:visibility="gone"
+        android:onClick="removeHelpOverlay" />
+
 </FrameLayout>
