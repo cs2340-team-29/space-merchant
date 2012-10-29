@@ -172,7 +172,7 @@ public class TradeActivity extends Activity
             }
             else
             {
-                Toast.makeText( getApplicationContext(), "Couldn't Trade! Insufficient Funds",
+                Toast.makeText( getApplicationContext(), "Couldn't Trade!\nInsufficient Funds / Not Enough Cargo Space",
                         Toast.LENGTH_LONG ).show();
             }
         }

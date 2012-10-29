@@ -3,80 +3,86 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/entity1Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="e2Name"
-            tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/entity1Money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="e2Money"
-            tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/entity1Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="e2Name"
+                tools:ignore="HardcodedText" />
 
-        <ListView
-            android:id="@+id/entity1Items"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-        </ListView>
+            <TextView
+                android:id="@+id/entity1Money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="e2Money"
+                tools:ignore="HardcodedText" />
 
+            <ListView
+                android:id="@+id/entity1Items"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+            </ListView>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="2dip"
+            android:layout_height="fill_parent"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/entity2Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="e2Name"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/entity2Money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="e2Money"
+                tools:ignore="HardcodedText" />
+
+            <ListView
+                android:id="@+id/entity2Items"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+            </ListView>
+        </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="2dip"
-        android:layout_height="fill_parent"
-        android:background="@android:color/darker_gray" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/entity2Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="e2Name"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/entity2Money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="e2Money"
-            tools:ignore="HardcodedText" />
-
-        <ListView
-            android:id="@+id/entity2Items"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-        </ListView>
-
-        <Button
-            android:id="@+id/confirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/done"
-            android:onClick="done" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="done"
+        android:text="@string/done" />
 
 </LinearLayout>
