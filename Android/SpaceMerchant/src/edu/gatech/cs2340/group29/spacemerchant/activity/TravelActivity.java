@@ -195,8 +195,7 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         {
             for ( int j = 0; j < workingUniverse[0].length; j++ )
             {
-                dst.set( planetSize * i, planetSize * j, planetSize * ( i + 1 ), planetSize * ( j + 1 ) );
-                dst.set( planetSize * i, planetSize * j, planetSize * ( i + 1 ), planetSize * ( j + 1 ) );
+                dst.set( planetSize * i, (planetSize * j) + (paddingY * j), planetSize * ( i + 1 ), (planetSize * ( j + 1 )) + ((j) * paddingY) );
                 if ( workingUniverse[i][j] != null )
                 {
                     Drawable base = res.getDrawable( workingUniverse[i][j].getBase() );
