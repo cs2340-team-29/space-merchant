@@ -9,7 +9,9 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:onClick="gotoPlayerInfo"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:background="@drawable/bg01" 
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
