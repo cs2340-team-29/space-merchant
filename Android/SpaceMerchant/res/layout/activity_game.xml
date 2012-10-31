@@ -10,7 +10,6 @@
         android:clickable="true"
         android:onClick="gotoPlayerInfo"
         android:orientation="vertical" 
-        android:background="@drawable/bg01" 
         >
 
         <LinearLayout
