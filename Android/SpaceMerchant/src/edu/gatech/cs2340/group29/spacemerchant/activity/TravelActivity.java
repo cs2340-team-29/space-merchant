@@ -6,6 +6,8 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -234,8 +236,19 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
             gds.close();
             Intent intent = new Intent( TravelActivity.this, GameActivity.class );
             intent.putExtra( GameActivity.GAME_ID_EXTRA, game.getGameID() );
+            intent.putExtra( GameActivity.PIRATE_EXTRA, pirateEvent() );
             TravelActivity.this.startActivity( intent );
         }
+    }
+    
+    public boolean pirateEvent()
+    {
+        Random r = new Random();
+        if ( r.nextDouble() * 100 <= 20 )
+        {
+            return true;
+        }
+        return false;
     }
     
     /** 

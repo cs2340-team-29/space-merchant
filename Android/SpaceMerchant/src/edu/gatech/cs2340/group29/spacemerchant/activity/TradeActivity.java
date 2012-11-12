@@ -68,8 +68,9 @@ public class TradeActivity extends Activity
     
     /**
      * Update lists.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void updateLists( View v )
     {
@@ -102,14 +103,14 @@ public class TradeActivity extends Activity
     }
     
     /**
-     * The listener interface for receiving ASelectItem events.
-     * The class that is interested in processing a ASelectItem
-     * event implements this interface, and the object created
-     * with that class is registered with a component using the
-     * component's <code>addASelectItemListener<code> method. When
+     * The listener interface for receiving ASelectItem events. The class that
+     * is interested in processing a ASelectItem event implements this
+     * interface, and the object created with that class is registered with a
+     * component using the component's
+     * <code>addASelectItemListener<code> method. When
      * the ASelectItem event occurs, that object's appropriate
      * method is invoked.
-     *
+     * 
      * @see ASelectItemEvent
      */
     class ASelectItemListener implements OnItemClickListener
@@ -133,21 +134,22 @@ public class TradeActivity extends Activity
             }
             else
             {
-                Toast.makeText( getApplicationContext(), "Couldn't Trade! Insufficient Funds",
-                        Toast.LENGTH_LONG ).show();
+                Toast.makeText( getApplicationContext(),
+                        "Couldn't Trade!\nInsufficient Funds / Not Enough Cargo Space", Toast.LENGTH_LONG )
+                        .show();
             }
         }
     }
     
     /**
-     * The listener interface for receiving BSelectItem events.
-     * The class that is interested in processing a BSelectItem
-     * event implements this interface, and the object created
-     * with that class is registered with a component using the
-     * component's <code>addBSelectItemListener<code> method. When
+     * The listener interface for receiving BSelectItem events. The class that
+     * is interested in processing a BSelectItem event implements this
+     * interface, and the object created with that class is registered with a
+     * component using the component's
+     * <code>addBSelectItemListener<code> method. When
      * the BSelectItem event occurs, that object's appropriate
      * method is invoked.
-     *
+     * 
      * @see BSelectItemEvent
      */
     class BSelectItemListener implements OnItemClickListener
@@ -181,8 +183,9 @@ public class TradeActivity extends Activity
     
     /**
      * Done.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void done( View v )
     {

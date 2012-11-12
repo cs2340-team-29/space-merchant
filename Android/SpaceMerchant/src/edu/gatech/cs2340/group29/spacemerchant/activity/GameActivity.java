@@ -6,6 +6,10 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -16,11 +20,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import edu.gatech.cs2340.group29.spacemerchant.R;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
+import edu.gatech.cs2340.group29.spacemerchant.model.Inventory;
+import edu.gatech.cs2340.group29.spacemerchant.model.Item;
 import edu.gatech.cs2340.group29.spacemerchant.model.Planet;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.model.Ship;
+import edu.gatech.cs2340.group29.spacemerchant.model.StatGroup.Stat;
 import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 
 /**
@@ -30,8 +38,10 @@ public class GameActivity extends Activity implements OnClickListener
 {
     public static final String GAME_ID_EXTRA      = "GAME_ID_EXTRA";
     public static final String HELP_OVERLAY_EXTRA = "HELP_OVERLAY_EXTRA";
+    public static final String PIRATE_EXTRA       = "PIRATE_EXTRA";
     
     private boolean            showHelpOverlay;
+    private boolean            pirateEvent;
     private View               v;
     
     Game                       game;
@@ -53,6 +63,7 @@ public class GameActivity extends Activity implements OnClickListener
         Intent i = getIntent();
         long gameID = i.getLongExtra( GAME_ID_EXTRA, -1 );
         showHelpOverlay = i.getBooleanExtra( HELP_OVERLAY_EXTRA, false );
+        pirateEvent = i.getBooleanExtra( PIRATE_EXTRA, false );
         
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
@@ -61,8 +72,6 @@ public class GameActivity extends Activity implements OnClickListener
         ship = player.getShip();
         planet = game.getPlanet();
         gds.close();
-        
-        System.out.println( player.getInventory().capacity() );
         
         // Setting images for player and ship
         ( ( ImageView ) findViewById( R.id.head ) ).setImageResource( player.getHead() );
@@ -87,6 +96,7 @@ public class GameActivity extends Activity implements OnClickListener
         
         v = findViewById( R.id.helpOverlay );
         showHelpOverlay();
+        pirateEvent();
     }
     
     /**
@@ -113,9 +123,11 @@ public class GameActivity extends Activity implements OnClickListener
         {
             case R.id.menu_travel :
                 gotoTravelActivity( null );
+                return super.onOptionsItemSelected( item );
             case R.id.menu_help :
                 showHelpOverlay = true;
                 showHelpOverlay();
+                return super.onOptionsItemSelected( item );
             default :
                 return super.onOptionsItemSelected( item );
         }
@@ -130,23 +142,68 @@ public class GameActivity extends Activity implements OnClickListener
         }
     }
     
+    private void pirateEvent()
+    {
+        if ( pirateEvent )
+        {
+            ArrayList<Item> items = new ArrayList<Item>();
+            Inventory inv = player.getInventory();
+            LinkedList<Item>[] inventoryItems = inv.getContents();
+            
+            for ( LinkedList<Item> inventoryItemsByType : inventoryItems )
+            {
+                
+                for ( Item item : inventoryItemsByType )
+                {
+                    items.add( item );
+                }
+            }
+            Random r = new Random();
+            int amount = r.nextInt(10);
+            amount -= player.getStats().get( Stat.FIGHTER ) / 3;
+            if ( amount > 0 && items.size() > amount )
+            {
+                for ( int i = 0; i < amount; i++ )
+                {
+                    int it = r.nextInt( items.size() );
+                    player.getInventory().remove( items.get( it ) );
+                }
+                game.setPlayer( player );
+                Toast.makeText( this.getApplicationContext(), "A Pirate stole items from you!",
+                        Toast.LENGTH_LONG ).show();
+            }
+        }
+    }
+    
     /**
      * Goes to the player info.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
-    public void gotoPlayerInfo( View v )
+    public void gotoInventory( View v )
     {
-        // do stuff later!
+        GameDataSource gds = new GameDataSource( getApplicationContext() );
+        gds.open();
+        gds.updateGame( game );
+        gds.close();
+        Intent intent = new Intent( GameActivity.this, InventoryActivity.class );
+        intent.putExtra( InventoryActivity.GAME_ID, game.getGameID() );
+        GameActivity.this.startActivity( intent );
     }
     
     /**
      * Goes to the trading.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoTrading( View v )
     {
+        GameDataSource gds = new GameDataSource( getApplicationContext() );
+        gds.open();
+        gds.updateGame( game );
+        gds.close();
         Intent intent = new Intent( GameActivity.this, TradeActivity.class );
         intent.putExtra( TradeActivity.GAME_ID, game.getGameID() );
         GameActivity.this.startActivity( intent );
@@ -154,24 +211,19 @@ public class GameActivity extends Activity implements OnClickListener
     
     /**
      * Goes to the travel activity.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void gotoTravelActivity( View v )
-    {
-        Intent intent = new Intent( GameActivity.this, TravelActivity.class );
-        intent.putExtra( TravelActivity.GAME_ID, game.getGameID() );
-        GameActivity.this.startActivity( intent );
-    }
-    
-    @Override
-    protected void onStop()
     {
         GameDataSource gds = new GameDataSource( getApplicationContext() );
         gds.open();
         gds.updateGame( game );
         gds.close();
-        super.onStop();
+        Intent intent = new Intent( GameActivity.this, TravelActivity.class );
+        intent.putExtra( TravelActivity.GAME_ID, game.getGameID() );
+        GameActivity.this.startActivity( intent );
     }
     
     /**
@@ -187,8 +239,9 @@ public class GameActivity extends Activity implements OnClickListener
     
     /**
      * Goes to the select game.
-     *
-     * @param view the View
+     * 
+     * @param view
+     *            the View
      */
     public void gotoSelectGame( View view )
     {
@@ -197,9 +250,9 @@ public class GameActivity extends Activity implements OnClickListener
         GameActivity.this.startActivity( selectGameIntent );
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.view.View.OnClickListener#onClick(android.view.View)
      */
     public void onClick( View v )
@@ -209,8 +262,9 @@ public class GameActivity extends Activity implements OnClickListener
     
     /**
      * Removes the help overlay.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *            the View
      */
     public void removeHelpOverlay( View v )
     {

@@ -58,7 +58,7 @@ public class ShipConfig extends Activity
         player = ( Player ) getIntent().getParcelableExtra( player_extra );
         difficulty = getIntent().getIntExtra( difficulty_extra, -1 );
         
-        if ( difficulty <= 0 )
+        if ( difficulty <= 0 || difficulty >= 5 )
         {
             Toast.makeText(
                     this.getApplicationContext(),

@@ -56,6 +56,10 @@
             android:label="@string/title_activity_travel"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".activity.InventoryActivity"
+            android:label="@string/title_activity_inventory" >
+        </activity>
     </application>
 
 </manifest>

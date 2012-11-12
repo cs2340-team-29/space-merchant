@@ -206,5 +206,6 @@
     <string name="Tank">Tank</string>
     <string name="Warship">Warship</string>
     <string name="title_activity_travel">TravelActivity</string>
+    <string name="title_activity_inventory">InventoryActivity</string>
 
 </resources>

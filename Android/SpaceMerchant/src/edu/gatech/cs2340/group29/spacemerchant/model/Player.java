@@ -6,6 +6,8 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
+import java.util.ArrayList;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
@@ -283,7 +285,7 @@ public class Player implements Parcelable, Marketable
      *
      * @param itm the Item[]
      */
-    public void fillInventory( Item[] itm )
+    public void fillInventory( ArrayList<Item> itm )
     {
         for ( Item element : itm )
         {
