@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 import edu.gatech.cs2340.group29.spacemerchant.R;
-import edu.gatech.cs2340.group29.spacemerchant.adapter.TradingItemsAdapter;
+import edu.gatech.cs2340.group29.spacemerchant.adapter.InventoryAdapter;
 import edu.gatech.cs2340.group29.spacemerchant.model.Game;
 import edu.gatech.cs2340.group29.spacemerchant.model.Player;
 import edu.gatech.cs2340.group29.spacemerchant.model.StatGroup.Stat;
@@ -44,9 +44,10 @@ public class InventoryActivity extends Activity
                 + player.getStats().get( Stat.TRADER ) + " / 16" );
         ( ( TextView ) findViewById( R.id.engineer ) ).setText( "Engineer: "
                 + player.getStats().get( Stat.ENGINEER ) + " / 16" );
+        ( ( TextView ) this.findViewById( R.id.money ) ).setText( "$" + player.getMoney() + " -- "
+                + player.getInventory().size() + "/" + player.getInventory().capacity() );
         
-        TradingItemsAdapter inventoryAdapter = new TradingItemsAdapter( getApplicationContext(),
-                R.layout.trading_item_row, player.getInventory() );
+        InventoryAdapter inventoryAdapter = new InventoryAdapter( this, R.layout.trading_item_row, player );
         inventory = ( ListView ) this.findViewById( R.id.inventory );
         inventory.setAdapter( inventoryAdapter );
     }

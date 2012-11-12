@@ -12,6 +12,7 @@
     <string name="select_game">Select a Game to Play!</string>
     <string name="title_activity_about_page">AboutPage</string>
     <string name="about_page_text1">Metagalactic Merchants</string>
+    <string name="about_page_text3">Goal of this game is to MAKE MONEY!\n\nStats:\nPilot: More of this stat increases how far you can travel, and how much of your universe you can see!\nFighter: Increasing this stat decreases your chance of being raided by Pirates!\nTrader: This stat increases your ability to haggle...\nEngineer: This stat increases your cargo space.</string>
     <string name="about_page_text2">Presented to you by CS2340 Group 29\n\nMembers\n\nHarrison Katz\nKevin Shu\nRobert Mowlavi\nConnor Bryant\nKemble Hildreth</string>
     <string name="about_page_button">Back to Title</string>
     <string name="title_activity_choose_difficulty">Choose A Difficulty</string>
