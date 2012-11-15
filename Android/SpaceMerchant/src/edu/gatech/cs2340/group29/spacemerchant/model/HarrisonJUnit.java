@@ -7,17 +7,14 @@ public class HarrisonJUnit extends TestCase
 {
     public void testAddToInventory()
     {
-        Inventory inva = new Inventory( 10 );
-        Inventory invb = new Inventory( 10 );
+        Inventory inva = new Inventory( 1 );
         
         Item item = new Item( 0, "Item", 0, 0 );
-        int sizea = inva.size();
-        int sizeb = invb.size();
         
         try
         {
             inva.add( item );
-            assertTrue( "Checking Size Increased", sizeb + 1 == inva.size() );
+            assertTrue( "Checking Size Increased", 1 == inva.size() );
         }
         catch ( Exception e )
         {
@@ -43,14 +40,13 @@ public class HarrisonJUnit extends TestCase
             fail( "Item wasn't added twice!" );
         }
         
-        Inventory invc = new Inventory( 1 );
-        int sizec = invc.size();
+        Inventory invc = new Inventory( -4 );
+        invc.add( item );
         invc.add( item );
         try
         {
-            invc.add( item );
             Item itemb = new Item( 0, "ITEMB", 0, 0 );
-            invc.add( item );
+            invc.add( itemb );
             assertTrue( "Inventory size did not increase becuase it was at max capacity!", invc.size() == 1 );
         }
         catch ( Exception e )

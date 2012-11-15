@@ -36,8 +36,9 @@ public class Inventory
     
     /**
      * Instantiates a new inventory.
-     *
-     * @param capacityMultiplyer the int
+     * 
+     * @param capacityMultiplyer
+     *            the int
      */
     @SuppressWarnings ( "unchecked")
     public Inventory( int capacityMultiplyer )
@@ -53,19 +54,24 @@ public class Inventory
     
     /**
      * Adds the.
-     *
-     * @param itm the Item
+     * 
+     * @param itm
+     *            the Item
      */
     public void add( Item itm )
     {
-        Inventory[itm.getType()].add( itm );
-        size++;
+        if ( size + 1 < capacity )
+        {
+            Inventory[itm.getType()].add( itm );
+            size++;
+        }
     }
     
     /**
      * Adds the all.
-     *
-     * @param itm the Item[]
+     * 
+     * @param itm
+     *            the Item[]
      */
     public void addAll( Item[] itm )
     {
@@ -77,8 +83,9 @@ public class Inventory
     
     /**
      * Checks for item.
-     *
-     * @param itm the Item
+     * 
+     * @param itm
+     *            the Item
      * @return true, if successful
      */
     public boolean hasItem( Item itm )
@@ -99,8 +106,9 @@ public class Inventory
     
     /**
      * Gets the item.
-     *
-     * @param itm the Item
+     * 
+     * @param itm
+     *            the Item
      * @return the item
      */
     public Item getItem( Item itm )
@@ -121,8 +129,9 @@ public class Inventory
     
     /**
      * Removes the.
-     *
-     * @param itm the Item
+     * 
+     * @param itm
+     *            the Item
      * @return the item
      */
     public Item remove( Item itm )
@@ -156,7 +165,7 @@ public class Inventory
     
     /**
      * Size.
-     *
+     * 
      * @return the int
      */
     public int size()
@@ -166,7 +175,7 @@ public class Inventory
     
     /**
      * Capacity.
-     *
+     * 
      * @return the int
      */
     public int capacity()
@@ -176,7 +185,7 @@ public class Inventory
     
     /**
      * Gets the contents.
-     *
+     * 
      * @return the contents
      */
     public LinkedList<Item>[] getContents()
