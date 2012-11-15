@@ -7,24 +7,15 @@ import junit.framework.TestCase;
 
 public class RobertJUnit extends TestCase {
 
-	public void testGiveToA() {
+	public void testHasItem() {
 	
-		Player playerA = new Player();
-		Player playerB = new Player();
 		
-		Inventory playerAInventory = new Inventory();
+		Inventory inventory = new Inventory();
 		Item item = new Item(1, "Fake item", 1, 1);
-		playerAInventory.add(item);
-		playerA.setInventory(playerAInventory);
+	
+		inventory.add(item);
 		
-		Market market = new Market(playerA, playerB);
-		
-		market.giveToB(item);
-		
-		Inventory playerBInventory = playerB.getInventory();
-		LinkedList<Item>[] inventoryContents = playerBInventory.getContents();
-		
-		assertEquals("item successfully transferred", inventoryContents[1].get(0), item );
+		assertEquals("item successfully transferred", inventory.hasItem(item));
 	
 	}
 
