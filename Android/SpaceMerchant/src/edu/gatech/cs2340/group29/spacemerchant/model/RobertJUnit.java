@@ -15,7 +15,7 @@ public class RobertJUnit extends TestCase {
 	
 		inventory.add(item);
 		
-		assertEquals("item successfully transferred", inventory.hasItem(item));
+		assertTrue("success", inventory.hasItem(item));
 	
 	}
 
