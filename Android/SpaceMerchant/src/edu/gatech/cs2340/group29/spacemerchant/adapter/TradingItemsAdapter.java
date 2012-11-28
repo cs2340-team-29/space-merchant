@@ -7,7 +7,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.adapter;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,28 +27,34 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Item;
  */
 public class TradingItemsAdapter extends BaseAdapter
 {
-    private ArrayList<Item> items;
-    private Context         context;
+    
+    /** The items. */
+    private final List<Item> items;
+    
+    /** The context. */
+    private final Context    context;
     
     /**
      * Instantiates a new trading items adapter.
-     *
-     * @param context the Context
-     * @param layoutResourceId the int
-     * @param items the Inventory
+     * 
+     * @param context
+     *        the Context
+     * @param layoutResourceId
+     *        the int
+     * @param items
+     *        the Inventory
      */
-    public TradingItemsAdapter( Context context, int layoutResourceId, Inventory items )
+    public TradingItemsAdapter( final Context context, final int layoutResourceId, final Inventory items )
     {
-        super();
         this.context = context;
         
         this.items = new ArrayList<Item>();
-        LinkedList<Item>[] inventoryItems = items.getContents();
+        final List<Item>[] inventoryItems = items.getContents();
         
-        for ( LinkedList<Item> inventoryItemsByType : inventoryItems )
+        for ( final List<Item> inventoryItemsByType : inventoryItems )
         {
             
-            for ( Item item : inventoryItemsByType )
+            for ( final Item item : inventoryItemsByType )
             {
                 this.items.add( item );
             }
@@ -60,8 +66,14 @@ public class TradingItemsAdapter extends BaseAdapter
      */
     static class ViewHolder
     {
+        
+        /** The iv. */
         protected ImageView iv;
+        
+        /** The name. */
         protected TextView  name;
+        
+        /** The price. */
         protected TextView  price;
     }
     
@@ -71,13 +83,13 @@ public class TradingItemsAdapter extends BaseAdapter
      * @see android.widget.Adapter#getView(int, android.view.View,
      *      android.view.ViewGroup)
      */
-    public View getView( int position, View convertView, ViewGroup parent )
+    public View getView( final int position, View convertView, final ViewGroup parent )
     {
         ViewHolder viewHolder;
         
         if ( convertView == null )
         {
-            LayoutInflater inf = ( ( Activity ) context ).getLayoutInflater();
+            final LayoutInflater inf = ( ( Activity ) this.context ).getLayoutInflater();
             convertView = inf.inflate( R.layout.trading_item_row, parent, false );
             viewHolder = new ViewHolder();
         }
@@ -92,9 +104,9 @@ public class TradingItemsAdapter extends BaseAdapter
         
         convertView.setTag( viewHolder );
         
-        viewHolder.iv.setImageResource( items.get( position ).getDrawable() );
-        viewHolder.name.setText( items.get( position ).getName() );
-        viewHolder.price.setText( "$" + TradeActivity.market.getCost( items.get( position ) ) );
+        viewHolder.iv.setImageResource( this.items.get( position ).getDrawable() );
+        viewHolder.name.setText( this.items.get( position ).getName() );
+        viewHolder.price.setText( "$" + TradeActivity.MARKET.getCost( this.items.get( position ) ) );
         
         return convertView;
     }
@@ -106,7 +118,7 @@ public class TradingItemsAdapter extends BaseAdapter
      */
     public int getCount()
     {
-        return items.size();
+        return this.items.size();
     }
     
     /**
@@ -114,9 +126,9 @@ public class TradingItemsAdapter extends BaseAdapter
      * 
      * @see android.widget.Adapter#getItem(int)
      */
-    public Item getItem( int position )
+    public Item getItem( final int position )
     {
-        return items.get( position );
+        return this.items.get( position );
     }
     
     /**
@@ -124,19 +136,20 @@ public class TradingItemsAdapter extends BaseAdapter
      * 
      * @see android.widget.Adapter#getItemId(int)
      */
-    public long getItemId( int arg0 )
+    public long getItemId( final int arg0 )
     {
         return 0;
     }
     
     /**
      * Gets the item at position.
-     *
-     * @param position the int
+     * 
+     * @param position
+     *        the int
      * @return the item at position
      */
-    public Item getItemAtPosition( int position )
+    public Item getItemAtPosition( final int position )
     {
-        return items.get( position );
+        return this.items.get( position );
     }
 }

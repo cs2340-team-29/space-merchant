@@ -30,14 +30,25 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 public class TradeActivity extends Activity
 {
     
+    /** The a. */
     private Marketable         a;
-    private Marketable         b;
-    public static Market       market;
-    private Game               g;
     
+    /** The b. */
+    private Marketable         b;
+    
+    /** The market. */
+    public static Market       MARKET  = null;
+    
+    /** The game. */
+    private Game               game;
+    
+    /** The a items. */
     protected ListView         aItems;
+    
+    /** The b items. */
     protected ListView         bItems;
     
+    /** The Constant GAME_ID. */
     public static final String GAME_ID = "GAME_ID_EXTRA";
     
     /**
@@ -46,50 +57,58 @@ public class TradeActivity extends Activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    public void onCreate( Bundle savedInstanceState )
+    public void onCreate( final Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
         
-        Intent i = getIntent();
-        long gameID = i.getLongExtra( GAME_ID, -1 );
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        g = gds.getGameByID( gameID );
-        a = g.getPlanet();
-        b = g.getPlayer();
-        gds.close();
+        final Intent i = this.getIntent();
+        final long gameID = i.getLongExtra( TradeActivity.GAME_ID, -1 );
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            this.game = gds.getGameByID( gameID );
+            this.a = this.game.getPlanet();
+            this.b = this.game.getPlayer();
+        }
+        finally
+        {
+            gds.close();
+        }
         
-        market = new Market( a, b );
+        TradeActivity.MARKET = new Market( this.a, this.b );
         
-        setContentView( R.layout.activity_trade );
+        this.setContentView( R.layout.activity_trade );
         
-        updateLists( null );
+        this.updateLists( null );
     }
     
     /**
      * Update lists.
      * 
      * @param v
-     *            the View
+     *        the View
      */
-    public void updateLists( View v )
+    public void updateLists( final View v )
     {
-        ( ( TextView ) this.findViewById( R.id.entity1Name ) ).setText( a.getName() );
-        ( ( TextView ) this.findViewById( R.id.entity2Name ) ).setText( b.getName() );
-        ( ( TextView ) this.findViewById( R.id.entity1Money ) ).setText( "$" + a.getMoney() + " -- "
-                + a.getInventory().size() + "/" + a.getInventory().capacity() );
-        ( ( TextView ) this.findViewById( R.id.entity2Money ) ).setText( "$" + b.getMoney() + " -- "
-                + b.getInventory().size() + "/" + b.getInventory().capacity() );
+        ( ( TextView ) this.findViewById( R.id.entity1Name ) ).setText( this.a.getName() );
+        ( ( TextView ) this.findViewById( R.id.entity2Name ) ).setText( this.b.getName() );
+        ( ( TextView ) this.findViewById( R.id.entity1Money ) ).setText( "$" + this.a.getMoney() + " -- "
+                + this.a.getInventory().size() + "/" + this.a.getInventory().capacity() );
+        ( ( TextView ) this.findViewById( R.id.entity2Money ) ).setText( "$" + this.b.getMoney() + " -- "
+                + this.b.getInventory().size() + "/" + this.b.getInventory().capacity() );
         
-        TradingItemsAdapter t1 = new TradingItemsAdapter( this, R.layout.trading_item_row, a.getInventory() );
-        TradingItemsAdapter t2 = new TradingItemsAdapter( this, R.layout.trading_item_row, b.getInventory() );
-        aItems = ( ( ListView ) this.findViewById( R.id.entity1Items ) );
-        aItems.setAdapter( t1 );
+        final TradingItemsAdapter t1 = new TradingItemsAdapter( this, R.layout.trading_item_row,
+                this.a.getInventory() );
+        final TradingItemsAdapter t2 = new TradingItemsAdapter( this, R.layout.trading_item_row,
+                this.b.getInventory() );
+        this.aItems = ( ( ListView ) this.findViewById( R.id.entity1Items ) );
+        this.aItems.setAdapter( t1 );
         ( ( ListView ) this.findViewById( R.id.entity1Items ) )
                 .setOnItemClickListener( new ASelectItemListener() );
         ( ( ListView ) this.findViewById( R.id.entity2Items ) ).setAdapter( t2 );
-        bItems = ( ( ListView ) this.findViewById( R.id.entity2Items ) );
-        bItems.setOnItemClickListener( new BSelectItemListener() );
+        this.bItems = ( ( ListView ) this.findViewById( R.id.entity2Items ) );
+        this.bItems.setOnItemClickListener( new BSelectItemListener() );
     }
     
     /**
@@ -112,19 +131,21 @@ public class TradeActivity extends Activity
          * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
          *      android.view.View, int, long)
          */
-        public void onItemClick( AdapterView<?> parent, View view, int position, long arg3 )
+        public void onItemClick( final AdapterView<?> parent, final View view, final int position,
+                final long arg3 )
         {
-            if ( market.giveToB( ( ( ( TradingItemsAdapter ) parent.getAdapter() ).getItem( position ) ) ) )
+            if ( TradeActivity.MARKET.giveToB( ( ( ( TradingItemsAdapter ) parent.getAdapter() )
+                    .getItem( position ) ) ) )
             {
-                a = market.getMarketableA();
-                b = market.getMarketableB();
-                updateLists( null );
-                aItems.invalidate();
-                bItems.invalidate();
+                TradeActivity.this.a = TradeActivity.MARKET.getMarketableA();
+                TradeActivity.this.b = TradeActivity.MARKET.getMarketableB();
+                TradeActivity.this.updateLists( null );
+                TradeActivity.this.aItems.invalidate();
+                TradeActivity.this.bItems.invalidate();
             }
             else
             {
-                Toast.makeText( getApplicationContext(),
+                Toast.makeText( TradeActivity.this.getApplicationContext(),
                         "Couldn't Trade!\nInsufficient Funds / Not Enough Cargo Space", Toast.LENGTH_LONG )
                         .show();
             }
@@ -151,19 +172,21 @@ public class TradeActivity extends Activity
          * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
          *      android.view.View, int, long)
          */
-        public void onItemClick( AdapterView<?> parent, View view, int position, long arg3 )
+        public void onItemClick( final AdapterView<?> parent, final View view, final int position,
+                final long arg3 )
         {
-            if ( market.giveToA( ( ( ( TradingItemsAdapter ) parent.getAdapter() ).getItem( position ) ) ) )
+            if ( TradeActivity.MARKET.giveToA( ( ( ( TradingItemsAdapter ) parent.getAdapter() )
+                    .getItem( position ) ) ) )
             {
-                a = market.getMarketableA();
-                b = market.getMarketableB();
-                updateLists( null );
-                aItems.invalidate();
-                bItems.invalidate();
+                TradeActivity.this.a = TradeActivity.MARKET.getMarketableA();
+                TradeActivity.this.b = TradeActivity.MARKET.getMarketableB();
+                TradeActivity.this.updateLists( null );
+                TradeActivity.this.aItems.invalidate();
+                TradeActivity.this.bItems.invalidate();
             }
             else
             {
-                Toast.makeText( getApplicationContext(),
+                Toast.makeText( TradeActivity.this.getApplicationContext(),
                         "Couldn't Trade!\nInsufficient Funds / Not Enough Cargo Space", Toast.LENGTH_LONG )
                         .show();
             }
@@ -175,19 +198,25 @@ public class TradeActivity extends Activity
      * Done.
      * 
      * @param v
-     *            the View
+     *        the View
      */
-    public void done( View v )
+    public void done( final View v )
     {
-        updateLists( null );
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        g.setPlanet( ( Planet ) a );
-        g.setPlayer( ( Player ) b );
-        gds.updateGame( g );
-        gds.close();
-        Intent intent = new Intent( TradeActivity.this, GameActivity.class );
-        intent.putExtra( TradeActivity.GAME_ID, g.getGameID() );
+        this.updateLists( null );
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            this.game.setPlanet( ( Planet ) this.a );
+            this.game.setPlayer( ( Player ) this.b );
+            gds.updateGame( this.game );
+        }
+        finally
+        {
+            gds.close();
+        }
+        final Intent intent = new Intent( TradeActivity.this, GameActivity.class );
+        intent.putExtra( TradeActivity.GAME_ID, this.game.getGameID() );
         TradeActivity.this.startActivity( intent );
     }
 }

@@ -6,7 +6,7 @@
 
 package edu.gatech.cs2340.group29.spacemerchant.adapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,19 +22,26 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
  */
 public class SelectGalleryAdapter extends BaseAdapter
 {
-    private ArrayList<Integer> drawables;
-    private Context            context;
+    
+    /** The drawables. */
+    private final List<Integer> drawables;
+    
+    /** The context. */
+    private final Context       context;
     
     /**
      * Instantiates a new select gallery adapter.
-     *
-     * @param context the Context
-     * @param layoutResourceId the int
-     * @param drawables the ArrayList<Integer>
+     * 
+     * @param context
+     *        the Context
+     * @param layoutResourceId
+     *        the int
+     * @param drawables
+     *        the List<Integer>
      */
-    public SelectGalleryAdapter( Context context, int layoutResourceId, ArrayList<Integer> drawables )
+    public SelectGalleryAdapter( final Context context, final int layoutResourceId,
+            final List<Integer> drawables )
     {
-        super();
         this.context = context;
         this.drawables = drawables;
     }
@@ -44,6 +51,8 @@ public class SelectGalleryAdapter extends BaseAdapter
      */
     static class ViewHolder
     {
+        
+        /** The iv. */
         protected ImageView iv;
     }
     
@@ -53,13 +62,13 @@ public class SelectGalleryAdapter extends BaseAdapter
      * @see android.widget.Adapter#getView(int, android.view.View,
      *      android.view.ViewGroup)
      */
-    public View getView( int position, View convertView, ViewGroup parent )
+    public View getView( final int position, View convertView, final ViewGroup parent )
     {
         ViewHolder viewHolder;
         
         if ( convertView == null )
         {
-            LayoutInflater inf = ( ( Activity ) context ).getLayoutInflater();
+            final LayoutInflater inf = ( ( Activity ) this.context ).getLayoutInflater();
             convertView = inf.inflate( R.layout.gallery_row_view, parent, false );
             viewHolder = new ViewHolder();
         }
@@ -72,7 +81,7 @@ public class SelectGalleryAdapter extends BaseAdapter
         
         convertView.setTag( viewHolder );
         
-        viewHolder.iv.setImageResource( drawables.get( position ) );
+        viewHolder.iv.setImageResource( this.drawables.get( position ) );
         
         return convertView;
     }
@@ -84,7 +93,7 @@ public class SelectGalleryAdapter extends BaseAdapter
      */
     public int getCount()
     {
-        return drawables.size();
+        return this.drawables.size();
     }
     
     /**
@@ -92,7 +101,7 @@ public class SelectGalleryAdapter extends BaseAdapter
      * 
      * @see android.widget.Adapter#getItem(int)
      */
-    public Object getItem( int arg0 )
+    public Object getItem( final int arg0 )
     {
         return null;
     }
@@ -102,19 +111,20 @@ public class SelectGalleryAdapter extends BaseAdapter
      * 
      * @see android.widget.Adapter#getItemId(int)
      */
-    public long getItemId( int arg0 )
+    public long getItemId( final int arg0 )
     {
         return 0;
     }
     
     /**
      * Gets the item at position.
-     *
-     * @param position the int
+     * 
+     * @param position
+     *        the int
      * @return the item at position
      */
-    public int getItemAtPosition( int position )
+    public int getItemAtPosition( final int position )
     {
-        return drawables.get( position );
+        return this.drawables.get( position );
     }
 }

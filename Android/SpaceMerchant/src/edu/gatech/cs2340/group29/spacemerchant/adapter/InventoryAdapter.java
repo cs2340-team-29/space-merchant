@@ -7,7 +7,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.adapter;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,33 +26,38 @@ import edu.gatech.cs2340.group29.spacemerchant.model.Player;
  */
 public class InventoryAdapter extends BaseAdapter
 {
-    private ArrayList<Item> items;
-    private Context         context;
-    private Player          player;
+    
+    /** The items. */
+    private final List<Item> items;
+    
+    /** The context. */
+    private final Context    context;
+    
+    /** The player. */
+    private final Player     player;
     
     /**
      * Instantiates a new inventory adapter.
      * 
      * @param context
-     *            the Context
+     *        the Context
      * @param layoutResourceId
-     *            the int
-     * @param items
-     *            the Inventory
+     *        the int
+     * @param player
+     *        the Player
      */
-    public InventoryAdapter( Context context, int layoutResourceId, Player player )
+    public InventoryAdapter( final Context context, final int layoutResourceId, final Player player )
     {
-        super();
         this.context = context;
         
         this.player = player;
         this.items = new ArrayList<Item>();
-        LinkedList<Item>[] inventoryItems = player.getInventory().getContents();
+        final List<Item>[] inventoryItems = player.getInventory().getContents();
         
-        for ( LinkedList<Item> inventoryItemsByType : inventoryItems )
+        for ( final List<Item> inventoryItemsByType : inventoryItems )
         {
             
-            for ( Item item : inventoryItemsByType )
+            for ( final Item item : inventoryItemsByType )
             {
                 this.items.add( item );
             }
@@ -64,8 +69,14 @@ public class InventoryAdapter extends BaseAdapter
      */
     static class ViewHolder
     {
+        
+        /** The iv. */
         protected ImageView iv;
+        
+        /** The name. */
         protected TextView  name;
+        
+        /** The price. */
         protected TextView  price;
     }
     
@@ -75,13 +86,13 @@ public class InventoryAdapter extends BaseAdapter
      * @see android.widget.Adapter#getView(int, android.view.View,
      *      android.view.ViewGroup)
      */
-    public View getView( int position, View convertView, ViewGroup parent )
+    public View getView( final int position, View convertView, final ViewGroup parent )
     {
         ViewHolder viewHolder;
         
         if ( convertView == null )
         {
-            LayoutInflater inf = ( ( Activity ) context ).getLayoutInflater();
+            final LayoutInflater inf = ( ( Activity ) this.context ).getLayoutInflater();
             convertView = inf.inflate( R.layout.trading_item_row, parent, false );
             viewHolder = new ViewHolder();
         }
@@ -96,9 +107,9 @@ public class InventoryAdapter extends BaseAdapter
         
         convertView.setTag( viewHolder );
         
-        viewHolder.iv.setImageResource( items.get( position ).getDrawable() );
-        viewHolder.name.setText( items.get( position ).getName() );
-        viewHolder.price.setText( "$" + player.getBasePrice( items.get( position ) ) );
+        viewHolder.iv.setImageResource( this.items.get( position ).getDrawable() );
+        viewHolder.name.setText( this.items.get( position ).getName() );
+        viewHolder.price.setText( "$" + this.player.getBasePrice( this.items.get( position ) ) );
         
         return convertView;
     }
@@ -110,7 +121,7 @@ public class InventoryAdapter extends BaseAdapter
      */
     public int getCount()
     {
-        return items.size();
+        return this.items.size();
     }
     
     /**
@@ -118,9 +129,9 @@ public class InventoryAdapter extends BaseAdapter
      * 
      * @see android.widget.Adapter#getItem(int)
      */
-    public Item getItem( int position )
+    public Item getItem( final int position )
     {
-        return items.get( position );
+        return this.items.get( position );
     }
     
     /**
@@ -128,7 +139,7 @@ public class InventoryAdapter extends BaseAdapter
      * 
      * @see android.widget.Adapter#getItemId(int)
      */
-    public long getItemId( int arg0 )
+    public long getItemId( final int arg0 )
     {
         return 0;
     }
@@ -137,11 +148,11 @@ public class InventoryAdapter extends BaseAdapter
      * Gets the item at position.
      * 
      * @param position
-     *            the int
+     *        the int
      * @return the item at position
      */
-    public Item getItemAtPosition( int position )
+    public Item getItemAtPosition( final int position )
     {
-        return items.get( position );
+        return this.items.get( position );
     }
 }

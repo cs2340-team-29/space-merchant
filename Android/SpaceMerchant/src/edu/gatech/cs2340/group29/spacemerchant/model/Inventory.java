@@ -7,17 +7,25 @@
 package edu.gatech.cs2340.group29.spacemerchant.model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The Class Inventory.
  */
 public class Inventory
 {
-    public static final int    numOfItemTypes = 7;
     
-    private LinkedList<Item>[] Inventory;
-    private int                size;
-    private int                capacity;
+    /** The Constant NUM_ITEM_TYPES. */
+    public static final int NUM_ITEM_TYPES = 7;
+    
+    /** The inventory. */
+    private List<Item>[]    inventory;
+    
+    /** The size. */
+    private int             size;
+    
+    /** The capacity. */
+    private final int       capacity;
     
     /**
      * Instantiates a new inventory.
@@ -25,45 +33,45 @@ public class Inventory
     @SuppressWarnings ( "unchecked")
     public Inventory()
     {
-        Inventory = new LinkedList[numOfItemTypes];
-        for ( int i = 0; i < Inventory.length; i++ )
+        this.inventory = new LinkedList[Inventory.NUM_ITEM_TYPES];
+        for ( int i = 0; i < this.inventory.length; i++ )
         {
-            Inventory[i] = new LinkedList<Item>();
+            this.inventory[i] = new LinkedList<Item>();
         }
-        size = 0;
-        capacity = 100;
+        this.size = 0;
+        this.capacity = 100;
     }
     
     /**
      * Instantiates a new inventory.
      * 
      * @param capacityMultiplyer
-     *            the int
+     *        the int
      */
     @SuppressWarnings ( "unchecked")
-    public Inventory( int capacityMultiplyer )
+    public Inventory( final int capacityMultiplyer )
     {
-        Inventory = new LinkedList[numOfItemTypes];
-        for ( int i = 0; i < Inventory.length; i++ )
+        this.inventory = new LinkedList[Inventory.NUM_ITEM_TYPES];
+        for ( int i = 0; i < this.inventory.length; i++ )
         {
-            Inventory[i] = new LinkedList<Item>();
+            this.inventory[i] = new LinkedList<Item>();
         }
-        size = 0;
-        this.capacity = 10 + ( capacityMultiplyer * 2 );
+        this.size = 0;
+        this.capacity = 10 + ( capacityMultiplyer << 1 );
     }
     
     /**
      * Adds the.
      * 
      * @param itm
-     *            the Item
+     *        the Item
      */
-    public void add( Item itm )
+    public void add( final Item itm )
     {
-        if ( size + 1 < capacity )
+        if ( ( this.size + 1 ) < this.capacity )
         {
-            Inventory[itm.getType()].add( itm );
-            size++;
+            this.inventory[itm.getType()].add( itm );
+            this.size++;
         }
     }
     
@@ -71,13 +79,13 @@ public class Inventory
      * Adds the all.
      * 
      * @param itm
-     *            the Item[]
+     *        the Item[]
      */
-    public void addAll( Item[] itm )
+    public void addAll( final Item[] itm )
     {
-        for ( Item element : itm )
+        for ( final Item element : itm )
         {
-            add( element );
+            this.add( element );
         }
     }
     
@@ -85,16 +93,16 @@ public class Inventory
      * Checks for item.
      * 
      * @param itm
-     *            the Item
+     *        the Item
      * @return true, if successful
      */
-    public boolean hasItem( Item itm )
+    public boolean hasItem( final Item itm )
     {
-        if ( Inventory[itm.getType()].size() > 0 )
+        if ( this.inventory[itm.getType()].size() > 0 )
         {
-            for ( int i = 0; i < Inventory[itm.getType()].size(); i++ )
+            for ( int i = 0; i < this.inventory[itm.getType()].size(); i++ )
             {
-                if ( Inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
+                if ( this.inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
                 {
                     return true;
                 }
@@ -108,18 +116,18 @@ public class Inventory
      * Gets the item.
      * 
      * @param itm
-     *            the Item
+     *        the Item
      * @return the item
      */
-    public Item getItem( Item itm )
+    public Item getItem( final Item itm )
     {
-        if ( Inventory[itm.getType()].size() > 0 )
+        if ( this.inventory[itm.getType()].size() > 0 )
         {
-            for ( int i = 0; i < Inventory[itm.getType()].size(); i++ )
+            for ( int i = 0; i < this.inventory[itm.getType()].size(); i++ )
             {
-                if ( Inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
+                if ( this.inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
                 {
-                    return Inventory[itm.getType()].get( i );
+                    return this.inventory[itm.getType()].get( i );
                 }
             }
         }
@@ -131,20 +139,20 @@ public class Inventory
      * Removes the.
      * 
      * @param itm
-     *            the Item
+     *        the Item
      * @return the item
      */
-    public Item remove( Item itm )
+    public Item remove( final Item itm )
     {
-        if ( Inventory[itm.getType()].size() > 0 )
+        if ( this.inventory[itm.getType()].size() > 0 )
         {
-            for ( int i = 0; i < Inventory[itm.getType()].size(); i++ )
+            for ( int i = 0; i < this.inventory[itm.getType()].size(); i++ )
             {
-                if ( Inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
+                if ( this.inventory[itm.getType()].get( i ).compareTo( itm ) == 0 )
                 {
-                    Item temp = Inventory[itm.getType()].get( i );
-                    Inventory[itm.getType()].remove( i );
-                    size--;
+                    final Item temp = this.inventory[itm.getType()].get( i );
+                    this.inventory[itm.getType()].remove( i );
+                    this.size--;
                     return temp;
                 }
             }
@@ -159,8 +167,8 @@ public class Inventory
     @SuppressWarnings ( "unchecked")
     public void clear()
     {
-        Inventory = new LinkedList[numOfItemTypes];
-        size = 0;
+        this.inventory = new LinkedList[Inventory.NUM_ITEM_TYPES];
+        this.size = 0;
     }
     
     /**
@@ -170,7 +178,7 @@ public class Inventory
      */
     public int size()
     {
-        return size;
+        return this.size;
     }
     
     /**
@@ -180,7 +188,7 @@ public class Inventory
      */
     public int capacity()
     {
-        return capacity;
+        return this.capacity;
     }
     
     /**
@@ -188,8 +196,8 @@ public class Inventory
      * 
      * @return the contents
      */
-    public LinkedList<Item>[] getContents()
+    public List<Item>[] getContents()
     {
-        return Inventory;
+        return this.inventory;
     }
 }

@@ -11,11 +11,20 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
  */
 public class Ship
 {
+    
+    /** The ship id. */
     private long  shipID;
+    
+    /** The stats. */
     private int[] stats;
     
+    /** The fuselage. */
     private int   fuselage;
+    
+    /** The cabin. */
     private int   cabin;
+    
+    /** The boosters. */
     private int   boosters;
     
     /**
@@ -23,129 +32,135 @@ public class Ship
      */
     public Ship()
     {
-        stats = new int[4];
+        this.stats = new int[4];
         
-        fuselage = android.R.drawable.ic_menu_camera;
-        cabin = android.R.drawable.ic_menu_camera;
-        boosters = android.R.drawable.ic_menu_camera;
+        this.fuselage = android.R.drawable.ic_menu_camera;
+        this.cabin = android.R.drawable.ic_menu_camera;
+        this.boosters = android.R.drawable.ic_menu_camera;
     }
     
     /**
      * Gets the stats.
-     *
+     * 
      * @return the stats
      */
     public int[] getStats()
     {
-        return stats;
+        return this.stats;
     }
     
     /**
      * Sets the stats.
-     *
-     * @param stats the new stats
+     * 
+     * @param stats
+     *        the new stats
      */
-    public void setStats( int[] stats )
+    public void setStats( final int[] stats )
     {
         this.stats = stats;
     }
     
     /**
      * Gets the id.
-     *
+     * 
      * @return the id
      */
     public long getID()
     {
-        return shipID;
+        return this.shipID;
     }
     
     /**
      * Sets the id.
-     *
-     * @param shipID the new id
+     * 
+     * @param shipID
+     *        the new id
      */
-    public void setID( long shipID )
+    public void setID( final long shipID )
     {
         this.shipID = shipID;
     }
     
     /**
      * Gets the ship id.
-     *
+     * 
      * @return the ship id
      */
     public long getShipID()
     {
-        return shipID;
+        return this.shipID;
     }
     
     /**
      * Sets the ship id.
-     *
-     * @param shipID the new ship id
+     * 
+     * @param shipID
+     *        the new ship id
      */
-    public void setShipID( long shipID )
+    public void setShipID( final long shipID )
     {
         this.shipID = shipID;
     }
     
     /**
      * Gets the fuselage.
-     *
+     * 
      * @return the fuselage
      */
     public int getFuselage()
     {
-        return fuselage;
+        return this.fuselage;
     }
     
     /**
      * Sets the fuselage.
-     *
-     * @param fuselage the new fuselage
+     * 
+     * @param fuselage
+     *        the new fuselage
      */
-    public void setFuselage( int fuselage )
+    public void setFuselage( final int fuselage )
     {
         this.fuselage = fuselage;
     }
     
     /**
      * Gets the cabin.
-     *
+     * 
      * @return the cabin
      */
     public int getCabin()
     {
-        return cabin;
+        return this.cabin;
     }
     
     /**
      * Sets the cabin.
-     *
-     * @param cabin the new cabin
+     * 
+     * @param cabin
+     *        the new cabin
      */
-    public void setCabin( int cabin )
+    public void setCabin( final int cabin )
     {
         this.cabin = cabin;
     }
     
     /**
      * Gets the boosters.
-     *
+     * 
      * @return the boosters
      */
     public int getBoosters()
     {
-        return boosters;
+        return this.boosters;
     }
     
     /**
      * Sets the boosters.
-     *
-     * @param boosters the new boosters
+     * 
+     * @param boosters
+     *        the new boosters
      */
-    public void setBoosters( int boosters )
+    public void setBoosters( final int boosters )
     {
         this.boosters = boosters;
     }

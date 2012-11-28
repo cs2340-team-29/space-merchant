@@ -22,9 +22,9 @@ public class AboutPage extends Activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    public void onCreate( Bundle savedInstanceState )
+    public void onCreate( final Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_about_page );
+        this.setContentView( R.layout.activity_about_page );
     }
 }

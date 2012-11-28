@@ -28,21 +28,41 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
  */
 public class ShipConfig extends Activity
 {
-    public static final String     player_extra     = "PLAYER_EXTRA";
-    public static final String     difficulty_extra = "DIFFICULTY_EXTRA";
     
+    /** The Constant PLAYER_EXTRA. */
+    public static final String     PLAYER_EXTRA     = "PLAYER_EXTRA";
+    
+    /** The Constant DIFFICULTY_EXTRA. */
+    public static final String     DIFFICULTY_EXTRA = "DIFFICULTY_EXTRA";
+    
+    /** The player. */
     private Player                 player;
+    
+    /** The difficulty. */
     private int                    difficulty;
     
+    /** The working. */
     protected Dialog               working;
+    
+    /** The s. */
     protected Ship                 s;
     
+    /** The cabins. */
     protected Gallery              cabins;
+    
+    /** The fuselages. */
     protected Gallery              fuselages;
+    
+    /** The boosters. */
     protected Gallery              boosters;
     
+    /** The sga fuselage. */
     protected SelectGalleryAdapter sgaFuselage;
+    
+    /** The sga cabin. */
     protected SelectGalleryAdapter sgaCabin;
+    
+    /** The sga booster. */
     protected SelectGalleryAdapter sgaBooster;
     
     /**
@@ -51,68 +71,69 @@ public class ShipConfig extends Activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    public void onCreate( Bundle savedInstanceState )
+    public void onCreate( final Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
         
-        player = ( Player ) getIntent().getParcelableExtra( player_extra );
-        difficulty = getIntent().getIntExtra( difficulty_extra, -1 );
+        this.player = ( Player ) this.getIntent().getParcelableExtra( ShipConfig.PLAYER_EXTRA );
+        this.difficulty = this.getIntent().getIntExtra( ShipConfig.DIFFICULTY_EXTRA, -1 );
         
-        if ( difficulty <= 0 || difficulty >= 5 )
+        if ( ( this.difficulty <= 0 ) || ( this.difficulty >= 5 ) )
         {
             Toast.makeText(
                     this.getApplicationContext(),
                     "There was a problem retrieving your selected difficulty, your difficulty has been set to Medium.",
                     Toast.LENGTH_LONG ).show();
-            difficulty = 3;
+            this.difficulty = 3;
         }
         
-        setContentView( R.layout.activity_ship_config );
+        this.setContentView( R.layout.activity_ship_config );
         
         // Set up drawable lists
-        ArrayList<Integer> fuselages = new ArrayList<Integer>();
+        final ArrayList<Integer> fuselages = new ArrayList<Integer>();
         fuselages.add( R.drawable.ic_fuselage_1 );
         fuselages.add( R.drawable.ic_fuselage_2 );
         fuselages.add( R.drawable.ic_fuselage_3 );
         
-        ArrayList<Integer> cabins = new ArrayList<Integer>();
+        final ArrayList<Integer> cabins = new ArrayList<Integer>();
         cabins.add( R.drawable.ic_cabin_1 );
         cabins.add( R.drawable.ic_cabin_2 );
         cabins.add( R.drawable.ic_cabin_3 );
         
-        ArrayList<Integer> boosters = new ArrayList<Integer>();
+        final ArrayList<Integer> boosters = new ArrayList<Integer>();
         boosters.add( R.drawable.ic_boosters_1 );
         boosters.add( R.drawable.ic_boosters_2 );
         boosters.add( R.drawable.ic_boosters_3 );
         
         // Set up Galleries
-        sgaFuselage = new SelectGalleryAdapter( this, R.layout.gallery_row_view, fuselages );
-        sgaCabin = new SelectGalleryAdapter( this, R.layout.gallery_row_view, cabins );
-        sgaBooster = new SelectGalleryAdapter( this, R.layout.gallery_row_view, boosters );
+        this.sgaFuselage = new SelectGalleryAdapter( this, R.layout.gallery_row_view, fuselages );
+        this.sgaCabin = new SelectGalleryAdapter( this, R.layout.gallery_row_view, cabins );
+        this.sgaBooster = new SelectGalleryAdapter( this, R.layout.gallery_row_view, boosters );
         
-        this.fuselages = ( ( Gallery ) findViewById( R.id.galleryFuselage ) );
-        this.fuselages.setAdapter( sgaFuselage );
-        this.cabins = ( ( Gallery ) findViewById( R.id.galleryCabin ) );
-        this.cabins.setAdapter( sgaCabin );
-        this.boosters = ( ( Gallery ) findViewById( R.id.galleryBoosters ) );
-        this.boosters.setAdapter( sgaBooster );
+        this.fuselages = ( ( Gallery ) this.findViewById( R.id.galleryFuselage ) );
+        this.fuselages.setAdapter( this.sgaFuselage );
+        this.cabins = ( ( Gallery ) this.findViewById( R.id.galleryCabin ) );
+        this.cabins.setAdapter( this.sgaCabin );
+        this.boosters = ( ( Gallery ) this.findViewById( R.id.galleryBoosters ) );
+        this.boosters.setAdapter( this.sgaBooster );
         
     }
     
     /**
      * Done button clicked.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *        the View
      */
-    public void doneButtonClicked( View v )
+    public void doneButtonClicked( final View v )
     {
         // do stuff here, send to main screen, save game, etc...
-        working = new Dialog( this );
-        working.setContentView( R.layout.loading_view );
-        working.setTitle( "Working" );
-        working.show();
+        this.working = new Dialog( this );
+        this.working.setContentView( R.layout.loading_view );
+        this.working.setTitle( "Working" );
+        this.working.show();
         
-        CreateUniverseTask cut = new CreateUniverseTask();
+        final CreateUniverseTask cut = new CreateUniverseTask();
         cut.execute( ( Void ) null );
         
     }
@@ -123,41 +144,66 @@ public class ShipConfig extends Activity
     public class CreateUniverseTask extends AsyncTask<Void, Void, Long>
     {
         
+        /**
+         * Override:
+         * 
+         * @see android.os.AsyncTask#onPreExecute()
+         */
         @Override
         protected void onPreExecute()
         {
-            s = new Ship();
-            s.setCabin( sgaCabin.getItemAtPosition( cabins.getSelectedItemPosition() ) );
-            s.setFuselage( sgaFuselage.getItemAtPosition( fuselages.getSelectedItemPosition() ) );
-            s.setBoosters( sgaBooster.getItemAtPosition( boosters.getSelectedItemPosition() ) );
+            ShipConfig.this.s = new Ship();
+            ShipConfig.this.s.setCabin( ShipConfig.this.sgaCabin.getItemAtPosition( ShipConfig.this.cabins
+                    .getSelectedItemPosition() ) );
+            ShipConfig.this.s.setFuselage( ShipConfig.this.sgaFuselage
+                    .getItemAtPosition( ShipConfig.this.fuselages.getSelectedItemPosition() ) );
+            ShipConfig.this.s.setBoosters( ShipConfig.this.sgaBooster
+                    .getItemAtPosition( ShipConfig.this.boosters.getSelectedItemPosition() ) );
             
             super.onPreExecute();
         }
         
+        /**
+         * Override:
+         * 
+         * @see android.os.AsyncTask#doInBackground(Params[])
+         */
         @Override
-        protected Long doInBackground( Void ... params )
+        protected Long doInBackground( final Void ... params )
         {
-            GameDataSource gds = new GameDataSource( getApplicationContext() );
-            gds.open();
-            
-            Game g = new Game( getApplicationContext() );
-            player.setShip( s );
-            g.setDifficulty( difficulty );
-            g.setPlayer( player );
-            long gameID = gds.createGame( g );
-            gds.close();
+            final GameDataSource gds = new GameDataSource( ShipConfig.this.getApplicationContext() );
+            final long gameID;
+            try
+            {
+                gds.open();
+                
+                final Game g = new Game( ShipConfig.this.getApplicationContext() );
+                ShipConfig.this.player.setShip( ShipConfig.this.s );
+                g.setDifficulty( ShipConfig.this.difficulty );
+                g.setPlayer( ShipConfig.this.player );
+                gameID = gds.createGame( g );
+            }
+            finally
+            {
+                gds.close();
+            }
             return gameID;
         }
         
+        /**
+         * Override:
+         * 
+         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+         */
         @Override
-        protected void onPostExecute( Long gameID )
+        protected void onPostExecute( final Long gameID )
         {
-            working.dismiss();
+            ShipConfig.this.working.dismiss();
             
-            Intent intent = new Intent( ShipConfig.this, GameActivity.class );
+            final Intent intent = new Intent( ShipConfig.this, GameActivity.class );
             intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
             intent.putExtra( GameActivity.HELP_OVERLAY_EXTRA, true );
-            startActivity( intent );
+            ShipConfig.this.startActivity( intent );
         }
     }
 }

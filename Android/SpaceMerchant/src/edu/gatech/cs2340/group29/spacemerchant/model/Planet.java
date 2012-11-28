@@ -19,150 +19,222 @@ import edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable;
 public class Planet implements Marketable
 {
     // Tech Levels
+    /** The Constant PRE_AGRICULTURAL. */
     public static final int   PRE_AGRICULTURAL = 0;
+    
+    /** The Constant AGRICULTURAL. */
     public static final int   AGRICULTURAL     = 1;
+    
+    /** The Constant MEDIEVAL. */
     public static final int   MEDIEVAL         = 2;
+    
+    /** The Constant RENAISSANCE. */
     public static final int   RENAISSANCE      = 3;
+    
+    /** The Constant EARLY_INDUSTRIAL. */
     public static final int   EARLY_INDUSTRIAL = 4;
+    
+    /** The Constant INDUSTRIAL. */
     public static final int   INDUSTRIAL       = 5;
+    
+    /** The Constant POST_INDUSTRIAL. */
     public static final int   POST_INDUSTRIAL  = 6;
+    
+    /** The Constant HI_TECH. */
     public static final int   HI_TECH          = 7;
     
     // Resource Types
+    /** The Constant PEACEFUL. */
     public static final int   PEACEFUL         = -5;
+    
+    /** The Constant ANIMALS. */
     public static final int   ANIMALS          = -4;
+    
+    /** The Constant ARTISTIC. */
     public static final int   ARTISTIC         = -3;
+    
+    /** The Constant WATERY. */
     public static final int   WATERY           = -2;
+    
+    /** The Constant MINERAL_RICH. */
     public static final int   MINERAL_RICH     = -1;
+    
+    /** The Constant NOTHING_SPECIAL. */
     public static final int   NOTHING_SPECIAL  = 0;
+    
+    /** The Constant MINERAL_POOR. */
     public static final int   MINERAL_POOR     = 1;
+    
+    /** The Constant DESERT. */
     public static final int   DESERT           = 2;
+    
+    /** The Constant PHILISTINIC. */
     public static final int   PHILISTINIC      = 3;
+    
+    /** The Constant LIFELESS. */
     public static final int   LIFELESS         = 4;
+    
+    /** The Constant WARFARE. */
     public static final int   WARFARE          = 5;
     
-    public static final int[] bases            = new int[]{ R.drawable.ic_planet_base_a,
+    /** The Constant BASES. */
+    public static final int[] BASES            = new int[]{ R.drawable.ic_planet_base_a,
             R.drawable.ic_planet_base_b, R.drawable.ic_planet_base_c, R.drawable.ic_planet_base_d,
             R.drawable.ic_planet_base_e       };
-    public static final int[] lands            = new int[]{ R.drawable.ic_land_a, R.drawable.ic_land_b,
+    
+    /** The Constant LANDS. */
+    public static final int[] LANDS            = new int[]{ R.drawable.ic_land_a, R.drawable.ic_land_b,
             R.drawable.ic_land_c, R.drawable.ic_land_d, R.drawable.ic_land_e };
-    public static final int[] clouds           = new int[]{ R.drawable.ic_clouds_a, R.drawable.ic_clouds_b,
+    
+    /** The Constant CLOUDS. */
+    public static final int[] CLOUDS           = new int[]{ R.drawable.ic_clouds_a, R.drawable.ic_clouds_b,
             R.drawable.ic_clouds_c, R.drawable.ic_clouds_d, R.drawable.ic_clouds_e };
-    public static final int[] itemDrawables    = new int[]{ R.drawable.ic_generic_object,
+    
+    /** The Constant ITEM_DRAWABLES. */
+    public static final int[] ITEM_DRAWABLES   = new int[]{ R.drawable.ic_generic_object,
             R.drawable.ic_mineral, R.drawable.ic_liquid, R.drawable.ic_animal, R.drawable.ic_art,
             R.drawable.ic_gun                 };
     
+    /** The tech level. */
     private int               techLevel;
+    
+    /** The resource type. */
     private int               resourceType;
+    
+    /** The name. */
     private String            name;
+    
+    /** The x. */
     private int               x;
+    
+    /** The y. */
     private int               y;
+    
+    /** The inventory. */
     private Inventory         inventory;
-    private Context           context;
+    
+    /** The context. */
+    private final Context     context;
+    
+    /** The money. */
     private int               money;
+    
+    /** The base. */
     private int               base;                                                  // drawable
+                                                                                      
+    /** The land. */
     private int               land;                                                  // drawable
+                                                                                      
+    /** The cloud. */
     private int               cloud;                                                 // drawable
                                                                                       
     /**
      * Instantiates a new planet.
-     *
-     * @param name the String
-     * @param x the int
-     * @param y the int
-     * @param context the Context
+     * 
+     * @param name
+     *        the String
+     * @param x
+     *        the int
+     * @param y
+     *        the int
+     * @param context
+     *        the Context
      */
-    public Planet( String name, int x, int y, Context context )
+    public Planet( final String name, final int x, final int y, final Context context )
     {
-        Random r = new Random();
-        techLevel = r.nextInt( 8 );
-        resourceType = r.nextInt( 11 ) - 5;
+        final Random r = new Random();
+        this.techLevel = r.nextInt( 8 );
+        this.resourceType = r.nextInt( 11 ) - 5;
         this.name = name;
         this.x = x;
         this.y = y;
         this.context = context;
-        money = 1000 * ( 1 + techLevel );
-        setBase( bases[r.nextInt( 5 )] );
-        setLand( lands[r.nextInt( 5 )] );
-        setCloud( clouds[r.nextInt( 5 )] );
+        this.money = 1000 * ( 1 + this.techLevel );
+        this.base = Planet.BASES[r.nextInt( 5 )];
+        this.land = Planet.LANDS[r.nextInt( 5 )];
+        this.cloud = Planet.CLOUDS[r.nextInt( 5 )];
     }
     
     /**
      * Gets the x.
-     *
+     * 
      * @return the x
      */
     public int getX()
     {
-        return x;
+        return this.x;
     }
     
     /**
      * Sets the x.
-     *
-     * @param x the new x
+     * 
+     * @param x
+     *        the new x
      */
-    public void setX( int x )
+    public void setX( final int x )
     {
         this.x = x;
     }
     
     /**
      * Gets the y.
-     *
+     * 
      * @return the y
      */
     public int getY()
     {
-        return y;
+        return this.y;
     }
     
     /**
      * Sets the y.
-     *
-     * @param y the new y
+     * 
+     * @param y
+     *        the new y
      */
-    public void setY( int y )
+    public void setY( final int y )
     {
         this.y = y;
     }
     
     /**
      * Gets the tech level.
-     *
+     * 
      * @return the tech level
      */
     public int getTechLevel()
     {
-        return techLevel;
+        return this.techLevel;
     }
     
     /**
      * Sets the tech level.
-     *
-     * @param techLevel the new tech level
+     * 
+     * @param techLevel
+     *        the new tech level
      */
-    public void setTechLevel( int techLevel )
+    public void setTechLevel( final int techLevel )
     {
         this.techLevel = techLevel;
     }
     
     /**
      * Gets the resource type.
-     *
+     * 
      * @return the resource type
      */
     public int getResourceType()
     {
-        return resourceType;
+        return this.resourceType;
     }
     
     /**
      * Sets the resource type.
-     *
-     * @param resourceType the new resource type
+     * 
+     * @param resourceType
+     *        the new resource type
      */
-    public void setResourceType( int resourceType )
+    public void setResourceType( final int resourceType )
     {
         this.resourceType = resourceType;
     }
@@ -174,15 +246,16 @@ public class Planet implements Marketable
      */
     public String getName()
     {
-        return name;
+        return this.name;
     }
     
     /**
      * Sets the name.
-     *
-     * @param name the new name
+     * 
+     * @param name
+     *        the new name
      */
-    public void setName( String name )
+    public void setName( final String name )
     {
         this.name = name;
     }
@@ -195,7 +268,8 @@ public class Planet implements Marketable
     @Override
     public String toString()
     {
-        return " Name: " + name + " TechLevel: " + techLevel + " ResourceType: " + resourceType;
+        return " Name: " + this.name + " TechLevel: " + this.techLevel + " ResourceType: "
+                + this.resourceType;
     }
     
     /**
@@ -205,31 +279,34 @@ public class Planet implements Marketable
      */
     public Inventory getInventory()
     {
-        if ( inventory == null )
+        if ( this.inventory == null )
         {
-            generateInventory();
+            this.generateInventory();
         }
-        return inventory;
+        return this.inventory;
     }
     
+    /**
+     * Generate inventory.
+     */
     private void generateInventory()
     {
-        inventory = new Inventory();
-        Random r = new Random();
-        Resources res = context.getResources();
-        int[] items = res.getIntArray( R.array.Items );
-        String[] names = res.getStringArray( R.array.ItemNames );
+        this.inventory = new Inventory();
+        final Random r = new Random();
+        final Resources res = this.context.getResources();
+        final int[] items = res.getIntArray( R.array.Items );
+        final String[] names = res.getStringArray( R.array.ItemNames );
         
         for ( int i = 0; i < items.length; i++ )
         {
-            int tempTechLevel = items[i] % 10;
-            int tempItemType = ( items[i] / 10 ) % 10;
+            final int tempTechLevel = items[i] % 10;
+            final int tempItemType = ( items[i] / 10 ) % 10;
             if ( tempTechLevel <= this.techLevel )
             {
                 for ( int j = 0; j < r.nextInt( this.techLevel + 1 ); j++ )
                 {
-                    inventory.add( new Item( tempItemType, names[i], itemDrawables[tempItemType],
-                            tempTechLevel ) );
+                    this.inventory.add( new Item( tempItemType, names[i],
+                            Planet.ITEM_DRAWABLES[tempItemType], tempTechLevel ) );
                 }
             }
         }
@@ -240,21 +317,21 @@ public class Planet implements Marketable
      * 
      * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#getBasePrice(edu.gatech.cs2340.group29.spacemerchant.model.Item)
      */
-    public int getBasePrice( Item item )
+    public int getBasePrice( final Item item )
     {
-        Random rand = new Random();
+        final Random rand = new Random();
         double basePrice = item.getBasePrice();
         
-        if ( item.getType() == resourceType )
+        if ( item.getType() == this.resourceType )
         {
-            basePrice *= ( 1.0 / ( ( 1 + rand.nextInt( 4 ) ) * 2 ) );
+            basePrice *= ( 1.0 / ( ( 1 + rand.nextInt( 4 ) ) << 1 ) );
         }
-        if ( item.getType() == -resourceType )
+        if ( item.getType() == -this.resourceType )
         {
-            basePrice /= ( 1.0 / ( ( 1 + rand.nextInt( 4 ) ) * 2 ) );
+            basePrice /= ( 1.0 / ( ( 1 + rand.nextInt( 4 ) ) << 1 ) );
         }
         
-        basePrice -= ( techLevel * techLevel * 15 );
+        basePrice -= ( this.techLevel * this.techLevel * 15 );
         
         if ( basePrice <= 0 )
         {
@@ -269,7 +346,7 @@ public class Planet implements Marketable
      * 
      * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#setInventory(edu.gatech.cs2340.group29.spacemerchant.model.Inventory)
      */
-    public void setInventory( Inventory newInventory )
+    public void setInventory( final Inventory newInventory )
     {
         this.inventory = newInventory;
     }
@@ -281,7 +358,7 @@ public class Planet implements Marketable
      */
     public int getMoney()
     {
-        return money;
+        return this.money;
     }
     
     /**
@@ -289,67 +366,70 @@ public class Planet implements Marketable
      * 
      * @see edu.gatech.cs2340.group29.spacemerchant.interfaces.Marketable#setMoney(int)
      */
-    public void setMoney( int money )
+    public void setMoney( final int money )
     {
         this.money = money;
     }
     
     /**
      * Gets the base.
-     *
+     * 
      * @return the base
      */
     public int getBase()
     {
-        return base;
+        return this.base;
     }
     
     /**
      * Sets the base.
-     *
-     * @param base the new base
+     * 
+     * @param base
+     *        the new base
      */
-    public void setBase( int base )
+    public void setBase( final int base )
     {
         this.base = base;
     }
     
     /**
      * Gets the land.
-     *
+     * 
      * @return the land
      */
     public int getLand()
     {
-        return land;
+        return this.land;
     }
     
     /**
      * Sets the land.
-     *
-     * @param land the new land
+     * 
+     * @param land
+     *        the new land
      */
-    public void setLand( int land )
+    public void setLand( final int land )
     {
         this.land = land;
     }
     
     /**
      * Gets the cloud.
-     *
+     * 
      * @return the cloud
      */
     public int getCloud()
     {
-        return cloud;
+        return this.cloud;
     }
     
     /**
      * Sets the cloud.
-     *
-     * @param cloud the new cloud
+     * 
+     * @param cloud
+     *        the new cloud
      */
-    public void setCloud( int cloud )
+    public void setCloud( final int cloud )
     {
         this.cloud = cloud;
     }

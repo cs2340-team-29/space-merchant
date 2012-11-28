@@ -17,45 +17,48 @@ public interface Marketable
     
     /**
      * Gets the base price.
-     *
-     * @param item the Item
+     * 
+     * @param item
+     *        the Item
      * @return the base price
      */
-    public int getBasePrice( Item item );
+    int getBasePrice( Item item );
     
     /**
      * Gets the inventory.
-     *
+     * 
      * @return the inventory
      */
-    public Inventory getInventory();
+    Inventory getInventory();
     
     /**
      * Sets the inventory.
-     *
-     * @param newInventory the new inventory
+     * 
+     * @param newInventory
+     *        the new inventory
      */
-    public void setInventory( Inventory newInventory );
+    void setInventory( Inventory newInventory );
     
     /**
      * Gets the money.
-     *
+     * 
      * @return the money
      */
-    public int getMoney();
+    int getMoney();
     
     /**
      * Sets the money.
-     *
-     * @param money the new money
+     * 
+     * @param money
+     *        the new money
      */
-    public void setMoney( int money );
+    void setMoney( int money );
     
     /**
      * Gets the name.
-     *
+     * 
      * @return the name
      */
-    public String getName();
+    String getName();
     
 }

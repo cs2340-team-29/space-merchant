@@ -7,7 +7,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.activity;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import android.app.Activity;
@@ -36,17 +36,35 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
  */
 public class GameActivity extends Activity implements OnClickListener
 {
+    
+    /** The Constant GAME_ID_EXTRA. */
     public static final String GAME_ID_EXTRA      = "GAME_ID_EXTRA";
+    
+    /** The Constant HELP_OVERLAY_EXTRA. */
     public static final String HELP_OVERLAY_EXTRA = "HELP_OVERLAY_EXTRA";
+    
+    /** The Constant PIRATE_EXTRA. */
     public static final String PIRATE_EXTRA       = "PIRATE_EXTRA";
     
+    /** The show help overlay. */
     private boolean            showHelpOverlay;
+    
+    /** The pirate event. */
     private boolean            pirateEvent;
+    
+    /** The v. */
     private View               v;
     
+    /** The game. */
     Game                       game;
+    
+    /** The player. */
     Player                     player;
+    
+    /** The ship. */
     Ship                       ship;
+    
+    /** The planet. */
     Planet                     planet;
     
     /**
@@ -55,48 +73,53 @@ public class GameActivity extends Activity implements OnClickListener
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    public void onCreate( Bundle savedInstanceState )
+    public void onCreate( final Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_game );
+        this.setContentView( R.layout.activity_game );
         
-        Intent i = getIntent();
-        long gameID = i.getLongExtra( GAME_ID_EXTRA, -1 );
-        showHelpOverlay = i.getBooleanExtra( HELP_OVERLAY_EXTRA, false );
-        pirateEvent = i.getBooleanExtra( PIRATE_EXTRA, false );
-        
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        game = gds.getGameByID( gameID );
-        player = game.getPlayer();
-        ship = player.getShip();
-        planet = game.getPlanet();
-        gds.close();
+        final Intent i = this.getIntent();
+        final long gameID = i.getLongExtra( GameActivity.GAME_ID_EXTRA, -1 );
+        this.showHelpOverlay = i.getBooleanExtra( GameActivity.HELP_OVERLAY_EXTRA, false );
+        this.pirateEvent = i.getBooleanExtra( GameActivity.PIRATE_EXTRA, false );
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            this.game = gds.getGameByID( gameID );
+            this.player = this.game.getPlayer();
+            this.ship = this.player.getShip();
+            this.planet = this.game.getPlanet();
+        }
+        finally
+        {
+            gds.close();
+        }
         
         // Setting images for player and ship
-        ( ( ImageView ) findViewById( R.id.head ) ).setImageResource( player.getHead() );
-        ( ( ImageView ) findViewById( R.id.body_player ) ).setImageResource( player.getBody() );
-        ( ( ImageView ) findViewById( R.id.legs ) ).setImageResource( player.getLegs() );
-        ( ( ImageView ) findViewById( R.id.feet ) ).setImageResource( player.getFeet() );
-        ( ( ImageView ) findViewById( R.id.cabin ) ).setImageResource( ship.getCabin() );
-        ( ( ImageView ) findViewById( R.id.fuselage ) ).setImageResource( ship.getFuselage() );
-        ( ( ImageView ) findViewById( R.id.boosters ) ).setImageResource( ship.getBoosters() );
-        ( ( ImageView ) findViewById( R.id.planetBase ) ).setImageResource( planet.getBase() );
-        ( ( ImageView ) findViewById( R.id.planetLand ) ).setImageResource( planet.getLand() );
-        ( ( ImageView ) findViewById( R.id.planetCloud ) ).setImageResource( planet.getCloud() );
+        ( ( ImageView ) this.findViewById( R.id.head ) ).setImageResource( this.player.getHead() );
+        ( ( ImageView ) this.findViewById( R.id.body_player ) ).setImageResource( this.player.getBody() );
+        ( ( ImageView ) this.findViewById( R.id.legs ) ).setImageResource( this.player.getLegs() );
+        ( ( ImageView ) this.findViewById( R.id.feet ) ).setImageResource( this.player.getFeet() );
+        ( ( ImageView ) this.findViewById( R.id.cabin ) ).setImageResource( this.ship.getCabin() );
+        ( ( ImageView ) this.findViewById( R.id.fuselage ) ).setImageResource( this.ship.getFuselage() );
+        ( ( ImageView ) this.findViewById( R.id.boosters ) ).setImageResource( this.ship.getBoosters() );
+        ( ( ImageView ) this.findViewById( R.id.planetBase ) ).setImageResource( this.planet.getBase() );
+        ( ( ImageView ) this.findViewById( R.id.planetLand ) ).setImageResource( this.planet.getLand() );
+        ( ( ImageView ) this.findViewById( R.id.planetCloud ) ).setImageResource( this.planet.getCloud() );
         
-        Resources res = getResources();
-        String[] techLevels = res.getStringArray( R.array.TechLevels );
-        String[] resourceTypes = res.getStringArray( R.array.ResourceTypes );
+        final Resources res = this.getResources();
+        final String[] techLevels = res.getStringArray( R.array.TechLevels );
+        final String[] resourceTypes = res.getStringArray( R.array.ResourceTypes );
         
         // set up planet image and info
-        ( ( TextView ) findViewById( R.id.planetInfo ) ).setText( "Name: " + planet.getName()
-                + "\nTech Level: " + techLevels[planet.getTechLevel()] + "\nResources: "
-                + resourceTypes[planet.getResourceType() + 5] );
+        ( ( TextView ) this.findViewById( R.id.planetInfo ) ).setText( "Name: " + this.planet.getName()
+                + "\nTech Level: " + techLevels[this.planet.getTechLevel()] + "\nResources: "
+                + resourceTypes[this.planet.getResourceType() + 5] );
         
-        v = findViewById( R.id.helpOverlay );
-        showHelpOverlay();
-        pirateEvent();
+        this.v = this.findViewById( R.id.helpOverlay );
+        this.showHelpOverlay();
+        this.pirateEvent();
     }
     
     /**
@@ -105,9 +128,9 @@ public class GameActivity extends Activity implements OnClickListener
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override
-    public boolean onCreateOptionsMenu( Menu menu )
+    public boolean onCreateOptionsMenu( final Menu menu )
     {
-        getMenuInflater().inflate( R.menu.activity_game, menu );
+        this.getMenuInflater().inflate( R.menu.activity_game, menu );
         return true;
     }
     
@@ -117,58 +140,64 @@ public class GameActivity extends Activity implements OnClickListener
      * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
      */
     @Override
-    public boolean onOptionsItemSelected( MenuItem item )
+    public boolean onOptionsItemSelected( final MenuItem item )
     {
         switch ( item.getItemId() )
         {
             case R.id.menu_travel :
-                gotoTravelActivity( null );
+                this.gotoTravelActivity( null );
                 return super.onOptionsItemSelected( item );
             case R.id.menu_help :
-                showHelpOverlay = true;
-                showHelpOverlay();
+                this.showHelpOverlay = true;
+                this.showHelpOverlay();
                 return super.onOptionsItemSelected( item );
             default :
                 return super.onOptionsItemSelected( item );
         }
     }
     
+    /**
+     * Show help overlay.
+     */
     private void showHelpOverlay()
     {
-        if ( showHelpOverlay )
+        if ( this.showHelpOverlay )
         {
-            v.setVisibility( View.VISIBLE );
-            v.invalidate();
+            this.v.setVisibility( View.VISIBLE );
+            this.v.invalidate();
         }
     }
     
+    /**
+     * Pirate event.
+     */
     private void pirateEvent()
     {
-        if ( pirateEvent )
+        if ( this.pirateEvent )
         {
-            ArrayList<Item> items = new ArrayList<Item>();
-            Inventory inv = player.getInventory();
-            LinkedList<Item>[] inventoryItems = inv.getContents();
+            final List<Item> items = new ArrayList<Item>();
+            final Inventory inv = this.player.getInventory();
+            final List<Item>[] inventoryItems = inv.getContents();
             
-            for ( LinkedList<Item> inventoryItemsByType : inventoryItems )
+            for ( final List<Item> inventoryItemsByType : inventoryItems )
             {
                 
-                for ( Item item : inventoryItemsByType )
+                for ( final Item item : inventoryItemsByType )
                 {
                     items.add( item );
                 }
             }
-            Random r = new Random();
-            int amount = r.nextInt(10);
-            amount -= player.getStats().get( Stat.FIGHTER ) / 3;
-            if ( amount > 0 && items.size() > amount )
+            final Random r = new Random();
+            int amount = r.nextInt( 10 );
+            amount -= this.player.getStats().get( Stat.FIGHTER ) / 3;
+            if ( ( amount > 0 ) && ( items.size() > amount ) )
             {
                 for ( int i = 0; i < amount; i++ )
                 {
-                    int it = r.nextInt( items.size() );
-                    player.getInventory().remove( items.get( it ) );
+                    final int it = r.nextInt( items.size() );
+                    this.player.getInventory().remove( items.get( it ) );
                 }
-                game.setPlayer( player );
+                this.game.setPlayer( this.player );
                 Toast.makeText( this.getApplicationContext(), "A Pirate stole items from you!",
                         Toast.LENGTH_LONG ).show();
             }
@@ -176,19 +205,25 @@ public class GameActivity extends Activity implements OnClickListener
     }
     
     /**
-     * Goes to the player info.
+     * Goes to the inventory.
      * 
      * @param v
-     *            the View
+     *        the View
      */
-    public void gotoInventory( View v )
+    public void gotoInventory( final View v )
     {
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        gds.updateGame( game );
-        gds.close();
-        Intent intent = new Intent( GameActivity.this, InventoryActivity.class );
-        intent.putExtra( InventoryActivity.GAME_ID, game.getGameID() );
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            gds.updateGame( this.game );
+        }
+        finally
+        {
+            gds.close();
+        }
+        final Intent intent = new Intent( GameActivity.this, InventoryActivity.class );
+        intent.putExtra( InventoryActivity.GAME_ID, this.game.getGameID() );
         GameActivity.this.startActivity( intent );
     }
     
@@ -196,16 +231,22 @@ public class GameActivity extends Activity implements OnClickListener
      * Goes to the trading.
      * 
      * @param v
-     *            the View
+     *        the View
      */
-    public void gotoTrading( View v )
+    public void gotoTrading( final View v )
     {
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        gds.updateGame( game );
-        gds.close();
-        Intent intent = new Intent( GameActivity.this, TradeActivity.class );
-        intent.putExtra( TradeActivity.GAME_ID, game.getGameID() );
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            gds.updateGame( this.game );
+        }
+        finally
+        {
+            gds.close();
+        }
+        final Intent intent = new Intent( GameActivity.this, TradeActivity.class );
+        intent.putExtra( TradeActivity.GAME_ID, this.game.getGameID() );
         GameActivity.this.startActivity( intent );
     }
     
@@ -213,16 +254,22 @@ public class GameActivity extends Activity implements OnClickListener
      * Goes to the travel activity.
      * 
      * @param v
-     *            the View
+     *        the View
      */
-    public void gotoTravelActivity( View v )
+    public void gotoTravelActivity( final View v )
     {
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        gds.updateGame( game );
-        gds.close();
-        Intent intent = new Intent( GameActivity.this, TravelActivity.class );
-        intent.putExtra( TravelActivity.GAME_ID, game.getGameID() );
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            gds.updateGame( this.game );
+        }
+        finally
+        {
+            gds.close();
+        }
+        final Intent intent = new Intent( GameActivity.this, TravelActivity.class );
+        intent.putExtra( TravelActivity.GAME_ID, this.game.getGameID() );
         GameActivity.this.startActivity( intent );
     }
     
@@ -234,19 +281,19 @@ public class GameActivity extends Activity implements OnClickListener
     @Override
     public void onBackPressed()
     {
-        gotoSelectGame( null );
+        this.gotoSelectGame( null );
     }
     
     /**
      * Goes to the select game.
      * 
      * @param view
-     *            the View
+     *        the View
      */
-    public void gotoSelectGame( View view )
+    public void gotoSelectGame( final View view )
     {
         // launch SelectGame activity
-        Intent selectGameIntent = new Intent( GameActivity.this, SelectGame.class );
+        final Intent selectGameIntent = new Intent( GameActivity.this, SelectGame.class );
         GameActivity.this.startActivity( selectGameIntent );
     }
     
@@ -255,21 +302,21 @@ public class GameActivity extends Activity implements OnClickListener
      * 
      * @see android.view.View.OnClickListener#onClick(android.view.View)
      */
-    public void onClick( View v )
+    public void onClick( final View v )
     {
-        removeHelpOverlay( null );
+        this.removeHelpOverlay( null );
     }
     
     /**
      * Removes the help overlay.
      * 
      * @param v
-     *            the View
+     *        the View
      */
-    public void removeHelpOverlay( View v )
+    public void removeHelpOverlay( final View v )
     {
         v.setVisibility( View.GONE );
-        showHelpOverlay = false;
+        this.showHelpOverlay = false;
         v.invalidate();
     }
 }

@@ -36,148 +36,197 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
  */
 public class TravelActivity extends Activity implements SurfaceHolder.Callback, OnTouchListener
 {
+    
+    /** The Constant GAME_ID. */
     public static final String GAME_ID = "GAME_ID_EXTRA";
     
+    /** The game. */
     private Game               game;
+    
+    /** The universe. */
     private Universe           universe;
+    
+    /** The selected. */
     private Planet             selected;
+    
+    /** The current. */
     private Planet             current;
+    
+    /** The player. */
     private Player             player;
     
+    /** The cp name. */
     private TextView           cpName;
+    
+    /** The cp tech level. */
     private TextView           cpTechLevel;
+    
+    /** The cp resource. */
     private TextView           cpResource;
+    
+    /** The sp name. */
     private TextView           spName;
+    
+    /** The sp tech level. */
     private TextView           spTechLevel;
+    
+    /** The sp resource. */
     private TextView           spResource;
     
+    /** The working universe. */
     private Planet[][]         workingUniverse;
     
+    /** The padding y. */
     private int                canvasWidth, paddingY;
     
+    /** The tech levels. */
     private String[]           techLevels;
+    
+    /** The resource types. */
     private String[]           resourceTypes;
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    public void onCreate( Bundle savedInstanceState )
+    public void onCreate( final Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_travel );
+        this.setContentView( R.layout.activity_travel );
         
-        Intent i = getIntent();
-        long gameID = i.getLongExtra( GAME_ID, -1 );
+        final Intent i = this.getIntent();
+        final long gameID = i.getLongExtra( TravelActivity.GAME_ID, -1 );
         
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        game = gds.getGameByID( gameID );
-        player = game.getPlayer();
-        universe = game.getUniverse();
-        current = game.getPlanet();
-        selected = null;
-        gds.close();
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            this.game = gds.getGameByID( gameID );
+            this.player = this.game.getPlayer();
+            this.universe = this.game.getUniverse();
+            this.current = this.game.getPlanet();
+            this.selected = null;
+        }
+        finally
+        {
+            gds.close();
+        }
         
-        Resources res = getResources();
-        techLevels = res.getStringArray( R.array.TechLevels );
-        resourceTypes = res.getStringArray( R.array.ResourceTypes );
+        final Resources res = this.getResources();
+        this.techLevels = res.getStringArray( R.array.TechLevels );
+        this.resourceTypes = res.getStringArray( R.array.ResourceTypes );
         
-        cpName = ( TextView ) findViewById( R.id.cpName );
-        cpTechLevel = ( TextView ) findViewById( R.id.cpTechLevel );
-        cpResource = ( TextView ) findViewById( R.id.cpResource );
-        spName = ( TextView ) findViewById( R.id.spName );
-        spTechLevel = ( TextView ) findViewById( R.id.spTechLevel );
-        spResource = ( TextView ) findViewById( R.id.spResource );
+        this.cpName = ( TextView ) this.findViewById( R.id.cpName );
+        this.cpTechLevel = ( TextView ) this.findViewById( R.id.cpTechLevel );
+        this.cpResource = ( TextView ) this.findViewById( R.id.cpResource );
+        this.spName = ( TextView ) this.findViewById( R.id.spName );
+        this.spTechLevel = ( TextView ) this.findViewById( R.id.spTechLevel );
+        this.spResource = ( TextView ) this.findViewById( R.id.spResource );
         
-        cpName.setText( "Name: " + current.getName() );
-        cpTechLevel.setText( "Tech Level: " + techLevels[current.getTechLevel()] );
-        cpResource.setText( "Resources: " + resourceTypes[current.getResourceType() + 5] );
+        this.cpName.setText( "Name: " + this.current.getName() );
+        this.cpTechLevel.setText( "Tech Level: " + this.techLevels[this.current.getTechLevel()] );
+        this.cpResource.setText( "Resources: " + this.resourceTypes[this.current.getResourceType() + 5] );
         
-        updateSelected( null );
+        this.updateSelected( null );
         
-        int travelDistance = 3 + ( player.getStats().get( Stat.PILOT ) / 3 );
-        workingUniverse = new Planet[travelDistance][travelDistance];
-        generateWorkingUniverse( universe, current );
+        final int travelDistance = 3 + ( this.player.getStats().get( Stat.PILOT ) / 3 );
+        this.workingUniverse = new Planet[travelDistance][travelDistance];
+        this.generateWorkingUniverse( this.universe, this.current );
         
-        SurfaceView sv = ( SurfaceView ) findViewById( R.id.surfaceView );
+        final SurfaceView sv = ( SurfaceView ) this.findViewById( R.id.surfaceView );
         sv.getHolder().addCallback( this );
         sv.setOnTouchListener( this );
     }
     
-    private void updateSelected( View v )
+    /**
+     * Update selected.
+     * 
+     * @param v
+     *        the View
+     */
+    private void updateSelected( final View v )
     {
-        if ( selected != null )
+        if ( this.selected != null )
         {
-            spName.setText( "Name: " + selected.getName() );
-            spTechLevel.setText( "Tech Level: " + techLevels[selected.getTechLevel()] );
-            spResource.setText( "Resources: " + resourceTypes[selected.getResourceType() + 5] );
+            this.spName.setText( "Name: " + this.selected.getName() );
+            this.spTechLevel.setText( "Tech Level: " + this.techLevels[this.selected.getTechLevel()] );
+            this.spResource.setText( "Resources: " + this.resourceTypes[this.selected.getResourceType() + 5] );
         }
     }
     
     /**
      * Generate working universe.
-     *
-     * @param u the Universe
-     * @param p the Planet
+     * 
+     * @param u
+     *        the Universe
+     * @param p
+     *        the Planet
      */
-    public void generateWorkingUniverse( Universe u, Planet p )
+    public void generateWorkingUniverse( final Universe u, final Planet p )
     {
-        int x = p.getX();
-        int y = p.getY();
+        final int x = p.getX();
+        final int y = p.getY();
         
-        for ( int i = -workingUniverse.length / 2; i < ( workingUniverse.length / 2 ); i++ )
+        for ( int i = -this.workingUniverse.length >> 1; i < ( this.workingUniverse.length >> 1 ); i++ )
         {
-            for ( int j = -workingUniverse[0].length / 2; j < ( workingUniverse[0].length / 2 ); j++ )
+            for ( int j = -this.workingUniverse[0].length >> 1; j < ( this.workingUniverse[0].length >> 1 ); j++ )
             {
-                for ( Planet planet : universe.getUniverse() )
+                for ( final Planet planet : this.universe.getUniverse() )
                 {
-                    int tempX = planet.getX();
-                    int tempY = planet.getY();
+                    final int tempX = planet.getX();
+                    final int tempY = planet.getY();
                     if ( ( tempX == ( x + i ) ) && ( tempY == ( y + j ) ) )
                     {
-                        workingUniverse[i + ( workingUniverse.length / 2 )][j
-                                + ( workingUniverse[0].length / 2 )] = planet;
+                        this.workingUniverse[i + ( this.workingUniverse.length >> 1 )][j
+                                + ( this.workingUniverse[0].length >> 1 )] = planet;
                     }
                 }
             }
         }
     }
     
-    /** 
-     *
+    /**
      * Override:
-     * @see android.view.SurfaceHolder.Callback#surfaceChanged(android.view.SurfaceHolder, int, int, int)
+     * 
+     * @see android.view.SurfaceHolder.Callback#surfaceChanged(android.view.SurfaceHolder,
+     *      int, int, int)
      */
-    public void surfaceChanged( SurfaceHolder holder, int format, int width, int height )
+    public void surfaceChanged( final SurfaceHolder holder, final int format, final int width,
+            final int height )
     {
-        tryToDraw( holder );
+        this.tryToDraw( holder );
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.view.SurfaceHolder.Callback#surfaceCreated(android.view.SurfaceHolder)
      */
-    public void surfaceCreated( SurfaceHolder holder )
+    public void surfaceCreated( final SurfaceHolder holder )
     {
-        tryToDraw( holder );
+        this.tryToDraw( holder );
     }
     
-    /** 
-     *
+    /**
      * Override:
+     * 
      * @see android.view.SurfaceHolder.Callback#surfaceDestroyed(android.view.SurfaceHolder)
      */
-    public void surfaceDestroyed( SurfaceHolder holder )
+    public void surfaceDestroyed( final SurfaceHolder holder )
     {
     }
     
-    private void tryToDraw( SurfaceHolder holder )
+    /**
+     * Try to draw.
+     * 
+     * @param holder
+     *        the SurfaceHolder
+     */
+    private void tryToDraw( final SurfaceHolder holder )
     {
-        Canvas canvas = holder.lockCanvas();
+        final Canvas canvas = holder.lockCanvas();
         if ( canvas == null )
         {
             Toast.makeText( this.getApplicationContext(), "Cannot Draw, Canvas is NULL!", Toast.LENGTH_LONG )
@@ -185,34 +234,40 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
         }
         else
         {
-            draw( canvas );
+            this.draw( canvas );
             holder.unlockCanvasAndPost( canvas );
         }
     }
     
+    /**
+     * Draw.
+     * 
+     * @param canvas
+     *        the Canvas
+     */
     private void draw( final Canvas canvas )
     {
-        Resources res = this.getApplicationContext().getResources();
-        Rect dst = new Rect();
+        final Resources res = this.getApplicationContext().getResources();
+        final Rect dst = new Rect();
         
-        int planetSize = canvas.getWidth() / workingUniverse.length;
-        paddingY = ( canvas.getHeight() - canvas.getWidth() ) / workingUniverse[0].length;
+        final int planetSize = canvas.getWidth() / this.workingUniverse.length;
+        this.paddingY = ( canvas.getHeight() - canvas.getWidth() ) / this.workingUniverse[0].length;
         
         this.canvasWidth = canvas.getWidth();
         
-        for ( int i = 0; i < workingUniverse.length; i++ )
+        for ( int i = 0; i < this.workingUniverse.length; i++ )
         {
-            for ( int j = 0; j < workingUniverse[0].length; j++ )
+            for ( int j = 0; j < this.workingUniverse[0].length; j++ )
             {
-                dst.set( planetSize * i, ( planetSize * j ) + ( paddingY * j ), planetSize * ( i + 1 ),
-                        ( planetSize * ( j + 1 ) ) + ( ( j ) * paddingY ) );
-                if ( workingUniverse[i][j] != null )
+                dst.set( planetSize * i, ( planetSize * j ) + ( this.paddingY * j ), planetSize * ( i + 1 ),
+                        ( planetSize * ( j + 1 ) ) + ( ( j ) * this.paddingY ) );
+                if ( this.workingUniverse[i][j] != null )
                 {
-                    Drawable base = res.getDrawable( workingUniverse[i][j].getBase() );
-                    Drawable land = res.getDrawable( workingUniverse[i][j].getLand() );
-                    Drawable cloud = res.getDrawable( workingUniverse[i][j].getCloud() );
-                    Drawable[] layers = { base, land, cloud };
-                    LayerDrawable drab = new LayerDrawable( layers );
+                    final Drawable base = res.getDrawable( this.workingUniverse[i][j].getBase() );
+                    final Drawable land = res.getDrawable( this.workingUniverse[i][j].getLand() );
+                    final Drawable cloud = res.getDrawable( this.workingUniverse[i][j].getCloud() );
+                    final Drawable[] layers = { base, land, cloud };
+                    final LayerDrawable drab = new LayerDrawable( layers );
                     drab.setBounds( dst );
                     drab.draw( canvas );
                 }
@@ -222,66 +277,79 @@ public class TravelActivity extends Activity implements SurfaceHolder.Callback, 
     
     /**
      * Travel.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *        the View
      */
-    public void travel( View v )
+    public void travel( final View v )
     {
-        if ( selected != null )
+        if ( this.selected != null )
         {
-            game.setPlanet( selected );
-            GameDataSource gds = new GameDataSource( getApplicationContext() );
-            gds.open();
-            gds.updateGame( game );
-            gds.close();
-            Intent intent = new Intent( TravelActivity.this, GameActivity.class );
-            intent.putExtra( GameActivity.GAME_ID_EXTRA, game.getGameID() );
-            intent.putExtra( GameActivity.PIRATE_EXTRA, pirateEvent() );
+            this.game.setPlanet( this.selected );
+            final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+            try
+            {
+                gds.open();
+                gds.updateGame( this.game );
+            }
+            finally
+            {
+                gds.close();
+            }
+            final Intent intent = new Intent( TravelActivity.this, GameActivity.class );
+            intent.putExtra( GameActivity.GAME_ID_EXTRA, this.game.getGameID() );
+            intent.putExtra( GameActivity.PIRATE_EXTRA, this.hasPirateEvent() );
             TravelActivity.this.startActivity( intent );
         }
     }
     
-    public boolean pirateEvent()
+    /**
+     * Checks for pirate event.
+     * 
+     * @return true, if successful
+     */
+    public boolean hasPirateEvent()
     {
-        Random r = new Random();
-        if ( r.nextDouble() * 100 <= 20 )
+        final Random r = new Random();
+        if ( ( r.nextDouble() * 100 ) <= 20 )
         {
             return true;
         }
         return false;
     }
     
-    /** 
-     *
+    /**
      * Override:
-     * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
+     * 
+     * @see android.view.View.OnTouchListener#onTouch(android.view.View,
+     *      android.view.MotionEvent)
      */
-    public boolean onTouch( View view, MotionEvent event )
+    public boolean onTouch( final View view, final MotionEvent event )
     {
-        int x = ( int ) event.getX();
-        int y = ( int ) event.getY();
+        final int x = ( int ) event.getX();
+        final int y = ( int ) event.getY();
         
-        Rect dst = new Rect();
-        int planetSize = canvasWidth / workingUniverse.length;
+        final Rect dst = new Rect();
+        final int planetSize = this.canvasWidth / this.workingUniverse.length;
         
-        for ( int i = 0; i < workingUniverse.length; i++ )
+        for ( int i = 0; i < this.workingUniverse.length; i++ )
         {
-            for ( int j = 0; j < workingUniverse[0].length; j++ )
+            for ( int j = 0; j < this.workingUniverse[0].length; j++ )
             {
-                dst.set( planetSize * i, ( planetSize * j ) + ( paddingY * j ), planetSize * ( i + 1 ),
-                        ( planetSize * ( j + 1 ) ) + ( ( j ) * paddingY ) );
-                if ( workingUniverse[i][j] != null )
+                dst.set( planetSize * i, ( planetSize * j ) + ( this.paddingY * j ), planetSize * ( i + 1 ),
+                        ( planetSize * ( j + 1 ) ) + ( ( j ) * this.paddingY ) );
+                if ( this.workingUniverse[i][j] != null )
                 {
                     if ( dst.contains( x, y ) )
                     {
-                        selected = workingUniverse[i][j];
+                        this.selected = this.workingUniverse[i][j];
                         break;
                     }
                 }
             }
         }
         
-        updateSelected( null );
+        this.updateSelected( null );
         return false;
     }
 }

@@ -24,33 +24,35 @@ public class LaunchActivity extends Activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    public void onCreate( Bundle savedInstanceState )
+    public void onCreate( final Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_launch );
+        this.setContentView( R.layout.activity_launch );
     }
     
     /**
      * Goes to the select game.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *        the View
      */
-    public void gotoSelectGame( View v )
+    public void gotoSelectGame( final View v )
     {
         // launch SelectGame activity
-        Intent selectGameIntent = new Intent( LaunchActivity.this, SelectGame.class );
+        final Intent selectGameIntent = new Intent( LaunchActivity.this, SelectGame.class );
         LaunchActivity.this.startActivity( selectGameIntent );
     }
     
     /**
      * Goes to the about page.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *        the View
      */
-    public void gotoAboutPage( View v )
+    public void gotoAboutPage( final View v )
     {
         // goto About Activity
-        Intent aboutIntent = new Intent( LaunchActivity.this, AboutPage.class );
+        final Intent aboutIntent = new Intent( LaunchActivity.this, AboutPage.class );
         LaunchActivity.this.startActivity( aboutIntent );
     }
     

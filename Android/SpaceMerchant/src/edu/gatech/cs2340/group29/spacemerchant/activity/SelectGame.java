@@ -26,6 +26,7 @@ import edu.gatech.cs2340.group29.spacemerchant.util.GameDataSource;
 public class SelectGame extends Activity
 {
     
+    /** The alg. */
     private ArrayList<Game> alg;
     
     /**
@@ -34,30 +35,37 @@ public class SelectGame extends Activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    public void onCreate( Bundle savedInstanceState )
+    public void onCreate( final Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_select_game );
-        GameDataSource gds = new GameDataSource( getApplicationContext() );
-        gds.open();
-        alg = ( ArrayList<Game> ) gds.getGameList();
-        gds.close();
+        this.setContentView( R.layout.activity_select_game );
+        final GameDataSource gds = new GameDataSource( this.getApplicationContext() );
+        try
+        {
+            gds.open();
+            this.alg = ( ArrayList<Game> ) gds.getGameList();
+        }
+        finally
+        {
+            gds.close();
+        }
         
-        alg.trimToSize();
-        SelectGameAdapter s = new SelectGameAdapter( this, R.layout.activity_select_game, alg );
+        this.alg.trimToSize();
+        final SelectGameAdapter s = new SelectGameAdapter( this, R.layout.activity_select_game, this.alg );
         ( ( ListView ) this.findViewById( R.id.gameList ) ).setAdapter( s );
         ( ( ListView ) this.findViewById( R.id.gameList ) ).setOnItemClickListener( new SelectGameListener() );
     }
     
     /**
      * Goes to the player config.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *        the View
      */
-    public void gotoPlayerConfig( View v )
+    public void gotoPlayerConfig( final View v )
     {
         // launch SelectGame activity
-        Intent intent = new Intent( SelectGame.this, PlayerConfig.class );
+        final Intent intent = new Intent( SelectGame.this, PlayerConfig.class );
         SelectGame.this.startActivity( intent );
     }
     
@@ -69,30 +77,30 @@ public class SelectGame extends Activity
     @Override
     public void onBackPressed()
     {
-        gotoLaunchActivity( null );
+        this.gotoLaunchActivity( null );
     }
     
     /**
      * Goes to the launch activity.
-     *
-     * @param v the View
+     * 
+     * @param v
+     *        the View
      */
-    public void gotoLaunchActivity( View v )
+    public void gotoLaunchActivity( final View v )
     {
         // launch SelectGame activity
-        Intent selectGameIntent = new Intent( SelectGame.this, LaunchActivity.class );
+        final Intent selectGameIntent = new Intent( SelectGame.this, LaunchActivity.class );
         SelectGame.this.startActivity( selectGameIntent );
     }
     
     /**
-     * The listener interface for receiving selectGame events.
-     * The class that is interested in processing a selectGame
-     * event implements this interface, and the object created
-     * with that class is registered with a component using the
-     * component's <code>addSelectGameListener<code> method. When
+     * The listener interface for receiving selectGame events. The class that is
+     * interested in processing a selectGame event implements this interface,
+     * and the object created with that class is registered with a component
+     * using the component's <code>addSelectGameListener<code> method. When
      * the selectGame event occurs, that object's appropriate
      * method is invoked.
-     *
+     * 
      * @see SelectGameEvent
      */
     class SelectGameListener implements OnItemClickListener
@@ -104,12 +112,13 @@ public class SelectGame extends Activity
          * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
          *      android.view.View, int, long)
          */
-        public void onItemClick( AdapterView<?> parent, View view, int position, long id )
+        public void onItemClick( final AdapterView<?> parent, final View view, final int position,
+                final long id )
         {
-            Game g = alg.get( position );
-            long gameID = g.getID();
+            final Game g = SelectGame.this.alg.get( position );
+            final long gameID = g.getID();
             
-            Intent intent = new Intent( SelectGame.this, GameActivity.class );
+            final Intent intent = new Intent( SelectGame.this, GameActivity.class );
             intent.putExtra( GameActivity.GAME_ID_EXTRA, gameID );
             SelectGame.this.startActivity( intent );
         }

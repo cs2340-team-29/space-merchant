@@ -9,7 +9,9 @@ package edu.gatech.cs2340.group29.spacemerchant.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -21,23 +23,37 @@ import edu.gatech.cs2340.group29.spacemerchant.R;
  */
 public class Universe
 {
-    private ArrayList<Point>  planet_xy;
-    private ArrayList<String> planet_name;
-    private ArrayList<Planet> universe;
     
-    private int               width;
-    private int               height;
+    /** The planet_xy. */
+    private List<Point>   planet_xy;
     
-    private int               difficulty;
-    private Context           context;
+    /** The planet_name. */
+    private List<String>  planet_name;
+    
+    /** The universe. */
+    private List<Planet>  universe;
+    
+    /** The width. */
+    private int           width;
+    
+    /** The height. */
+    private int           height;
+    
+    /** The difficulty. */
+    private final int     difficulty;
+    
+    /** The context. */
+    private final Context context;
     
     /**
      * Instantiates a new universe.
-     *
-     * @param difficulty the int
-     * @param context the Context
+     * 
+     * @param difficulty
+     *        the int
+     * @param context
+     *        the Context
      */
-    public Universe( int difficulty, Context context )
+    public Universe( final int difficulty, final Context context )
     {
         this.difficulty = difficulty;
         this.context = context;
@@ -45,42 +61,42 @@ public class Universe
     
     /**
      * Generate planets.
-     *
-     * @return the array list
+     * 
+     * @return the list
      */
-    public ArrayList<Planet> generatePlanets()
+    public List<Planet> generatePlanets()
     {
         // 12^2 > 120 (# of planets) with some room to breathe,
         // a.k.a. the smallest universe size
-        width = 10 + 2 * difficulty;
-        height = 10 + 2 * difficulty;
-        Resources res = context.getResources();
-        planet_name = new ArrayList<String>( Arrays.asList( res.getStringArray( R.array.planets ) ) );
-        planet_xy = new ArrayList<Point>();
-        universe = new ArrayList<Planet>();
+        this.width = 10 + ( 2 * this.difficulty );
+        this.height = 10 + ( 2 * this.difficulty );
+        final Resources res = this.context.getResources();
+        this.planet_name = new ArrayList<String>( Arrays.asList( res.getStringArray( R.array.planets ) ) );
+        this.planet_xy = new ArrayList<Point>();
+        this.universe = new ArrayList<Planet>();
         
-        Random r = new Random();
-        while ( planet_xy.size() < 120 )
+        final Random r = new Random();
+        while ( this.planet_xy.size() < 120 )
         {
-            int x = r.nextInt( width + 1 );
-            int y = r.nextInt( height + 1 );
+            final int x = r.nextInt( this.width + 1 );
+            final int y = r.nextInt( this.height + 1 );
             
-            Point p = new Point( x, y );
-            planet_xy.add( p );
+            final Point p = new Point( x, y );
+            this.planet_xy.add( p );
             // remove duplicates
-            HashSet<Point> hs = new HashSet<Point>();
-            hs.addAll( planet_xy );
-            planet_xy.clear();
-            planet_xy.addAll( hs );
+            final Set<Point> hs = new HashSet<Point>();
+            hs.addAll( this.planet_xy );
+            this.planet_xy.clear();
+            this.planet_xy.addAll( hs );
         }
         
-        for ( int i = 0; i < planet_name.size(); i++ )
+        for ( int i = 0; i < this.planet_name.size(); i++ )
         {
-            universe.add( new Planet( planet_name.get( i ), planet_xy.get( i ).x, planet_xy.get( i ).y,
-                    context ) );
+            this.universe.add( new Planet( this.planet_name.get( i ), this.planet_xy.get( i ).x,
+                    this.planet_xy.get( i ).y, this.context ) );
         }
         
-        return universe;
+        return this.universe;
     }
     
     /**
@@ -91,106 +107,111 @@ public class Universe
     @Override
     public String toString()
     {
-        return " Width: " + width + " Height: " + height + " Difficulty: " + difficulty + "Universe: "
-                + universe.toString();
+        return " Width: " + this.width + " Height: " + this.height + " Difficulty: " + this.difficulty
+                + "Universe: " + this.universe.toString();
     }
     
     /**
      * Gets the planet_xy.
-     *
+     * 
      * @return the planet_xy
      */
-    public ArrayList<Point> getPlanet_xy()
+    public List<Point> getPlanet_xy()
     {
-        return planet_xy;
+        return this.planet_xy;
     }
     
     /**
      * Sets the planet_xy.
-     *
-     * @param planet_xy the new planet_xy
+     * 
+     * @param planet_xy
+     *        the new planet_xy
      */
-    public void setPlanet_xy( ArrayList<Point> planet_xy )
+    public void setPlanet_xy( final List<Point> planet_xy )
     {
         this.planet_xy = planet_xy;
     }
     
     /**
      * Gets the planet_name.
-     *
+     * 
      * @return the planet_name
      */
-    public ArrayList<String> getPlanet_name()
+    public List<String> getPlanet_name()
     {
-        return planet_name;
+        return this.planet_name;
     }
     
     /**
      * Sets the planet_name.
-     *
-     * @param planet_name the new planet_name
+     * 
+     * @param planet_name
+     *        the new planet_name
      */
-    public void setPlanet_name( ArrayList<String> planet_name )
+    public void setPlanet_name( final List<String> planet_name )
     {
         this.planet_name = planet_name;
     }
     
     /**
      * Gets the universe.
-     *
+     * 
      * @return the universe
      */
-    public ArrayList<Planet> getUniverse()
+    public List<Planet> getUniverse()
     {
-        return universe;
+        return this.universe;
     }
     
     /**
      * Sets the universe.
-     *
-     * @param universe the new universe
+     * 
+     * @param universe
+     *        the new universe
      */
-    public void setUniverse( ArrayList<Planet> universe )
+    public void setUniverse( final List<Planet> universe )
     {
         this.universe = universe;
     }
     
     /**
      * Gets the width.
-     *
+     * 
      * @return the width
      */
     public int getWidth()
     {
-        return width;
+        return this.width;
     }
     
     /**
      * Sets the width.
-     *
-     * @param width the new width
+     * 
+     * @param width
+     *        the new width
      */
-    public void setWidth( int width )
+    public void setWidth( final int width )
     {
         this.width = width;
     }
     
     /**
      * Gets the height.
-     *
+     * 
      * @return the height
      */
     public int getHeight()
     {
-        return height;
+        return this.height;
     }
     
     /**
      * Sets the height.
-     *
-     * @param height the new height
+     * 
+     * @param height
+     *        the new height
      */
-    public void setHeight( int height )
+    public void setHeight( final int height )
     {
         this.height = height;
     }

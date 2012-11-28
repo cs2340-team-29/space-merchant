@@ -19,62 +19,72 @@ public class StatGroup
      */
     public enum Stat
     {
-        PILOT, FIGHTER, TRADER, ENGINEER
+        
+        /** The pilot. */
+        PILOT,
+        /** The fighter. */
+        FIGHTER,
+        /** The trader. */
+        TRADER,
+        /** The engineer. */
+        ENGINEER
     }
     
-    private int[] values = new int[Stat.values().length];
+    /** The values. */
+    private final int[] values = new int[Stat.values().length];
     
     /**
      * Instantiates a new stat group.
      */
     public StatGroup()
     {
-        Arrays.fill( values, 0 );
+        Arrays.fill( this.values, 0 );
     }
     
     /**
      * Instantiates a new stat group.
-     *
-     * @param statArray the int[]
+     * 
+     * @param statArray
+     *        the int[]
      */
-    public StatGroup( int[] statArray )
+    public StatGroup( final int[] statArray )
     {
-        for ( int i = 0; i < statArray.length; i++ )
-        {
-            values[i] = statArray[i];
-        }
+        System.arraycopy( this.values, 0, statArray, 0, this.values.length );
     }
     
     /**
      * Gets the.
-     *
-     * @param stat the Stat
+     * 
+     * @param stat
+     *        the Stat
      * @return the int
      */
-    public int get( Stat stat )
+    public int get( final Stat stat )
     {
-        return values[stat.ordinal()];
+        return this.values[stat.ordinal()];
     }
     
     /**
      * Sets the.
-     *
-     * @param stat the Stat
-     * @param value the int
+     * 
+     * @param stat
+     *        the Stat
+     * @param value
+     *        the int
      */
-    public void set( Stat stat, int value )
+    public void set( final Stat stat, final int value )
     {
-        values[stat.ordinal()] = value;
+        this.values[stat.ordinal()] = value;
     }
     
     /**
      * To int array.
-     *
+     * 
      * @return the int[]
      */
     public int[] toIntArray()
     {
-        return values;
+        return this.values;
     }
     
 }

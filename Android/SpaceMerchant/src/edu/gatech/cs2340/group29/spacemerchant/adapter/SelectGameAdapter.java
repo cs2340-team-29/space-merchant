@@ -7,6 +7,7 @@
 package edu.gatech.cs2340.group29.spacemerchant.adapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,23 +27,30 @@ import edu.gatech.cs2340.group29.spacemerchant.model.StatGroup.Stat;
  */
 public class SelectGameAdapter extends ArrayAdapter<Game>
 {
-    private ArrayList<Player> players;
-    private Context           context;
+    
+    /** The players. */
+    private final List<Player> players;
+    
+    /** The context. */
+    private final Context      context;
     
     /**
      * Instantiates a new select game adapter.
-     *
-     * @param context the Context
-     * @param layoutResourceId the int
-     * @param games the ArrayList<Game>
+     * 
+     * @param context
+     *        the Context
+     * @param layoutResourceId
+     *        the int
+     * @param games
+     *        the List<Game>
      */
-    public SelectGameAdapter( Context context, int layoutResourceId, ArrayList<Game> games )
+    public SelectGameAdapter( final Context context, final int layoutResourceId, final List<Game> games )
     {
         super( context, layoutResourceId, games );
         this.context = context;
         
-        ArrayList<Player> p = new ArrayList<Player>();
-        for ( Game game : games )
+        final List<Player> p = new ArrayList<Player>();
+        for ( final Game game : games )
         {
             p.add( game.getPlayer() );
         }
@@ -55,18 +63,44 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
      */
     static class ViewHolder
     {
+        
+        /** The player_head. */
         protected ImageView player_head;
+        
+        /** The player_body. */
         protected ImageView player_body;
+        
+        /** The player_legs. */
         protected ImageView player_legs;
+        
+        /** The player_feet. */
         protected ImageView player_feet;
+        
+        /** The ship_fuselage. */
         protected ImageView ship_fuselage;
+        
+        /** The ship_cabin. */
         protected ImageView ship_cabin;
+        
+        /** The ship_boosters. */
         protected ImageView ship_boosters;
+        
+        /** The player_name. */
         protected TextView  player_name;
+        
+        /** The money. */
         protected TextView  money;
+        
+        /** The stat1. */
         protected TextView  stat1;
+        
+        /** The stat2. */
         protected TextView  stat2;
+        
+        /** The stat3. */
         protected TextView  stat3;
+        
+        /** The stat4. */
         protected TextView  stat4;
     }
     
@@ -77,13 +111,13 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
      *      android.view.ViewGroup)
      */
     @Override
-    public View getView( int position, View convertView, ViewGroup parent )
+    public View getView( final int position, View convertView, final ViewGroup parent )
     {
         ViewHolder viewHolder;
         
         if ( convertView == null )
         {
-            LayoutInflater inf = ( ( Activity ) context ).getLayoutInflater();
+            final LayoutInflater inf = ( ( Activity ) this.context ).getLayoutInflater();
             convertView = inf.inflate( R.layout.custom_select_game, parent, false );
             viewHolder = new ViewHolder();
         }
@@ -107,19 +141,20 @@ public class SelectGameAdapter extends ArrayAdapter<Game>
         viewHolder.stat4 = ( TextView ) convertView.findViewById( R.id.stat4 );
         convertView.setTag( viewHolder );
         
-        viewHolder.player_head.setImageResource( players.get( position ).getHead() );
-        viewHolder.player_body.setImageResource( players.get( position ).getBody() );
-        viewHolder.player_legs.setImageResource( players.get( position ).getLegs() );
-        viewHolder.player_feet.setImageResource( players.get( position ).getFeet() );
-        viewHolder.ship_fuselage.setImageResource( players.get( position ).getShip().getFuselage() );
-        viewHolder.ship_cabin.setImageResource( players.get( position ).getShip().getCabin() );
-        viewHolder.ship_boosters.setImageResource( players.get( position ).getShip().getBoosters() );
-        viewHolder.player_name.setText( players.get( position ).getName() );
-        viewHolder.money.setText( "$ " + players.get( position ).getMoney() );
-        viewHolder.stat1.setText( "Pilot: " + players.get( position ).getStats().get( Stat.PILOT ) );
-        viewHolder.stat2.setText( "Fighter: " + players.get( position ).getStats().get( Stat.FIGHTER ) );
-        viewHolder.stat3.setText( "Trader: " + players.get( position ).getStats().get( Stat.TRADER ) );
-        viewHolder.stat4.setText( "Engineer: " + players.get( position ).getStats().get( Stat.ENGINEER ) );
+        viewHolder.player_head.setImageResource( this.players.get( position ).getHead() );
+        viewHolder.player_body.setImageResource( this.players.get( position ).getBody() );
+        viewHolder.player_legs.setImageResource( this.players.get( position ).getLegs() );
+        viewHolder.player_feet.setImageResource( this.players.get( position ).getFeet() );
+        viewHolder.ship_fuselage.setImageResource( this.players.get( position ).getShip().getFuselage() );
+        viewHolder.ship_cabin.setImageResource( this.players.get( position ).getShip().getCabin() );
+        viewHolder.ship_boosters.setImageResource( this.players.get( position ).getShip().getBoosters() );
+        viewHolder.player_name.setText( this.players.get( position ).getName() );
+        viewHolder.money.setText( "$ " + this.players.get( position ).getMoney() );
+        viewHolder.stat1.setText( "Pilot: " + this.players.get( position ).getStats().get( Stat.PILOT ) );
+        viewHolder.stat2.setText( "Fighter: " + this.players.get( position ).getStats().get( Stat.FIGHTER ) );
+        viewHolder.stat3.setText( "Trader: " + this.players.get( position ).getStats().get( Stat.TRADER ) );
+        viewHolder.stat4
+                .setText( "Engineer: " + this.players.get( position ).getStats().get( Stat.ENGINEER ) );
         return convertView;
     }
 }
